@@ -1,0 +1,82 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18, 20]
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Generate client code
+        run: npm run generate
+        
+      - name: Run type checking
+        run: npm run typecheck
+        
+      - name: Run linting
+        run: npm run lint
+        
+      - name: Build packages
+        run: npm run build
+        
+      - name: Run unit tests
+        run: npm run test:unit
+        
+      - name: Run integration tests
+        run: npm run test:integration
+        continue-on-error: true  # Integration tests may fail due to network issues
+        
+      - name: Upload coverage reports
+        uses: codecov/codecov-action@v3
+        with:
+          file: ./coverage/lcov.info
+          flags: unittests
+          name: codecov-umbrella
+          fail_ci_if_error: false
+
+  build-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Generate client code
+        run: npm run generate
+        
+      - name: Build packages
+        run: npm run build
+        
+      - name: Check package exports
+        run: |
+          cd packages/jsonrpc-types
+          node -e "console.log(require('./dist/index.js'))"
+          cd ../jsonrpc-client
+          node -e "console.log(require('./dist/index.js'))"

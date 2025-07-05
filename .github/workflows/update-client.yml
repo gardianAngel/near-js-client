@@ -1,0 +1,92 @@
+name: Update NEAR Client
+
+on:
+  schedule:
+    - cron: '0 0 * * 1'  # Weekly on Monday at midnight UTC
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/codegen/**'
+      - '.github/workflows/update-client.yml'
+
+jobs:
+  update-client:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Generate client code
+        run: npm run generate
+        
+      - name: Build packages
+        run: npm run build
+        
+      - name: Run tests
+        run: npm test
+        
+      - name: Check for changes
+        id: changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          
+          if [[ -n $(git status --porcelain) ]]; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "Changes detected:"
+            git status --porcelain
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "No changes detected"
+          fi
+          
+      - name: Create Pull Request
+        if: steps.changes.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'chore: update NEAR client from latest OpenAPI spec'
+          title: 'chore: update NEAR client from latest OpenAPI spec'
+          body: |
+            ## 🤖 Automated Update
+            
+            This PR contains automated updates to the NEAR Protocol TypeScript client based on the latest OpenAPI specification.
+            
+            ### Changes Made
+            - Regenerated types and client methods from latest OpenAPI spec
+            - Updated Zod schemas for runtime validation
+            - Maintained backward compatibility where possible
+            
+            ### Testing
+            - ✅ All existing tests pass
+            - ✅ Generated code builds successfully
+            - ✅ Type checking passes
+            
+            ### Review Notes
+            Please review the generated changes to ensure they align with expected API updates.
+            
+            ---
+            *This PR was automatically created by the update-client workflow*
+          branch: auto-update/openapi-spec
+          delete-branch: true
+          labels: |
+            automated
+            dependencies
+            enhancement
