@@ -1,0 +1,553 @@
+# NEAR Protocol TypeScript Client - Complete Project Specification
+
+## 🎯 Project Overview
+Build a fully automated, type-safe TypeScript client for NEAR Protocol's JSON-RPC interface using OpenAPI specification. This is a public good project requiring complete automation, comprehensive testing, and excellent documentation.
+
+## 📋 Project Structure
+```
+near-js-client/
+├── packages/
+│   ├── jsonrpc-types/           # Package A: Types only
+│   │   ├── src/
+│   │   │   ├── index.ts
+│   │   │   ├── types/
+│   │   │   └── schemas/
+│   │   ├── package.json
+│   │   ├── tsconfig.json
+│   │   └── README.md
+│   └── jsonrpc-client/          # Package B: Client implementation
+│       ├── src/
+│       │   ├── index.ts
+│       │   ├── client.ts
+│       │   └── methods/
+│       ├── package.json
+│       ├── tsconfig.json
+│       └── README.md
+├── tools/
+│   ├── codegen/                 # Code generation scripts
+│   │   ├── generate.ts
+│   │   ├── openapi-parser.ts
+│   │   └── templates/
+│   └── scripts/
+├── tests/
+│   ├── unit/
+│   ├── integration/
+│   └── fixtures/
+├── docs/
+├── .github/
+│   └── workflows/
+├── package.json                 # Root package.json (workspace)
+├── tsconfig.json               # Root TypeScript config
+├── jest.config.js              # Test configuration
+└── README.md
+```
+
+## 🔧 Technical Implementation Details
+
+### 1. OpenAPI Processing & Code Generation
+
+#### Key Requirements:
+- **CRITICAL**: OpenAPI spec uses unique paths but actual JSON-RPC uses `/` - must patch generated code
+- Parse OpenAPI spec from nearcore repository
+- Generate type-safe TypeScript interfaces
+- Convert snake_case to camelCase automatically
+- Use Zod for runtime validation
+
+#### Implementation Steps:
+1. **Fetch OpenAPI Spec**
+   ```typescript
+   // tools/codegen/openapi-parser.ts
+   const OPENAPI_SPEC_URL = 'https://raw.githubusercontent.com/near/nearcore/master/chain/jsonrpc/openapi/rpc_light_client.json';
+   
+   async function fetchOpenApiSpec(): Promise<OpenAPISpec> {
+     const response = await fetch(OPENAPI_SPEC_URL);
+     return await response.json();
+   }
+   ```
+
+2. **Parse and Transform**
+   ```typescript
+   // Convert snake_case to camelCase
+   function transformKeys(obj: any): any {
+     if (Array.isArray(obj)) {
+       return obj.map(transformKeys);
+     }
+     if (obj && typeof obj === 'object') {
+       return Object.keys(obj).reduce((acc, key) => {
+         const camelKey = key.replace(/_([a-z])/g, (_, letter) => letter.toUpperCase());
+         acc[camelKey] = transformKeys(obj[key]);
+         return acc;
+       }, {} as any);
+     }
+     return obj;
+   }
+   ```
+
+3. **Generate Types with Zod Schemas**
+   ```typescript
+   // Generated output example
+   import { z } from 'zod';
+   
+   export const BlockQuerySchema = z.object({
+     blockId: z.union([z.string(), z.number()]).optional(),
+     finality: z.enum(['final', 'near-final', 'optimistic']).optional(),
+   });
+   
+   export type BlockQuery = z.infer<typeof BlockQuerySchema>;
+   ```
+
+### 2. Package A: @near-js/jsonrpc-types
+
+#### Structure:
+```typescript
+// packages/jsonrpc-types/src/index.ts
+export * from './types/blocks';
+export * from './types/transactions';
+export * from './types/accounts';
+export * from './schemas/blocks';
+export * from './schemas/transactions';
+export * from './schemas/accounts';
+```
+
+#### Package Configuration:
+```json
+{
+  "name": "@near-js/jsonrpc-types",
+  "version": "1.0.0",
+  "description": "TypeScript types and Zod schemas for NEAR Protocol JSON-RPC",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "sideEffects": false,
+  "dependencies": {
+    "zod": "^3.22.0"
+  },
+  "peerDependencies": {},
+  "files": ["dist"]
+}
+```
+
+### 3. Package B: @near-js/jsonrpc-client
+
+#### Core Client Implementation:
+```typescript
+// packages/jsonrpc-client/src/client.ts
+import { z } from 'zod';
+
+export class NearJsonRpcClient {
+  private baseUrl: string;
+  private apiKey?: string;
+
+  constructor(baseUrl: string, apiKey?: string) {
+    this.baseUrl = baseUrl;
+    this.apiKey = apiKey;
+  }
+
+  private async makeRequest<T>(
+    method: string,
+    params: any,
+    responseSchema: z.ZodSchema<T>
+  ): Promise<T> {
+    // CRITICAL: Always use '/' as path, not the OpenAPI spec paths
+    const response = await fetch(`${this.baseUrl}/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...(this.apiKey && { 'Authorization': `Bearer ${this.apiKey}` })
+      },
+      body: JSON.stringify({
+        jsonrpc: '2.0',
+        method,
+        params,
+        id: Date.now()
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    
+    if (data.error) {
+      throw new Error(`RPC Error: ${data.error.message}`);
+    }
+
+    return responseSchema.parse(data.result);
+  }
+
+  // Generated method implementations
+  async getBlock(params: BlockQuery): Promise<BlockResponse> {
+    return this.makeRequest('block', params, BlockResponseSchema);
+  }
+}
+```
+
+#### Package Configuration:
+```json
+{
+  "name": "@near-js/jsonrpc-client",
+  "version": "1.0.0",
+  "description": "TypeScript client for NEAR Protocol JSON-RPC",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "dependencies": {
+    "@near-js/jsonrpc-types": "^1.0.0",
+    "zod": "^3.22.0"
+  },
+  "files": ["dist"]
+}
+```
+
+### 4. GitHub Actions Automation
+
+#### CI/CD Workflow:
+```yaml
+# .github/workflows/update-client.yml
+name: Update NEAR Client
+
+on:
+  schedule:
+    - cron: '0 0 * * 1'  # Weekly on Monday
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  update-client:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Generate client code
+        run: npm run generate
+        
+      - name: Run tests
+        run: npm test
+        
+      - name: Check for changes
+        id: changes
+        run: |
+          git diff --quiet || echo "changed=true" >> $GITHUB_OUTPUT
+          
+      - name: Create Pull Request
+        if: steps.changes.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'chore: update NEAR client from latest OpenAPI spec'
+          title: 'Update NEAR client from latest OpenAPI spec'
+          body: |
+            Automated update of NEAR Protocol TypeScript client based on latest OpenAPI specification.
+            
+            - Regenerated types and client methods
+            - Updated Zod schemas
+            - Maintained backward compatibility where possible
+          branch: update-client
+```
+
+#### Release Workflow:
+```yaml
+# .github/workflows/release.yml
+name: Release
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          registry-url: 'https://registry.npmjs.org'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Build packages
+        run: npm run build
+        
+      - name: Run tests
+        run: npm test
+        
+      - name: Release Please
+        uses: google-github-actions/release-please-action@v3
+        id: release
+        with:
+          release-type: node
+          package-name: near-js-client
+          
+      - name: Publish to NPM
+        if: steps.release.outputs.release_created
+        run: |
+          cd packages/jsonrpc-types && npm publish
+          cd ../jsonrpc-client && npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+```
+
+### 5. Testing Strategy
+
+#### Unit Tests:
+```typescript
+// tests/unit/client.test.ts
+import { NearJsonRpcClient } from '@near-js/jsonrpc-client';
+import { BlockQuerySchema } from '@near-js/jsonrpc-types';
+
+describe('NearJsonRpcClient', () => {
+  let client: NearJsonRpcClient;
+  
+  beforeEach(() => {
+    client = new NearJsonRpcClient('https://rpc.testnet.near.org');
+  });
+
+  it('should validate input parameters', () => {
+    const validParams = { finality: 'final' };
+    expect(() => BlockQuerySchema.parse(validParams)).not.toThrow();
+    
+    const invalidParams = { finality: 'invalid' };
+    expect(() => BlockQuerySchema.parse(invalidParams)).toThrow();
+  });
+
+  it('should make correct RPC calls', async () => {
+    // Mock fetch
+    global.fetch = jest.fn().mockResolvedValue({
+      ok: true,
+      json: () => Promise.resolve({
+        jsonrpc: '2.0',
+        result: { header: { height: 100 } },
+        id: 1
+      })
+    });
+
+    const result = await client.getBlock({ finality: 'final' });
+    
+    expect(fetch).toHaveBeenCalledWith('https://rpc.testnet.near.org/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        jsonrpc: '2.0',
+        method: 'block',
+        params: { finality: 'final' },
+        id: expect.any(Number)
+      })
+    });
+  });
+});
+```
+
+#### Integration Tests:
+```typescript
+// tests/integration/live-rpc.test.ts
+import { NearJsonRpcClient } from '@near-js/jsonrpc-client';
+
+describe('Live RPC Integration', () => {
+  let client: NearJsonRpcClient;
+  
+  beforeEach(() => {
+    client = new NearJsonRpcClient('https://rpc.testnet.near.org');
+  });
+
+  it('should fetch latest block', async () => {
+    const block = await client.getBlock({ finality: 'final' });
+    expect(block.header.height).toBeGreaterThan(0);
+  }, 10000);
+});
+```
+
+### 6. Code Generation Scripts
+
+#### Main Generation Script:
+```typescript
+// tools/codegen/generate.ts
+import { generateTypes } from './type-generator';
+import { generateClient } from './client-generator';
+import { fetchOpenApiSpec } from './openapi-parser';
+
+async function main() {
+  console.log('🚀 Generating NEAR TypeScript client...');
+  
+  // 1. Fetch OpenAPI spec
+  const spec = await fetchOpenApiSpec();
+  console.log('✅ OpenAPI spec fetched');
+  
+  // 2. Generate types package
+  await generateTypes(spec);
+  console.log('✅ Types package generated');
+  
+  // 3. Generate client package
+  await generateClient(spec);
+  console.log('✅ Client package generated');
+  
+  console.log('🎉 Generation complete!');
+}
+
+main().catch(console.error);
+```
+
+### 7. Documentation Structure
+
+#### Root README.md:
+```markdown
+# NEAR Protocol TypeScript Client
+
+A fully type-safe, auto-generated TypeScript client for NEAR Protocol's JSON-RPC interface.
+
+## Packages
+
+- `@near-js/jsonrpc-types` - TypeScript types and Zod schemas
+- `@near-js/jsonrpc-client` - Full RPC client implementation
+
+## Quick Start
+
+```bash
+npm install @near-js/jsonrpc-client
+```
+
+```typescript
+import { NearJsonRpcClient } from '@near-js/jsonrpc-client';
+
+const client = new NearJsonRpcClient('https://rpc.mainnet.near.org');
+const block = await client.getBlock({ finality: 'final' });
+```
+
+## Development
+
+This project uses automated code generation from NEAR's OpenAPI specification.
+```
+
+### 8. Build Configuration
+
+#### Root package.json:
+```json
+{
+  "name": "near-js-client",
+  "private": true,
+  "workspaces": ["packages/*"],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "test": "jest",
+    "generate": "tsx tools/codegen/generate.ts",
+    "lint": "eslint . --ext .ts,.tsx",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.0",
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "jest": "^29.5.0",
+    "ts-jest": "^29.1.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0"
+  }
+}
+```
+
+#### TypeScript Configuration:
+```json
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "commonjs",
+    "lib": ["ES2022"],
+    "declaration": true,
+    "outDir": "./dist",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "**/*.test.ts"]
+}
+```
+
+## 🎯 Implementation Checklist
+
+### Phase 1: Project Setup
+- [ ] Initialize monorepo with workspace structure
+- [ ] Set up TypeScript configuration
+- [ ] Configure ESLint and Prettier
+- [ ] Set up Jest testing framework
+- [ ] Create basic package.json files
+
+### Phase 2: Code Generation
+- [ ] Implement OpenAPI spec fetching
+- [ ] Create type generation logic
+- [ ] Implement snake_case to camelCase conversion
+- [ ] Generate Zod schemas
+- [ ] Create client method generation
+- [ ] **CRITICAL**: Patch path handling (use `/` not spec paths)
+
+### Phase 3: Package Development
+- [ ] Build @near-js/jsonrpc-types package
+- [ ] Build @near-js/jsonrpc-client package
+- [ ] Ensure tree-shaking compatibility
+- [ ] Add proper TypeScript declarations
+
+### Phase 4: Testing
+- [ ] Write unit tests for type validation
+- [ ] Write unit tests for client methods
+- [ ] Create integration tests with mock RPC
+- [ ] Add optional live RPC tests
+- [ ] Achieve 80%+ test coverage
+
+### Phase 5: Automation
+- [ ] Set up GitHub Actions for code generation
+- [ ] Implement automated PR creation
+- [ ] Configure release-please
+- [ ] Set up NPM publishing automation
+- [ ] Add scheduled updates
+
+### Phase 6: Documentation
+- [ ] Write comprehensive README files
+- [ ] Create usage examples
+- [ ] Document contribution guidelines
+- [ ] Add API documentation
+- [ ] Create deployment guides
+
+### Phase 7: Publishing
+- [ ] Publish packages to NPM
+- [ ] Test installation and usage
+- [ ] Create initial releases
+- [ ] Set up monitoring and alerts
+
+## 🚨 Critical Notes
+
+1. **Path Handling**: The OpenAPI spec uses unique paths per method, but NEAR's JSON-RPC always uses `/`. This MUST be patched in generated code.
+
+2. **Type Safety**: All generated types must be validated with Zod schemas at runtime.
+
+3. **Automation**: The entire pipeline must be fully automated - no manual intervention should be required.
+
+4. **Testing**: Comprehensive testing is essential for reliability.
+
+5. **Documentation**: Excellent documentation is required for adoption.
+
+## 🔗 Resources
+
+- [NEAR OpenAPI Spec](https://github.com/near/nearcore/blob/master/chain/jsonrpc/openapi/rpc_light_client.json)
+- [NEAR JSON-RPC Documentation](https://docs.near.org/api/rpc/introduction)
+- [OpenAPI TypeScript Codegen](https://github.com/drwpow/openapi-typescript)
+- [Zod Documentation](https://zod.dev/)
+
+This specification provides everything needed to build a complete, production-ready TypeScript client for NEAR Protocol's JSON-RPC interface.
