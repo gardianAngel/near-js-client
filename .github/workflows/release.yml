@@ -4,89 +4,73 @@ on:
   push:
     branches: [main]
 
+permissions:
+  contents: write
+  pull-requests: write
+  id-token: write
+
 jobs:
-  release:
+  release-please:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pull-requests: write
-      id-token: write
-    
+    outputs:
+      release-created: ${{ steps.release.outputs.release_created }}
+      tag-name: ${{ steps.release.outputs.tag_name }}
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-          cache: 'npm'
-          registry-url: 'https://registry.npmjs.org'
-          
-      - name: Install dependencies
-        run: npm ci
-        
-      - name: Generate client code
-        run: npm run generate
-        
-      - name: Build packages
-        run: npm run build
-        
-      - name: Run tests
-        run: npm test
-        
-      - name: Run type checking
-        run: npm run typecheck
-        
-      - name: Run linting
-        run: npm run lint
-        
-      - name: Release Please
-        uses: google-github-actions/release-please-action@v3
+      - name: Create Release PR or Release
         id: release
+        uses: google-github-actions/release-please-action@v4
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
           release-type: node
           package-name: near-js-client
           changelog-types: |
             [
-              {"type":"feat","section":"Features","hidden":false},
-              {"type":"fix","section":"Bug Fixes","hidden":false},
-              {"type":"chore","section":"Maintenance","hidden":false},
-              {"type":"docs","section":"Documentation","hidden":false},
-              {"type":"style","section":"Styles","hidden":true},
-              {"type":"refactor","section":"Code Refactoring","hidden":false},
-              {"type":"perf","section":"Performance Improvements","hidden":false},
-              {"type":"test","section":"Tests","hidden":true},
-              {"type":"build","section":"Build System","hidden":true},
-              {"type":"ci","section":"Continuous Integration","hidden":true}
+              {"type": "feat", "section": "Features", "hidden": false},
+              {"type": "fix", "section": "Bug Fixes", "hidden": false},
+              {"type": "chore", "section": "Miscellaneous", "hidden": false},
+              {"type": "docs", "section": "Documentation", "hidden": false},
+              {"type": "refactor", "section": "Refactoring", "hidden": false}
             ]
-          
-      - name: Publish @near-js/jsonrpc-types
-        if: steps.release.outputs.release_created
-        run: |
-          cd packages/jsonrpc-types
-          npm publish --provenance
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          
-      - name: Publish @near-js/jsonrpc-client
-        if: steps.release.outputs.release_created
-        run: |
-          cd packages/jsonrpc-client
-          npm publish --provenance
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          
-      - name: Create GitHub Release
-        if: steps.release.outputs.release_created
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  publish:
+    needs: release-please
+    if: needs.release-please.outputs.release-created
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          tag_name: ${{ steps.release.outputs.tag_name }}
-          release_name: ${{ steps.release.outputs.tag_name }}
-          body: ${{ steps.release.outputs.body }}
-          draft: false
-          prerelease: false
+          node-version: '20'
+          cache: 'npm'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build packages
+        run: npm run build
+
+      - name: Test packages
+        run: npm test
+
+      - name: Publish to NPM
+        run: |
+          # Publish types package first
+          cd packages/jsonrpc-types
+          npm publish --access public
+          cd ../jsonrpc-client
+          npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ needs.release-please.outputs.tag-name }}
+          generate_release_notes: true
+          files: |
+            packages/jsonrpc-types/*.tgz
+            packages/jsonrpc-client/*.tgz

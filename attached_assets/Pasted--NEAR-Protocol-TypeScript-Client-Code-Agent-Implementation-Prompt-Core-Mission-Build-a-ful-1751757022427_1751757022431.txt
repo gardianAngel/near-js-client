@@ -1,0 +1,228 @@
+# NEAR Protocol TypeScript Client - Code Agent Implementation Prompt
+
+## 🎯 Core Mission
+Build a fully automated, type-safe TypeScript client for NEAR Protocol's JSON-RPC interface using their OpenAPI specification. This is a **public good project** that must be production-ready, well-tested, and maintainable.
+
+## 📦 Required Deliverables (Priority Order)
+
+### 1. **Two NPM Packages** (CRITICAL - PRIMARY DELIVERABLE)
+```
+@near-js/jsonrpc-types    # Types and Zod schemas only
+@near-js/jsonrpc-client   # Full RPC client implementation
+```
+
+### 2. **GitHub Repository** (CRITICAL - PRIMARY DELIVERABLE)
+- Public repository with MIT or Apache-2.0 license
+- Complete codebase ready for production use
+- Proper monorepo structure with workspaces
+
+### 3. **GitHub Actions Automation** (CRITICAL - PRIMARY DELIVERABLE)
+- Automated OpenAPI spec fetching and code regeneration
+- CI/CD pipeline for testing and publishing
+- Automated PR creation for spec updates
+- Release-please integration for version management
+
+### 4. **Testing Suite** (CRITICAL - PRIMARY DELIVERABLE)
+- 80%+ test coverage requirement
+- Unit tests for type safety and validation
+- Integration tests with RPC endpoints
+- Mock testing capabilities
+
+### 5. **Documentation** (CRITICAL - PRIMARY DELIVERABLE)
+- Developer-focused README for both packages
+- Usage examples and API documentation
+- Contribution guidelines
+- Deployment workflow documentation
+
+## 🔧 Technical Requirements
+
+### OpenAPI Processing Rules
+```typescript
+// CRITICAL: OpenAPI spec paths don't match actual implementation
+// The spec uses unique paths like "/block", "/status" etc.
+// BUT actual NEAR JSON-RPC always uses "/" path only
+// YOU MUST patch the generated code to use "/" for all requests
+
+const RPC_ENDPOINT = "https://rpc.mainnet.near.org/"; // Always use "/"
+```
+
+### Package A: @near-js/jsonrpc-types
+- **Purpose**: Lightweight types and Zod schemas only
+- **Dependencies**: Only `zod` 
+- **Features**: Tree-shakable, snake_case → camelCase conversion
+- **Output**: TypeScript interfaces + Zod validation schemas
+
+### Package B: @near-js/jsonrpc-client  
+- **Purpose**: Full RPC client implementation
+- **Dependencies**: `@near-js/jsonrpc-types`, `zod`
+- **Features**: Fetch-based calls, auto-typed requests/responses, error handling
+- **Output**: Complete RPC client class with all methods
+
+### Code Generation Pipeline
+```typescript
+// Required transformation pipeline:
+1. Fetch OpenAPI spec from nearcore repo
+2. Parse and extract method definitions
+3. Convert snake_case to camelCase
+4. Generate TypeScript interfaces
+5. Generate Zod schemas for validation
+6. Generate client methods with proper typing
+7. PATCH: Override all paths to use "/" only
+```
+
+## 📁 Project Structure Template
+```
+near-js-client/
+├── packages/
+│   ├── jsonrpc-types/
+│   │   ├── src/index.ts
+│   │   ├── package.json
+│   │   └── README.md
+│   └── jsonrpc-client/
+│       ├── src/index.ts
+│       ├── package.json
+│       └── README.md
+├── tools/codegen/
+├── .github/workflows/
+├── tests/
+├── package.json (workspace root)
+└── README.md
+```
+
+## 🚨 Critical Implementation Notes
+
+### 1. Path Patching (MUST DO)
+```typescript
+// WRONG (what OpenAPI spec suggests):
+await fetch(`${baseUrl}/block`, { ... })
+
+// CORRECT (what NEAR actually expects):
+await fetch(`${baseUrl}/`, { 
+  method: 'POST',
+  body: JSON.stringify({
+    jsonrpc: '2.0',
+    method: 'block',  // method goes in body, not URL
+    params: { ... }
+  })
+})
+```
+
+### 2. Type Safety Requirements
+```typescript
+// All methods must be fully typed:
+async getBlock(params: BlockQuery): Promise<BlockResponse> {
+  // Validate input with Zod
+  const validatedParams = BlockQuerySchema.parse(params);
+  // Make request and validate response
+  const response = await this.request('block', validatedParams);
+  return BlockResponseSchema.parse(response);
+}
+```
+
+### 3. Automation Requirements
+- **Weekly scheduled updates** from OpenAPI spec
+- **Automatic PR creation** when spec changes
+- **Release-please integration** for version bumping
+- **NPM publishing** on release
+
+## 🧪 Testing Requirements
+
+### Unit Tests (Required)
+- Input parameter validation
+- Response parsing and validation  
+- Error handling scenarios
+- Type safety verification
+
+### Integration Tests (Required)
+- Mock RPC server responses
+- Real RPC endpoint testing (optional)
+- End-to-end client functionality
+
+### Coverage Target
+- **Minimum 80% test coverage**
+- Focus on core RPC methods
+- Test both success and error paths
+
+## 📚 Documentation Requirements
+
+### Package READMEs
+```markdown
+# @near-js/jsonrpc-client
+
+## Installation
+npm install @near-js/jsonrpc-client
+
+## Usage
+import { NearJsonRpcClient } from '@near-js/jsonrpc-client';
+
+const client = new NearJsonRpcClient('https://rpc.mainnet.near.org');
+const block = await client.getBlock({ finality: 'final' });
+```
+
+### Required Documentation Sections
+- Installation and setup
+- Basic usage examples
+- API reference
+- Error handling
+- Contributing guidelines
+- Deployment instructions
+
+## 🔗 Resources & References
+
+### OpenAPI Specifications
+- **Primary**: https://github.com/near/nearcore/blob/master/chain/jsonrpc/openapi/rpc_light_client.json
+- **Alternative**: Rust client patched version (may work better)
+
+### NEAR Protocol Documentation  
+- JSON-RPC API: https://docs.near.org/api/rpc/introduction
+- Protocol specification: https://nomicon.io/
+
+### Technical Stack
+- **Language**: TypeScript (strict mode)
+- **Validation**: Zod for runtime validation
+- **HTTP Client**: Fetch API
+- **Testing**: Jest or Vitest
+- **CI/CD**: GitHub Actions
+- **Package Management**: NPM workspaces
+
+## ✅ Success Criteria Checklist
+
+### Core Deliverables
+- [ ] Two NPM packages published and installable
+- [ ] Public GitHub repository with complete codebase
+- [ ] GitHub Actions automation fully functional
+- [ ] 80%+ test coverage achieved
+- [ ] Comprehensive documentation complete
+
+### Quality Gates
+- [ ] All generated code compiles without errors
+- [ ] Type safety validated at runtime with Zod
+- [ ] RPC calls work with actual NEAR endpoints
+- [ ] Path patching correctly implemented
+- [ ] Packages are tree-shakable and lightweight
+
+### Automation Gates
+- [ ] Weekly OpenAPI spec updates working
+- [ ] Automated PR creation functional
+- [ ] Release-please integration working
+- [ ] NPM publishing automated
+
+## 🎯 Implementation Priority
+
+1. **FIRST**: Set up basic project structure and packages
+2. **SECOND**: Implement OpenAPI parsing and code generation
+3. **THIRD**: Build and test the two NPM packages
+4. **FOURTH**: Set up GitHub Actions automation
+5. **FIFTH**: Write comprehensive documentation
+6. **SIXTH**: Publish packages and validate end-to-end
+
+## 💡 Success Validation
+
+The project is complete when:
+- A developer can `npm install @near-js/jsonrpc-client`
+- They can immediately start making type-safe RPC calls
+- The packages automatically stay updated with NEAR's API changes
+- The code is well-documented and contribution-ready
+- All tests pass and coverage is above 80%
+
+Focus on delivering a **production-ready public good** that the NEAR ecosystem can depend on long-term.

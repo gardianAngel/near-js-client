@@ -1,0 +1,79 @@
+name: Update OpenAPI Specification
+
+on:
+  schedule:
+    # Run weekly on Mondays at 2 AM UTC
+    - cron: '0 2 * * 1'
+  workflow_dispatch: # Allow manual trigger
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-spec:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate new code from OpenAPI spec
+        run: npm run generate
+
+      - name: Check for changes
+        id: changes
+        run: |
+          git add .
+          if git diff --staged --quiet; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create Pull Request
+        if: steps.changes.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "feat: update generated code from NEAR OpenAPI specification"
+          title: "Update NEAR Protocol JSON-RPC types and client"
+          body: |
+            ## 🤖 Automated OpenAPI Specification Update
+
+            This PR contains automatically generated updates based on the latest NEAR Protocol JSON-RPC OpenAPI specification.
+
+            ### Changes
+            - Updated TypeScript types and Zod schemas
+            - Regenerated client methods
+            - Updated documentation if needed
+
+            ### Validation
+            - [ ] All tests pass
+            - [ ] Types compile correctly
+            - [ ] No breaking changes detected
+
+            ### Review Notes
+            Please review the changes carefully before merging, especially:
+            - New or modified RPC methods
+            - Changes to existing type definitions
+            - Any breaking changes that might affect consumers
+
+            ---
+            *This PR was automatically created by the weekly OpenAPI update workflow.*
+          branch: update-openapi-spec
+          delete-branch: true
+
+      - name: Build packages
+        run: npm run build
+
+      - name: Run tests
+        run: npm test

@@ -195,8 +195,8 @@ export const testHelpers = {
       ok: success,
       status: success ? 200 : 500,
       statusText: success ? 'OK' : 'Internal Server Error',
-      json: jest.fn().mockResolvedValue(data) as any,
-      text: jest.fn().mockResolvedValue(JSON.stringify(data)) as any,
+      json: jest.fn().mockResolvedValue(data),
+      text: jest.fn().mockResolvedValue(JSON.stringify(data)),
     };
   },
 

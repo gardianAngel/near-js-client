@@ -27,6 +27,14 @@ args = "Type Check"
 task = "workflow.run"
 args = "Run Tests"
 
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Generate"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Lint"
+
 [[workflows.workflow]]
 name = "Install Dependencies"
 author = "agent"
@@ -58,3 +66,19 @@ author = "agent"
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "jest"
+
+[[workflows.workflow]]
+name = "Generate"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "tsx tools/codegen/generate.ts"
+
+[[workflows.workflow]]
+name = "Lint"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "eslint . --ext .ts,.tsx"
