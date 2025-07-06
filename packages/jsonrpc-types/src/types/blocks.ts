@@ -1,173 +1,227 @@
 /**
- * Block-related types for NEAR Protocol JSON-RPC interface
+ * Generated types for NEAR Protocol JSON-RPC
  */
 
-import { BlockReference, ChunkHeader, PublicKey, Signature, ValidatorStake } from './common';
 
-export interface BlockQuery extends BlockReference {}
 
-export interface BlockHeader {
+export interface BlockHeaderInnerLiteView {
+  blockmerkleroot?: unknown;
+  epochid?: unknown;
   height: number;
-  epochId: string;
-  nextEpochId: string;
-  hash: string;
-  prevHash: string;
-  prevStateRoot: string;
-  chunkReceiptsRoot: string;
-  chunkHeadersRoot: string;
-  chunkTxRoot: string;
-  outcomeRoot: string;
-  chunksIncluded: number;
-  challengesRoot: string;
+  nextbphash?: unknown;
+  nextepochid?: unknown;
+  outcomeroot?: unknown;
+  prevstateroot?: unknown;
   timestamp: number;
-  timestampNanosec: string;
-  randomValue: string;
-  validatorProposals: ValidatorStake[];
-  chunkMask: boolean[];
-  gasPrice: string;
-  rentPaid: string;
-  validatorReward: string;
-  totalSupply: string;
-  challengesResult: ChallengeResult[];
-  lastFinalBlock: string;
-  lastDsFinalBlock: string;
-  nextBpHash: string;
-  blockMerkleRoot: string;
-  approvals: (Signature | null)[];
-  signature: Signature;
-  latestProtocolVersion: number;
+  timestampnanosec?: string;
 }
 
-export interface ChallengeResult {
-  accountId: string;
-  isDoubleSign: boolean;
+export interface BlockHeaderView {
+  approvals: unknown[];
+  blockbodyhash?: unknown;
+  blockmerkleroot?: unknown;
+  blockordinal?: number;
+  challengesresult?: unknown[];
+  challengesroot?: unknown;
+  chunkendorsements?: number[][];
+  chunkheadersroot?: unknown;
+  chunkmask?: boolean[];
+  chunkreceiptsroot?: unknown;
+  chunktxroot?: unknown;
+  chunksincluded?: number;
+  epochid?: unknown;
+  epochsyncdatahash?: unknown;
+  gasprice?: string;
+  hash: unknown;
+  height: number;
+  lastdsfinalblock?: unknown;
+  lastfinalblock?: unknown;
+  latestprotocolversion?: number;
+  nextbphash?: unknown;
+  nextepochid?: unknown;
+  outcomeroot?: unknown;
+  prevhash?: unknown;
+  prevheight?: number;
+  prevstateroot?: unknown;
+  randomvalue?: unknown;
+  rentpaid?: string;
+  signature: unknown;
+  timestamp: number;
+  timestampnanosec?: string;
+  totalsupply?: string;
+  validatorproposals?: unknown[];
+  validatorreward?: string;
 }
 
-export interface BlockResponse {
-  author: string;
-  header: BlockHeader;
-  chunks: ChunkHeader[];
+export type BlockId = unknown;
+
+export interface BlockStatusView {
+  hash: unknown;
+  height: number;
 }
 
-export interface BlockChangesQuery extends BlockReference {}
-
-export interface BlockChange {
-  type: string;
-  account_id: string;
+export interface ChunkDistributionNetworkConfig {
+  enabled: boolean;
+  uris: unknown;
 }
 
-export interface BlockChangesResponse {
-  blockHash: string;
-  changes: BlockChange[];
+export interface ChunkDistributionUris {
+  get: string;
+  set: string;
 }
 
-export interface ChunkQuery {
-  chunkId?: string;
-  blockId?: string | number;
-  shardId?: number;
+export interface ChunkHeaderView {
+  balanceburnt?: string;
+  bandwidthrequests?: unknown;
+  chunkhash?: unknown;
+  congestioninfo?: unknown;
+  encodedlength?: number;
+  encodedmerkleroot?: unknown;
+  gaslimit?: number;
+  gasused?: number;
+  heightcreated?: number;
+  heightincluded?: number;
+  outcomeroot?: unknown;
+  outgoingreceiptsroot?: unknown;
+  prevblockhash?: unknown;
+  prevstateroot?: unknown;
+  rentpaid?: string;
+  shardid?: unknown;
+  signature: unknown;
+  txroot?: unknown;
+  validatorproposals?: unknown[];
+  validatorreward?: string;
 }
 
-export interface ChunkResponse {
-  author: string;
-  header: ChunkHeader;
-  transactions: Transaction[];
-  receipts: Receipt[];
+export interface JsonRpcRequestforEXPERIMENTALchangesinblock {
+  id: string;
+  jsonrpc: string;
+  method: 'EXPERIMENTAL_changes_in_block';
+  params: unknown;
 }
 
-export interface Transaction {
-  signerId: string;
-  publicKey: PublicKey;
-  nonce: number;
-  receiverId: string;
-  actions: Action[];
-  signature: Signature;
-  hash: string;
+export interface JsonRpcRequestforEXPERIMENTALlightclientblockproof {
+  id: string;
+  jsonrpc: string;
+  method: 'EXPERIMENTAL_light_client_block_proof';
+  params: unknown;
 }
 
-export interface Receipt {
-  predecessorId: string;
-  receiverId: string;
-  receiptId: string;
-  receipt: ReceiptEnum;
+export interface JsonRpcRequestforblock {
+  id: string;
+  jsonrpc: string;
+  method: 'block';
+  params: unknown;
 }
 
-export type ReceiptEnum = 
-  | { Action: ActionReceipt }
-  | { Data: DataReceipt };
-
-export interface ActionReceipt {
-  signerId: string;
-  signerPublicKey: PublicKey;
-  gasPrice: string;
-  outputDataReceivers: DataReceiver[];
-  inputDataIds: string[];
-  actions: Action[];
+export interface JsonRpcRequestforchunk {
+  id: string;
+  jsonrpc: string;
+  method: 'chunk';
+  params: unknown;
 }
 
-export interface DataReceipt {
-  dataId: string;
-  data: string;
+export interface JsonRpcRequestfornextlightclientblock {
+  id: string;
+  jsonrpc: string;
+  method: 'next_light_client_block';
+  params: unknown;
 }
 
-export interface DataReceiver {
-  dataId: string;
-  receiverId: string;
+export interface JsonRpcResponseforRpcBlockResponseandRpcError {
+  id: string;
+  jsonrpc: string;
 }
 
-export type Action = 
-  | { CreateAccount: Record<string, never> }
-  | { DeployContract: DeployContractAction }
-  | { FunctionCall: FunctionCallAction }
-  | { Transfer: TransferAction }
-  | { Stake: StakeAction }
-  | { AddKey: AddKeyAction }
-  | { DeleteKey: DeleteKeyAction }
-  | { DeleteAccount: DeleteAccountAction };
-
-export interface DeployContractAction {
-  code: string;
+export interface JsonRpcResponseforRpcChunkResponseandRpcError {
+  id: string;
+  jsonrpc: string;
 }
 
-export interface FunctionCallAction {
-  methodName: string;
-  args: string;
-  gas: number;
-  deposit: string;
+export interface JsonRpcResponseforRpcLightClientBlockProofResponseandRpcError {
+  id: string;
+  jsonrpc: string;
 }
 
-export interface TransferAction {
-  deposit: string;
+export interface JsonRpcResponseforRpcLightClientNextBlockResponseandRpcError {
+  id: string;
+  jsonrpc: string;
 }
 
-export interface StakeAction {
-  stake: string;
-  publicKey: PublicKey;
+export interface JsonRpcResponseforRpcStateChangesInBlockByTypeResponseandRpcError {
+  id: string;
+  jsonrpc: string;
 }
 
-export interface AddKeyAction {
-  publicKey: PublicKey;
-  accessKey: AccessKey;
+export interface JsonRpcResponseforRpcStateChangesInBlockResponseandRpcError {
+  id: string;
+  jsonrpc: string;
 }
 
-export interface DeleteKeyAction {
-  publicKey: PublicKey;
+export interface LightClientBlockLiteView {
+  innerlite?: unknown;
+  innerresthash?: unknown;
+  prevblockhash?: unknown;
 }
 
-export interface DeleteAccountAction {
-  beneficiaryId: string;
+export interface RpcBlockRequest {
+
 }
 
-export interface AccessKey {
-  nonce: number;
-  permission: AccessKeyPermission;
+export interface RpcBlockResponse {
+  author: unknown;
+  chunks: unknown[];
+  header: unknown;
 }
 
-export type AccessKeyPermission = 
-  | 'FullAccess'
-  | { FunctionCall: FunctionCallPermission };
+export interface RpcChunkRequest {
 
-export interface FunctionCallPermission {
-  allowance?: string;
-  receiverId: string;
-  methodNames: string[];
+}
+
+export interface RpcChunkResponse {
+  author: unknown;
+  header: unknown;
+  receipts: unknown[];
+  transactions: unknown[];
+}
+
+export interface RpcLightClientBlockProofRequest {
+  blockhash?: unknown;
+  lightclienthead?: unknown;
+}
+
+export interface RpcLightClientBlockProofResponse {
+  blockheaderlite?: unknown;
+  blockproof?: unknown[];
+}
+
+export interface RpcLightClientNextBlockRequest {
+  lastblockhash?: unknown;
+}
+
+export interface RpcLightClientNextBlockResponse {
+  approvalsafternext?: unknown[];
+  innerlite?: unknown;
+  innerresthash?: unknown;
+  nextblockinnerhash?: unknown;
+  nextbps?: unknown[];
+  prevblockhash?: unknown;
+}
+
+export interface RpcStateChangesInBlockByTypeRequest {
+
+}
+
+export interface RpcStateChangesInBlockByTypeResponse {
+  blockhash?: unknown;
+  changes: unknown[];
+}
+
+export interface RpcStateChangesInBlockRequest {
+
+}
+
+export interface RpcStateChangesInBlockResponse {
+  blockhash?: unknown;
+  changes: unknown[];
 }

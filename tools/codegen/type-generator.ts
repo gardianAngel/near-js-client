@@ -250,6 +250,9 @@ function generateFromComponents(
   // Categorize schemas
   for (const [name, schema] of Object.entries(schemas)) {
     const category = categorizeSchema(name);
+    if (!categories[category]) {
+      categories[category] = {};
+    }
     categories[category][name] = schema;
   }
   

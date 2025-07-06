@@ -1,95 +1,56 @@
 /**
- * Transaction-related methods for NEAR JSON-RPC client
+ * Transactions-related methods for NEAR JSON-RPC client
  */
 
 import {
-  TransactionQuery,
-  TransactionResponse,
-  TransactionQuerySchema,
-  TransactionResponseSchema,
-  SendTransactionRequest,
-  SendTransactionResponse,
-  SendTransactionRequestSchema,
-  SendTransactionResponseSchema,
-  BroadcastTransactionRequest,
-  BroadcastTransactionResponse,
-  BroadcastTransactionRequestSchema,
-  BroadcastTransactionResponseSchema,
+  BroadcasttxasyncQuerySchema,
+  BroadcasttxasyncRequest,
+  BroadcasttxasyncResponse,
+  BroadcasttxasyncResponseSchema,
+  BroadcasttxcommitQuerySchema,
+  BroadcasttxcommitRequest,
+  BroadcasttxcommitResponse,
+  BroadcasttxcommitResponseSchema,
+  SendtxQuerySchema,
+  SendtxRequest,
+  SendtxResponse,
+  SendtxResponseSchema,
+  TxQuerySchema,
+  TxRequest,
+  TxResponse,
+  TxResponseSchema,
+  TxstatusQuerySchema,
+  TxstatusRequest,
+  TxstatusResponse,
+  TxstatusResponseSchema
 } from '@near-js/jsonrpc-types';
 import type { NearJsonRpcClient } from '../client';
 
-export class TransactionMethods {
+export class TransactionsMethods {
   constructor(private client: NearJsonRpcClient) {}
 
-  /**
-   * Get transaction status and details
-   */
-  async getTransaction(params: TransactionQuery): Promise<TransactionResponse> {
-    const validatedParams = TransactionQuerySchema.parse(params);
-    return this.client.makeRequest('tx', validatedParams, TransactionResponseSchema);
+  async txstatus(params: TxstatusQuery): Promise<TxstatusResponse> {
+    const validatedParams = TxstatusQuerySchema.parse(params);
+    return this.client.makeRequest('EXPERIMENTALtxstatus', validatedParams, TxstatusResponseSchema);
   }
 
-  /**
-   * Send a signed transaction
-   */
-  async sendTransaction(params: SendTransactionRequest): Promise<SendTransactionResponse> {
-    const validatedParams = SendTransactionRequestSchema.parse(params);
-    return this.client.makeRequest('send_tx', validatedParams, SendTransactionResponseSchema);
+  async broadcasttxasync(params: BroadcasttxasyncQuery): Promise<BroadcasttxasyncResponse> {
+    const validatedParams = BroadcasttxasyncQuerySchema.parse(params);
+    return this.client.makeRequest('Broadcasttxasync', validatedParams, BroadcasttxasyncResponseSchema);
   }
 
-  /**
-   * Broadcast a signed transaction (async)
-   */
-  async broadcastTransaction(params: BroadcastTransactionRequest): Promise<BroadcastTransactionResponse> {
-    const validatedParams = BroadcastTransactionRequestSchema.parse(params);
-    return this.client.makeRequest('broadcast_tx_async', validatedParams, BroadcastTransactionResponseSchema);
+  async broadcasttxcommit(params: BroadcasttxcommitQuery): Promise<BroadcasttxcommitResponse> {
+    const validatedParams = BroadcasttxcommitQuerySchema.parse(params);
+    return this.client.makeRequest('Broadcasttxcommit', validatedParams, BroadcasttxcommitResponseSchema);
   }
 
-  /**
-   * Broadcast a signed transaction and wait for commit
-   */
-  async broadcastTransactionCommit(params: BroadcastTransactionRequest): Promise<TransactionResponse> {
-    const validatedParams = BroadcastTransactionRequestSchema.parse(params);
-    return this.client.makeRequest('broadcast_tx_commit', validatedParams, TransactionResponseSchema);
+  async sendtx(params: SendtxQuery): Promise<SendtxResponse> {
+    const validatedParams = SendtxQuerySchema.parse(params);
+    return this.client.makeRequest('Sendtx', validatedParams, SendtxResponseSchema);
   }
 
-  /**
-   * Get transaction by hash with sender ID
-   */
-  async getTransactionByHash(transactionHash: string, senderId: string): Promise<TransactionResponse> {
-    return this.getTransaction({ transactionHash, senderId });
-  }
-
-  /**
-   * Get transaction status only
-   */
-  async getTransactionStatus(transactionHash: string, senderId: string): Promise<TransactionResponse> {
-    return this.getTransaction({ 
-      transactionHash, 
-      senderId, 
-      waitUntil: 'NONE' 
-    });
-  }
-
-  /**
-   * Wait for transaction to be included in a block
-   */
-  async waitForTransaction(transactionHash: string, senderId: string): Promise<TransactionResponse> {
-    return this.getTransaction({ 
-      transactionHash, 
-      senderId, 
-      waitUntil: 'INCLUDED_FINAL' 
-    });
-  }
-
-  /**
-   * Wait for transaction to be fully executed
-   */
-  async waitForTransactionExecution(transactionHash: string, senderId: string): Promise<TransactionResponse> {
-    return this.getTransaction({ 
-      transactionHash, 
-      senderId, 
-      waitUntil: 'EXECUTED' 
-    });
+  async tx(params: TxQuery): Promise<TxResponse> {
+    const validatedParams = TxQuerySchema.parse(params);
+    return this.client.makeRequest('Tx', validatedParams, TxResponseSchema);
   }
 }

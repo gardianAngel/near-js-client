@@ -1,6 +1,6 @@
 {
   "name": "@near-js/jsonrpc-types",
-  "version": "1.0.0",
+  "version": "1.0.20250706",
   "description": "TypeScript types and Zod schemas for NEAR Protocol JSON-RPC",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -29,11 +29,6 @@
   "files": [
     "dist"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/near/near-js-client.git",
-    "directory": "packages/jsonrpc-types"
-  },
   "keywords": [
     "near",
     "protocol",
@@ -43,8 +38,5 @@
     "schemas",
     "zod"
   ],
-  "license": "MIT",
-  "publishConfig": {
-    "access": "public"
-  }
+  "license": "MIT"
 }

@@ -2,179 +2,155 @@
  * Network-related methods for NEAR JSON-RPC client
  */
 
-import { z } from 'zod';
+import {
+  ChangesQuerySchema,
+  ChangesRequest,
+  ChangesResponse,
+  ChangesResponseSchema,
+  ClientconfigQuerySchema,
+  ClientconfigRequest,
+  ClientconfigResponse,
+  ClientconfigResponseSchema,
+  CongestionlevelQuerySchema,
+  CongestionlevelRequest,
+  CongestionlevelResponse,
+  CongestionlevelResponseSchema,
+  GaspriceQuerySchema,
+  GaspriceRequest,
+  GaspriceResponse,
+  GaspriceResponseSchema,
+  GenesisconfigQuerySchema,
+  GenesisconfigRequest,
+  GenesisconfigResponse,
+  GenesisconfigResponseSchema,
+  HealthQuerySchema,
+  HealthRequest,
+  HealthResponse,
+  HealthResponseSchema,
+  LightclientproofQuerySchema,
+  LightclientproofRequest,
+  LightclientproofResponse,
+  LightclientproofResponseSchema,
+  MaintenancewindowsQuerySchema,
+  MaintenancewindowsRequest,
+  MaintenancewindowsResponse,
+  MaintenancewindowsResponseSchema,
+  NetworkinfoQuerySchema,
+  NetworkinfoRequest,
+  NetworkinfoResponse,
+  NetworkinfoResponseSchema,
+  ProtocolconfigQuerySchema,
+  ProtocolconfigRequest,
+  ProtocolconfigResponse,
+  ProtocolconfigResponseSchema,
+  ReceiptQuerySchema,
+  ReceiptRequest,
+  ReceiptResponse,
+  ReceiptResponseSchema,
+  SplitstorageinfoQuerySchema,
+  SplitstorageinfoRequest,
+  SplitstorageinfoResponse,
+  SplitstorageinfoResponseSchema,
+  StatusQuerySchema,
+  StatusRequest,
+  StatusResponse,
+  StatusResponseSchema,
+  ValidatorsQuerySchema,
+  ValidatorsRequest,
+  ValidatorsResponse,
+  ValidatorsResponseSchema,
+  ValidatorsorderedQuerySchema,
+  ValidatorsorderedRequest,
+  ValidatorsorderedResponse,
+  ValidatorsorderedResponseSchema
+} from '@near-js/jsonrpc-types';
 import type { NearJsonRpcClient } from '../client';
-
-// Network status types and schemas
-export const NetworkStatusSchema = z.object({
-  chainId: z.string(),
-  rpcAddr: z.string(),
-  syncInfo: z.object({
-    latestBlockHash: z.string(),
-    latestBlockHeight: z.number(),
-    latestBlockTime: z.string(),
-    latestStateRoot: z.string(),
-    syncing: z.boolean(),
-  }),
-  validators: z.array(z.object({
-    accountId: z.string(),
-    isSlashed: z.boolean(),
-  })),
-});
-
-export const GenesisConfigSchema = z.object({
-  protocolVersion: z.number(),
-  genesisTime: z.string(),
-  chainId: z.string(),
-  genesisHeight: z.number(),
-  numBlockProducerSeats: z.number(),
-  numBlockProducerSeatsPerShard: z.array(z.number()),
-  avgHiddenValidatorSeatsPerShard: z.array(z.number()),
-  dynamicResharding: z.boolean(),
-  protocolUpgradeStakeThreshold: z.array(z.number()),
-  epochLength: z.number(),
-  gasLimit: z.number(),
-  minGasPrice: z.string(),
-  maxGasPrice: z.string(),
-  blockProducerKickoutThreshold: z.number(),
-  chunkProducerKickoutThreshold: z.number(),
-  onlineMinThreshold: z.array(z.number()),
-  onlineMaxThreshold: z.array(z.number()),
-  gasPriceAdjustmentRate: z.array(z.number()),
-  runtimeConfig: z.object({
-    storageAmountPerByte: z.string(),
-    transactionCosts: z.object({
-      actionCreationConfig: z.record(z.unknown()),
-      actionReceiptCreationConfig: z.record(z.unknown()),
-      dataReceiptCreationConfig: z.record(z.unknown()),
-      burnt_gas_reward: z.array(z.number()),
-      pessimistic_gas_price_inflation_ratio: z.array(z.number()),
-    }),
-  }),
-  validators: z.array(z.object({
-    accountId: z.string(),
-    publicKey: z.string(),
-    amount: z.string(),
-  })),
-});
-
-export const GasEstimateSchema = z.object({
-  gasUsed: z.number(),
-});
-
-export const ProtocolConfigSchema = z.object({
-  protocolVersion: z.number(),
-  genesisTime: z.string(),
-  chainId: z.string(),
-  genesisHeight: z.number(),
-  numBlockProducerSeats: z.number(),
-  numBlockProducerSeatsPerShard: z.array(z.number()),
-  avgHiddenValidatorSeatsPerShard: z.array(z.number()),
-  dynamicResharding: z.boolean(),
-  protocolUpgradeStakeThreshold: z.array(z.number()),
-  epochLength: z.number(),
-  gasLimit: z.number(),
-  minGasPrice: z.string(),
-  maxGasPrice: z.string(),
-  blockProducerKickoutThreshold: z.number(),
-  chunkProducerKickoutThreshold: z.number(),
-  onlineMinThreshold: z.array(z.number()),
-  onlineMaxThreshold: z.array(z.number()),
-  gasPriceAdjustmentRate: z.array(z.number()),
-  runtimeConfig: z.record(z.unknown()),
-});
-
-export type NetworkStatus = z.infer<typeof NetworkStatusSchema>;
-export type GenesisConfig = z.infer<typeof GenesisConfigSchema>;
-export type GasEstimate = z.infer<typeof GasEstimateSchema>;
-export type ProtocolConfig = z.infer<typeof ProtocolConfigSchema>;
 
 export class NetworkMethods {
   constructor(private client: NearJsonRpcClient) {}
 
-  /**
-   * Get network status information
-   */
-  async getNetworkStatus(): Promise<NetworkStatus> {
-    return this.client.makeRequest('status', [], NetworkStatusSchema);
+  async changes(params: ChangesQuery): Promise<ChangesResponse> {
+    const validatedParams = ChangesQuerySchema.parse(params);
+    return this.client.makeRequest('EXPERIMENTALchanges', validatedParams, ChangesResponseSchema);
   }
 
-  /**
-   * Get genesis configuration
-   */
-  async getGenesisConfig(): Promise<GenesisConfig> {
-    return this.client.makeRequest('EXPERIMENTAL_genesis_config', [], GenesisConfigSchema);
+  async congestionlevel(params: CongestionlevelQuery): Promise<CongestionlevelResponse> {
+    const validatedParams = CongestionlevelQuerySchema.parse(params);
+    return this.client.makeRequest('EXPERIMENTALcongestionlevel', validatedParams, CongestionlevelResponseSchema);
   }
 
-  /**
-   * Get protocol configuration
-   */
-  async getProtocolConfig(params?: { blockId?: string | number }): Promise<ProtocolConfig> {
-    return this.client.makeRequest('EXPERIMENTAL_protocol_config', params || {}, ProtocolConfigSchema);
+  async genesisconfig(params: GenesisconfigQuery): Promise<GenesisconfigResponse> {
+    const validatedParams = GenesisconfigQuerySchema.parse(params);
+    return this.client.makeRequest('EXPERIMENTALgenesisconfig', validatedParams, GenesisconfigResponseSchema);
   }
 
-  /**
-   * Estimate gas price
-   */
-  async estimateGasPrice(params: { blockId?: string | number }): Promise<GasEstimate> {
-    return this.client.makeRequest('gas_price', params, GasEstimateSchema);
+  async lightclientproof(params: LightclientproofQuery): Promise<LightclientproofResponse> {
+    const validatedParams = LightclientproofQuerySchema.parse(params);
+    return this.client.makeRequest('EXPERIMENTALlightclientproof', validatedParams, LightclientproofResponseSchema);
   }
 
-  /**
-   * Get current gas price
-   */
-  async getGasPrice(): Promise<string> {
-    const result = await this.client.makeRequest('gas_price', [null], z.string());
-    return result;
+  async maintenancewindows(params: MaintenancewindowsQuery): Promise<MaintenancewindowsResponse> {
+    const validatedParams = MaintenancewindowsQuerySchema.parse(params);
+    return this.client.makeRequest('EXPERIMENTALmaintenancewindows', validatedParams, MaintenancewindowsResponseSchema);
   }
 
-  /**
-   * Get network info
-   */
-  async getNetworkInfo(): Promise<{
-    chainId: string;
-    latestBlockHeight: number;
-    latestBlockHash: string;
-    syncing: boolean;
-  }> {
-    const status = await this.getNetworkStatus();
-    return {
-      chainId: status.chainId,
-      latestBlockHeight: status.syncInfo.latestBlockHeight,
-      latestBlockHash: status.syncInfo.latestBlockHash,
-      syncing: status.syncInfo.syncing,
-    };
+  async protocolconfig(params: ProtocolconfigQuery): Promise<ProtocolconfigResponse> {
+    const validatedParams = ProtocolconfigQuerySchema.parse(params);
+    return this.client.makeRequest('EXPERIMENTALprotocolconfig', validatedParams, ProtocolconfigResponseSchema);
   }
 
-  /**
-   * Check if node is syncing
-   */
-  async isSyncing(): Promise<boolean> {
-    const status = await this.getNetworkStatus();
-    return status.syncInfo.syncing;
+  async receipt(params: ReceiptQuery): Promise<ReceiptResponse> {
+    const validatedParams = ReceiptQuerySchema.parse(params);
+    return this.client.makeRequest('EXPERIMENTALreceipt', validatedParams, ReceiptResponseSchema);
   }
 
-  /**
-   * Get latest block height
-   */
-  async getLatestBlockHeight(): Promise<number> {
-    const status = await this.getNetworkStatus();
-    return status.syncInfo.latestBlockHeight;
+  async splitstorageinfo(params: SplitstorageinfoQuery): Promise<SplitstorageinfoResponse> {
+    const validatedParams = SplitstorageinfoQuerySchema.parse(params);
+    return this.client.makeRequest('EXPERIMENTALsplitstorageinfo', validatedParams, SplitstorageinfoResponseSchema);
   }
 
-  /**
-   * Get chain ID
-   */
-  async getChainId(): Promise<string> {
-    const status = await this.getNetworkStatus();
-    return status.chainId;
+  async validatorsordered(params: ValidatorsorderedQuery): Promise<ValidatorsorderedResponse> {
+    const validatedParams = ValidatorsorderedQuerySchema.parse(params);
+    return this.client.makeRequest('EXPERIMENTALvalidatorsordered', validatedParams, ValidatorsorderedResponseSchema);
   }
 
-  /**
-   * Get validators
-   */
-  async getValidators(): Promise<Array<{ accountId: string; isSlashed: boolean }>> {
-    const status = await this.getNetworkStatus();
-    return status.validators;
+  async changes(params: ChangesQuery): Promise<ChangesResponse> {
+    const validatedParams = ChangesQuerySchema.parse(params);
+    return this.client.makeRequest('Changes', validatedParams, ChangesResponseSchema);
+  }
+
+  async clientconfig(params: ClientconfigQuery): Promise<ClientconfigResponse> {
+    const validatedParams = ClientconfigQuerySchema.parse(params);
+    return this.client.makeRequest('Clientconfig', validatedParams, ClientconfigResponseSchema);
+  }
+
+  async gasprice(params: GaspriceQuery): Promise<GaspriceResponse> {
+    const validatedParams = GaspriceQuerySchema.parse(params);
+    return this.client.makeRequest('Gasprice', validatedParams, GaspriceResponseSchema);
+  }
+
+  async health(params: HealthQuery): Promise<HealthResponse> {
+    const validatedParams = HealthQuerySchema.parse(params);
+    return this.client.makeRequest('Health', validatedParams, HealthResponseSchema);
+  }
+
+  async lightclientproof(params: LightclientproofQuery): Promise<LightclientproofResponse> {
+    const validatedParams = LightclientproofQuerySchema.parse(params);
+    return this.client.makeRequest('Lightclientproof', validatedParams, LightclientproofResponseSchema);
+  }
+
+  async networkinfo(params: NetworkinfoQuery): Promise<NetworkinfoResponse> {
+    const validatedParams = NetworkinfoQuerySchema.parse(params);
+    return this.client.makeRequest('Networkinfo', validatedParams, NetworkinfoResponseSchema);
+  }
+
+  async status(params: StatusQuery): Promise<StatusResponse> {
+    const validatedParams = StatusQuerySchema.parse(params);
+    return this.client.makeRequest('Status', validatedParams, StatusResponseSchema);
+  }
+
+  async validators(params: ValidatorsQuery): Promise<ValidatorsResponse> {
+    const validatedParams = ValidatorsQuerySchema.parse(params);
+    return this.client.makeRequest('Validators', validatedParams, ValidatorsResponseSchema);
   }
 }
