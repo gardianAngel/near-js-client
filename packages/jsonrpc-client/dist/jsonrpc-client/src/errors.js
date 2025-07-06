@@ -13,6 +13,7 @@ exports.isBlockError = isBlockError;
 exports.formatError = formatError;
 /**
  * Base error class for all NEAR JSON-RPC client errors
+ * Note: NEAR team confirmed error responses contain more data than OpenAPI spec indicates
  */
 class NearJsonRpcError extends Error {
     code;
@@ -21,6 +22,7 @@ class NearJsonRpcError extends Error {
         super(message);
         this.name = 'NearJsonRpcError';
         this.code = code;
+        // Store all additional error data from server (beyond what spec describes)
         this.data = data;
     }
 }

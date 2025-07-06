@@ -33,6 +33,9 @@ __exportStar(require("./schemas/transactions"), exports);
 // Account-related types and schemas
 __exportStar(require("./types/accounts"), exports);
 __exportStar(require("./schemas/accounts"), exports);
+// Network-related types and schemas
+__exportStar(require("./types/network"), exports);
+__exportStar(require("./schemas/network"), exports);
 // Re-export Zod for convenience
 var zod_1 = require("zod");
 Object.defineProperty(exports, "z", { enumerable: true, get: function () { return zod_1.z; } });

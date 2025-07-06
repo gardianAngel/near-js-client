@@ -1,5 +1,5 @@
 "use strict";
 /**
- * Block-related types for NEAR Protocol JSON-RPC interface
+ * Generated types for NEAR Protocol JSON-RPC
  */
 Object.defineProperty(exports, "__esModule", { value: true });

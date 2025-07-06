@@ -1,153 +1,190 @@
 "use strict";
 /**
- * Zod schemas for block-related NEAR Protocol JSON-RPC types
+ * Generated Zod schemas for NEAR Protocol JSON-RPC
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ChunkResponseSchema = exports.ReceiptSchema = exports.ReceiptEnumSchema = exports.DataReceiptSchema = exports.ActionReceiptSchema = exports.DataReceiverSchema = exports.TransactionSchema = exports.ActionSchema = exports.DeleteAccountActionSchema = exports.DeleteKeyActionSchema = exports.AddKeyActionSchema = exports.StakeActionSchema = exports.TransferActionSchema = exports.FunctionCallActionSchema = exports.DeployContractActionSchema = exports.AccessKeySchema = exports.AccessKeyPermissionSchema = exports.FunctionCallPermissionSchema = exports.ChunkQuerySchema = exports.BlockChangesResponseSchema = exports.BlockChangeSchema = exports.BlockChangesQuerySchema = exports.BlockResponseSchema = exports.BlockHeaderSchema = exports.ChallengeResultSchema = exports.BlockQuerySchema = void 0;
+exports.RpcStateChangesInBlockResponseSchema = exports.RpcStateChangesInBlockRequestSchema = exports.RpcStateChangesInBlockByTypeResponseSchema = exports.RpcStateChangesInBlockByTypeRequestSchema = exports.RpcLightClientNextBlockResponseSchema = exports.RpcLightClientNextBlockRequestSchema = exports.RpcLightClientBlockProofResponseSchema = exports.RpcLightClientBlockProofRequestSchema = exports.RpcChunkResponseSchema = exports.RpcChunkRequestSchema = exports.RpcBlockResponseSchema = exports.RpcBlockRequestSchema = exports.LightClientBlockLiteViewSchema = exports.JsonRpcResponseforRpcStateChangesInBlockResponseandRpcErrorSchema = exports.JsonRpcResponseforRpcStateChangesInBlockByTypeResponseandRpcErrorSchema = exports.JsonRpcResponseforRpcLightClientNextBlockResponseandRpcErrorSchema = exports.JsonRpcResponseforRpcLightClientBlockProofResponseandRpcErrorSchema = exports.JsonRpcResponseforRpcChunkResponseandRpcErrorSchema = exports.JsonRpcResponseforRpcBlockResponseandRpcErrorSchema = exports.JsonRpcRequestfornextlightclientblockSchema = exports.JsonRpcRequestforchunkSchema = exports.JsonRpcRequestforblockSchema = exports.JsonRpcRequestforEXPERIMENTALlightclientblockproofSchema = exports.JsonRpcRequestforEXPERIMENTALchangesinblockSchema = exports.ChunkHeaderViewSchema = exports.ChunkDistributionUrisSchema = exports.ChunkDistributionNetworkConfigSchema = exports.BlockStatusViewSchema = exports.BlockIdSchema = exports.BlockHeaderViewSchema = exports.BlockHeaderInnerLiteViewSchema = void 0;
 const zod_1 = require("zod");
-const common_1 = require("./common");
-exports.BlockQuerySchema = common_1.BlockReferenceSchema;
-exports.ChallengeResultSchema = zod_1.z.object({
-    accountId: zod_1.z.string(),
-    isDoubleSign: zod_1.z.boolean(),
-});
-exports.BlockHeaderSchema = zod_1.z.object({
+exports.BlockHeaderInnerLiteViewSchema = zod_1.z.object({
+    blockmerkleroot: zod_1.z.unknown().optional(),
+    epochid: zod_1.z.unknown().optional(),
     height: zod_1.z.number(),
-    epochId: zod_1.z.string(),
-    nextEpochId: zod_1.z.string(),
-    hash: zod_1.z.string(),
-    prevHash: zod_1.z.string(),
-    prevStateRoot: zod_1.z.string(),
-    chunkReceiptsRoot: zod_1.z.string(),
-    chunkHeadersRoot: zod_1.z.string(),
-    chunkTxRoot: zod_1.z.string(),
-    outcomeRoot: zod_1.z.string(),
-    chunksIncluded: zod_1.z.number(),
-    challengesRoot: zod_1.z.string(),
+    nextbphash: zod_1.z.unknown().optional(),
+    nextepochid: zod_1.z.unknown().optional(),
+    outcomeroot: zod_1.z.unknown().optional(),
+    prevstateroot: zod_1.z.unknown().optional(),
     timestamp: zod_1.z.number(),
-    timestampNanosec: zod_1.z.string(),
-    randomValue: zod_1.z.string(),
-    validatorProposals: zod_1.z.array(common_1.ValidatorStakeSchema),
-    chunkMask: zod_1.z.array(zod_1.z.boolean()),
-    gasPrice: zod_1.z.string(),
-    rentPaid: zod_1.z.string(),
-    validatorReward: zod_1.z.string(),
-    totalSupply: zod_1.z.string(),
-    challengesResult: zod_1.z.array(exports.ChallengeResultSchema),
-    lastFinalBlock: zod_1.z.string(),
-    lastDsFinalBlock: zod_1.z.string(),
-    nextBpHash: zod_1.z.string(),
-    blockMerkleRoot: zod_1.z.string(),
-    approvals: zod_1.z.array(zod_1.z.union([common_1.SignatureSchema, zod_1.z.null()])),
-    signature: common_1.SignatureSchema,
-    latestProtocolVersion: zod_1.z.number(),
+    timestampnanosec: zod_1.z.string().optional()
 });
-exports.BlockResponseSchema = zod_1.z.object({
-    author: zod_1.z.string(),
-    header: exports.BlockHeaderSchema,
-    chunks: zod_1.z.array(common_1.ChunkHeaderSchema),
+exports.BlockHeaderViewSchema = zod_1.z.object({
+    approvals: zod_1.z.array(zod_1.z.unknown()),
+    blockbodyhash: zod_1.z.unknown().optional(),
+    blockmerkleroot: zod_1.z.unknown().optional(),
+    blockordinal: zod_1.z.number().optional(),
+    challengesresult: zod_1.z.array(zod_1.z.unknown()).optional(),
+    challengesroot: zod_1.z.unknown().optional(),
+    chunkendorsements: zod_1.z.array(zod_1.z.array(zod_1.z.number())).optional(),
+    chunkheadersroot: zod_1.z.unknown().optional(),
+    chunkmask: zod_1.z.array(zod_1.z.boolean()).optional(),
+    chunkreceiptsroot: zod_1.z.unknown().optional(),
+    chunktxroot: zod_1.z.unknown().optional(),
+    chunksincluded: zod_1.z.number().optional(),
+    epochid: zod_1.z.unknown().optional(),
+    epochsyncdatahash: zod_1.z.unknown().optional(),
+    gasprice: zod_1.z.string().optional(),
+    hash: zod_1.z.unknown(),
+    height: zod_1.z.number(),
+    lastdsfinalblock: zod_1.z.unknown().optional(),
+    lastfinalblock: zod_1.z.unknown().optional(),
+    latestprotocolversion: zod_1.z.number().optional(),
+    nextbphash: zod_1.z.unknown().optional(),
+    nextepochid: zod_1.z.unknown().optional(),
+    outcomeroot: zod_1.z.unknown().optional(),
+    prevhash: zod_1.z.unknown().optional(),
+    prevheight: zod_1.z.number().optional(),
+    prevstateroot: zod_1.z.unknown().optional(),
+    randomvalue: zod_1.z.unknown().optional(),
+    rentpaid: zod_1.z.string().optional(),
+    signature: zod_1.z.unknown(),
+    timestamp: zod_1.z.number(),
+    timestampnanosec: zod_1.z.string().optional(),
+    totalsupply: zod_1.z.string().optional(),
+    validatorproposals: zod_1.z.array(zod_1.z.unknown()).optional(),
+    validatorreward: zod_1.z.string().optional()
 });
-exports.BlockChangesQuerySchema = common_1.BlockReferenceSchema;
-exports.BlockChangeSchema = zod_1.z.object({
-    type: zod_1.z.string(),
-    account_id: zod_1.z.string(),
+exports.BlockIdSchema = zod_1.z.union([zod_1.z.number(), zod_1.z.unknown()]);
+exports.BlockStatusViewSchema = zod_1.z.object({
+    hash: zod_1.z.unknown(),
+    height: zod_1.z.number()
 });
-exports.BlockChangesResponseSchema = zod_1.z.object({
-    blockHash: zod_1.z.string(),
-    changes: zod_1.z.array(exports.BlockChangeSchema),
+exports.ChunkDistributionNetworkConfigSchema = zod_1.z.object({
+    enabled: zod_1.z.boolean(),
+    uris: zod_1.z.unknown()
 });
-exports.ChunkQuerySchema = zod_1.z.object({
-    chunkId: zod_1.z.string().optional(),
-    blockId: zod_1.z.union([zod_1.z.string(), zod_1.z.number()]).optional(),
-    shardId: zod_1.z.number().optional(),
+exports.ChunkDistributionUrisSchema = zod_1.z.object({
+    get: zod_1.z.string(),
+    set: zod_1.z.string()
 });
-exports.FunctionCallPermissionSchema = zod_1.z.object({
-    allowance: zod_1.z.string().optional(),
-    receiverId: zod_1.z.string(),
-    methodNames: zod_1.z.array(zod_1.z.string()),
+exports.ChunkHeaderViewSchema = zod_1.z.object({
+    balanceburnt: zod_1.z.string().optional(),
+    bandwidthrequests: zod_1.z.unknown().optional(),
+    chunkhash: zod_1.z.unknown().optional(),
+    congestioninfo: zod_1.z.unknown().optional(),
+    encodedlength: zod_1.z.number().optional(),
+    encodedmerkleroot: zod_1.z.unknown().optional(),
+    gaslimit: zod_1.z.number().optional(),
+    gasused: zod_1.z.number().optional(),
+    heightcreated: zod_1.z.number().optional(),
+    heightincluded: zod_1.z.number().optional(),
+    outcomeroot: zod_1.z.unknown().optional(),
+    outgoingreceiptsroot: zod_1.z.unknown().optional(),
+    prevblockhash: zod_1.z.unknown().optional(),
+    prevstateroot: zod_1.z.unknown().optional(),
+    rentpaid: zod_1.z.string().optional(),
+    shardid: zod_1.z.unknown().optional(),
+    signature: zod_1.z.unknown(),
+    txroot: zod_1.z.unknown().optional(),
+    validatorproposals: zod_1.z.array(zod_1.z.unknown()).optional(),
+    validatorreward: zod_1.z.string().optional()
 });
-exports.AccessKeyPermissionSchema = zod_1.z.union([
-    zod_1.z.literal('FullAccess'),
-    zod_1.z.object({ FunctionCall: exports.FunctionCallPermissionSchema }),
-]);
-exports.AccessKeySchema = zod_1.z.object({
-    nonce: zod_1.z.number(),
-    permission: exports.AccessKeyPermissionSchema,
+exports.JsonRpcRequestforEXPERIMENTALchangesinblockSchema = zod_1.z.object({
+    id: zod_1.z.string(),
+    jsonrpc: zod_1.z.string(),
+    method: zod_1.z.enum(['EXPERIMENTAL_changes_in_block']),
+    params: zod_1.z.unknown()
 });
-exports.DeployContractActionSchema = zod_1.z.object({
-    code: zod_1.z.string(),
+exports.JsonRpcRequestforEXPERIMENTALlightclientblockproofSchema = zod_1.z.object({
+    id: zod_1.z.string(),
+    jsonrpc: zod_1.z.string(),
+    method: zod_1.z.enum(['EXPERIMENTAL_light_client_block_proof']),
+    params: zod_1.z.unknown()
 });
-exports.FunctionCallActionSchema = zod_1.z.object({
-    methodName: zod_1.z.string(),
-    args: zod_1.z.string(),
-    gas: zod_1.z.number(),
-    deposit: zod_1.z.string(),
+exports.JsonRpcRequestforblockSchema = zod_1.z.object({
+    id: zod_1.z.string(),
+    jsonrpc: zod_1.z.string(),
+    method: zod_1.z.enum(['block']),
+    params: zod_1.z.unknown()
 });
-exports.TransferActionSchema = zod_1.z.object({
-    deposit: zod_1.z.string(),
+exports.JsonRpcRequestforchunkSchema = zod_1.z.object({
+    id: zod_1.z.string(),
+    jsonrpc: zod_1.z.string(),
+    method: zod_1.z.enum(['chunk']),
+    params: zod_1.z.unknown()
 });
-exports.StakeActionSchema = zod_1.z.object({
-    stake: zod_1.z.string(),
-    publicKey: common_1.PublicKeySchema,
+exports.JsonRpcRequestfornextlightclientblockSchema = zod_1.z.object({
+    id: zod_1.z.string(),
+    jsonrpc: zod_1.z.string(),
+    method: zod_1.z.enum(['next_light_client_block']),
+    params: zod_1.z.unknown()
 });
-exports.AddKeyActionSchema = zod_1.z.object({
-    publicKey: common_1.PublicKeySchema,
-    accessKey: exports.AccessKeySchema,
+exports.JsonRpcResponseforRpcBlockResponseandRpcErrorSchema = zod_1.z.object({
+    id: zod_1.z.string(),
+    jsonrpc: zod_1.z.string()
 });
-exports.DeleteKeyActionSchema = zod_1.z.object({
-    publicKey: common_1.PublicKeySchema,
+exports.JsonRpcResponseforRpcChunkResponseandRpcErrorSchema = zod_1.z.object({
+    id: zod_1.z.string(),
+    jsonrpc: zod_1.z.string()
 });
-exports.DeleteAccountActionSchema = zod_1.z.object({
-    beneficiaryId: zod_1.z.string(),
+exports.JsonRpcResponseforRpcLightClientBlockProofResponseandRpcErrorSchema = zod_1.z.object({
+    id: zod_1.z.string(),
+    jsonrpc: zod_1.z.string()
 });
-exports.ActionSchema = zod_1.z.union([
-    zod_1.z.object({ CreateAccount: zod_1.z.record(zod_1.z.never()) }),
-    zod_1.z.object({ DeployContract: exports.DeployContractActionSchema }),
-    zod_1.z.object({ FunctionCall: exports.FunctionCallActionSchema }),
-    zod_1.z.object({ Transfer: exports.TransferActionSchema }),
-    zod_1.z.object({ Stake: exports.StakeActionSchema }),
-    zod_1.z.object({ AddKey: exports.AddKeyActionSchema }),
-    zod_1.z.object({ DeleteKey: exports.DeleteKeyActionSchema }),
-    zod_1.z.object({ DeleteAccount: exports.DeleteAccountActionSchema }),
-]);
-exports.TransactionSchema = zod_1.z.object({
-    signerId: zod_1.z.string(),
-    publicKey: common_1.PublicKeySchema,
-    nonce: zod_1.z.number(),
-    receiverId: zod_1.z.string(),
-    actions: zod_1.z.array(exports.ActionSchema),
-    signature: common_1.SignatureSchema,
-    hash: zod_1.z.string(),
+exports.JsonRpcResponseforRpcLightClientNextBlockResponseandRpcErrorSchema = zod_1.z.object({
+    id: zod_1.z.string(),
+    jsonrpc: zod_1.z.string()
 });
-exports.DataReceiverSchema = zod_1.z.object({
-    dataId: zod_1.z.string(),
-    receiverId: zod_1.z.string(),
+exports.JsonRpcResponseforRpcStateChangesInBlockByTypeResponseandRpcErrorSchema = zod_1.z.object({
+    id: zod_1.z.string(),
+    jsonrpc: zod_1.z.string()
 });
-exports.ActionReceiptSchema = zod_1.z.object({
-    signerId: zod_1.z.string(),
-    signerPublicKey: common_1.PublicKeySchema,
-    gasPrice: zod_1.z.string(),
-    outputDataReceivers: zod_1.z.array(exports.DataReceiverSchema),
-    inputDataIds: zod_1.z.array(zod_1.z.string()),
-    actions: zod_1.z.array(exports.ActionSchema),
+exports.JsonRpcResponseforRpcStateChangesInBlockResponseandRpcErrorSchema = zod_1.z.object({
+    id: zod_1.z.string(),
+    jsonrpc: zod_1.z.string()
 });
-exports.DataReceiptSchema = zod_1.z.object({
-    dataId: zod_1.z.string(),
-    data: zod_1.z.string(),
+exports.LightClientBlockLiteViewSchema = zod_1.z.object({
+    innerlite: zod_1.z.unknown().optional(),
+    innerresthash: zod_1.z.unknown().optional(),
+    prevblockhash: zod_1.z.unknown().optional()
 });
-exports.ReceiptEnumSchema = zod_1.z.union([
-    zod_1.z.object({ Action: exports.ActionReceiptSchema }),
-    zod_1.z.object({ Data: exports.DataReceiptSchema }),
-]);
-exports.ReceiptSchema = zod_1.z.object({
-    predecessorId: zod_1.z.string(),
-    receiverId: zod_1.z.string(),
-    receiptId: zod_1.z.string(),
-    receipt: exports.ReceiptEnumSchema,
+exports.RpcBlockRequestSchema = zod_1.z.record(zod_1.z.unknown());
+exports.RpcBlockResponseSchema = zod_1.z.object({
+    author: zod_1.z.unknown(),
+    chunks: zod_1.z.array(zod_1.z.unknown()),
+    header: zod_1.z.unknown()
 });
-exports.ChunkResponseSchema = zod_1.z.object({
-    author: zod_1.z.string(),
-    header: common_1.ChunkHeaderSchema,
-    transactions: zod_1.z.array(exports.TransactionSchema),
-    receipts: zod_1.z.array(exports.ReceiptSchema),
+exports.RpcChunkRequestSchema = zod_1.z.record(zod_1.z.unknown());
+exports.RpcChunkResponseSchema = zod_1.z.object({
+    author: zod_1.z.unknown(),
+    header: zod_1.z.unknown(),
+    receipts: zod_1.z.array(zod_1.z.unknown()),
+    transactions: zod_1.z.array(zod_1.z.unknown())
+});
+exports.RpcLightClientBlockProofRequestSchema = zod_1.z.object({
+    blockhash: zod_1.z.unknown().optional(),
+    lightclienthead: zod_1.z.unknown().optional()
+});
+exports.RpcLightClientBlockProofResponseSchema = zod_1.z.object({
+    blockheaderlite: zod_1.z.unknown().optional(),
+    blockproof: zod_1.z.array(zod_1.z.unknown()).optional()
+});
+exports.RpcLightClientNextBlockRequestSchema = zod_1.z.object({
+    lastblockhash: zod_1.z.unknown().optional()
+});
+exports.RpcLightClientNextBlockResponseSchema = zod_1.z.object({
+    approvalsafternext: zod_1.z.array(zod_1.z.unknown()).optional(),
+    innerlite: zod_1.z.unknown().optional(),
+    innerresthash: zod_1.z.unknown().optional(),
+    nextblockinnerhash: zod_1.z.unknown().optional(),
+    nextbps: zod_1.z.array(zod_1.z.unknown()).optional(),
+    prevblockhash: zod_1.z.unknown().optional()
+});
+exports.RpcStateChangesInBlockByTypeRequestSchema = zod_1.z.record(zod_1.z.unknown());
+exports.RpcStateChangesInBlockByTypeResponseSchema = zod_1.z.object({
+    blockhash: zod_1.z.unknown().optional(),
+    changes: zod_1.z.array(zod_1.z.unknown())
+});
+exports.RpcStateChangesInBlockRequestSchema = zod_1.z.record(zod_1.z.unknown());
+exports.RpcStateChangesInBlockResponseSchema = zod_1.z.object({
+    blockhash: zod_1.z.unknown().optional(),
+    changes: zod_1.z.array(zod_1.z.unknown())
 });

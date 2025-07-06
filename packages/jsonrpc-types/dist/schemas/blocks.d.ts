@@ -240,14 +240,14 @@ export declare const JsonRpcRequestforEXPERIMENTALchangesinblockSchema: z.ZodObj
     method: z.ZodEnum<["EXPERIMENTAL_changes_in_block"]>;
     params: z.ZodUnknown;
 }, "strip", z.ZodTypeAny, {
-    id: string;
     jsonrpc: string;
     method: "EXPERIMENTAL_changes_in_block";
+    id: string;
     params?: unknown;
 }, {
-    id: string;
     jsonrpc: string;
     method: "EXPERIMENTAL_changes_in_block";
+    id: string;
     params?: unknown;
 }>;
 export declare const JsonRpcRequestforEXPERIMENTALlightclientblockproofSchema: z.ZodObject<{
@@ -256,14 +256,14 @@ export declare const JsonRpcRequestforEXPERIMENTALlightclientblockproofSchema: z
     method: z.ZodEnum<["EXPERIMENTAL_light_client_block_proof"]>;
     params: z.ZodUnknown;
 }, "strip", z.ZodTypeAny, {
-    id: string;
     jsonrpc: string;
     method: "EXPERIMENTAL_light_client_block_proof";
+    id: string;
     params?: unknown;
 }, {
-    id: string;
     jsonrpc: string;
     method: "EXPERIMENTAL_light_client_block_proof";
+    id: string;
     params?: unknown;
 }>;
 export declare const JsonRpcRequestforblockSchema: z.ZodObject<{
@@ -272,14 +272,14 @@ export declare const JsonRpcRequestforblockSchema: z.ZodObject<{
     method: z.ZodEnum<["block"]>;
     params: z.ZodUnknown;
 }, "strip", z.ZodTypeAny, {
-    id: string;
     jsonrpc: string;
     method: "block";
+    id: string;
     params?: unknown;
 }, {
-    id: string;
     jsonrpc: string;
     method: "block";
+    id: string;
     params?: unknown;
 }>;
 export declare const JsonRpcRequestforchunkSchema: z.ZodObject<{
@@ -288,14 +288,14 @@ export declare const JsonRpcRequestforchunkSchema: z.ZodObject<{
     method: z.ZodEnum<["chunk"]>;
     params: z.ZodUnknown;
 }, "strip", z.ZodTypeAny, {
-    id: string;
     jsonrpc: string;
     method: "chunk";
+    id: string;
     params?: unknown;
 }, {
-    id: string;
     jsonrpc: string;
     method: "chunk";
+    id: string;
     params?: unknown;
 }>;
 export declare const JsonRpcRequestfornextlightclientblockSchema: z.ZodObject<{
@@ -304,75 +304,75 @@ export declare const JsonRpcRequestfornextlightclientblockSchema: z.ZodObject<{
     method: z.ZodEnum<["next_light_client_block"]>;
     params: z.ZodUnknown;
 }, "strip", z.ZodTypeAny, {
-    id: string;
     jsonrpc: string;
     method: "next_light_client_block";
+    id: string;
     params?: unknown;
 }, {
-    id: string;
     jsonrpc: string;
     method: "next_light_client_block";
+    id: string;
     params?: unknown;
 }>;
 export declare const JsonRpcResponseforRpcBlockResponseandRpcErrorSchema: z.ZodObject<{
     id: z.ZodString;
     jsonrpc: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    id: string;
     jsonrpc: string;
+    id: string;
 }, {
-    id: string;
     jsonrpc: string;
+    id: string;
 }>;
 export declare const JsonRpcResponseforRpcChunkResponseandRpcErrorSchema: z.ZodObject<{
     id: z.ZodString;
     jsonrpc: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    id: string;
     jsonrpc: string;
+    id: string;
 }, {
-    id: string;
     jsonrpc: string;
+    id: string;
 }>;
 export declare const JsonRpcResponseforRpcLightClientBlockProofResponseandRpcErrorSchema: z.ZodObject<{
     id: z.ZodString;
     jsonrpc: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    id: string;
     jsonrpc: string;
+    id: string;
 }, {
-    id: string;
     jsonrpc: string;
+    id: string;
 }>;
 export declare const JsonRpcResponseforRpcLightClientNextBlockResponseandRpcErrorSchema: z.ZodObject<{
     id: z.ZodString;
     jsonrpc: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    id: string;
     jsonrpc: string;
+    id: string;
 }, {
-    id: string;
     jsonrpc: string;
+    id: string;
 }>;
 export declare const JsonRpcResponseforRpcStateChangesInBlockByTypeResponseandRpcErrorSchema: z.ZodObject<{
     id: z.ZodString;
     jsonrpc: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    id: string;
     jsonrpc: string;
+    id: string;
 }, {
-    id: string;
     jsonrpc: string;
+    id: string;
 }>;
 export declare const JsonRpcResponseforRpcStateChangesInBlockResponseandRpcErrorSchema: z.ZodObject<{
     id: z.ZodString;
     jsonrpc: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    id: string;
     jsonrpc: string;
+    id: string;
 }, {
-    id: string;
     jsonrpc: string;
+    id: string;
 }>;
 export declare const LightClientBlockLiteViewSchema: z.ZodObject<{
     innerlite: z.ZodOptional<z.ZodUnknown>;

@@ -12,4 +12,6 @@ export * from './types/transactions';
 export * from './schemas/transactions';
 export * from './types/accounts';
 export * from './schemas/accounts';
+export * from './types/network';
+export * from './schemas/network';
 export { z } from 'zod';

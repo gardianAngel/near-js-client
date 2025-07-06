@@ -21,5 +21,9 @@ export * from './schemas/transactions';
 export * from './types/accounts';
 export * from './schemas/accounts';
 
+// Network-related types and schemas
+export * from './types/network';
+export * from './schemas/network';
+
 // Re-export Zod for convenience
 export { z } from 'zod';

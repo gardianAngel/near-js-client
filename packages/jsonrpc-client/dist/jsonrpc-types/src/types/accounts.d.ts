@@ -1,111 +1,85 @@
 /**
- * Account-related types for NEAR Protocol JSON-RPC interface
+ * Generated types for NEAR Protocol JSON-RPC
  */
-import { BlockReference, PublicKey } from './common';
-import { AccessKey } from './blocks';
-export interface AccountQuery extends BlockReference {
-    accountId: string;
-}
-export interface AccountResponse {
-    amount: string;
-    locked: string;
-    codeHash: string;
-    storageUsage: number;
-    storagePaidAt: number;
-    blockHeight: number;
-    blockHash: string;
-}
-export interface AccessKeyQuery extends BlockReference {
-    accountId: string;
-    publicKey: string;
-}
-export interface AccessKeyResponse {
+export interface AccessKey {
     nonce: number;
-    permission: AccessKey['permission'];
-    blockHeight: number;
-    blockHash: string;
+    permission: unknown;
 }
-export interface AccessKeyListQuery extends BlockReference {
-    accountId: string;
+export interface AccessKeyCreationConfigView {
+    fullaccesscost?: unknown;
+    functioncallcost?: unknown;
+    functioncallcostperbyte?: unknown;
 }
-export interface AccessKeyWithPublicKey {
-    publicKey: PublicKey;
-    accessKey: AccessKey;
+export interface AccessKeyInfoView {
+    accesskey?: unknown;
+    publickey?: unknown;
 }
-export interface AccessKeyListResponse {
-    keys: AccessKeyWithPublicKey[];
-    blockHeight: number;
-    blockHash: string;
+export interface AccessKeyList {
+    keys: unknown[];
 }
-export interface CodeQuery extends BlockReference {
-    accountId: string;
+export type AccessKeyPermission = unknown;
+export type AccessKeyPermissionView = unknown;
+export interface AccessKeyView {
+    nonce: number;
+    permission: unknown;
 }
-export interface CodeResponse {
-    codeBase64: string;
-    hash: string;
-    blockHeight: number;
-    blockHash: string;
+export interface AccountCreationConfigView {
+    minallowedtoplevelaccountlength?: number;
+    registraraccountid?: unknown;
 }
-export interface ContractCodeQuery extends BlockReference {
-    accountId: string;
+export interface AccountDataView {
+    accountkey?: unknown;
+    peerid?: unknown;
+    proxies: unknown[];
+    timestamp: string;
 }
-export interface ContractCodeResponse {
-    result: string;
-    logs: string[];
-    blockHeight: number;
-    blockHash: string;
+export type AccountId = string;
+export type AccountIdValidityRulesVersion = number;
+export interface AccountInfo {
+    accountid?: unknown;
+    amount: string;
+    publickey?: unknown;
 }
-export interface ContractStateQuery extends BlockReference {
-    accountId: string;
-    keyPrefix?: string;
+export interface AccountView {
+    amount: string;
+    codehash?: unknown;
+    globalcontractaccountid?: unknown;
+    globalcontracthash?: unknown;
+    locked: string;
+    storagepaidat?: number;
+    storageusage?: number;
+}
+export interface AccountWithPublicKey {
+    accountid?: unknown;
+    publickey?: unknown;
+}
+export interface ContractCodeView {
+    codebase64?: string;
+    hash: unknown;
+}
+export interface GasKeyView {
+    balance: number;
+    numnonces?: number;
+    permission: unknown;
+}
+export type GlobalContractDeployMode = unknown;
+export type GlobalContractIdentifier = unknown;
+export type InvalidAccessKeyError = unknown;
+export type PublicKey = string;
+export type StateChangeCauseView = unknown;
+export type StateChangeKindView = unknown;
+export interface StateChangeWithCauseView {
+    cause: unknown;
 }
 export interface StateItem {
     key: string;
     value: string;
-    proof: string[];
 }
-export interface ContractStateResponse {
-    values: StateItem[];
-    proof: string[];
-    blockHeight: number;
-    blockHash: string;
+export interface StateSyncConfig {
+    dump?: unknown;
+    sync?: unknown;
 }
-export interface ContractStateChangesQuery extends BlockReference {
-    accountIds: string[];
-    keyPrefix?: string;
-}
-export interface StateChange {
-    cause: StateChangeCause;
-    type: StateChangeType;
-    change: StateChangeValue;
-}
-export type StateChangeCause = {
-    type: 'transaction_processing';
-    tx_hash: string;
-} | {
-    type: 'action_receipt_processing_started';
-    receipt_hash: string;
-} | {
-    type: 'action_receipt_gas_reward';
-    receipt_hash: string;
-} | {
-    type: 'receipt_processing';
-    receipt_hash: string;
-} | {
-    type: 'postponed_receipt';
-    receipt_hash: string;
-};
-export type StateChangeType = 'account_update' | 'account_deletion' | 'access_key_update' | 'access_key_deletion' | 'data_update' | 'data_deletion' | 'contract_code_update' | 'contract_code_deletion';
-export interface StateChangeValue {
-    account_id: string;
-    key_base64?: string;
-    value_base64?: string;
-    public_key?: PublicKey;
-    access_key?: AccessKey;
-    account?: AccountResponse;
-    code_base64?: string;
-}
-export interface ContractStateChangesResponse {
-    changes: StateChange[];
-    blockHash: string;
+export interface ViewStateResult {
+    proof?: string[];
+    values: unknown[];
 }

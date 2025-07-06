@@ -123,6 +123,11 @@ The architecture prioritizes:
   - Complete documentation (README files, API docs, examples)
   - Production-ready error handling and retry logic
   - Full specification compliance including critical path patching
+- July 06, 2025. Community validation and fixes:
+  - Confirmed correct "/" path implementation with NEAR team
+  - Updated error handling for underspecified OpenAPI responses
+  - Fixed TypeScript compilation issues from type/schema mismatches
+  - Enhanced defensive programming approach based on community feedback
 
 ## User Preferences
 

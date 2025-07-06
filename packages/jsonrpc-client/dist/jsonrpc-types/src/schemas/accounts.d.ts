@@ -1,1364 +1,448 @@
 /**
- * Zod schemas for account-related NEAR Protocol JSON-RPC types
+ * Generated Zod schemas for NEAR Protocol JSON-RPC
  */
 import { z } from 'zod';
-export declare const AccountQuerySchema: z.ZodObject<{
-    blockId: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
-    finality: z.ZodOptional<z.ZodEnum<["final", "near-final", "optimistic"]>>;
-} & {
-    accountId: z.ZodString;
-}, "strip", z.ZodTypeAny, {
-    accountId: string;
-    blockId?: string | number | undefined;
-    finality?: "final" | "near-final" | "optimistic" | undefined;
-}, {
-    accountId: string;
-    blockId?: string | number | undefined;
-    finality?: "final" | "near-final" | "optimistic" | undefined;
-}>;
-export declare const AccountResponseSchema: z.ZodObject<{
-    amount: z.ZodString;
-    locked: z.ZodString;
-    codeHash: z.ZodString;
-    storageUsage: z.ZodNumber;
-    storagePaidAt: z.ZodNumber;
-    blockHeight: z.ZodNumber;
-    blockHash: z.ZodString;
-}, "strip", z.ZodTypeAny, {
-    blockHash: string;
-    blockHeight: number;
-    amount: string;
-    locked: string;
-    codeHash: string;
-    storageUsage: number;
-    storagePaidAt: number;
-}, {
-    blockHash: string;
-    blockHeight: number;
-    amount: string;
-    locked: string;
-    codeHash: string;
-    storageUsage: number;
-    storagePaidAt: number;
-}>;
-export declare const AccessKeyQuerySchema: z.ZodObject<{
-    blockId: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
-    finality: z.ZodOptional<z.ZodEnum<["final", "near-final", "optimistic"]>>;
-} & {
-    accountId: z.ZodString;
-    publicKey: z.ZodString;
-}, "strip", z.ZodTypeAny, {
-    accountId: string;
-    publicKey: string;
-    blockId?: string | number | undefined;
-    finality?: "final" | "near-final" | "optimistic" | undefined;
-}, {
-    accountId: string;
-    publicKey: string;
-    blockId?: string | number | undefined;
-    finality?: "final" | "near-final" | "optimistic" | undefined;
-}>;
-export declare const AccessKeyResponseSchema: z.ZodObject<{
+export declare const AccessKeySchema: z.ZodObject<{
     nonce: z.ZodNumber;
-    permission: z.ZodUnion<[z.ZodLiteral<"FullAccess">, z.ZodObject<{
-        FunctionCall: z.ZodObject<{
-            allowance: z.ZodOptional<z.ZodString>;
-            receiverId: z.ZodString;
-            methodNames: z.ZodArray<z.ZodString, "many">;
-        }, "strip", z.ZodTypeAny, {
-            receiverId: string;
-            methodNames: string[];
-            allowance?: string | undefined;
-        }, {
-            receiverId: string;
-            methodNames: string[];
-            allowance?: string | undefined;
-        }>;
-    }, "strip", z.ZodTypeAny, {
-        FunctionCall: {
-            receiverId: string;
-            methodNames: string[];
-            allowance?: string | undefined;
-        };
-    }, {
-        FunctionCall: {
-            receiverId: string;
-            methodNames: string[];
-            allowance?: string | undefined;
-        };
-    }>]>;
-    blockHeight: z.ZodNumber;
-    blockHash: z.ZodString;
+    permission: z.ZodUnknown;
 }, "strip", z.ZodTypeAny, {
-    blockHash: string;
     nonce: number;
-    permission: "FullAccess" | {
-        FunctionCall: {
-            receiverId: string;
-            methodNames: string[];
-            allowance?: string | undefined;
-        };
-    };
-    blockHeight: number;
+    permission?: unknown;
 }, {
-    blockHash: string;
     nonce: number;
-    permission: "FullAccess" | {
-        FunctionCall: {
-            receiverId: string;
-            methodNames: string[];
-            allowance?: string | undefined;
-        };
-    };
-    blockHeight: number;
+    permission?: unknown;
 }>;
-export declare const AccessKeyListQuerySchema: z.ZodObject<{
-    blockId: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
-    finality: z.ZodOptional<z.ZodEnum<["final", "near-final", "optimistic"]>>;
-} & {
-    accountId: z.ZodString;
+export declare const AccessKeyCreationConfigViewSchema: z.ZodObject<{
+    fullaccesscost: z.ZodOptional<z.ZodUnknown>;
+    functioncallcost: z.ZodOptional<z.ZodUnknown>;
+    functioncallcostperbyte: z.ZodOptional<z.ZodUnknown>;
 }, "strip", z.ZodTypeAny, {
-    accountId: string;
-    blockId?: string | number | undefined;
-    finality?: "final" | "near-final" | "optimistic" | undefined;
+    functioncallcost?: unknown;
+    functioncallcostperbyte?: unknown;
+    fullaccesscost?: unknown;
 }, {
-    accountId: string;
-    blockId?: string | number | undefined;
-    finality?: "final" | "near-final" | "optimistic" | undefined;
+    functioncallcost?: unknown;
+    functioncallcostperbyte?: unknown;
+    fullaccesscost?: unknown;
 }>;
-export declare const AccessKeyWithPublicKeySchema: z.ZodObject<{
-    publicKey: z.ZodObject<{
-        keyType: z.ZodNumber;
-        data: z.ZodString;
+export declare const AccessKeyInfoViewSchema: z.ZodObject<{
+    accesskey: z.ZodOptional<z.ZodUnknown>;
+    publickey: z.ZodOptional<z.ZodUnknown>;
+}, "strip", z.ZodTypeAny, {
+    publickey?: unknown;
+    accesskey?: unknown;
+}, {
+    publickey?: unknown;
+    accesskey?: unknown;
+}>;
+export declare const AccessKeyListSchema: z.ZodObject<{
+    keys: z.ZodArray<z.ZodUnknown, "many">;
+}, "strip", z.ZodTypeAny, {
+    keys: unknown[];
+}, {
+    keys: unknown[];
+}>;
+export declare const AccessKeyPermissionSchema: z.ZodUnion<[z.ZodObject<{
+    functionCall: z.ZodOptional<z.ZodUnknown>;
+}, "strip", z.ZodTypeAny, {
+    functionCall?: unknown;
+}, {
+    functionCall?: unknown;
+}>, z.ZodEnum<["FullAccess"]>]>;
+export declare const AccessKeyPermissionViewSchema: z.ZodUnion<[z.ZodEnum<["FullAccess"]>, z.ZodObject<{
+    functionCall: z.ZodOptional<z.ZodObject<{
+        allowance: z.ZodOptional<z.ZodString>;
+        methodnames: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        receiverid: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
-        data: string;
-        keyType: number;
+        receiverid?: string | undefined;
+        allowance?: string | undefined;
+        methodnames?: string[] | undefined;
     }, {
-        data: string;
-        keyType: number;
-    }>;
-    accessKey: z.ZodObject<{
-        nonce: z.ZodNumber;
-        permission: z.ZodUnion<[z.ZodLiteral<"FullAccess">, z.ZodObject<{
-            FunctionCall: z.ZodObject<{
-                allowance: z.ZodOptional<z.ZodString>;
-                receiverId: z.ZodString;
-                methodNames: z.ZodArray<z.ZodString, "many">;
-            }, "strip", z.ZodTypeAny, {
-                receiverId: string;
-                methodNames: string[];
-                allowance?: string | undefined;
-            }, {
-                receiverId: string;
-                methodNames: string[];
-                allowance?: string | undefined;
-            }>;
-        }, "strip", z.ZodTypeAny, {
-            FunctionCall: {
-                receiverId: string;
-                methodNames: string[];
-                allowance?: string | undefined;
-            };
-        }, {
-            FunctionCall: {
-                receiverId: string;
-                methodNames: string[];
-                allowance?: string | undefined;
-            };
-        }>]>;
+        receiverid?: string | undefined;
+        allowance?: string | undefined;
+        methodnames?: string[] | undefined;
+    }>>;
+}, "strip", z.ZodTypeAny, {
+    functionCall?: {
+        receiverid?: string | undefined;
+        allowance?: string | undefined;
+        methodnames?: string[] | undefined;
+    } | undefined;
+}, {
+    functionCall?: {
+        receiverid?: string | undefined;
+        allowance?: string | undefined;
+        methodnames?: string[] | undefined;
+    } | undefined;
+}>]>;
+export declare const AccessKeyViewSchema: z.ZodObject<{
+    nonce: z.ZodNumber;
+    permission: z.ZodUnknown;
+}, "strip", z.ZodTypeAny, {
+    nonce: number;
+    permission?: unknown;
+}, {
+    nonce: number;
+    permission?: unknown;
+}>;
+export declare const AccountCreationConfigViewSchema: z.ZodObject<{
+    minallowedtoplevelaccountlength: z.ZodOptional<z.ZodNumber>;
+    registraraccountid: z.ZodOptional<z.ZodUnknown>;
+}, "strip", z.ZodTypeAny, {
+    registraraccountid?: unknown;
+    minallowedtoplevelaccountlength?: number | undefined;
+}, {
+    registraraccountid?: unknown;
+    minallowedtoplevelaccountlength?: number | undefined;
+}>;
+export declare const AccountDataViewSchema: z.ZodObject<{
+    accountkey: z.ZodOptional<z.ZodUnknown>;
+    peerid: z.ZodOptional<z.ZodUnknown>;
+    proxies: z.ZodArray<z.ZodUnknown, "many">;
+    timestamp: z.ZodString;
+}, "strip", z.ZodTypeAny, {
+    timestamp: string;
+    proxies: unknown[];
+    peerid?: unknown;
+    accountkey?: unknown;
+}, {
+    timestamp: string;
+    proxies: unknown[];
+    peerid?: unknown;
+    accountkey?: unknown;
+}>;
+export declare const AccountIdSchema: z.ZodString;
+export declare const AccountIdValidityRulesVersionSchema: z.ZodNumber;
+export declare const AccountInfoSchema: z.ZodObject<{
+    accountid: z.ZodOptional<z.ZodUnknown>;
+    amount: z.ZodString;
+    publickey: z.ZodOptional<z.ZodUnknown>;
+}, "strip", z.ZodTypeAny, {
+    amount: string;
+    accountid?: unknown;
+    publickey?: unknown;
+}, {
+    amount: string;
+    accountid?: unknown;
+    publickey?: unknown;
+}>;
+export declare const AccountViewSchema: z.ZodObject<{
+    amount: z.ZodString;
+    codehash: z.ZodOptional<z.ZodUnknown>;
+    globalcontractaccountid: z.ZodOptional<z.ZodUnknown>;
+    globalcontracthash: z.ZodOptional<z.ZodUnknown>;
+    locked: z.ZodString;
+    storagepaidat: z.ZodOptional<z.ZodNumber>;
+    storageusage: z.ZodOptional<z.ZodNumber>;
+}, "strip", z.ZodTypeAny, {
+    amount: string;
+    locked: string;
+    codehash?: unknown;
+    globalcontractaccountid?: unknown;
+    globalcontracthash?: unknown;
+    storagepaidat?: number | undefined;
+    storageusage?: number | undefined;
+}, {
+    amount: string;
+    locked: string;
+    codehash?: unknown;
+    globalcontractaccountid?: unknown;
+    globalcontracthash?: unknown;
+    storagepaidat?: number | undefined;
+    storageusage?: number | undefined;
+}>;
+export declare const AccountWithPublicKeySchema: z.ZodObject<{
+    accountid: z.ZodOptional<z.ZodUnknown>;
+    publickey: z.ZodOptional<z.ZodUnknown>;
+}, "strip", z.ZodTypeAny, {
+    accountid?: unknown;
+    publickey?: unknown;
+}, {
+    accountid?: unknown;
+    publickey?: unknown;
+}>;
+export declare const ContractCodeViewSchema: z.ZodObject<{
+    codebase64: z.ZodOptional<z.ZodString>;
+    hash: z.ZodUnknown;
+}, "strip", z.ZodTypeAny, {
+    hash?: unknown;
+    codebase64?: string | undefined;
+}, {
+    hash?: unknown;
+    codebase64?: string | undefined;
+}>;
+export declare const GasKeyViewSchema: z.ZodObject<{
+    balance: z.ZodNumber;
+    numnonces: z.ZodOptional<z.ZodNumber>;
+    permission: z.ZodUnknown;
+}, "strip", z.ZodTypeAny, {
+    balance: number;
+    permission?: unknown;
+    numnonces?: number | undefined;
+}, {
+    balance: number;
+    permission?: unknown;
+    numnonces?: number | undefined;
+}>;
+export declare const GlobalContractDeployModeSchema: z.ZodUnion<[z.ZodEnum<["CodeHash"]>, z.ZodEnum<["AccountId"]>]>;
+export declare const GlobalContractIdentifierSchema: z.ZodUnion<[z.ZodObject<{
+    codeHash: z.ZodOptional<z.ZodUnknown>;
+}, "strip", z.ZodTypeAny, {
+    codeHash?: unknown;
+}, {
+    codeHash?: unknown;
+}>, z.ZodObject<{
+    accountId: z.ZodOptional<z.ZodUnknown>;
+}, "strip", z.ZodTypeAny, {
+    accountId?: unknown;
+}, {
+    accountId?: unknown;
+}>]>;
+export declare const InvalidAccessKeyErrorSchema: z.ZodUnion<[z.ZodObject<{
+    accessKeyNotFound: z.ZodOptional<z.ZodObject<{
+        accountid: z.ZodOptional<z.ZodUnknown>;
+        publickey: z.ZodOptional<z.ZodUnknown>;
     }, "strip", z.ZodTypeAny, {
-        nonce: number;
-        permission: "FullAccess" | {
-            FunctionCall: {
-                receiverId: string;
-                methodNames: string[];
-                allowance?: string | undefined;
-            };
-        };
+        accountid?: unknown;
+        publickey?: unknown;
     }, {
-        nonce: number;
-        permission: "FullAccess" | {
-            FunctionCall: {
-                receiverId: string;
-                methodNames: string[];
-                allowance?: string | undefined;
-            };
-        };
-    }>;
+        accountid?: unknown;
+        publickey?: unknown;
+    }>>;
 }, "strip", z.ZodTypeAny, {
-    publicKey: {
-        data: string;
-        keyType: number;
-    };
-    accessKey: {
-        nonce: number;
-        permission: "FullAccess" | {
-            FunctionCall: {
-                receiverId: string;
-                methodNames: string[];
-                allowance?: string | undefined;
-            };
-        };
-    };
+    accessKeyNotFound?: {
+        accountid?: unknown;
+        publickey?: unknown;
+    } | undefined;
 }, {
-    publicKey: {
-        data: string;
-        keyType: number;
-    };
-    accessKey: {
-        nonce: number;
-        permission: "FullAccess" | {
-            FunctionCall: {
-                receiverId: string;
-                methodNames: string[];
-                allowance?: string | undefined;
-            };
-        };
-    };
-}>;
-export declare const AccessKeyListResponseSchema: z.ZodObject<{
-    keys: z.ZodArray<z.ZodObject<{
-        publicKey: z.ZodObject<{
-            keyType: z.ZodNumber;
-            data: z.ZodString;
-        }, "strip", z.ZodTypeAny, {
-            data: string;
-            keyType: number;
-        }, {
-            data: string;
-            keyType: number;
-        }>;
-        accessKey: z.ZodObject<{
-            nonce: z.ZodNumber;
-            permission: z.ZodUnion<[z.ZodLiteral<"FullAccess">, z.ZodObject<{
-                FunctionCall: z.ZodObject<{
-                    allowance: z.ZodOptional<z.ZodString>;
-                    receiverId: z.ZodString;
-                    methodNames: z.ZodArray<z.ZodString, "many">;
-                }, "strip", z.ZodTypeAny, {
-                    receiverId: string;
-                    methodNames: string[];
-                    allowance?: string | undefined;
-                }, {
-                    receiverId: string;
-                    methodNames: string[];
-                    allowance?: string | undefined;
-                }>;
-            }, "strip", z.ZodTypeAny, {
-                FunctionCall: {
-                    receiverId: string;
-                    methodNames: string[];
-                    allowance?: string | undefined;
-                };
-            }, {
-                FunctionCall: {
-                    receiverId: string;
-                    methodNames: string[];
-                    allowance?: string | undefined;
-                };
-            }>]>;
-        }, "strip", z.ZodTypeAny, {
-            nonce: number;
-            permission: "FullAccess" | {
-                FunctionCall: {
-                    receiverId: string;
-                    methodNames: string[];
-                    allowance?: string | undefined;
-                };
-            };
-        }, {
-            nonce: number;
-            permission: "FullAccess" | {
-                FunctionCall: {
-                    receiverId: string;
-                    methodNames: string[];
-                    allowance?: string | undefined;
-                };
-            };
-        }>;
+    accessKeyNotFound?: {
+        accountid?: unknown;
+        publickey?: unknown;
+    } | undefined;
+}>, z.ZodObject<{
+    receiverMismatch: z.ZodOptional<z.ZodObject<{
+        akreceiver: z.ZodOptional<z.ZodString>;
+        txreceiver: z.ZodOptional<z.ZodUnknown>;
     }, "strip", z.ZodTypeAny, {
-        publicKey: {
-            data: string;
-            keyType: number;
-        };
-        accessKey: {
-            nonce: number;
-            permission: "FullAccess" | {
-                FunctionCall: {
-                    receiverId: string;
-                    methodNames: string[];
-                    allowance?: string | undefined;
-                };
-            };
-        };
+        akreceiver?: string | undefined;
+        txreceiver?: unknown;
     }, {
-        publicKey: {
-            data: string;
-            keyType: number;
-        };
-        accessKey: {
-            nonce: number;
-            permission: "FullAccess" | {
-                FunctionCall: {
-                    receiverId: string;
-                    methodNames: string[];
-                    allowance?: string | undefined;
-                };
-            };
-        };
-    }>, "many">;
-    blockHeight: z.ZodNumber;
-    blockHash: z.ZodString;
+        akreceiver?: string | undefined;
+        txreceiver?: unknown;
+    }>>;
 }, "strip", z.ZodTypeAny, {
-    keys: {
-        publicKey: {
-            data: string;
-            keyType: number;
-        };
-        accessKey: {
-            nonce: number;
-            permission: "FullAccess" | {
-                FunctionCall: {
-                    receiverId: string;
-                    methodNames: string[];
-                    allowance?: string | undefined;
-                };
-            };
-        };
-    }[];
-    blockHash: string;
-    blockHeight: number;
+    receiverMismatch?: {
+        akreceiver?: string | undefined;
+        txreceiver?: unknown;
+    } | undefined;
 }, {
-    keys: {
-        publicKey: {
-            data: string;
-            keyType: number;
-        };
-        accessKey: {
-            nonce: number;
-            permission: "FullAccess" | {
-                FunctionCall: {
-                    receiverId: string;
-                    methodNames: string[];
-                    allowance?: string | undefined;
-                };
-            };
-        };
-    }[];
-    blockHash: string;
-    blockHeight: number;
-}>;
-export declare const CodeQuerySchema: z.ZodObject<{
-    blockId: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
-    finality: z.ZodOptional<z.ZodEnum<["final", "near-final", "optimistic"]>>;
-} & {
-    accountId: z.ZodString;
+    receiverMismatch?: {
+        akreceiver?: string | undefined;
+        txreceiver?: unknown;
+    } | undefined;
+}>, z.ZodObject<{
+    methodNameMismatch: z.ZodOptional<z.ZodObject<{
+        methodname: z.ZodOptional<z.ZodString>;
+    }, "strip", z.ZodTypeAny, {
+        methodname?: string | undefined;
+    }, {
+        methodname?: string | undefined;
+    }>>;
 }, "strip", z.ZodTypeAny, {
-    accountId: string;
-    blockId?: string | number | undefined;
-    finality?: "final" | "near-final" | "optimistic" | undefined;
+    methodNameMismatch?: {
+        methodname?: string | undefined;
+    } | undefined;
 }, {
-    accountId: string;
-    blockId?: string | number | undefined;
-    finality?: "final" | "near-final" | "optimistic" | undefined;
-}>;
-export declare const CodeResponseSchema: z.ZodObject<{
-    codeBase64: z.ZodString;
-    hash: z.ZodString;
-    blockHeight: z.ZodNumber;
-    blockHash: z.ZodString;
+    methodNameMismatch?: {
+        methodname?: string | undefined;
+    } | undefined;
+}>, z.ZodEnum<["RequiresFullAccess"]>, z.ZodObject<{
+    notEnoughAllowance: z.ZodOptional<z.ZodObject<{
+        accountid: z.ZodOptional<z.ZodUnknown>;
+        allowance: z.ZodString;
+        cost: z.ZodString;
+        publickey: z.ZodOptional<z.ZodUnknown>;
+    }, "strip", z.ZodTypeAny, {
+        cost: string;
+        allowance: string;
+        accountid?: unknown;
+        publickey?: unknown;
+    }, {
+        cost: string;
+        allowance: string;
+        accountid?: unknown;
+        publickey?: unknown;
+    }>>;
 }, "strip", z.ZodTypeAny, {
-    hash: string;
-    blockHash: string;
-    blockHeight: number;
-    codeBase64: string;
+    notEnoughAllowance?: {
+        cost: string;
+        allowance: string;
+        accountid?: unknown;
+        publickey?: unknown;
+    } | undefined;
 }, {
-    hash: string;
-    blockHash: string;
-    blockHeight: number;
-    codeBase64: string;
-}>;
-export declare const ContractCodeQuerySchema: z.ZodObject<{
-    blockId: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
-    finality: z.ZodOptional<z.ZodEnum<["final", "near-final", "optimistic"]>>;
-} & {
-    accountId: z.ZodString;
+    notEnoughAllowance?: {
+        cost: string;
+        allowance: string;
+        accountid?: unknown;
+        publickey?: unknown;
+    } | undefined;
+}>, z.ZodEnum<["DepositWithFunctionCall"]>]>;
+export declare const PublicKeySchema: z.ZodString;
+export declare const StateChangeCauseViewSchema: z.ZodUnion<[z.ZodObject<{
+    type: z.ZodEnum<["not_writable_to_disk"]>;
 }, "strip", z.ZodTypeAny, {
-    accountId: string;
-    blockId?: string | number | undefined;
-    finality?: "final" | "near-final" | "optimistic" | undefined;
+    type: "not_writable_to_disk";
 }, {
-    accountId: string;
-    blockId?: string | number | undefined;
-    finality?: "final" | "near-final" | "optimistic" | undefined;
-}>;
-export declare const ContractCodeResponseSchema: z.ZodObject<{
-    result: z.ZodString;
-    logs: z.ZodArray<z.ZodString, "many">;
-    blockHeight: z.ZodNumber;
-    blockHash: z.ZodString;
+    type: "not_writable_to_disk";
+}>, z.ZodObject<{
+    type: z.ZodEnum<["initial_state"]>;
 }, "strip", z.ZodTypeAny, {
-    result: string;
-    logs: string[];
-    blockHash: string;
-    blockHeight: number;
+    type: "initial_state";
 }, {
-    result: string;
-    logs: string[];
-    blockHash: string;
-    blockHeight: number;
-}>;
-export declare const ContractStateQuerySchema: z.ZodObject<{
-    blockId: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
-    finality: z.ZodOptional<z.ZodEnum<["final", "near-final", "optimistic"]>>;
-} & {
-    accountId: z.ZodString;
-    keyPrefix: z.ZodOptional<z.ZodString>;
+    type: "initial_state";
+}>, z.ZodObject<{
+    txhash: z.ZodOptional<z.ZodUnknown>;
+    type: z.ZodEnum<["transaction_processing"]>;
 }, "strip", z.ZodTypeAny, {
-    accountId: string;
-    blockId?: string | number | undefined;
-    finality?: "final" | "near-final" | "optimistic" | undefined;
-    keyPrefix?: string | undefined;
+    type: "transaction_processing";
+    txhash?: unknown;
 }, {
-    accountId: string;
-    blockId?: string | number | undefined;
-    finality?: "final" | "near-final" | "optimistic" | undefined;
-    keyPrefix?: string | undefined;
+    type: "transaction_processing";
+    txhash?: unknown;
+}>, z.ZodObject<{
+    receipthash: z.ZodOptional<z.ZodUnknown>;
+    type: z.ZodEnum<["action_receipt_processing_started"]>;
+}, "strip", z.ZodTypeAny, {
+    type: "action_receipt_processing_started";
+    receipthash?: unknown;
+}, {
+    type: "action_receipt_processing_started";
+    receipthash?: unknown;
+}>, z.ZodObject<{
+    receipthash: z.ZodOptional<z.ZodUnknown>;
+    type: z.ZodEnum<["action_receipt_gas_reward"]>;
+}, "strip", z.ZodTypeAny, {
+    type: "action_receipt_gas_reward";
+    receipthash?: unknown;
+}, {
+    type: "action_receipt_gas_reward";
+    receipthash?: unknown;
+}>, z.ZodObject<{
+    receipthash: z.ZodOptional<z.ZodUnknown>;
+    type: z.ZodEnum<["receipt_processing"]>;
+}, "strip", z.ZodTypeAny, {
+    type: "receipt_processing";
+    receipthash?: unknown;
+}, {
+    type: "receipt_processing";
+    receipthash?: unknown;
+}>, z.ZodObject<{
+    receipthash: z.ZodOptional<z.ZodUnknown>;
+    type: z.ZodEnum<["postponed_receipt"]>;
+}, "strip", z.ZodTypeAny, {
+    type: "postponed_receipt";
+    receipthash?: unknown;
+}, {
+    type: "postponed_receipt";
+    receipthash?: unknown;
+}>, z.ZodObject<{
+    type: z.ZodEnum<["updated_delayed_receipts"]>;
+}, "strip", z.ZodTypeAny, {
+    type: "updated_delayed_receipts";
+}, {
+    type: "updated_delayed_receipts";
+}>, z.ZodObject<{
+    type: z.ZodEnum<["validator_accounts_update"]>;
+}, "strip", z.ZodTypeAny, {
+    type: "validator_accounts_update";
+}, {
+    type: "validator_accounts_update";
+}>, z.ZodObject<{
+    type: z.ZodEnum<["migration"]>;
+}, "strip", z.ZodTypeAny, {
+    type: "migration";
+}, {
+    type: "migration";
+}>, z.ZodObject<{
+    type: z.ZodEnum<["bandwidth_scheduler_state_update"]>;
+}, "strip", z.ZodTypeAny, {
+    type: "bandwidth_scheduler_state_update";
+}, {
+    type: "bandwidth_scheduler_state_update";
+}>]>;
+export declare const StateChangeKindViewSchema: z.ZodUnion<[z.ZodObject<{
+    accountid: z.ZodOptional<z.ZodUnknown>;
+    type: z.ZodEnum<["account_touched"]>;
+}, "strip", z.ZodTypeAny, {
+    type: "account_touched";
+    accountid?: unknown;
+}, {
+    type: "account_touched";
+    accountid?: unknown;
+}>, z.ZodObject<{
+    accountid: z.ZodOptional<z.ZodUnknown>;
+    type: z.ZodEnum<["access_key_touched"]>;
+}, "strip", z.ZodTypeAny, {
+    type: "access_key_touched";
+    accountid?: unknown;
+}, {
+    type: "access_key_touched";
+    accountid?: unknown;
+}>, z.ZodObject<{
+    accountid: z.ZodOptional<z.ZodUnknown>;
+    type: z.ZodEnum<["data_touched"]>;
+}, "strip", z.ZodTypeAny, {
+    type: "data_touched";
+    accountid?: unknown;
+}, {
+    type: "data_touched";
+    accountid?: unknown;
+}>, z.ZodObject<{
+    accountid: z.ZodOptional<z.ZodUnknown>;
+    type: z.ZodEnum<["contract_code_touched"]>;
+}, "strip", z.ZodTypeAny, {
+    type: "contract_code_touched";
+    accountid?: unknown;
+}, {
+    type: "contract_code_touched";
+    accountid?: unknown;
+}>]>;
+export declare const StateChangeWithCauseViewSchema: z.ZodObject<{
+    cause: z.ZodUnknown;
+}, "strip", z.ZodTypeAny, {
+    cause?: unknown;
+}, {
+    cause?: unknown;
 }>;
 export declare const StateItemSchema: z.ZodObject<{
     key: z.ZodString;
     value: z.ZodString;
-    proof: z.ZodArray<z.ZodString, "many">;
 }, "strip", z.ZodTypeAny, {
     value: string;
-    proof: string[];
     key: string;
 }, {
     value: string;
-    proof: string[];
     key: string;
 }>;
-export declare const ContractStateResponseSchema: z.ZodObject<{
-    values: z.ZodArray<z.ZodObject<{
-        key: z.ZodString;
-        value: z.ZodString;
-        proof: z.ZodArray<z.ZodString, "many">;
-    }, "strip", z.ZodTypeAny, {
-        value: string;
-        proof: string[];
-        key: string;
-    }, {
-        value: string;
-        proof: string[];
-        key: string;
-    }>, "many">;
-    proof: z.ZodArray<z.ZodString, "many">;
-    blockHeight: z.ZodNumber;
-    blockHash: z.ZodString;
+export declare const StateSyncConfigSchema: z.ZodObject<{
+    dump: z.ZodOptional<z.ZodUnknown>;
+    sync: z.ZodOptional<z.ZodUnknown>;
 }, "strip", z.ZodTypeAny, {
-    values: {
-        value: string;
-        proof: string[];
-        key: string;
-    }[];
-    blockHash: string;
-    proof: string[];
-    blockHeight: number;
+    dump?: unknown;
+    sync?: unknown;
 }, {
-    values: {
-        value: string;
-        proof: string[];
-        key: string;
-    }[];
-    blockHash: string;
-    proof: string[];
-    blockHeight: number;
+    dump?: unknown;
+    sync?: unknown;
 }>;
-export declare const ContractStateChangesQuerySchema: z.ZodObject<{
-    blockId: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
-    finality: z.ZodOptional<z.ZodEnum<["final", "near-final", "optimistic"]>>;
-} & {
-    accountIds: z.ZodArray<z.ZodString, "many">;
-    keyPrefix: z.ZodOptional<z.ZodString>;
+export declare const ViewStateResultSchema: z.ZodObject<{
+    proof: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    values: z.ZodArray<z.ZodUnknown, "many">;
 }, "strip", z.ZodTypeAny, {
-    accountIds: string[];
-    blockId?: string | number | undefined;
-    finality?: "final" | "near-final" | "optimistic" | undefined;
-    keyPrefix?: string | undefined;
+    values: unknown[];
+    proof?: string[] | undefined;
 }, {
-    accountIds: string[];
-    blockId?: string | number | undefined;
-    finality?: "final" | "near-final" | "optimistic" | undefined;
-    keyPrefix?: string | undefined;
-}>;
-export declare const StateChangeCauseSchema: z.ZodUnion<[z.ZodObject<{
-    type: z.ZodLiteral<"transaction_processing">;
-    tx_hash: z.ZodString;
-}, "strip", z.ZodTypeAny, {
-    type: "transaction_processing";
-    tx_hash: string;
-}, {
-    type: "transaction_processing";
-    tx_hash: string;
-}>, z.ZodObject<{
-    type: z.ZodLiteral<"action_receipt_processing_started">;
-    receipt_hash: z.ZodString;
-}, "strip", z.ZodTypeAny, {
-    type: "action_receipt_processing_started";
-    receipt_hash: string;
-}, {
-    type: "action_receipt_processing_started";
-    receipt_hash: string;
-}>, z.ZodObject<{
-    type: z.ZodLiteral<"action_receipt_gas_reward">;
-    receipt_hash: z.ZodString;
-}, "strip", z.ZodTypeAny, {
-    type: "action_receipt_gas_reward";
-    receipt_hash: string;
-}, {
-    type: "action_receipt_gas_reward";
-    receipt_hash: string;
-}>, z.ZodObject<{
-    type: z.ZodLiteral<"receipt_processing">;
-    receipt_hash: z.ZodString;
-}, "strip", z.ZodTypeAny, {
-    type: "receipt_processing";
-    receipt_hash: string;
-}, {
-    type: "receipt_processing";
-    receipt_hash: string;
-}>, z.ZodObject<{
-    type: z.ZodLiteral<"postponed_receipt">;
-    receipt_hash: z.ZodString;
-}, "strip", z.ZodTypeAny, {
-    type: "postponed_receipt";
-    receipt_hash: string;
-}, {
-    type: "postponed_receipt";
-    receipt_hash: string;
-}>]>;
-export declare const StateChangeTypeSchema: z.ZodEnum<["account_update", "account_deletion", "access_key_update", "access_key_deletion", "data_update", "data_deletion", "contract_code_update", "contract_code_deletion"]>;
-export declare const StateChangeValueSchema: z.ZodObject<{
-    account_id: z.ZodString;
-    key_base64: z.ZodOptional<z.ZodString>;
-    value_base64: z.ZodOptional<z.ZodString>;
-    public_key: z.ZodOptional<z.ZodObject<{
-        keyType: z.ZodNumber;
-        data: z.ZodString;
-    }, "strip", z.ZodTypeAny, {
-        data: string;
-        keyType: number;
-    }, {
-        data: string;
-        keyType: number;
-    }>>;
-    access_key: z.ZodOptional<z.ZodObject<{
-        nonce: z.ZodNumber;
-        permission: z.ZodUnion<[z.ZodLiteral<"FullAccess">, z.ZodObject<{
-            FunctionCall: z.ZodObject<{
-                allowance: z.ZodOptional<z.ZodString>;
-                receiverId: z.ZodString;
-                methodNames: z.ZodArray<z.ZodString, "many">;
-            }, "strip", z.ZodTypeAny, {
-                receiverId: string;
-                methodNames: string[];
-                allowance?: string | undefined;
-            }, {
-                receiverId: string;
-                methodNames: string[];
-                allowance?: string | undefined;
-            }>;
-        }, "strip", z.ZodTypeAny, {
-            FunctionCall: {
-                receiverId: string;
-                methodNames: string[];
-                allowance?: string | undefined;
-            };
-        }, {
-            FunctionCall: {
-                receiverId: string;
-                methodNames: string[];
-                allowance?: string | undefined;
-            };
-        }>]>;
-    }, "strip", z.ZodTypeAny, {
-        nonce: number;
-        permission: "FullAccess" | {
-            FunctionCall: {
-                receiverId: string;
-                methodNames: string[];
-                allowance?: string | undefined;
-            };
-        };
-    }, {
-        nonce: number;
-        permission: "FullAccess" | {
-            FunctionCall: {
-                receiverId: string;
-                methodNames: string[];
-                allowance?: string | undefined;
-            };
-        };
-    }>>;
-    account: z.ZodOptional<z.ZodObject<{
-        amount: z.ZodString;
-        locked: z.ZodString;
-        codeHash: z.ZodString;
-        storageUsage: z.ZodNumber;
-        storagePaidAt: z.ZodNumber;
-        blockHeight: z.ZodNumber;
-        blockHash: z.ZodString;
-    }, "strip", z.ZodTypeAny, {
-        blockHash: string;
-        blockHeight: number;
-        amount: string;
-        locked: string;
-        codeHash: string;
-        storageUsage: number;
-        storagePaidAt: number;
-    }, {
-        blockHash: string;
-        blockHeight: number;
-        amount: string;
-        locked: string;
-        codeHash: string;
-        storageUsage: number;
-        storagePaidAt: number;
-    }>>;
-    code_base64: z.ZodOptional<z.ZodString>;
-}, "strip", z.ZodTypeAny, {
-    account_id: string;
-    key_base64?: string | undefined;
-    value_base64?: string | undefined;
-    public_key?: {
-        data: string;
-        keyType: number;
-    } | undefined;
-    access_key?: {
-        nonce: number;
-        permission: "FullAccess" | {
-            FunctionCall: {
-                receiverId: string;
-                methodNames: string[];
-                allowance?: string | undefined;
-            };
-        };
-    } | undefined;
-    account?: {
-        blockHash: string;
-        blockHeight: number;
-        amount: string;
-        locked: string;
-        codeHash: string;
-        storageUsage: number;
-        storagePaidAt: number;
-    } | undefined;
-    code_base64?: string | undefined;
-}, {
-    account_id: string;
-    key_base64?: string | undefined;
-    value_base64?: string | undefined;
-    public_key?: {
-        data: string;
-        keyType: number;
-    } | undefined;
-    access_key?: {
-        nonce: number;
-        permission: "FullAccess" | {
-            FunctionCall: {
-                receiverId: string;
-                methodNames: string[];
-                allowance?: string | undefined;
-            };
-        };
-    } | undefined;
-    account?: {
-        blockHash: string;
-        blockHeight: number;
-        amount: string;
-        locked: string;
-        codeHash: string;
-        storageUsage: number;
-        storagePaidAt: number;
-    } | undefined;
-    code_base64?: string | undefined;
-}>;
-export declare const StateChangeSchema: z.ZodObject<{
-    cause: z.ZodUnion<[z.ZodObject<{
-        type: z.ZodLiteral<"transaction_processing">;
-        tx_hash: z.ZodString;
-    }, "strip", z.ZodTypeAny, {
-        type: "transaction_processing";
-        tx_hash: string;
-    }, {
-        type: "transaction_processing";
-        tx_hash: string;
-    }>, z.ZodObject<{
-        type: z.ZodLiteral<"action_receipt_processing_started">;
-        receipt_hash: z.ZodString;
-    }, "strip", z.ZodTypeAny, {
-        type: "action_receipt_processing_started";
-        receipt_hash: string;
-    }, {
-        type: "action_receipt_processing_started";
-        receipt_hash: string;
-    }>, z.ZodObject<{
-        type: z.ZodLiteral<"action_receipt_gas_reward">;
-        receipt_hash: z.ZodString;
-    }, "strip", z.ZodTypeAny, {
-        type: "action_receipt_gas_reward";
-        receipt_hash: string;
-    }, {
-        type: "action_receipt_gas_reward";
-        receipt_hash: string;
-    }>, z.ZodObject<{
-        type: z.ZodLiteral<"receipt_processing">;
-        receipt_hash: z.ZodString;
-    }, "strip", z.ZodTypeAny, {
-        type: "receipt_processing";
-        receipt_hash: string;
-    }, {
-        type: "receipt_processing";
-        receipt_hash: string;
-    }>, z.ZodObject<{
-        type: z.ZodLiteral<"postponed_receipt">;
-        receipt_hash: z.ZodString;
-    }, "strip", z.ZodTypeAny, {
-        type: "postponed_receipt";
-        receipt_hash: string;
-    }, {
-        type: "postponed_receipt";
-        receipt_hash: string;
-    }>]>;
-    type: z.ZodEnum<["account_update", "account_deletion", "access_key_update", "access_key_deletion", "data_update", "data_deletion", "contract_code_update", "contract_code_deletion"]>;
-    change: z.ZodObject<{
-        account_id: z.ZodString;
-        key_base64: z.ZodOptional<z.ZodString>;
-        value_base64: z.ZodOptional<z.ZodString>;
-        public_key: z.ZodOptional<z.ZodObject<{
-            keyType: z.ZodNumber;
-            data: z.ZodString;
-        }, "strip", z.ZodTypeAny, {
-            data: string;
-            keyType: number;
-        }, {
-            data: string;
-            keyType: number;
-        }>>;
-        access_key: z.ZodOptional<z.ZodObject<{
-            nonce: z.ZodNumber;
-            permission: z.ZodUnion<[z.ZodLiteral<"FullAccess">, z.ZodObject<{
-                FunctionCall: z.ZodObject<{
-                    allowance: z.ZodOptional<z.ZodString>;
-                    receiverId: z.ZodString;
-                    methodNames: z.ZodArray<z.ZodString, "many">;
-                }, "strip", z.ZodTypeAny, {
-                    receiverId: string;
-                    methodNames: string[];
-                    allowance?: string | undefined;
-                }, {
-                    receiverId: string;
-                    methodNames: string[];
-                    allowance?: string | undefined;
-                }>;
-            }, "strip", z.ZodTypeAny, {
-                FunctionCall: {
-                    receiverId: string;
-                    methodNames: string[];
-                    allowance?: string | undefined;
-                };
-            }, {
-                FunctionCall: {
-                    receiverId: string;
-                    methodNames: string[];
-                    allowance?: string | undefined;
-                };
-            }>]>;
-        }, "strip", z.ZodTypeAny, {
-            nonce: number;
-            permission: "FullAccess" | {
-                FunctionCall: {
-                    receiverId: string;
-                    methodNames: string[];
-                    allowance?: string | undefined;
-                };
-            };
-        }, {
-            nonce: number;
-            permission: "FullAccess" | {
-                FunctionCall: {
-                    receiverId: string;
-                    methodNames: string[];
-                    allowance?: string | undefined;
-                };
-            };
-        }>>;
-        account: z.ZodOptional<z.ZodObject<{
-            amount: z.ZodString;
-            locked: z.ZodString;
-            codeHash: z.ZodString;
-            storageUsage: z.ZodNumber;
-            storagePaidAt: z.ZodNumber;
-            blockHeight: z.ZodNumber;
-            blockHash: z.ZodString;
-        }, "strip", z.ZodTypeAny, {
-            blockHash: string;
-            blockHeight: number;
-            amount: string;
-            locked: string;
-            codeHash: string;
-            storageUsage: number;
-            storagePaidAt: number;
-        }, {
-            blockHash: string;
-            blockHeight: number;
-            amount: string;
-            locked: string;
-            codeHash: string;
-            storageUsage: number;
-            storagePaidAt: number;
-        }>>;
-        code_base64: z.ZodOptional<z.ZodString>;
-    }, "strip", z.ZodTypeAny, {
-        account_id: string;
-        key_base64?: string | undefined;
-        value_base64?: string | undefined;
-        public_key?: {
-            data: string;
-            keyType: number;
-        } | undefined;
-        access_key?: {
-            nonce: number;
-            permission: "FullAccess" | {
-                FunctionCall: {
-                    receiverId: string;
-                    methodNames: string[];
-                    allowance?: string | undefined;
-                };
-            };
-        } | undefined;
-        account?: {
-            blockHash: string;
-            blockHeight: number;
-            amount: string;
-            locked: string;
-            codeHash: string;
-            storageUsage: number;
-            storagePaidAt: number;
-        } | undefined;
-        code_base64?: string | undefined;
-    }, {
-        account_id: string;
-        key_base64?: string | undefined;
-        value_base64?: string | undefined;
-        public_key?: {
-            data: string;
-            keyType: number;
-        } | undefined;
-        access_key?: {
-            nonce: number;
-            permission: "FullAccess" | {
-                FunctionCall: {
-                    receiverId: string;
-                    methodNames: string[];
-                    allowance?: string | undefined;
-                };
-            };
-        } | undefined;
-        account?: {
-            blockHash: string;
-            blockHeight: number;
-            amount: string;
-            locked: string;
-            codeHash: string;
-            storageUsage: number;
-            storagePaidAt: number;
-        } | undefined;
-        code_base64?: string | undefined;
-    }>;
-}, "strip", z.ZodTypeAny, {
-    type: "account_update" | "account_deletion" | "access_key_update" | "access_key_deletion" | "data_update" | "data_deletion" | "contract_code_update" | "contract_code_deletion";
-    cause: {
-        type: "transaction_processing";
-        tx_hash: string;
-    } | {
-        type: "action_receipt_processing_started";
-        receipt_hash: string;
-    } | {
-        type: "action_receipt_gas_reward";
-        receipt_hash: string;
-    } | {
-        type: "receipt_processing";
-        receipt_hash: string;
-    } | {
-        type: "postponed_receipt";
-        receipt_hash: string;
-    };
-    change: {
-        account_id: string;
-        key_base64?: string | undefined;
-        value_base64?: string | undefined;
-        public_key?: {
-            data: string;
-            keyType: number;
-        } | undefined;
-        access_key?: {
-            nonce: number;
-            permission: "FullAccess" | {
-                FunctionCall: {
-                    receiverId: string;
-                    methodNames: string[];
-                    allowance?: string | undefined;
-                };
-            };
-        } | undefined;
-        account?: {
-            blockHash: string;
-            blockHeight: number;
-            amount: string;
-            locked: string;
-            codeHash: string;
-            storageUsage: number;
-            storagePaidAt: number;
-        } | undefined;
-        code_base64?: string | undefined;
-    };
-}, {
-    type: "account_update" | "account_deletion" | "access_key_update" | "access_key_deletion" | "data_update" | "data_deletion" | "contract_code_update" | "contract_code_deletion";
-    cause: {
-        type: "transaction_processing";
-        tx_hash: string;
-    } | {
-        type: "action_receipt_processing_started";
-        receipt_hash: string;
-    } | {
-        type: "action_receipt_gas_reward";
-        receipt_hash: string;
-    } | {
-        type: "receipt_processing";
-        receipt_hash: string;
-    } | {
-        type: "postponed_receipt";
-        receipt_hash: string;
-    };
-    change: {
-        account_id: string;
-        key_base64?: string | undefined;
-        value_base64?: string | undefined;
-        public_key?: {
-            data: string;
-            keyType: number;
-        } | undefined;
-        access_key?: {
-            nonce: number;
-            permission: "FullAccess" | {
-                FunctionCall: {
-                    receiverId: string;
-                    methodNames: string[];
-                    allowance?: string | undefined;
-                };
-            };
-        } | undefined;
-        account?: {
-            blockHash: string;
-            blockHeight: number;
-            amount: string;
-            locked: string;
-            codeHash: string;
-            storageUsage: number;
-            storagePaidAt: number;
-        } | undefined;
-        code_base64?: string | undefined;
-    };
-}>;
-export declare const ContractStateChangesResponseSchema: z.ZodObject<{
-    changes: z.ZodArray<z.ZodObject<{
-        cause: z.ZodUnion<[z.ZodObject<{
-            type: z.ZodLiteral<"transaction_processing">;
-            tx_hash: z.ZodString;
-        }, "strip", z.ZodTypeAny, {
-            type: "transaction_processing";
-            tx_hash: string;
-        }, {
-            type: "transaction_processing";
-            tx_hash: string;
-        }>, z.ZodObject<{
-            type: z.ZodLiteral<"action_receipt_processing_started">;
-            receipt_hash: z.ZodString;
-        }, "strip", z.ZodTypeAny, {
-            type: "action_receipt_processing_started";
-            receipt_hash: string;
-        }, {
-            type: "action_receipt_processing_started";
-            receipt_hash: string;
-        }>, z.ZodObject<{
-            type: z.ZodLiteral<"action_receipt_gas_reward">;
-            receipt_hash: z.ZodString;
-        }, "strip", z.ZodTypeAny, {
-            type: "action_receipt_gas_reward";
-            receipt_hash: string;
-        }, {
-            type: "action_receipt_gas_reward";
-            receipt_hash: string;
-        }>, z.ZodObject<{
-            type: z.ZodLiteral<"receipt_processing">;
-            receipt_hash: z.ZodString;
-        }, "strip", z.ZodTypeAny, {
-            type: "receipt_processing";
-            receipt_hash: string;
-        }, {
-            type: "receipt_processing";
-            receipt_hash: string;
-        }>, z.ZodObject<{
-            type: z.ZodLiteral<"postponed_receipt">;
-            receipt_hash: z.ZodString;
-        }, "strip", z.ZodTypeAny, {
-            type: "postponed_receipt";
-            receipt_hash: string;
-        }, {
-            type: "postponed_receipt";
-            receipt_hash: string;
-        }>]>;
-        type: z.ZodEnum<["account_update", "account_deletion", "access_key_update", "access_key_deletion", "data_update", "data_deletion", "contract_code_update", "contract_code_deletion"]>;
-        change: z.ZodObject<{
-            account_id: z.ZodString;
-            key_base64: z.ZodOptional<z.ZodString>;
-            value_base64: z.ZodOptional<z.ZodString>;
-            public_key: z.ZodOptional<z.ZodObject<{
-                keyType: z.ZodNumber;
-                data: z.ZodString;
-            }, "strip", z.ZodTypeAny, {
-                data: string;
-                keyType: number;
-            }, {
-                data: string;
-                keyType: number;
-            }>>;
-            access_key: z.ZodOptional<z.ZodObject<{
-                nonce: z.ZodNumber;
-                permission: z.ZodUnion<[z.ZodLiteral<"FullAccess">, z.ZodObject<{
-                    FunctionCall: z.ZodObject<{
-                        allowance: z.ZodOptional<z.ZodString>;
-                        receiverId: z.ZodString;
-                        methodNames: z.ZodArray<z.ZodString, "many">;
-                    }, "strip", z.ZodTypeAny, {
-                        receiverId: string;
-                        methodNames: string[];
-                        allowance?: string | undefined;
-                    }, {
-                        receiverId: string;
-                        methodNames: string[];
-                        allowance?: string | undefined;
-                    }>;
-                }, "strip", z.ZodTypeAny, {
-                    FunctionCall: {
-                        receiverId: string;
-                        methodNames: string[];
-                        allowance?: string | undefined;
-                    };
-                }, {
-                    FunctionCall: {
-                        receiverId: string;
-                        methodNames: string[];
-                        allowance?: string | undefined;
-                    };
-                }>]>;
-            }, "strip", z.ZodTypeAny, {
-                nonce: number;
-                permission: "FullAccess" | {
-                    FunctionCall: {
-                        receiverId: string;
-                        methodNames: string[];
-                        allowance?: string | undefined;
-                    };
-                };
-            }, {
-                nonce: number;
-                permission: "FullAccess" | {
-                    FunctionCall: {
-                        receiverId: string;
-                        methodNames: string[];
-                        allowance?: string | undefined;
-                    };
-                };
-            }>>;
-            account: z.ZodOptional<z.ZodObject<{
-                amount: z.ZodString;
-                locked: z.ZodString;
-                codeHash: z.ZodString;
-                storageUsage: z.ZodNumber;
-                storagePaidAt: z.ZodNumber;
-                blockHeight: z.ZodNumber;
-                blockHash: z.ZodString;
-            }, "strip", z.ZodTypeAny, {
-                blockHash: string;
-                blockHeight: number;
-                amount: string;
-                locked: string;
-                codeHash: string;
-                storageUsage: number;
-                storagePaidAt: number;
-            }, {
-                blockHash: string;
-                blockHeight: number;
-                amount: string;
-                locked: string;
-                codeHash: string;
-                storageUsage: number;
-                storagePaidAt: number;
-            }>>;
-            code_base64: z.ZodOptional<z.ZodString>;
-        }, "strip", z.ZodTypeAny, {
-            account_id: string;
-            key_base64?: string | undefined;
-            value_base64?: string | undefined;
-            public_key?: {
-                data: string;
-                keyType: number;
-            } | undefined;
-            access_key?: {
-                nonce: number;
-                permission: "FullAccess" | {
-                    FunctionCall: {
-                        receiverId: string;
-                        methodNames: string[];
-                        allowance?: string | undefined;
-                    };
-                };
-            } | undefined;
-            account?: {
-                blockHash: string;
-                blockHeight: number;
-                amount: string;
-                locked: string;
-                codeHash: string;
-                storageUsage: number;
-                storagePaidAt: number;
-            } | undefined;
-            code_base64?: string | undefined;
-        }, {
-            account_id: string;
-            key_base64?: string | undefined;
-            value_base64?: string | undefined;
-            public_key?: {
-                data: string;
-                keyType: number;
-            } | undefined;
-            access_key?: {
-                nonce: number;
-                permission: "FullAccess" | {
-                    FunctionCall: {
-                        receiverId: string;
-                        methodNames: string[];
-                        allowance?: string | undefined;
-                    };
-                };
-            } | undefined;
-            account?: {
-                blockHash: string;
-                blockHeight: number;
-                amount: string;
-                locked: string;
-                codeHash: string;
-                storageUsage: number;
-                storagePaidAt: number;
-            } | undefined;
-            code_base64?: string | undefined;
-        }>;
-    }, "strip", z.ZodTypeAny, {
-        type: "account_update" | "account_deletion" | "access_key_update" | "access_key_deletion" | "data_update" | "data_deletion" | "contract_code_update" | "contract_code_deletion";
-        cause: {
-            type: "transaction_processing";
-            tx_hash: string;
-        } | {
-            type: "action_receipt_processing_started";
-            receipt_hash: string;
-        } | {
-            type: "action_receipt_gas_reward";
-            receipt_hash: string;
-        } | {
-            type: "receipt_processing";
-            receipt_hash: string;
-        } | {
-            type: "postponed_receipt";
-            receipt_hash: string;
-        };
-        change: {
-            account_id: string;
-            key_base64?: string | undefined;
-            value_base64?: string | undefined;
-            public_key?: {
-                data: string;
-                keyType: number;
-            } | undefined;
-            access_key?: {
-                nonce: number;
-                permission: "FullAccess" | {
-                    FunctionCall: {
-                        receiverId: string;
-                        methodNames: string[];
-                        allowance?: string | undefined;
-                    };
-                };
-            } | undefined;
-            account?: {
-                blockHash: string;
-                blockHeight: number;
-                amount: string;
-                locked: string;
-                codeHash: string;
-                storageUsage: number;
-                storagePaidAt: number;
-            } | undefined;
-            code_base64?: string | undefined;
-        };
-    }, {
-        type: "account_update" | "account_deletion" | "access_key_update" | "access_key_deletion" | "data_update" | "data_deletion" | "contract_code_update" | "contract_code_deletion";
-        cause: {
-            type: "transaction_processing";
-            tx_hash: string;
-        } | {
-            type: "action_receipt_processing_started";
-            receipt_hash: string;
-        } | {
-            type: "action_receipt_gas_reward";
-            receipt_hash: string;
-        } | {
-            type: "receipt_processing";
-            receipt_hash: string;
-        } | {
-            type: "postponed_receipt";
-            receipt_hash: string;
-        };
-        change: {
-            account_id: string;
-            key_base64?: string | undefined;
-            value_base64?: string | undefined;
-            public_key?: {
-                data: string;
-                keyType: number;
-            } | undefined;
-            access_key?: {
-                nonce: number;
-                permission: "FullAccess" | {
-                    FunctionCall: {
-                        receiverId: string;
-                        methodNames: string[];
-                        allowance?: string | undefined;
-                    };
-                };
-            } | undefined;
-            account?: {
-                blockHash: string;
-                blockHeight: number;
-                amount: string;
-                locked: string;
-                codeHash: string;
-                storageUsage: number;
-                storagePaidAt: number;
-            } | undefined;
-            code_base64?: string | undefined;
-        };
-    }>, "many">;
-    blockHash: z.ZodString;
-}, "strip", z.ZodTypeAny, {
-    blockHash: string;
-    changes: {
-        type: "account_update" | "account_deletion" | "access_key_update" | "access_key_deletion" | "data_update" | "data_deletion" | "contract_code_update" | "contract_code_deletion";
-        cause: {
-            type: "transaction_processing";
-            tx_hash: string;
-        } | {
-            type: "action_receipt_processing_started";
-            receipt_hash: string;
-        } | {
-            type: "action_receipt_gas_reward";
-            receipt_hash: string;
-        } | {
-            type: "receipt_processing";
-            receipt_hash: string;
-        } | {
-            type: "postponed_receipt";
-            receipt_hash: string;
-        };
-        change: {
-            account_id: string;
-            key_base64?: string | undefined;
-            value_base64?: string | undefined;
-            public_key?: {
-                data: string;
-                keyType: number;
-            } | undefined;
-            access_key?: {
-                nonce: number;
-                permission: "FullAccess" | {
-                    FunctionCall: {
-                        receiverId: string;
-                        methodNames: string[];
-                        allowance?: string | undefined;
-                    };
-                };
-            } | undefined;
-            account?: {
-                blockHash: string;
-                blockHeight: number;
-                amount: string;
-                locked: string;
-                codeHash: string;
-                storageUsage: number;
-                storagePaidAt: number;
-            } | undefined;
-            code_base64?: string | undefined;
-        };
-    }[];
-}, {
-    blockHash: string;
-    changes: {
-        type: "account_update" | "account_deletion" | "access_key_update" | "access_key_deletion" | "data_update" | "data_deletion" | "contract_code_update" | "contract_code_deletion";
-        cause: {
-            type: "transaction_processing";
-            tx_hash: string;
-        } | {
-            type: "action_receipt_processing_started";
-            receipt_hash: string;
-        } | {
-            type: "action_receipt_gas_reward";
-            receipt_hash: string;
-        } | {
-            type: "receipt_processing";
-            receipt_hash: string;
-        } | {
-            type: "postponed_receipt";
-            receipt_hash: string;
-        };
-        change: {
-            account_id: string;
-            key_base64?: string | undefined;
-            value_base64?: string | undefined;
-            public_key?: {
-                data: string;
-                keyType: number;
-            } | undefined;
-            access_key?: {
-                nonce: number;
-                permission: "FullAccess" | {
-                    FunctionCall: {
-                        receiverId: string;
-                        methodNames: string[];
-                        allowance?: string | undefined;
-                    };
-                };
-            } | undefined;
-            account?: {
-                blockHash: string;
-                blockHeight: number;
-                amount: string;
-                locked: string;
-                codeHash: string;
-                storageUsage: number;
-                storagePaidAt: number;
-            } | undefined;
-            code_base64?: string | undefined;
-        };
-    }[];
+    values: unknown[];
+    proof?: string[] | undefined;
 }>;

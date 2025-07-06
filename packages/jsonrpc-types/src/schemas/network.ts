@@ -325,9 +325,9 @@ export const ValidatorKickoutViewSchema = z.object({
   reason: z.unknown()
 });
 
-export const ValidatorStakeViewSchema = z.union([z.object({
+export const ValidatorStakeViewSchema = z.object({
   validatorstakestructversion: z.enum(['V1']).optional()
-})]);
+});
 
 export const ValidatorStakeViewV1Schema = z.object({
   accountid: z.unknown().optional(),

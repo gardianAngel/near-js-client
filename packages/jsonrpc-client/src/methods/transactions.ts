@@ -1,56 +1,45 @@
 /**
- * Transactions-related methods for NEAR JSON-RPC client
+ * Transaction-related methods for NEAR JSON-RPC client
  */
 
-import {
-  BroadcasttxasyncQuerySchema,
-  BroadcasttxasyncRequest,
-  BroadcasttxasyncResponse,
-  BroadcasttxasyncResponseSchema,
-  BroadcasttxcommitQuerySchema,
-  BroadcasttxcommitRequest,
-  BroadcasttxcommitResponse,
-  BroadcasttxcommitResponseSchema,
-  SendtxQuerySchema,
-  SendtxRequest,
-  SendtxResponse,
-  SendtxResponseSchema,
-  TxQuerySchema,
-  TxRequest,
-  TxResponse,
-  TxResponseSchema,
-  TxstatusQuerySchema,
-  TxstatusRequest,
-  TxstatusResponse,
-  TxstatusResponseSchema
-} from '@near-js/jsonrpc-types';
+import { z } from '@near-js/jsonrpc-types';
 import type { NearJsonRpcClient } from '../client';
 
-export class TransactionsMethods {
+export class TransactionMethods {
   constructor(private client: NearJsonRpcClient) {}
 
-  async txstatus(params: TxstatusQuery): Promise<TxstatusResponse> {
-    const validatedParams = TxstatusQuerySchema.parse(params);
-    return this.client.makeRequest('EXPERIMENTALtxstatus', validatedParams, TxstatusResponseSchema);
+  /**
+   * Get transaction status
+   */
+  async txStatus(params: { tx_hash: string; sender_account_id: string }): Promise<any> {
+    return this.client.makeRequest('EXPERIMENTAL_tx_status', params, z.any());
   }
 
-  async broadcasttxasync(params: BroadcasttxasyncQuery): Promise<BroadcasttxasyncResponse> {
-    const validatedParams = BroadcasttxasyncQuerySchema.parse(params);
-    return this.client.makeRequest('Broadcasttxasync', validatedParams, BroadcasttxasyncResponseSchema);
+  /**
+   * Broadcast transaction asynchronously
+   */
+  async broadcastTxAsync(params: { signed_tx_base64: string }): Promise<any> {
+    return this.client.makeRequest('broadcast_tx_async', params, z.any());
   }
 
-  async broadcasttxcommit(params: BroadcasttxcommitQuery): Promise<BroadcasttxcommitResponse> {
-    const validatedParams = BroadcasttxcommitQuerySchema.parse(params);
-    return this.client.makeRequest('Broadcasttxcommit', validatedParams, BroadcasttxcommitResponseSchema);
+  /**
+   * Broadcast transaction and wait for commit
+   */
+  async broadcastTxCommit(params: { signed_tx_base64: string }): Promise<any> {
+    return this.client.makeRequest('broadcast_tx_commit', params, z.any());
   }
 
-  async sendtx(params: SendtxQuery): Promise<SendtxResponse> {
-    const validatedParams = SendtxQuerySchema.parse(params);
-    return this.client.makeRequest('Sendtx', validatedParams, SendtxResponseSchema);
+  /**
+   * Send transaction
+   */
+  async sendTx(params: { signed_tx_base64: string }): Promise<any> {
+    return this.client.makeRequest('send_tx', params, z.any());
   }
 
-  async tx(params: TxQuery): Promise<TxResponse> {
-    const validatedParams = TxQuerySchema.parse(params);
-    return this.client.makeRequest('Tx', validatedParams, TxResponseSchema);
+  /**
+   * Get transaction details
+   */
+  async tx(params: { tx_hash: string; sender_account_id: string }): Promise<any> {
+    return this.client.makeRequest('tx', params, z.any());
   }
 }

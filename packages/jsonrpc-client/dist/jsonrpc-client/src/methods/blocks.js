@@ -11,43 +11,28 @@ class BlockMethods {
         this.client = client;
     }
     /**
-     * Get block information
+     * Get block details
      */
-    async getBlock(params) {
-        const validatedParams = jsonrpc_types_1.BlockQuerySchema.parse(params);
-        return this.client.makeRequest('block', validatedParams, jsonrpc_types_1.BlockResponseSchema);
-    }
-    /**
-     * Get chunk information
-     */
-    async getChunk(params) {
-        const validatedParams = jsonrpc_types_1.ChunkQuerySchema.parse(params);
-        return this.client.makeRequest('chunk', validatedParams, jsonrpc_types_1.ChunkResponseSchema);
-    }
-    /**
-     * Get block changes
-     */
-    async getBlockChanges(params) {
-        const validatedParams = jsonrpc_types_1.BlockChangesQuerySchema.parse(params);
-        return this.client.makeRequest('EXPERIMENTAL_changes_in_block', validatedParams, jsonrpc_types_1.BlockChangesResponseSchema);
+    async block(params) {
+        return this.client.makeRequest('block', params, jsonrpc_types_1.z.any());
     }
     /**
      * Get latest block
      */
     async getLatestBlock() {
-        return this.getBlock({ finality: 'final' });
+        return this.client.makeRequest('block', { finality: 'final' }, jsonrpc_types_1.z.any());
     }
     /**
-     * Get block by height
+     * Get block changes
      */
-    async getBlockByHeight(height) {
-        return this.getBlock({ blockId: height });
+    async blockChanges(params) {
+        return this.client.makeRequest('EXPERIMENTAL_changes_in_block', params, jsonrpc_types_1.z.any());
     }
     /**
-     * Get block by hash
+     * Get chunk details
      */
-    async getBlockByHash(hash) {
-        return this.getBlock({ blockId: hash });
+    async chunk(params) {
+        return this.client.makeRequest('chunk', params, jsonrpc_types_1.z.any());
     }
 }
 exports.BlockMethods = BlockMethods;

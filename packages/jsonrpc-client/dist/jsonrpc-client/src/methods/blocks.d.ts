@@ -1,33 +1,34 @@
 /**
  * Block-related methods for NEAR JSON-RPC client
  */
-import { BlockQuery, BlockResponse, ChunkQuery, ChunkResponse, BlockChangesQuery, BlockChangesResponse } from '@near-js/jsonrpc-types';
 import type { NearJsonRpcClient } from '../client';
 export declare class BlockMethods {
     private client;
     constructor(client: NearJsonRpcClient);
     /**
-     * Get block information
+     * Get block details
      */
-    getBlock(params: BlockQuery): Promise<BlockResponse>;
-    /**
-     * Get chunk information
-     */
-    getChunk(params: ChunkQuery): Promise<ChunkResponse>;
-    /**
-     * Get block changes
-     */
-    getBlockChanges(params: BlockChangesQuery): Promise<BlockChangesResponse>;
+    block(params: {
+        block_id?: string | number;
+        finality?: 'final' | 'optimistic';
+    }): Promise<any>;
     /**
      * Get latest block
      */
-    getLatestBlock(): Promise<BlockResponse>;
+    getLatestBlock(): Promise<any>;
     /**
-     * Get block by height
+     * Get block changes
      */
-    getBlockByHeight(height: number): Promise<BlockResponse>;
+    blockChanges(params: {
+        block_id?: string | number;
+        finality?: 'final' | 'optimistic';
+    }): Promise<any>;
     /**
-     * Get block by hash
+     * Get chunk details
      */
-    getBlockByHash(hash: string): Promise<BlockResponse>;
+    chunk(params: {
+        chunk_id?: string;
+        block_id?: string | number;
+        shard_id?: number;
+    }): Promise<any>;
 }

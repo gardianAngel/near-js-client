@@ -1,41 +1,40 @@
 /**
  * Transaction-related methods for NEAR JSON-RPC client
  */
-import { TransactionQuery, TransactionResponse, SendTransactionRequest, SendTransactionResponse, BroadcastTransactionRequest, BroadcastTransactionResponse } from '@near-js/jsonrpc-types';
 import type { NearJsonRpcClient } from '../client';
 export declare class TransactionMethods {
     private client;
     constructor(client: NearJsonRpcClient);
     /**
-     * Get transaction status and details
+     * Get transaction status
      */
-    getTransaction(params: TransactionQuery): Promise<TransactionResponse>;
+    txStatus(params: {
+        tx_hash: string;
+        sender_account_id: string;
+    }): Promise<any>;
     /**
-     * Send a signed transaction
+     * Broadcast transaction asynchronously
      */
-    sendTransaction(params: SendTransactionRequest): Promise<SendTransactionResponse>;
+    broadcastTxAsync(params: {
+        signed_tx_base64: string;
+    }): Promise<any>;
     /**
-     * Broadcast a signed transaction (async)
+     * Broadcast transaction and wait for commit
      */
-    broadcastTransaction(params: BroadcastTransactionRequest): Promise<BroadcastTransactionResponse>;
+    broadcastTxCommit(params: {
+        signed_tx_base64: string;
+    }): Promise<any>;
     /**
-     * Broadcast a signed transaction and wait for commit
+     * Send transaction
      */
-    broadcastTransactionCommit(params: BroadcastTransactionRequest): Promise<TransactionResponse>;
+    sendTx(params: {
+        signed_tx_base64: string;
+    }): Promise<any>;
     /**
-     * Get transaction by hash with sender ID
+     * Get transaction details
      */
-    getTransactionByHash(transactionHash: string, senderId: string): Promise<TransactionResponse>;
-    /**
-     * Get transaction status only
-     */
-    getTransactionStatus(transactionHash: string, senderId: string): Promise<TransactionResponse>;
-    /**
-     * Wait for transaction to be included in a block
-     */
-    waitForTransaction(transactionHash: string, senderId: string): Promise<TransactionResponse>;
-    /**
-     * Wait for transaction to be fully executed
-     */
-    waitForTransactionExecution(transactionHash: string, senderId: string): Promise<TransactionResponse>;
+    tx(params: {
+        tx_hash: string;
+        sender_account_id: string;
+    }): Promise<any>;
 }

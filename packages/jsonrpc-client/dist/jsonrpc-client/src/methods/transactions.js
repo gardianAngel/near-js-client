@@ -11,68 +11,34 @@ class TransactionMethods {
         this.client = client;
     }
     /**
-     * Get transaction status and details
+     * Get transaction status
      */
-    async getTransaction(params) {
-        const validatedParams = jsonrpc_types_1.TransactionQuerySchema.parse(params);
-        return this.client.makeRequest('tx', validatedParams, jsonrpc_types_1.TransactionResponseSchema);
+    async txStatus(params) {
+        return this.client.makeRequest('EXPERIMENTAL_tx_status', params, jsonrpc_types_1.z.any());
     }
     /**
-     * Send a signed transaction
+     * Broadcast transaction asynchronously
      */
-    async sendTransaction(params) {
-        const validatedParams = jsonrpc_types_1.SendTransactionRequestSchema.parse(params);
-        return this.client.makeRequest('send_tx', validatedParams, jsonrpc_types_1.SendTransactionResponseSchema);
+    async broadcastTxAsync(params) {
+        return this.client.makeRequest('broadcast_tx_async', params, jsonrpc_types_1.z.any());
     }
     /**
-     * Broadcast a signed transaction (async)
+     * Broadcast transaction and wait for commit
      */
-    async broadcastTransaction(params) {
-        const validatedParams = jsonrpc_types_1.BroadcastTransactionRequestSchema.parse(params);
-        return this.client.makeRequest('broadcast_tx_async', validatedParams, jsonrpc_types_1.BroadcastTransactionResponseSchema);
+    async broadcastTxCommit(params) {
+        return this.client.makeRequest('broadcast_tx_commit', params, jsonrpc_types_1.z.any());
     }
     /**
-     * Broadcast a signed transaction and wait for commit
+     * Send transaction
      */
-    async broadcastTransactionCommit(params) {
-        const validatedParams = jsonrpc_types_1.BroadcastTransactionRequestSchema.parse(params);
-        return this.client.makeRequest('broadcast_tx_commit', validatedParams, jsonrpc_types_1.TransactionResponseSchema);
+    async sendTx(params) {
+        return this.client.makeRequest('send_tx', params, jsonrpc_types_1.z.any());
     }
     /**
-     * Get transaction by hash with sender ID
+     * Get transaction details
      */
-    async getTransactionByHash(transactionHash, senderId) {
-        return this.getTransaction({ transactionHash, senderId });
-    }
-    /**
-     * Get transaction status only
-     */
-    async getTransactionStatus(transactionHash, senderId) {
-        return this.getTransaction({
-            transactionHash,
-            senderId,
-            waitUntil: 'NONE'
-        });
-    }
-    /**
-     * Wait for transaction to be included in a block
-     */
-    async waitForTransaction(transactionHash, senderId) {
-        return this.getTransaction({
-            transactionHash,
-            senderId,
-            waitUntil: 'INCLUDED_FINAL'
-        });
-    }
-    /**
-     * Wait for transaction to be fully executed
-     */
-    async waitForTransactionExecution(transactionHash, senderId) {
-        return this.getTransaction({
-            transactionHash,
-            senderId,
-            waitUntil: 'EXECUTED'
-        });
+    async tx(params) {
+        return this.client.makeRequest('tx', params, jsonrpc_types_1.z.any());
     }
 }
 exports.TransactionMethods = TransactionMethods;

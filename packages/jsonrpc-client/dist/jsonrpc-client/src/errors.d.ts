@@ -4,6 +4,7 @@
 import { z } from 'zod';
 /**
  * Base error class for all NEAR JSON-RPC client errors
+ * Note: NEAR team confirmed error responses contain more data than OpenAPI spec indicates
  */
 export declare class NearJsonRpcError extends Error {
     readonly code: number;
