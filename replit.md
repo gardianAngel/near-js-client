@@ -128,6 +128,8 @@ The architecture prioritizes:
   - Updated error handling for underspecified OpenAPI responses
   - Fixed TypeScript compilation issues from type/schema mismatches
   - Enhanced defensive programming approach based on community feedback
+  - Received official guidance on snake_case/camelCase conversion patterns
+  - Confirmed package naming as @near-js/jsonrpc-types and @near-js/jsonrpc-client
 
 ## User Preferences
 
