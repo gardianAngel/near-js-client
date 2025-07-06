@@ -30,10 +30,19 @@ export declare class NearJsonRpcClient {
     /**
      * Make a JSON-RPC request with type validation
      * CRITICAL: Always use '/' as path, not the OpenAPI spec paths
+     * Converts camelCase input to snake_case for API and snake_case response to camelCase
      */
     makeRequest<T>(method: string, params: unknown, responseSchema: z.ZodSchema<T>): Promise<T>;
     private executeRequest;
     private delay;
+    /**
+     * Transform object keys from camelCase to snake_case recursively
+     */
+    private transformKeysToSnakeCase;
+    /**
+     * Transform object keys from snake_case to camelCase recursively
+     */
+    private transformKeysToCamelCase;
     /**
      * Get the base URL of the client
      */
