@@ -4,27 +4,6 @@
 
 import { z } from 'zod';
 
-// JSON-RPC base schemas
-export const JsonRpcRequestSchema = z.object({
-  jsonrpc: z.literal('2.0'),
-  method: z.string(),
-  params: z.unknown(),
-  id: z.union([z.string(), z.number()]),
-});
-
-export const JsonRpcErrorSchema = z.object({
-  code: z.number(),
-  message: z.string(),
-  data: z.unknown().optional(),
-}).passthrough();
-
-export const JsonRpcResponseSchema = z.object({
-  jsonrpc: z.literal('2.0'),
-  result: z.unknown().optional(),
-  error: JsonRpcErrorSchema.optional(),
-  id: z.union([z.string(), z.number()]),
-});
-
 export const BandwidthRequestSchema = z.object({
   requestedvaluesbitmap: z.unknown().optional(),
   toshard: z.number().optional()
@@ -34,9 +13,9 @@ export const BandwidthRequestBitmapSchema = z.object({
   data: z.array(z.number())
 });
 
-export const BandwidthRequestsSchema = z.object({
+export const BandwidthRequestsSchema = z.union([z.object({
   v1: z.unknown().optional()
-});
+}), z.unknown()]);
 
 export const BandwidthRequestsV1Schema = z.object({
   requests: z.array(z.unknown())

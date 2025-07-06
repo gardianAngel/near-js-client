@@ -4,16 +4,10 @@
  * Contains realistic mock data based on actual NEAR Protocol responses
  */
 
-import { 
-  BlockResponse, 
-  TransactionResponse, 
-  AccountResponse, 
-  AccessKeyListResponse,
-  JsonRpcResponse 
-} from '@near-js/jsonrpc-types';
+// Mock responses for testing NEAR JSON-RPC client
 
 // Mock block response
-export const mockBlockResponse: BlockResponse = {
+export const mockBlockResponse = {
   author: 'test.near',
   header: {
     height: 100,
@@ -77,7 +71,7 @@ export const mockBlockResponse: BlockResponse = {
 };
 
 // Mock transaction response
-export const mockTransactionResponse: TransactionResponse = {
+export const mockTransactionResponse = {
   status: { SuccessValue: '' },
   transaction: {
     signerId: 'sender.near',
@@ -131,7 +125,7 @@ export const mockTransactionResponse: TransactionResponse = {
 };
 
 // Mock account response
-export const mockAccountResponse: AccountResponse = {
+export const mockAccountResponse = {
   amount: '1000000000000000000000000',
   locked: '0',
   codeHash: '11111111111111111111111111111111',
@@ -142,7 +136,7 @@ export const mockAccountResponse: AccountResponse = {
 };
 
 // Mock access key list response
-export const mockAccessKeyListResponse: AccessKeyListResponse = {
+export const mockAccessKeyListResponse = {
   keys: [
     {
       publicKey: {
@@ -230,7 +224,7 @@ export const mockTransactionNotFoundError = {
 };
 
 // Helper functions to create JSON-RPC responses
-export function createSuccessResponse<T>(result: T, id: number = 1): JsonRpcResponse<T> {
+export function createSuccessResponse<T>(result: T, id: number = 1): any {
   return {
     jsonrpc: '2.0',
     result,
@@ -238,7 +232,7 @@ export function createSuccessResponse<T>(result: T, id: number = 1): JsonRpcResp
   };
 }
 
-export function createErrorResponse(error: any, id: number = 1): JsonRpcResponse {
+export function createErrorResponse(error: any, id: number = 1): any {
   return {
     jsonrpc: '2.0',
     error,

@@ -2,71 +2,6 @@
  * Generated Zod schemas for NEAR Protocol JSON-RPC
  */
 import { z } from 'zod';
-export declare const JsonRpcRequestSchema: z.ZodObject<{
-    jsonrpc: z.ZodLiteral<"2.0">;
-    method: z.ZodString;
-    params: z.ZodUnknown;
-    id: z.ZodUnion<[z.ZodString, z.ZodNumber]>;
-}, "strip", z.ZodTypeAny, {
-    jsonrpc: "2.0";
-    method: string;
-    id: string | number;
-    params?: unknown;
-}, {
-    jsonrpc: "2.0";
-    method: string;
-    id: string | number;
-    params?: unknown;
-}>;
-export declare const JsonRpcErrorSchema: z.ZodObject<{
-    code: z.ZodNumber;
-    message: z.ZodString;
-    data: z.ZodOptional<z.ZodUnknown>;
-}, "passthrough", z.ZodTypeAny, z.objectOutputType<{
-    code: z.ZodNumber;
-    message: z.ZodString;
-    data: z.ZodOptional<z.ZodUnknown>;
-}, z.ZodTypeAny, "passthrough">, z.objectInputType<{
-    code: z.ZodNumber;
-    message: z.ZodString;
-    data: z.ZodOptional<z.ZodUnknown>;
-}, z.ZodTypeAny, "passthrough">>;
-export declare const JsonRpcResponseSchema: z.ZodObject<{
-    jsonrpc: z.ZodLiteral<"2.0">;
-    result: z.ZodOptional<z.ZodUnknown>;
-    error: z.ZodOptional<z.ZodObject<{
-        code: z.ZodNumber;
-        message: z.ZodString;
-        data: z.ZodOptional<z.ZodUnknown>;
-    }, "passthrough", z.ZodTypeAny, z.objectOutputType<{
-        code: z.ZodNumber;
-        message: z.ZodString;
-        data: z.ZodOptional<z.ZodUnknown>;
-    }, z.ZodTypeAny, "passthrough">, z.objectInputType<{
-        code: z.ZodNumber;
-        message: z.ZodString;
-        data: z.ZodOptional<z.ZodUnknown>;
-    }, z.ZodTypeAny, "passthrough">>>;
-    id: z.ZodUnion<[z.ZodString, z.ZodNumber]>;
-}, "strip", z.ZodTypeAny, {
-    jsonrpc: "2.0";
-    id: string | number;
-    result?: unknown;
-    error?: z.objectOutputType<{
-        code: z.ZodNumber;
-        message: z.ZodString;
-        data: z.ZodOptional<z.ZodUnknown>;
-    }, z.ZodTypeAny, "passthrough"> | undefined;
-}, {
-    jsonrpc: "2.0";
-    id: string | number;
-    result?: unknown;
-    error?: z.objectInputType<{
-        code: z.ZodNumber;
-        message: z.ZodString;
-        data: z.ZodOptional<z.ZodUnknown>;
-    }, z.ZodTypeAny, "passthrough"> | undefined;
-}>;
 export declare const BandwidthRequestSchema: z.ZodObject<{
     requestedvaluesbitmap: z.ZodOptional<z.ZodUnknown>;
     toshard: z.ZodOptional<z.ZodNumber>;
@@ -84,13 +19,13 @@ export declare const BandwidthRequestBitmapSchema: z.ZodObject<{
 }, {
     data: number[];
 }>;
-export declare const BandwidthRequestsSchema: z.ZodObject<{
+export declare const BandwidthRequestsSchema: z.ZodUnion<[z.ZodObject<{
     v1: z.ZodOptional<z.ZodUnknown>;
 }, "strip", z.ZodTypeAny, {
     v1?: unknown;
 }, {
     v1?: unknown;
-}>;
+}>, z.ZodUnknown]>;
 export declare const BandwidthRequestsV1Schema: z.ZodObject<{
     requests: z.ZodArray<z.ZodUnknown, "many">;
 }, "strip", z.ZodTypeAny, {
@@ -102,11 +37,11 @@ export declare const CallResultSchema: z.ZodObject<{
     logs: z.ZodArray<z.ZodString, "many">;
     result: z.ZodArray<z.ZodNumber, "many">;
 }, "strip", z.ZodTypeAny, {
-    result: number[];
     logs: string[];
+    result: number[];
 }, {
-    result: number[];
     logs: string[];
+    result: number[];
 }>;
 export declare const CompilationErrorSchema: z.ZodUnion<[z.ZodObject<{
     codeDoesNotExist: z.ZodOptional<z.ZodObject<{
@@ -313,13 +248,13 @@ export declare const ExecutionOutcomeWithIdViewSchema: z.ZodObject<{
     proof: z.ZodArray<z.ZodUnknown, "many">;
 }, "strip", z.ZodTypeAny, {
     proof: unknown[];
-    id?: unknown;
     blockhash?: unknown;
+    id?: unknown;
     outcome?: unknown;
 }, {
     proof: unknown[];
-    id?: unknown;
     blockhash?: unknown;
+    id?: unknown;
     outcome?: unknown;
 }>;
 export declare const ExtCostsConfigViewSchema: z.ZodObject<{
@@ -1125,14 +1060,14 @@ export declare const JsonRpcRequestforEXPERIMENTALchangesSchema: z.ZodObject<{
     method: z.ZodEnum<["EXPERIMENTAL_changes"]>;
     params: z.ZodUnknown;
 }, "strip", z.ZodTypeAny, {
+    id: string;
     jsonrpc: string;
     method: "EXPERIMENTAL_changes";
-    id: string;
     params?: unknown;
 }, {
+    id: string;
     jsonrpc: string;
     method: "EXPERIMENTAL_changes";
-    id: string;
     params?: unknown;
 }>;
 export declare const JsonRpcRequestforEXPERIMENTALcongestionlevelSchema: z.ZodObject<{
@@ -1141,14 +1076,14 @@ export declare const JsonRpcRequestforEXPERIMENTALcongestionlevelSchema: z.ZodOb
     method: z.ZodEnum<["EXPERIMENTAL_congestion_level"]>;
     params: z.ZodUnknown;
 }, "strip", z.ZodTypeAny, {
+    id: string;
     jsonrpc: string;
     method: "EXPERIMENTAL_congestion_level";
-    id: string;
     params?: unknown;
 }, {
+    id: string;
     jsonrpc: string;
     method: "EXPERIMENTAL_congestion_level";
-    id: string;
     params?: unknown;
 }>;
 export declare const JsonRpcRequestforEXPERIMENTALlightclientproofSchema: z.ZodObject<{
@@ -1157,14 +1092,14 @@ export declare const JsonRpcRequestforEXPERIMENTALlightclientproofSchema: z.ZodO
     method: z.ZodEnum<["EXPERIMENTAL_light_client_proof"]>;
     params: z.ZodUnknown;
 }, "strip", z.ZodTypeAny, {
+    id: string;
     jsonrpc: string;
     method: "EXPERIMENTAL_light_client_proof";
-    id: string;
     params?: unknown;
 }, {
+    id: string;
     jsonrpc: string;
     method: "EXPERIMENTAL_light_client_proof";
-    id: string;
     params?: unknown;
 }>;
 export declare const JsonRpcRequestforEXPERIMENTALmaintenancewindowsSchema: z.ZodObject<{
@@ -1173,14 +1108,14 @@ export declare const JsonRpcRequestforEXPERIMENTALmaintenancewindowsSchema: z.Zo
     method: z.ZodEnum<["EXPERIMENTAL_maintenance_windows"]>;
     params: z.ZodUnknown;
 }, "strip", z.ZodTypeAny, {
+    id: string;
     jsonrpc: string;
     method: "EXPERIMENTAL_maintenance_windows";
-    id: string;
     params?: unknown;
 }, {
+    id: string;
     jsonrpc: string;
     method: "EXPERIMENTAL_maintenance_windows";
-    id: string;
     params?: unknown;
 }>;
 export declare const JsonRpcRequestforEXPERIMENTALsplitstorageinfoSchema: z.ZodObject<{
@@ -1189,14 +1124,14 @@ export declare const JsonRpcRequestforEXPERIMENTALsplitstorageinfoSchema: z.ZodO
     method: z.ZodEnum<["EXPERIMENTAL_split_storage_info"]>;
     params: z.ZodUnknown;
 }, "strip", z.ZodTypeAny, {
+    id: string;
     jsonrpc: string;
     method: "EXPERIMENTAL_split_storage_info";
-    id: string;
     params?: unknown;
 }, {
+    id: string;
     jsonrpc: string;
     method: "EXPERIMENTAL_split_storage_info";
-    id: string;
     params?: unknown;
 }>;
 export declare const JsonRpcRequestforchangesSchema: z.ZodObject<{
@@ -1205,14 +1140,14 @@ export declare const JsonRpcRequestforchangesSchema: z.ZodObject<{
     method: z.ZodEnum<["changes"]>;
     params: z.ZodUnknown;
 }, "strip", z.ZodTypeAny, {
+    id: string;
     jsonrpc: string;
     method: "changes";
-    id: string;
     params?: unknown;
 }, {
+    id: string;
     jsonrpc: string;
     method: "changes";
-    id: string;
     params?: unknown;
 }>;
 export declare const JsonRpcRequestforclientconfigSchema: z.ZodObject<{
@@ -1221,14 +1156,14 @@ export declare const JsonRpcRequestforclientconfigSchema: z.ZodObject<{
     method: z.ZodEnum<["client_config"]>;
     params: z.ZodUnknown;
 }, "strip", z.ZodTypeAny, {
+    id: string;
     jsonrpc: string;
     method: "client_config";
-    id: string;
     params?: unknown;
 }, {
+    id: string;
     jsonrpc: string;
     method: "client_config";
-    id: string;
     params?: unknown;
 }>;
 export declare const JsonRpcRequestforgaspriceSchema: z.ZodObject<{
@@ -1237,14 +1172,14 @@ export declare const JsonRpcRequestforgaspriceSchema: z.ZodObject<{
     method: z.ZodEnum<["gas_price"]>;
     params: z.ZodUnknown;
 }, "strip", z.ZodTypeAny, {
+    id: string;
     jsonrpc: string;
     method: "gas_price";
-    id: string;
     params?: unknown;
 }, {
+    id: string;
     jsonrpc: string;
     method: "gas_price";
-    id: string;
     params?: unknown;
 }>;
 export declare const JsonRpcRequestforhealthSchema: z.ZodObject<{
@@ -1253,14 +1188,14 @@ export declare const JsonRpcRequestforhealthSchema: z.ZodObject<{
     method: z.ZodEnum<["health"]>;
     params: z.ZodUnknown;
 }, "strip", z.ZodTypeAny, {
+    id: string;
     jsonrpc: string;
     method: "health";
-    id: string;
     params?: unknown;
 }, {
+    id: string;
     jsonrpc: string;
     method: "health";
-    id: string;
     params?: unknown;
 }>;
 export declare const JsonRpcRequestforlightclientproofSchema: z.ZodObject<{
@@ -1269,14 +1204,14 @@ export declare const JsonRpcRequestforlightclientproofSchema: z.ZodObject<{
     method: z.ZodEnum<["light_client_proof"]>;
     params: z.ZodUnknown;
 }, "strip", z.ZodTypeAny, {
+    id: string;
     jsonrpc: string;
     method: "light_client_proof";
-    id: string;
     params?: unknown;
 }, {
+    id: string;
     jsonrpc: string;
     method: "light_client_proof";
-    id: string;
     params?: unknown;
 }>;
 export declare const JsonRpcRequestforquerySchema: z.ZodObject<{
@@ -1285,105 +1220,105 @@ export declare const JsonRpcRequestforquerySchema: z.ZodObject<{
     method: z.ZodEnum<["query"]>;
     params: z.ZodUnknown;
 }, "strip", z.ZodTypeAny, {
+    id: string;
     jsonrpc: string;
     method: "query";
-    id: string;
     params?: unknown;
 }, {
+    id: string;
     jsonrpc: string;
     method: "query";
-    id: string;
     params?: unknown;
 }>;
 export declare const JsonRpcResponseforArrayofRangeofuint64andRpcErrorSchema: z.ZodObject<{
     id: z.ZodString;
     jsonrpc: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    jsonrpc: string;
     id: string;
+    jsonrpc: string;
 }, {
-    jsonrpc: string;
     id: string;
+    jsonrpc: string;
 }>;
 export declare const JsonRpcResponseforCryptoHashandRpcErrorSchema: z.ZodObject<{
     id: z.ZodString;
     jsonrpc: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    jsonrpc: string;
     id: string;
+    jsonrpc: string;
 }, {
-    jsonrpc: string;
     id: string;
+    jsonrpc: string;
 }>;
 export declare const JsonRpcResponseforNullableRpcHealthResponseandRpcErrorSchema: z.ZodObject<{
     id: z.ZodString;
     jsonrpc: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    jsonrpc: string;
     id: string;
+    jsonrpc: string;
 }, {
-    jsonrpc: string;
     id: string;
+    jsonrpc: string;
 }>;
 export declare const JsonRpcResponseforRpcClientConfigResponseandRpcErrorSchema: z.ZodObject<{
     id: z.ZodString;
     jsonrpc: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    jsonrpc: string;
     id: string;
+    jsonrpc: string;
 }, {
-    jsonrpc: string;
     id: string;
+    jsonrpc: string;
 }>;
 export declare const JsonRpcResponseforRpcCongestionLevelResponseandRpcErrorSchema: z.ZodObject<{
     id: z.ZodString;
     jsonrpc: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    jsonrpc: string;
     id: string;
+    jsonrpc: string;
 }, {
-    jsonrpc: string;
     id: string;
+    jsonrpc: string;
 }>;
 export declare const JsonRpcResponseforRpcGasPriceResponseandRpcErrorSchema: z.ZodObject<{
     id: z.ZodString;
     jsonrpc: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    jsonrpc: string;
     id: string;
+    jsonrpc: string;
 }, {
-    jsonrpc: string;
     id: string;
+    jsonrpc: string;
 }>;
 export declare const JsonRpcResponseforRpcLightClientExecutionProofResponseandRpcErrorSchema: z.ZodObject<{
     id: z.ZodString;
     jsonrpc: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    jsonrpc: string;
     id: string;
+    jsonrpc: string;
 }, {
-    jsonrpc: string;
     id: string;
+    jsonrpc: string;
 }>;
 export declare const JsonRpcResponseforRpcQueryResponseandRpcErrorSchema: z.ZodObject<{
     id: z.ZodString;
     jsonrpc: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    jsonrpc: string;
     id: string;
+    jsonrpc: string;
 }, {
-    jsonrpc: string;
     id: string;
+    jsonrpc: string;
 }>;
 export declare const JsonRpcResponseforRpcSplitStorageInfoResponseandRpcErrorSchema: z.ZodObject<{
     id: z.ZodString;
     jsonrpc: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    jsonrpc: string;
     id: string;
+    jsonrpc: string;
 }, {
-    jsonrpc: string;
     id: string;
+    jsonrpc: string;
 }>;
 export declare const KnownProducerViewSchema: z.ZodObject<{
     accountid: z.ZodOptional<z.ZodUnknown>;
@@ -1844,12 +1779,12 @@ export declare const RpcPeerInfoSchema: z.ZodObject<{
     addr: z.ZodOptional<z.ZodString>;
     id: z.ZodUnknown;
 }, "strip", z.ZodTypeAny, {
-    id?: unknown;
     accountid?: unknown;
+    id?: unknown;
     addr?: string | undefined;
 }, {
-    id?: unknown;
     accountid?: unknown;
+    id?: unknown;
     addr?: string | undefined;
 }>;
 export declare const RpcQueryRequestSchema: z.ZodRecord<z.ZodString, z.ZodUnknown>;

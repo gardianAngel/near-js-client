@@ -1,38 +1,34 @@
 "use strict";
 /**
- * Block-related methods for NEAR JSON-RPC client
+ * Blocks-related methods for NEAR JSON-RPC client
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BlockMethods = void 0;
+exports.BlocksMethods = void 0;
 const jsonrpc_types_1 = require("@near-js/jsonrpc-types");
-class BlockMethods {
+class BlocksMethods {
     client;
     constructor(client) {
         this.client = client;
     }
-    /**
-     * Get block details
-     */
+    async changesinblock(params) {
+        const validatedParams = jsonrpc_types_1.ChangesinblockQuerySchema.parse(params);
+        return this.client.makeRequest('EXPERIMENTALchangesinblock', validatedParams, jsonrpc_types_1.ChangesinblockResponseSchema);
+    }
+    async lightclientblockproof(params) {
+        const validatedParams = jsonrpc_types_1.LightclientblockproofQuerySchema.parse(params);
+        return this.client.makeRequest('EXPERIMENTALlightclientblockproof', validatedParams, jsonrpc_types_1.LightclientblockproofResponseSchema);
+    }
     async block(params) {
-        return this.client.makeRequest('block', params, jsonrpc_types_1.z.any());
+        const validatedParams = jsonrpc_types_1.BlockQuerySchema.parse(params);
+        return this.client.makeRequest('Block', validatedParams, jsonrpc_types_1.BlockResponseSchema);
     }
-    /**
-     * Get latest block
-     */
-    async getLatestBlock() {
-        return this.client.makeRequest('block', { finality: 'final' }, jsonrpc_types_1.z.any());
-    }
-    /**
-     * Get block changes
-     */
-    async blockChanges(params) {
-        return this.client.makeRequest('EXPERIMENTAL_changes_in_block', params, jsonrpc_types_1.z.any());
-    }
-    /**
-     * Get chunk details
-     */
     async chunk(params) {
-        return this.client.makeRequest('chunk', params, jsonrpc_types_1.z.any());
+        const validatedParams = jsonrpc_types_1.ChunkQuerySchema.parse(params);
+        return this.client.makeRequest('Chunk', validatedParams, jsonrpc_types_1.ChunkResponseSchema);
+    }
+    async nextlightclientblock(params) {
+        const validatedParams = jsonrpc_types_1.NextlightclientblockQuerySchema.parse(params);
+        return this.client.makeRequest('Nextlightclientblock', validatedParams, jsonrpc_types_1.NextlightclientblockResponseSchema);
     }
 }
-exports.BlockMethods = BlockMethods;
+exports.BlocksMethods = BlocksMethods;

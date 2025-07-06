@@ -252,14 +252,14 @@ export declare const JsonRpcRequestforEXPERIMENTALgenesisconfigSchema: z.ZodObje
     method: z.ZodEnum<["EXPERIMENTAL_genesis_config"]>;
     params: z.ZodUnknown;
 }, "strip", z.ZodTypeAny, {
+    id: string;
     jsonrpc: string;
     method: "EXPERIMENTAL_genesis_config";
-    id: string;
     params?: unknown;
 }, {
+    id: string;
     jsonrpc: string;
     method: "EXPERIMENTAL_genesis_config";
-    id: string;
     params?: unknown;
 }>;
 export declare const JsonRpcRequestforEXPERIMENTALprotocolconfigSchema: z.ZodObject<{
@@ -268,14 +268,14 @@ export declare const JsonRpcRequestforEXPERIMENTALprotocolconfigSchema: z.ZodObj
     method: z.ZodEnum<["EXPERIMENTAL_protocol_config"]>;
     params: z.ZodUnknown;
 }, "strip", z.ZodTypeAny, {
+    id: string;
     jsonrpc: string;
     method: "EXPERIMENTAL_protocol_config";
-    id: string;
     params?: unknown;
 }, {
+    id: string;
     jsonrpc: string;
     method: "EXPERIMENTAL_protocol_config";
-    id: string;
     params?: unknown;
 }>;
 export declare const JsonRpcRequestforEXPERIMENTALvalidatorsorderedSchema: z.ZodObject<{
@@ -284,14 +284,14 @@ export declare const JsonRpcRequestforEXPERIMENTALvalidatorsorderedSchema: z.Zod
     method: z.ZodEnum<["EXPERIMENTAL_validators_ordered"]>;
     params: z.ZodUnknown;
 }, "strip", z.ZodTypeAny, {
+    id: string;
     jsonrpc: string;
     method: "EXPERIMENTAL_validators_ordered";
-    id: string;
     params?: unknown;
 }, {
+    id: string;
     jsonrpc: string;
     method: "EXPERIMENTAL_validators_ordered";
-    id: string;
     params?: unknown;
 }>;
 export declare const JsonRpcRequestfornetworkinfoSchema: z.ZodObject<{
@@ -300,14 +300,14 @@ export declare const JsonRpcRequestfornetworkinfoSchema: z.ZodObject<{
     method: z.ZodEnum<["network_info"]>;
     params: z.ZodUnknown;
 }, "strip", z.ZodTypeAny, {
+    id: string;
     jsonrpc: string;
     method: "network_info";
-    id: string;
     params?: unknown;
 }, {
+    id: string;
     jsonrpc: string;
     method: "network_info";
-    id: string;
     params?: unknown;
 }>;
 export declare const JsonRpcRequestforstatusSchema: z.ZodObject<{
@@ -316,14 +316,14 @@ export declare const JsonRpcRequestforstatusSchema: z.ZodObject<{
     method: z.ZodEnum<["status"]>;
     params: z.ZodUnknown;
 }, "strip", z.ZodTypeAny, {
+    id: string;
     jsonrpc: string;
     method: "status";
-    id: string;
     params?: unknown;
 }, {
+    id: string;
     jsonrpc: string;
     method: "status";
-    id: string;
     params?: unknown;
 }>;
 export declare const JsonRpcRequestforvalidatorsSchema: z.ZodObject<{
@@ -332,75 +332,75 @@ export declare const JsonRpcRequestforvalidatorsSchema: z.ZodObject<{
     method: z.ZodEnum<["validators"]>;
     params: z.ZodUnknown;
 }, "strip", z.ZodTypeAny, {
+    id: string;
     jsonrpc: string;
     method: "validators";
-    id: string;
     params?: unknown;
 }, {
+    id: string;
     jsonrpc: string;
     method: "validators";
-    id: string;
     params?: unknown;
 }>;
 export declare const JsonRpcResponseforArrayofValidatorStakeViewandRpcErrorSchema: z.ZodObject<{
     id: z.ZodString;
     jsonrpc: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    jsonrpc: string;
     id: string;
+    jsonrpc: string;
 }, {
-    jsonrpc: string;
     id: string;
+    jsonrpc: string;
 }>;
 export declare const JsonRpcResponseforGenesisConfigandRpcErrorSchema: z.ZodObject<{
     id: z.ZodString;
     jsonrpc: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    jsonrpc: string;
     id: string;
+    jsonrpc: string;
 }, {
-    jsonrpc: string;
     id: string;
+    jsonrpc: string;
 }>;
 export declare const JsonRpcResponseforRpcNetworkInfoResponseandRpcErrorSchema: z.ZodObject<{
     id: z.ZodString;
     jsonrpc: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    jsonrpc: string;
     id: string;
+    jsonrpc: string;
 }, {
-    jsonrpc: string;
     id: string;
+    jsonrpc: string;
 }>;
 export declare const JsonRpcResponseforRpcProtocolConfigResponseandRpcErrorSchema: z.ZodObject<{
     id: z.ZodString;
     jsonrpc: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    jsonrpc: string;
     id: string;
+    jsonrpc: string;
 }, {
-    jsonrpc: string;
     id: string;
+    jsonrpc: string;
 }>;
 export declare const JsonRpcResponseforRpcStatusResponseandRpcErrorSchema: z.ZodObject<{
     id: z.ZodString;
     jsonrpc: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    jsonrpc: string;
     id: string;
+    jsonrpc: string;
 }, {
-    jsonrpc: string;
     id: string;
+    jsonrpc: string;
 }>;
 export declare const JsonRpcResponseforRpcValidatorResponseandRpcErrorSchema: z.ZodObject<{
     id: z.ZodString;
     jsonrpc: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    jsonrpc: string;
     id: string;
+    jsonrpc: string;
 }, {
-    jsonrpc: string;
     id: string;
+    jsonrpc: string;
 }>;
 export declare const NetworkInfoViewSchema: z.ZodObject<{
     connectedpeers: z.ZodOptional<z.ZodArray<z.ZodUnknown, "many">>;
@@ -820,13 +820,13 @@ export declare const ValidatorKickoutViewSchema: z.ZodObject<{
     accountid?: unknown;
     reason?: unknown;
 }>;
-export declare const ValidatorStakeViewSchema: z.ZodObject<{
+export declare const ValidatorStakeViewSchema: z.ZodUnion<[z.ZodObject<{
     validatorstakestructversion: z.ZodOptional<z.ZodEnum<["V1"]>>;
 }, "strip", z.ZodTypeAny, {
     validatorstakestructversion?: "V1" | undefined;
 }, {
     validatorstakestructversion?: "V1" | undefined;
-}>;
+}>, z.ZodUnknown]>;
 export declare const ValidatorStakeViewV1Schema: z.ZodObject<{
     accountid: z.ZodOptional<z.ZodUnknown>;
     publickey: z.ZodOptional<z.ZodUnknown>;

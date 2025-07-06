@@ -1256,14 +1256,14 @@ export declare const JsonRpcRequestforEXPERIMENTALreceiptSchema: z.ZodObject<{
     method: z.ZodEnum<["EXPERIMENTAL_receipt"]>;
     params: z.ZodUnknown;
 }, "strip", z.ZodTypeAny, {
+    id: string;
     jsonrpc: string;
     method: "EXPERIMENTAL_receipt";
-    id: string;
     params?: unknown;
 }, {
+    id: string;
     jsonrpc: string;
     method: "EXPERIMENTAL_receipt";
-    id: string;
     params?: unknown;
 }>;
 export declare const JsonRpcRequestforEXPERIMENTALtxstatusSchema: z.ZodObject<{
@@ -1272,14 +1272,14 @@ export declare const JsonRpcRequestforEXPERIMENTALtxstatusSchema: z.ZodObject<{
     method: z.ZodEnum<["EXPERIMENTAL_tx_status"]>;
     params: z.ZodUnknown;
 }, "strip", z.ZodTypeAny, {
+    id: string;
     jsonrpc: string;
     method: "EXPERIMENTAL_tx_status";
-    id: string;
     params?: unknown;
 }, {
+    id: string;
     jsonrpc: string;
     method: "EXPERIMENTAL_tx_status";
-    id: string;
     params?: unknown;
 }>;
 export declare const JsonRpcRequestforbroadcasttxasyncSchema: z.ZodObject<{
@@ -1288,14 +1288,14 @@ export declare const JsonRpcRequestforbroadcasttxasyncSchema: z.ZodObject<{
     method: z.ZodEnum<["broadcast_tx_async"]>;
     params: z.ZodUnknown;
 }, "strip", z.ZodTypeAny, {
+    id: string;
     jsonrpc: string;
     method: "broadcast_tx_async";
-    id: string;
     params?: unknown;
 }, {
+    id: string;
     jsonrpc: string;
     method: "broadcast_tx_async";
-    id: string;
     params?: unknown;
 }>;
 export declare const JsonRpcRequestforbroadcasttxcommitSchema: z.ZodObject<{
@@ -1304,14 +1304,14 @@ export declare const JsonRpcRequestforbroadcasttxcommitSchema: z.ZodObject<{
     method: z.ZodEnum<["broadcast_tx_commit"]>;
     params: z.ZodUnknown;
 }, "strip", z.ZodTypeAny, {
+    id: string;
     jsonrpc: string;
     method: "broadcast_tx_commit";
-    id: string;
     params?: unknown;
 }, {
+    id: string;
     jsonrpc: string;
     method: "broadcast_tx_commit";
-    id: string;
     params?: unknown;
 }>;
 export declare const JsonRpcRequestforsendtxSchema: z.ZodObject<{
@@ -1320,14 +1320,14 @@ export declare const JsonRpcRequestforsendtxSchema: z.ZodObject<{
     method: z.ZodEnum<["send_tx"]>;
     params: z.ZodUnknown;
 }, "strip", z.ZodTypeAny, {
+    id: string;
     jsonrpc: string;
     method: "send_tx";
-    id: string;
     params?: unknown;
 }, {
+    id: string;
     jsonrpc: string;
     method: "send_tx";
-    id: string;
     params?: unknown;
 }>;
 export declare const JsonRpcRequestfortxSchema: z.ZodObject<{
@@ -1336,35 +1336,35 @@ export declare const JsonRpcRequestfortxSchema: z.ZodObject<{
     method: z.ZodEnum<["tx"]>;
     params: z.ZodUnknown;
 }, "strip", z.ZodTypeAny, {
+    id: string;
     jsonrpc: string;
     method: "tx";
-    id: string;
     params?: unknown;
 }, {
+    id: string;
     jsonrpc: string;
     method: "tx";
-    id: string;
     params?: unknown;
 }>;
 export declare const JsonRpcResponseforRpcReceiptResponseandRpcErrorSchema: z.ZodObject<{
     id: z.ZodString;
     jsonrpc: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    jsonrpc: string;
     id: string;
+    jsonrpc: string;
 }, {
-    jsonrpc: string;
     id: string;
+    jsonrpc: string;
 }>;
 export declare const JsonRpcResponseforRpcTransactionResponseandRpcErrorSchema: z.ZodObject<{
     id: z.ZodString;
     jsonrpc: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    jsonrpc: string;
     id: string;
+    jsonrpc: string;
 }, {
-    jsonrpc: string;
     id: string;
+    jsonrpc: string;
 }>;
 export declare const NonDelegateActionSchema: z.ZodUnknown;
 export declare const ReceiptEnumViewSchema: z.ZodUnion<[z.ZodObject<{

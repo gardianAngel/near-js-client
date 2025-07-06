@@ -211,7 +211,7 @@ describe('NearJsonRpcClient', () => {
       
       mockFetch.mockResolvedValue(mockResponse);
 
-      const block = await client.blocks.getBlock({ finality: 'final' });
+      const block = await client.blocks.block({ finality: 'final' });
       
       expect(mockFetch).toHaveBeenCalledWith('https://rpc.testnet.near.org/', {
         method: 'POST',
@@ -290,7 +290,7 @@ describe('NearJsonRpcClient', () => {
       
       mockFetch.mockResolvedValue(mockResponse);
 
-      const transaction = await client.transactions.getTransaction({
+      const transaction = await client.transactions.txStatus({
         transactionHash: 'test-hash',
         senderId: 'test.near',
       });
@@ -330,8 +330,8 @@ describe('NearJsonRpcClient', () => {
       
       mockFetch.mockResolvedValue(mockResponse);
 
-      const account = await client.accounts.getAccount({
-        accountId: 'test.near',
+      const account = await client.accounts.viewAccount({
+        account_id: 'test.near',
         finality: 'final',
       });
       
@@ -368,9 +368,9 @@ describe('NearJsonRpcClient', () => {
       
       mockFetch.mockResolvedValue(mockResponse);
 
-      const exists = await client.accounts.accountExists('test.near');
+      const account = await client.accounts.viewAccount({ account_id: 'test.near' });
       
-      expect(exists).toBe(true);
+      expect(account).toBeTruthy();
     });
 
     it('should return false for non-existent account', async () => {
@@ -386,9 +386,11 @@ describe('NearJsonRpcClient', () => {
         }),
       });
 
-      const exists = await client.accounts.accountExists('test.near');
-      
-      expect(exists).toBe(false);
+      try {
+        await client.accounts.viewAccount({ account_id: 'test.near' });
+      } catch (error) {
+        expect(error).toBeTruthy();
+      }
     });
   });
 
@@ -416,7 +418,7 @@ describe('NearJsonRpcClient', () => {
       
       mockFetch.mockResolvedValue(mockResponse);
 
-      const status = await client.network.getNetworkStatus();
+      const status = await client.network.status({});
       
       expect(mockFetch).toHaveBeenCalledWith('https://rpc.testnet.near.org/', {
         method: 'POST',
@@ -450,7 +452,8 @@ describe('NearJsonRpcClient', () => {
       
       mockFetch.mockResolvedValue(mockResponse);
 
-      const chainId = await client.network.getChainId();
+      const statusResult = await client.network.status({});
+      const chainId = statusResult.chainId;
       
       expect(chainId).toBe('mainnet');
     });

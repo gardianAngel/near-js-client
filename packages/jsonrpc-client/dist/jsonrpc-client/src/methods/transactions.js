@@ -1,44 +1,34 @@
 "use strict";
 /**
- * Transaction-related methods for NEAR JSON-RPC client
+ * Transactions-related methods for NEAR JSON-RPC client
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TransactionMethods = void 0;
+exports.TransactionsMethods = void 0;
 const jsonrpc_types_1 = require("@near-js/jsonrpc-types");
-class TransactionMethods {
+class TransactionsMethods {
     client;
     constructor(client) {
         this.client = client;
     }
-    /**
-     * Get transaction status
-     */
-    async txStatus(params) {
-        return this.client.makeRequest('EXPERIMENTAL_tx_status', params, jsonrpc_types_1.z.any());
+    async txstatus(params) {
+        const validatedParams = jsonrpc_types_1.TxstatusQuerySchema.parse(params);
+        return this.client.makeRequest('EXPERIMENTALtxstatus', validatedParams, jsonrpc_types_1.TxstatusResponseSchema);
     }
-    /**
-     * Broadcast transaction asynchronously
-     */
-    async broadcastTxAsync(params) {
-        return this.client.makeRequest('broadcast_tx_async', params, jsonrpc_types_1.z.any());
+    async broadcasttxasync(params) {
+        const validatedParams = jsonrpc_types_1.BroadcasttxasyncQuerySchema.parse(params);
+        return this.client.makeRequest('Broadcasttxasync', validatedParams, jsonrpc_types_1.BroadcasttxasyncResponseSchema);
     }
-    /**
-     * Broadcast transaction and wait for commit
-     */
-    async broadcastTxCommit(params) {
-        return this.client.makeRequest('broadcast_tx_commit', params, jsonrpc_types_1.z.any());
+    async broadcasttxcommit(params) {
+        const validatedParams = jsonrpc_types_1.BroadcasttxcommitQuerySchema.parse(params);
+        return this.client.makeRequest('Broadcasttxcommit', validatedParams, jsonrpc_types_1.BroadcasttxcommitResponseSchema);
     }
-    /**
-     * Send transaction
-     */
-    async sendTx(params) {
-        return this.client.makeRequest('send_tx', params, jsonrpc_types_1.z.any());
+    async sendtx(params) {
+        const validatedParams = jsonrpc_types_1.SendtxQuerySchema.parse(params);
+        return this.client.makeRequest('Sendtx', validatedParams, jsonrpc_types_1.SendtxResponseSchema);
     }
-    /**
-     * Get transaction details
-     */
     async tx(params) {
-        return this.client.makeRequest('tx', params, jsonrpc_types_1.z.any());
+        const validatedParams = jsonrpc_types_1.TxQuerySchema.parse(params);
+        return this.client.makeRequest('Tx', validatedParams, jsonrpc_types_1.TxResponseSchema);
     }
 }
-exports.TransactionMethods = TransactionMethods;
+exports.TransactionsMethods = TransactionsMethods;

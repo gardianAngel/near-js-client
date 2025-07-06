@@ -2,28 +2,6 @@
  * Generated types for NEAR Protocol JSON-RPC
  */
 
-// JSON-RPC base types
-export interface JsonRpcRequest {
-  jsonrpc: '2.0';
-  method: string;
-  params: unknown;
-  id: string | number;
-}
-
-export interface JsonRpcResponse<T = unknown> {
-  jsonrpc: '2.0';
-  result?: T;
-  error?: JsonRpcError;
-  id: string | number;
-}
-
-export interface JsonRpcError {
-  code: number;
-  message: string;
-  data?: unknown;
-  [key: string]: unknown;
-}
-
 
 
 export interface BandwidthRequest {

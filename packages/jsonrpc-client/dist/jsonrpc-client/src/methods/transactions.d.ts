@@ -1,40 +1,14 @@
 /**
- * Transaction-related methods for NEAR JSON-RPC client
+ * Transactions-related methods for NEAR JSON-RPC client
  */
+import { BroadcasttxasyncResponse, BroadcasttxcommitResponse, SendtxResponse, TxResponse, TxstatusResponse } from '@near-js/jsonrpc-types';
 import type { NearJsonRpcClient } from '../client';
-export declare class TransactionMethods {
+export declare class TransactionsMethods {
     private client;
     constructor(client: NearJsonRpcClient);
-    /**
-     * Get transaction status
-     */
-    txStatus(params: {
-        tx_hash: string;
-        sender_account_id: string;
-    }): Promise<any>;
-    /**
-     * Broadcast transaction asynchronously
-     */
-    broadcastTxAsync(params: {
-        signed_tx_base64: string;
-    }): Promise<any>;
-    /**
-     * Broadcast transaction and wait for commit
-     */
-    broadcastTxCommit(params: {
-        signed_tx_base64: string;
-    }): Promise<any>;
-    /**
-     * Send transaction
-     */
-    sendTx(params: {
-        signed_tx_base64: string;
-    }): Promise<any>;
-    /**
-     * Get transaction details
-     */
-    tx(params: {
-        tx_hash: string;
-        sender_account_id: string;
-    }): Promise<any>;
+    txstatus(params: TxstatusQuery): Promise<TxstatusResponse>;
+    broadcasttxasync(params: BroadcasttxasyncQuery): Promise<BroadcasttxasyncResponse>;
+    broadcasttxcommit(params: BroadcasttxcommitQuery): Promise<BroadcasttxcommitResponse>;
+    sendtx(params: SendtxQuery): Promise<SendtxResponse>;
+    tx(params: TxQuery): Promise<TxResponse>;
 }

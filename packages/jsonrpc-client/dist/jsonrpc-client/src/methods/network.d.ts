@@ -1,39 +1,22 @@
 /**
  * Network-related methods for NEAR JSON-RPC client
  */
+import { ClientconfigResponse, CongestionlevelResponse, GaspriceResponse, GenesisconfigResponse, HealthResponse, MaintenancewindowsResponse, NetworkinfoResponse, ProtocolconfigResponse, ReceiptResponse, SplitstorageinfoResponse, StatusResponse, ValidatorsResponse, ValidatorsorderedResponse } from '@near-js/jsonrpc-types';
 import type { NearJsonRpcClient } from '../client';
 export declare class NetworkMethods {
     private client;
     constructor(client: NearJsonRpcClient);
-    /**
-     * Get network status
-     */
-    status(): Promise<any>;
-    /**
-     * Get network info
-     */
-    networkInfo(): Promise<any>;
-    /**
-     * Get current validators
-     */
-    validators(params?: {
-        block_id?: string | number;
-        epoch_id?: string;
-    }): Promise<any>;
-    /**
-     * Get gas price
-     */
-    gasPrice(params?: {
-        block_id?: string | number;
-    }): Promise<any>;
-    /**
-     * Get protocol config
-     */
-    protocolConfig(params?: {
-        block_reference?: any;
-    }): Promise<any>;
-    /**
-     * Get genesis config
-     */
-    genesisConfig(): Promise<any>;
+    congestionlevel(params: CongestionlevelQuery): Promise<CongestionlevelResponse>;
+    genesisconfig(params: GenesisconfigQuery): Promise<GenesisconfigResponse>;
+    maintenancewindows(params: MaintenancewindowsQuery): Promise<MaintenancewindowsResponse>;
+    protocolconfig(params: ProtocolconfigQuery): Promise<ProtocolconfigResponse>;
+    receipt(params: ReceiptQuery): Promise<ReceiptResponse>;
+    splitstorageinfo(params: SplitstorageinfoQuery): Promise<SplitstorageinfoResponse>;
+    validatorsordered(params: ValidatorsorderedQuery): Promise<ValidatorsorderedResponse>;
+    clientconfig(params: ClientconfigQuery): Promise<ClientconfigResponse>;
+    gasprice(params: GaspriceQuery): Promise<GaspriceResponse>;
+    health(params: HealthQuery): Promise<HealthResponse>;
+    networkinfo(params: NetworkinfoQuery): Promise<NetworkinfoResponse>;
+    status(params: StatusQuery): Promise<StatusResponse>;
+    validators(params: ValidatorsQuery): Promise<ValidatorsResponse>;
 }

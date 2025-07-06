@@ -1,38 +1,56 @@
 /**
- * Block-related methods for NEAR JSON-RPC client
+ * Blocks-related methods for NEAR JSON-RPC client
  */
 
-import { z } from '@near-js/jsonrpc-types';
+import {
+  BlockQuerySchema,
+  BlockRequest,
+  BlockResponse,
+  BlockResponseSchema,
+  ChangesinblockQuerySchema,
+  ChangesinblockRequest,
+  ChangesinblockResponse,
+  ChangesinblockResponseSchema,
+  ChunkQuerySchema,
+  ChunkRequest,
+  ChunkResponse,
+  ChunkResponseSchema,
+  LightclientblockproofQuerySchema,
+  LightclientblockproofRequest,
+  LightclientblockproofResponse,
+  LightclientblockproofResponseSchema,
+  NextlightclientblockQuerySchema,
+  NextlightclientblockRequest,
+  NextlightclientblockResponse,
+  NextlightclientblockResponseSchema
+} from '@near-js/jsonrpc-types';
 import type { NearJsonRpcClient } from '../client';
 
-export class BlockMethods {
+export class BlocksMethods {
   constructor(private client: NearJsonRpcClient) {}
 
-  /**
-   * Get block details
-   */
-  async block(params: { block_id?: string | number; finality?: 'final' | 'optimistic' }): Promise<any> {
-    return this.client.makeRequest('block', params, z.any());
+  async changesinblock(params: ChangesinblockQuery): Promise<ChangesinblockResponse> {
+    const validatedParams = ChangesinblockQuerySchema.parse(params);
+    return this.client.makeRequest('EXPERIMENTALchangesinblock', validatedParams, ChangesinblockResponseSchema);
   }
 
-  /**
-   * Get latest block
-   */
-  async getLatestBlock(): Promise<any> {
-    return this.client.makeRequest('block', { finality: 'final' }, z.any());
+  async lightclientblockproof(params: LightclientblockproofQuery): Promise<LightclientblockproofResponse> {
+    const validatedParams = LightclientblockproofQuerySchema.parse(params);
+    return this.client.makeRequest('EXPERIMENTALlightclientblockproof', validatedParams, LightclientblockproofResponseSchema);
   }
 
-  /**
-   * Get block changes
-   */
-  async blockChanges(params: { block_id?: string | number; finality?: 'final' | 'optimistic' }): Promise<any> {
-    return this.client.makeRequest('EXPERIMENTAL_changes_in_block', params, z.any());
+  async block(params: BlockQuery): Promise<BlockResponse> {
+    const validatedParams = BlockQuerySchema.parse(params);
+    return this.client.makeRequest('Block', validatedParams, BlockResponseSchema);
   }
 
-  /**
-   * Get chunk details
-   */
-  async chunk(params: { chunk_id?: string; block_id?: string | number; shard_id?: number }): Promise<any> {
-    return this.client.makeRequest('chunk', params, z.any());
+  async chunk(params: ChunkQuery): Promise<ChunkResponse> {
+    const validatedParams = ChunkQuerySchema.parse(params);
+    return this.client.makeRequest('Chunk', validatedParams, ChunkResponseSchema);
+  }
+
+  async nextlightclientblock(params: NextlightclientblockQuery): Promise<NextlightclientblockResponse> {
+    const validatedParams = NextlightclientblockQuerySchema.parse(params);
+    return this.client.makeRequest('Nextlightclientblock', validatedParams, NextlightclientblockResponseSchema);
   }
 }

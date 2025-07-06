@@ -23,7 +23,7 @@ describe('Live RPC Integration Tests', () => {
 
   describe('Network Status', () => {
     it('should get testnet status', async () => {
-      const status = await testnetClient.network.getNetworkStatus();
+      const status = await testnetClient.network.status({});
       
       expect(status.chainId).toBe('testnet');
       expect(status.syncInfo.latestBlockHeight).toBeGreaterThan(0);
@@ -32,7 +32,7 @@ describe('Live RPC Integration Tests', () => {
     }, 30000);
 
     it('should get mainnet status', async () => {
-      const status = await mainnetClient.network.getNetworkStatus();
+      const status = await mainnetClient.network.status({});
       
       expect(status.chainId).toBe('mainnet');
       expect(status.syncInfo.latestBlockHeight).toBeGreaterThan(0);
@@ -40,8 +40,10 @@ describe('Live RPC Integration Tests', () => {
     }, 30000);
 
     it('should get chain ID', async () => {
-      const testnetChainId = await testnetClient.network.getChainId();
-      const mainnetChainId = await mainnetClient.network.getChainId();
+      const testnetStatus = await testnetClient.network.status({});
+      const mainnetStatus = await mainnetClient.network.status({});
+      const testnetChainId = testnetStatus.chainId;
+      const mainnetChainId = mainnetStatus.chainId;
       
       expect(testnetChainId).toBe('testnet');
       expect(mainnetChainId).toBe('mainnet');
@@ -79,7 +81,7 @@ describe('Live RPC Integration Tests', () => {
       const latestBlock = await testnetClient.blocks.getLatestBlock();
       const targetHeight = latestBlock.header.height - 10;
       
-      const block = await testnetClient.blocks.getBlockByHeight(targetHeight);
+      const block = await testnetClient.blocks.block({ block_id: targetHeight });
       
       expect(block.header.height).toBe(targetHeight);
       expect(block.header.hash).toMatch(/^[A-Za-z0-9]+$/);
@@ -96,7 +98,7 @@ describe('Live RPC Integration Tests', () => {
     }, 30000);
 
     it('should handle non-existent block', async () => {
-      await expect(testnetClient.blocks.getBlockByHeight(999999999))
+      await expect(testnetClient.blocks.block({ block_id: 999999999 }))
         .rejects
         .toThrow(NearJsonRpcError);
     }, 30000);
@@ -173,7 +175,7 @@ describe('Live RPC Integration Tests', () => {
     }, 30000);
 
     it('should get protocol config', async () => {
-      const config = await testnetClient.network.getProtocolConfig();
+      const config = await testnetClient.network.protocolConfig();
       
       expect(config.chainId).toBe('testnet');
       expect(config.protocolVersion).toBeGreaterThan(0);
@@ -186,13 +188,13 @@ describe('Live RPC Integration Tests', () => {
     it('should handle network errors gracefully', async () => {
       const invalidClient = new NearJsonRpcClient('https://invalid-url-that-does-not-exist.com');
       
-      await expect(invalidClient.network.getNetworkStatus())
+      await expect(invalidClient.network.status({}))
         .rejects
         .toThrow(NetworkError);
     }, 30000);
 
     it('should handle RPC errors gracefully', async () => {
-      await expect(testnetClient.accounts.getAccountById('invalid.account.name'))
+      await expect(testnetClient.accounts.viewAccount({ account_id: 'invalid.account.name' }))
         .rejects
         .toThrow(NearJsonRpcError);
     }, 30000);
@@ -205,7 +207,7 @@ describe('Live RPC Integration Tests', () => {
         timeout: 5000,
       });
       
-      const status = await fastClient.network.getNetworkStatus();
+      const status = await fastClient.network.status({});
       expect(status.chainId).toBe('testnet');
     }, 30000);
 
@@ -216,7 +218,7 @@ describe('Live RPC Integration Tests', () => {
         retryDelay: 100,
       });
       
-      const status = await retryClient.network.getNetworkStatus();
+      const status = await retryClient.network.status({});
       expect(status.chainId).toBe('testnet');
     }, 30000);
   });
@@ -230,7 +232,7 @@ describe('Transaction Tests (Limited)', () => {
   });
 
   it('should handle invalid transaction hash', async () => {
-    await expect(testnetClient.transactions.getTransactionByHash('invalid-hash', 'test.near'))
+    await expect(testnetClient.transactions.transaction({ transactionHash: 'invalid-hash', senderId: 'test.near' }))
       .rejects
       .toThrow(NearJsonRpcError);
   }, 30000);
@@ -238,7 +240,7 @@ describe('Transaction Tests (Limited)', () => {
   it('should handle non-existent transaction', async () => {
     const fakeHash = 'A'.repeat(64); // Valid format but non-existent
     
-    await expect(testnetClient.transactions.getTransactionByHash(fakeHash, 'test.near'))
+    await expect(testnetClient.transactions.transaction({ transactionHash: fakeHash, senderId: 'test.near' }))
       .rejects
       .toThrow(NearJsonRpcError);
   }, 30000);
@@ -258,7 +260,7 @@ describe.skip('Comprehensive Block Testing', () => {
     
     const blocks = [];
     for (let i = 0; i < 3; i++) {
-      const block = await testnetClient.blocks.getBlockByHeight(startHeight + i);
+      const block = await testnetClient.blocks.block({ block_id: startHeight + i });
       blocks.push(block);
     }
     
@@ -270,7 +272,7 @@ describe.skip('Comprehensive Block Testing', () => {
 
   it('should verify block chain integrity', async () => {
     const latestBlock = await testnetClient.blocks.getLatestBlock();
-    const previousBlock = await testnetClient.blocks.getBlockByHeight(latestBlock.header.height - 1);
+    const previousBlock = await testnetClient.blocks.block({ block_id: latestBlock.header.height - 1 });
     
     expect(latestBlock.header.prevHash).toBe(previousBlock.header.hash);
   }, 30000);

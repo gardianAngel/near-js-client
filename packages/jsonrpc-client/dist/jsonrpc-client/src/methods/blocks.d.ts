@@ -1,34 +1,14 @@
 /**
- * Block-related methods for NEAR JSON-RPC client
+ * Blocks-related methods for NEAR JSON-RPC client
  */
+import { BlockResponse, ChangesinblockResponse, ChunkResponse, LightclientblockproofResponse, NextlightclientblockResponse } from '@near-js/jsonrpc-types';
 import type { NearJsonRpcClient } from '../client';
-export declare class BlockMethods {
+export declare class BlocksMethods {
     private client;
     constructor(client: NearJsonRpcClient);
-    /**
-     * Get block details
-     */
-    block(params: {
-        block_id?: string | number;
-        finality?: 'final' | 'optimistic';
-    }): Promise<any>;
-    /**
-     * Get latest block
-     */
-    getLatestBlock(): Promise<any>;
-    /**
-     * Get block changes
-     */
-    blockChanges(params: {
-        block_id?: string | number;
-        finality?: 'final' | 'optimistic';
-    }): Promise<any>;
-    /**
-     * Get chunk details
-     */
-    chunk(params: {
-        chunk_id?: string;
-        block_id?: string | number;
-        shard_id?: number;
-    }): Promise<any>;
+    changesinblock(params: ChangesinblockQuery): Promise<ChangesinblockResponse>;
+    lightclientblockproof(params: LightclientblockproofQuery): Promise<LightclientblockproofResponse>;
+    block(params: BlockQuery): Promise<BlockResponse>;
+    chunk(params: ChunkQuery): Promise<ChunkResponse>;
+    nextlightclientblock(params: NextlightclientblockQuery): Promise<NextlightclientblockResponse>;
 }
