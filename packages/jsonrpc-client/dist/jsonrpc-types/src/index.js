@@ -3,7 +3,6 @@
  * @near-js/jsonrpc-types
  *
  * TypeScript types and Zod schemas for NEAR Protocol JSON-RPC interface
- * Auto-generated from OpenAPI specification
  */
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
@@ -21,21 +20,6 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.z = void 0;
-// Common types and schemas
-__exportStar(require("./types/common"), exports);
-__exportStar(require("./schemas/common"), exports);
-// Block-related types and schemas
-__exportStar(require("./types/blocks"), exports);
-__exportStar(require("./schemas/blocks"), exports);
-// Transaction-related types and schemas
-__exportStar(require("./types/transactions"), exports);
-__exportStar(require("./schemas/transactions"), exports);
-// Account-related types and schemas
-__exportStar(require("./types/accounts"), exports);
-__exportStar(require("./schemas/accounts"), exports);
-// Network-related types and schemas
-__exportStar(require("./types/network"), exports);
-__exportStar(require("./schemas/network"), exports);
-// Re-export Zod for convenience
+__exportStar(require("./types"), exports);
 var zod_1 = require("zod");
 Object.defineProperty(exports, "z", { enumerable: true, get: function () { return zod_1.z; } });

@@ -4,10 +4,7 @@
  * Main client class that provides type-safe methods for all NEAR JSON-RPC endpoints
  */
 import { z } from 'zod';
-import { BlockMethods } from './methods/blocks';
-import { TransactionMethods } from './methods/transactions';
-import { AccountMethods } from './methods/accounts';
-import { NetworkMethods } from './methods/network';
+import { SimpleMethods } from './methods/simple';
 export interface NearJsonRpcClientOptions {
     baseUrl: string;
     apiKey?: string;
@@ -22,17 +19,14 @@ export declare class NearJsonRpcClient {
     private readonly retries;
     private readonly retryDelay;
     private requestId;
-    readonly blocks: BlockMethods;
-    readonly transactions: TransactionMethods;
-    readonly accounts: AccountMethods;
-    readonly network: NetworkMethods;
+    readonly rpc: SimpleMethods;
     constructor(options: NearJsonRpcClientOptions | string);
     /**
      * Make a JSON-RPC request with type validation
      * CRITICAL: Always use '/' as path, not the OpenAPI spec paths
      * Converts camelCase input to snake_case for API and snake_case response to camelCase
      */
-    makeRequest<T>(method: string, params: unknown, responseSchema: z.ZodSchema<T>): Promise<T>;
+    makeRequest<T = any>(method: string, params: unknown, responseSchema?: z.ZodSchema<T>): Promise<T>;
     private executeRequest;
     private delay;
     /**

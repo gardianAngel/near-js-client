@@ -13,8 +13,8 @@ export declare const BlockHeaderInnerLiteViewSchema: z.ZodObject<{
     timestamp: z.ZodNumber;
     timestampnanosec: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    height: number;
     timestamp: number;
+    height: number;
     blockmerkleroot?: unknown;
     epochid?: unknown;
     nextbphash?: unknown;
@@ -23,8 +23,8 @@ export declare const BlockHeaderInnerLiteViewSchema: z.ZodObject<{
     prevstateroot?: unknown;
     timestampnanosec?: string | undefined;
 }, {
-    height: number;
     timestamp: number;
+    height: number;
     blockmerkleroot?: unknown;
     epochid?: unknown;
     nextbphash?: unknown;
@@ -69,11 +69,10 @@ export declare const BlockHeaderViewSchema: z.ZodObject<{
     validatorproposals: z.ZodOptional<z.ZodArray<z.ZodUnknown, "many">>;
     validatorreward: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    height: number;
     timestamp: number;
+    height: number;
     approvals: unknown[];
     hash?: unknown;
-    gasprice?: string | undefined;
     blockmerkleroot?: unknown;
     epochid?: unknown;
     nextbphash?: unknown;
@@ -92,6 +91,7 @@ export declare const BlockHeaderViewSchema: z.ZodObject<{
     chunktxroot?: unknown;
     chunksincluded?: number | undefined;
     epochsyncdatahash?: unknown;
+    gasprice?: string | undefined;
     lastdsfinalblock?: unknown;
     lastfinalblock?: unknown;
     latestprotocolversion?: number | undefined;
@@ -104,11 +104,10 @@ export declare const BlockHeaderViewSchema: z.ZodObject<{
     validatorproposals?: unknown[] | undefined;
     validatorreward?: string | undefined;
 }, {
-    height: number;
     timestamp: number;
+    height: number;
     approvals: unknown[];
     hash?: unknown;
-    gasprice?: string | undefined;
     blockmerkleroot?: unknown;
     epochid?: unknown;
     nextbphash?: unknown;
@@ -127,6 +126,7 @@ export declare const BlockHeaderViewSchema: z.ZodObject<{
     chunktxroot?: unknown;
     chunksincluded?: number | undefined;
     epochsyncdatahash?: unknown;
+    gasprice?: string | undefined;
     lastdsfinalblock?: unknown;
     lastfinalblock?: unknown;
     latestprotocolversion?: number | undefined;
@@ -139,7 +139,7 @@ export declare const BlockHeaderViewSchema: z.ZodObject<{
     validatorproposals?: unknown[] | undefined;
     validatorreward?: string | undefined;
 }>;
-export declare const BlockIdSchema: z.ZodUnion<[z.ZodNumber, z.ZodUnknown]>;
+export declare const BlockIdSchema: z.ZodUnknown;
 export declare const BlockStatusViewSchema: z.ZodObject<{
     hash: z.ZodUnknown;
     height: z.ZodNumber;
@@ -192,8 +192,6 @@ export declare const ChunkHeaderViewSchema: z.ZodObject<{
     validatorproposals: z.ZodOptional<z.ZodArray<z.ZodUnknown, "many">>;
     validatorreward: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    gasused?: number | undefined;
-    shardid?: unknown;
     outcomeroot?: unknown;
     prevstateroot?: unknown;
     rentpaid?: string | undefined;
@@ -207,14 +205,14 @@ export declare const ChunkHeaderViewSchema: z.ZodObject<{
     encodedlength?: number | undefined;
     encodedmerkleroot?: unknown;
     gaslimit?: number | undefined;
+    gasused?: number | undefined;
     heightcreated?: number | undefined;
     heightincluded?: number | undefined;
     outgoingreceiptsroot?: unknown;
     prevblockhash?: unknown;
+    shardid?: unknown;
     txroot?: unknown;
 }, {
-    gasused?: number | undefined;
-    shardid?: unknown;
     outcomeroot?: unknown;
     prevstateroot?: unknown;
     rentpaid?: string | undefined;
@@ -228,10 +226,12 @@ export declare const ChunkHeaderViewSchema: z.ZodObject<{
     encodedlength?: number | undefined;
     encodedmerkleroot?: unknown;
     gaslimit?: number | undefined;
+    gasused?: number | undefined;
     heightcreated?: number | undefined;
     heightincluded?: number | undefined;
     outgoingreceiptsroot?: unknown;
     prevblockhash?: unknown;
+    shardid?: unknown;
     txroot?: unknown;
 }>;
 export declare const JsonRpcRequestforEXPERIMENTALchangesinblockSchema: z.ZodObject<{

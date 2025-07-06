@@ -19,13 +19,7 @@ export declare const BandwidthRequestBitmapSchema: z.ZodObject<{
 }, {
     data: number[];
 }>;
-export declare const BandwidthRequestsSchema: z.ZodObject<{
-    v1: z.ZodOptional<z.ZodUnknown>;
-}, "strip", z.ZodTypeAny, {
-    v1?: unknown;
-}, {
-    v1?: unknown;
-}>;
+export declare const BandwidthRequestsSchema: z.ZodUnknown;
 export declare const BandwidthRequestsV1Schema: z.ZodObject<{
     requests: z.ZodArray<z.ZodUnknown, "many">;
 }, "strip", z.ZodTypeAny, {
@@ -43,45 +37,7 @@ export declare const CallResultSchema: z.ZodObject<{
     logs: string[];
     result: number[];
 }>;
-export declare const CompilationErrorSchema: z.ZodUnion<[z.ZodObject<{
-    codeDoesNotExist: z.ZodOptional<z.ZodObject<{
-        accountid: z.ZodOptional<z.ZodUnknown>;
-    }, "strip", z.ZodTypeAny, {
-        accountid?: unknown;
-    }, {
-        accountid?: unknown;
-    }>>;
-}, "strip", z.ZodTypeAny, {
-    codeDoesNotExist?: {
-        accountid?: unknown;
-    } | undefined;
-}, {
-    codeDoesNotExist?: {
-        accountid?: unknown;
-    } | undefined;
-}>, z.ZodObject<{
-    prepareError: z.ZodOptional<z.ZodUnknown>;
-}, "strip", z.ZodTypeAny, {
-    prepareError?: unknown;
-}, {
-    prepareError?: unknown;
-}>, z.ZodObject<{
-    wasmerCompileError: z.ZodOptional<z.ZodObject<{
-        msg: z.ZodString;
-    }, "strip", z.ZodTypeAny, {
-        msg: string;
-    }, {
-        msg: string;
-    }>>;
-}, "strip", z.ZodTypeAny, {
-    wasmerCompileError?: {
-        msg: string;
-    } | undefined;
-}, {
-    wasmerCompileError?: {
-        msg: string;
-    } | undefined;
-}>]>;
+export declare const CompilationErrorSchema: z.ZodUnknown;
 export declare const CongestionControlConfigViewSchema: z.ZodObject<{
     allowedshardoutgoinggas: z.ZodOptional<z.ZodNumber>;
     maxcongestionincominggas: z.ZodOptional<z.ZodNumber>;
@@ -144,12 +100,12 @@ export declare const CostGasUsedSchema: z.ZodObject<{
     gasused: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     cost: string;
-    costcategory?: string | undefined;
     gasused?: string | undefined;
+    costcategory?: string | undefined;
 }, {
     cost: string;
-    costcategory?: string | undefined;
     gasused?: string | undefined;
+    costcategory?: string | undefined;
 }>;
 export declare const CryptoHashSchema: z.ZodString;
 export declare const DataReceiverViewSchema: z.ZodObject<{
@@ -248,13 +204,13 @@ export declare const ExecutionOutcomeWithIdViewSchema: z.ZodObject<{
     proof: z.ZodArray<z.ZodUnknown, "many">;
 }, "strip", z.ZodTypeAny, {
     proof: unknown[];
-    blockhash?: unknown;
     id?: unknown;
+    blockhash?: unknown;
     outcome?: unknown;
 }, {
     proof: unknown[];
-    blockhash?: unknown;
     id?: unknown;
+    blockhash?: unknown;
     outcome?: unknown;
 }>;
 export declare const ExtCostsConfigViewSchema: z.ZodObject<{
@@ -538,60 +494,7 @@ export declare const ExternalStorageConfigSchema: z.ZodObject<{
     numconcurrentrequests?: number | undefined;
     numconcurrentrequestsduringcatchup?: number | undefined;
 }>;
-export declare const ExternalStorageLocationSchema: z.ZodUnion<[z.ZodObject<{
-    s3: z.ZodOptional<z.ZodObject<{
-        bucket: z.ZodString;
-        region: z.ZodString;
-    }, "strip", z.ZodTypeAny, {
-        bucket: string;
-        region: string;
-    }, {
-        bucket: string;
-        region: string;
-    }>>;
-}, "strip", z.ZodTypeAny, {
-    s3?: {
-        bucket: string;
-        region: string;
-    } | undefined;
-}, {
-    s3?: {
-        bucket: string;
-        region: string;
-    } | undefined;
-}>, z.ZodObject<{
-    filesystem: z.ZodOptional<z.ZodObject<{
-        rootdir: z.ZodOptional<z.ZodString>;
-    }, "strip", z.ZodTypeAny, {
-        rootdir?: string | undefined;
-    }, {
-        rootdir?: string | undefined;
-    }>>;
-}, "strip", z.ZodTypeAny, {
-    filesystem?: {
-        rootdir?: string | undefined;
-    } | undefined;
-}, {
-    filesystem?: {
-        rootdir?: string | undefined;
-    } | undefined;
-}>, z.ZodObject<{
-    gCS: z.ZodOptional<z.ZodObject<{
-        bucket: z.ZodString;
-    }, "strip", z.ZodTypeAny, {
-        bucket: string;
-    }, {
-        bucket: string;
-    }>>;
-}, "strip", z.ZodTypeAny, {
-    gCS?: {
-        bucket: string;
-    } | undefined;
-}, {
-    gCS?: {
-        bucket: string;
-    } | undefined;
-}>]>;
+export declare const ExternalStorageLocationSchema: z.ZodUnknown;
 export declare const FeeSchema: z.ZodObject<{
     execution: z.ZodNumber;
     sendnotsir: z.ZodOptional<z.ZodNumber>;
@@ -622,53 +525,7 @@ export declare const FinalExecutionOutcomeViewSchema: z.ZodObject<{
     transactionoutcome?: unknown;
 }>;
 export declare const FinalitySchema: z.ZodEnum<["optimistic", "near-final", "final"]>;
-export declare const FunctionCallErrorSchema: z.ZodUnion<[z.ZodEnum<["WasmUnknownError", "_EVMError"]>, z.ZodObject<{
-    compilationError: z.ZodOptional<z.ZodUnknown>;
-}, "strip", z.ZodTypeAny, {
-    compilationError?: unknown;
-}, {
-    compilationError?: unknown;
-}>, z.ZodObject<{
-    linkError: z.ZodOptional<z.ZodObject<{
-        msg: z.ZodString;
-    }, "strip", z.ZodTypeAny, {
-        msg: string;
-    }, {
-        msg: string;
-    }>>;
-}, "strip", z.ZodTypeAny, {
-    linkError?: {
-        msg: string;
-    } | undefined;
-}, {
-    linkError?: {
-        msg: string;
-    } | undefined;
-}>, z.ZodObject<{
-    methodResolveError: z.ZodOptional<z.ZodUnknown>;
-}, "strip", z.ZodTypeAny, {
-    methodResolveError?: unknown;
-}, {
-    methodResolveError?: unknown;
-}>, z.ZodObject<{
-    wasmTrap: z.ZodOptional<z.ZodUnknown>;
-}, "strip", z.ZodTypeAny, {
-    wasmTrap?: unknown;
-}, {
-    wasmTrap?: unknown;
-}>, z.ZodObject<{
-    hostError: z.ZodOptional<z.ZodUnknown>;
-}, "strip", z.ZodTypeAny, {
-    hostError?: unknown;
-}, {
-    hostError?: unknown;
-}>, z.ZodObject<{
-    executionError: z.ZodOptional<z.ZodString>;
-}, "strip", z.ZodTypeAny, {
-    executionError?: string | undefined;
-}, {
-    executionError?: string | undefined;
-}>]>;
+export declare const FunctionCallErrorSchema: z.ZodUnknown;
 export declare const FunctionCallPermissionSchema: z.ZodObject<{
     allowance: z.ZodOptional<z.ZodString>;
     methodnames: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
@@ -698,362 +555,7 @@ export declare const GCConfigSchema: z.ZodObject<{
     gcnumepochstokeep?: number | undefined;
     gcstepperiod?: unknown;
 }>;
-export declare const HostErrorSchema: z.ZodUnion<[z.ZodEnum<["BadUTF16"]>, z.ZodEnum<["BadUTF8"]>, z.ZodEnum<["GasExceeded"]>, z.ZodEnum<["GasLimitExceeded"]>, z.ZodEnum<["BalanceExceeded"]>, z.ZodEnum<["EmptyMethodName"]>, z.ZodObject<{
-    guestPanic: z.ZodOptional<z.ZodObject<{
-        panicmsg: z.ZodOptional<z.ZodString>;
-    }, "strip", z.ZodTypeAny, {
-        panicmsg?: string | undefined;
-    }, {
-        panicmsg?: string | undefined;
-    }>>;
-}, "strip", z.ZodTypeAny, {
-    guestPanic?: {
-        panicmsg?: string | undefined;
-    } | undefined;
-}, {
-    guestPanic?: {
-        panicmsg?: string | undefined;
-    } | undefined;
-}>, z.ZodEnum<["IntegerOverflow"]>, z.ZodObject<{
-    invalidPromiseIndex: z.ZodOptional<z.ZodObject<{
-        promiseidx: z.ZodOptional<z.ZodNumber>;
-    }, "strip", z.ZodTypeAny, {
-        promiseidx?: number | undefined;
-    }, {
-        promiseidx?: number | undefined;
-    }>>;
-}, "strip", z.ZodTypeAny, {
-    invalidPromiseIndex?: {
-        promiseidx?: number | undefined;
-    } | undefined;
-}, {
-    invalidPromiseIndex?: {
-        promiseidx?: number | undefined;
-    } | undefined;
-}>, z.ZodEnum<["CannotAppendActionToJointPromise"]>, z.ZodEnum<["CannotReturnJointPromise"]>, z.ZodObject<{
-    invalidPromiseResultIndex: z.ZodOptional<z.ZodObject<{
-        resultidx: z.ZodOptional<z.ZodNumber>;
-    }, "strip", z.ZodTypeAny, {
-        resultidx?: number | undefined;
-    }, {
-        resultidx?: number | undefined;
-    }>>;
-}, "strip", z.ZodTypeAny, {
-    invalidPromiseResultIndex?: {
-        resultidx?: number | undefined;
-    } | undefined;
-}, {
-    invalidPromiseResultIndex?: {
-        resultidx?: number | undefined;
-    } | undefined;
-}>, z.ZodObject<{
-    invalidRegisterId: z.ZodOptional<z.ZodObject<{
-        registerid: z.ZodOptional<z.ZodNumber>;
-    }, "strip", z.ZodTypeAny, {
-        registerid?: number | undefined;
-    }, {
-        registerid?: number | undefined;
-    }>>;
-}, "strip", z.ZodTypeAny, {
-    invalidRegisterId?: {
-        registerid?: number | undefined;
-    } | undefined;
-}, {
-    invalidRegisterId?: {
-        registerid?: number | undefined;
-    } | undefined;
-}>, z.ZodObject<{
-    iteratorWasInvalidated: z.ZodOptional<z.ZodObject<{
-        iteratorindex: z.ZodOptional<z.ZodNumber>;
-    }, "strip", z.ZodTypeAny, {
-        iteratorindex?: number | undefined;
-    }, {
-        iteratorindex?: number | undefined;
-    }>>;
-}, "strip", z.ZodTypeAny, {
-    iteratorWasInvalidated?: {
-        iteratorindex?: number | undefined;
-    } | undefined;
-}, {
-    iteratorWasInvalidated?: {
-        iteratorindex?: number | undefined;
-    } | undefined;
-}>, z.ZodEnum<["MemoryAccessViolation"]>, z.ZodObject<{
-    invalidReceiptIndex: z.ZodOptional<z.ZodObject<{
-        receiptindex: z.ZodOptional<z.ZodNumber>;
-    }, "strip", z.ZodTypeAny, {
-        receiptindex?: number | undefined;
-    }, {
-        receiptindex?: number | undefined;
-    }>>;
-}, "strip", z.ZodTypeAny, {
-    invalidReceiptIndex?: {
-        receiptindex?: number | undefined;
-    } | undefined;
-}, {
-    invalidReceiptIndex?: {
-        receiptindex?: number | undefined;
-    } | undefined;
-}>, z.ZodObject<{
-    invalidIteratorIndex: z.ZodOptional<z.ZodObject<{
-        iteratorindex: z.ZodOptional<z.ZodNumber>;
-    }, "strip", z.ZodTypeAny, {
-        iteratorindex?: number | undefined;
-    }, {
-        iteratorindex?: number | undefined;
-    }>>;
-}, "strip", z.ZodTypeAny, {
-    invalidIteratorIndex?: {
-        iteratorindex?: number | undefined;
-    } | undefined;
-}, {
-    invalidIteratorIndex?: {
-        iteratorindex?: number | undefined;
-    } | undefined;
-}>, z.ZodEnum<["InvalidAccountId"]>, z.ZodEnum<["InvalidMethodName"]>, z.ZodEnum<["InvalidPublicKey"]>, z.ZodObject<{
-    prohibitedInView: z.ZodOptional<z.ZodObject<{
-        methodname: z.ZodOptional<z.ZodString>;
-    }, "strip", z.ZodTypeAny, {
-        methodname?: string | undefined;
-    }, {
-        methodname?: string | undefined;
-    }>>;
-}, "strip", z.ZodTypeAny, {
-    prohibitedInView?: {
-        methodname?: string | undefined;
-    } | undefined;
-}, {
-    prohibitedInView?: {
-        methodname?: string | undefined;
-    } | undefined;
-}>, z.ZodObject<{
-    numberOfLogsExceeded: z.ZodOptional<z.ZodObject<{
-        limit: z.ZodNumber;
-    }, "strip", z.ZodTypeAny, {
-        limit: number;
-    }, {
-        limit: number;
-    }>>;
-}, "strip", z.ZodTypeAny, {
-    numberOfLogsExceeded?: {
-        limit: number;
-    } | undefined;
-}, {
-    numberOfLogsExceeded?: {
-        limit: number;
-    } | undefined;
-}>, z.ZodObject<{
-    keyLengthExceeded: z.ZodOptional<z.ZodObject<{
-        length: z.ZodNumber;
-        limit: z.ZodNumber;
-    }, "strip", z.ZodTypeAny, {
-        length: number;
-        limit: number;
-    }, {
-        length: number;
-        limit: number;
-    }>>;
-}, "strip", z.ZodTypeAny, {
-    keyLengthExceeded?: {
-        length: number;
-        limit: number;
-    } | undefined;
-}, {
-    keyLengthExceeded?: {
-        length: number;
-        limit: number;
-    } | undefined;
-}>, z.ZodObject<{
-    valueLengthExceeded: z.ZodOptional<z.ZodObject<{
-        length: z.ZodNumber;
-        limit: z.ZodNumber;
-    }, "strip", z.ZodTypeAny, {
-        length: number;
-        limit: number;
-    }, {
-        length: number;
-        limit: number;
-    }>>;
-}, "strip", z.ZodTypeAny, {
-    valueLengthExceeded?: {
-        length: number;
-        limit: number;
-    } | undefined;
-}, {
-    valueLengthExceeded?: {
-        length: number;
-        limit: number;
-    } | undefined;
-}>, z.ZodObject<{
-    totalLogLengthExceeded: z.ZodOptional<z.ZodObject<{
-        length: z.ZodNumber;
-        limit: z.ZodNumber;
-    }, "strip", z.ZodTypeAny, {
-        length: number;
-        limit: number;
-    }, {
-        length: number;
-        limit: number;
-    }>>;
-}, "strip", z.ZodTypeAny, {
-    totalLogLengthExceeded?: {
-        length: number;
-        limit: number;
-    } | undefined;
-}, {
-    totalLogLengthExceeded?: {
-        length: number;
-        limit: number;
-    } | undefined;
-}>, z.ZodObject<{
-    numberPromisesExceeded: z.ZodOptional<z.ZodObject<{
-        limit: z.ZodNumber;
-        numberofpromises: z.ZodOptional<z.ZodNumber>;
-    }, "strip", z.ZodTypeAny, {
-        limit: number;
-        numberofpromises?: number | undefined;
-    }, {
-        limit: number;
-        numberofpromises?: number | undefined;
-    }>>;
-}, "strip", z.ZodTypeAny, {
-    numberPromisesExceeded?: {
-        limit: number;
-        numberofpromises?: number | undefined;
-    } | undefined;
-}, {
-    numberPromisesExceeded?: {
-        limit: number;
-        numberofpromises?: number | undefined;
-    } | undefined;
-}>, z.ZodObject<{
-    numberInputDataDependenciesExceeded: z.ZodOptional<z.ZodObject<{
-        limit: z.ZodNumber;
-        numberofinputdatadependencies: z.ZodOptional<z.ZodNumber>;
-    }, "strip", z.ZodTypeAny, {
-        limit: number;
-        numberofinputdatadependencies?: number | undefined;
-    }, {
-        limit: number;
-        numberofinputdatadependencies?: number | undefined;
-    }>>;
-}, "strip", z.ZodTypeAny, {
-    numberInputDataDependenciesExceeded?: {
-        limit: number;
-        numberofinputdatadependencies?: number | undefined;
-    } | undefined;
-}, {
-    numberInputDataDependenciesExceeded?: {
-        limit: number;
-        numberofinputdatadependencies?: number | undefined;
-    } | undefined;
-}>, z.ZodObject<{
-    returnedValueLengthExceeded: z.ZodOptional<z.ZodObject<{
-        length: z.ZodNumber;
-        limit: z.ZodNumber;
-    }, "strip", z.ZodTypeAny, {
-        length: number;
-        limit: number;
-    }, {
-        length: number;
-        limit: number;
-    }>>;
-}, "strip", z.ZodTypeAny, {
-    returnedValueLengthExceeded?: {
-        length: number;
-        limit: number;
-    } | undefined;
-}, {
-    returnedValueLengthExceeded?: {
-        length: number;
-        limit: number;
-    } | undefined;
-}>, z.ZodObject<{
-    contractSizeExceeded: z.ZodOptional<z.ZodObject<{
-        limit: z.ZodNumber;
-        size: z.ZodNumber;
-    }, "strip", z.ZodTypeAny, {
-        limit: number;
-        size: number;
-    }, {
-        limit: number;
-        size: number;
-    }>>;
-}, "strip", z.ZodTypeAny, {
-    contractSizeExceeded?: {
-        limit: number;
-        size: number;
-    } | undefined;
-}, {
-    contractSizeExceeded?: {
-        limit: number;
-        size: number;
-    } | undefined;
-}>, z.ZodObject<{
-    deprecated: z.ZodOptional<z.ZodObject<{
-        methodname: z.ZodOptional<z.ZodString>;
-    }, "strip", z.ZodTypeAny, {
-        methodname?: string | undefined;
-    }, {
-        methodname?: string | undefined;
-    }>>;
-}, "strip", z.ZodTypeAny, {
-    deprecated?: {
-        methodname?: string | undefined;
-    } | undefined;
-}, {
-    deprecated?: {
-        methodname?: string | undefined;
-    } | undefined;
-}>, z.ZodObject<{
-    eCRecoverError: z.ZodOptional<z.ZodObject<{
-        msg: z.ZodString;
-    }, "strip", z.ZodTypeAny, {
-        msg: string;
-    }, {
-        msg: string;
-    }>>;
-}, "strip", z.ZodTypeAny, {
-    eCRecoverError?: {
-        msg: string;
-    } | undefined;
-}, {
-    eCRecoverError?: {
-        msg: string;
-    } | undefined;
-}>, z.ZodObject<{
-    altBn128InvalidInput: z.ZodOptional<z.ZodObject<{
-        msg: z.ZodString;
-    }, "strip", z.ZodTypeAny, {
-        msg: string;
-    }, {
-        msg: string;
-    }>>;
-}, "strip", z.ZodTypeAny, {
-    altBn128InvalidInput?: {
-        msg: string;
-    } | undefined;
-}, {
-    altBn128InvalidInput?: {
-        msg: string;
-    } | undefined;
-}>, z.ZodObject<{
-    ed25519VerifyInvalidInput: z.ZodOptional<z.ZodObject<{
-        msg: z.ZodString;
-    }, "strip", z.ZodTypeAny, {
-        msg: string;
-    }, {
-        msg: string;
-    }>>;
-}, "strip", z.ZodTypeAny, {
-    ed25519VerifyInvalidInput?: {
-        msg: string;
-    } | undefined;
-}, {
-    ed25519VerifyInvalidInput?: {
-        msg: string;
-    } | undefined;
-}>]>;
+export declare const HostErrorSchema: z.ZodUnknown;
 export declare const JsonRpcRequestforEXPERIMENTALchangesSchema: z.ZodObject<{
     id: z.ZodString;
     jsonrpc: z.ZodString;
@@ -1325,13 +827,13 @@ export declare const KnownProducerViewSchema: z.ZodObject<{
     nexthops: z.ZodOptional<z.ZodArray<z.ZodUnknown, "many">>;
     peerid: z.ZodOptional<z.ZodUnknown>;
 }, "strip", z.ZodTypeAny, {
+    peerid?: unknown;
     accountid?: unknown;
     nexthops?: unknown[] | undefined;
-    peerid?: unknown;
 }, {
+    peerid?: unknown;
     accountid?: unknown;
     nexthops?: unknown[] | undefined;
-    peerid?: unknown;
 }>;
 export declare const LimitConfigSchema: z.ZodObject<{
     accountidvalidityrulesversion: z.ZodOptional<z.ZodUnknown>;
@@ -1426,11 +928,11 @@ export declare const MerklePathItemSchema: z.ZodObject<{
     direction: z.ZodUnknown;
     hash: z.ZodUnknown;
 }, "strip", z.ZodTypeAny, {
-    direction?: unknown;
     hash?: unknown;
+    direction?: unknown;
 }, {
-    direction?: unknown;
     hash?: unknown;
+    direction?: unknown;
 }>;
 export declare const MethodResolveErrorSchema: z.ZodEnum<["MethodEmptyName", "MethodNotFound", "MethodInvalidSignature"]>;
 export declare const MissingTrieValueSchema: z.ZodObject<{
@@ -1443,7 +945,7 @@ export declare const MissingTrieValueSchema: z.ZodObject<{
     hash?: unknown;
     context?: unknown;
 }>;
-export declare const MissingTrieValueContextSchema: z.ZodUnion<[z.ZodEnum<["TrieIterator"]>, z.ZodEnum<["TriePrefetchingStorage"]>, z.ZodEnum<["TrieMemoryPartialStorage"]>, z.ZodEnum<["TrieStorage"]>]>;
+export declare const MissingTrieValueContextSchema: z.ZodUnknown;
 export declare const MutableConfigValueSchema: z.ZodString;
 export declare const PeerIdSchema: z.ZodUnknown;
 export declare const PeerInfoViewSchema: z.ZodObject<{
@@ -1463,14 +965,14 @@ export declare const PeerInfoViewSchema: z.ZodObject<{
     sentbytespersec: z.ZodOptional<z.ZodNumber>;
     trackedshards: z.ZodOptional<z.ZodArray<z.ZodUnknown, "many">>;
 }, "strip", z.ZodTypeAny, {
+    nonce: number;
     addr: string;
     archival: boolean;
-    nonce: number;
-    accountid?: unknown;
-    blockhash?: unknown;
     peerid?: unknown;
-    connectionestablishedtimemillis?: number | undefined;
+    accountid?: unknown;
     height?: number | undefined;
+    blockhash?: unknown;
+    connectionestablishedtimemillis?: number | undefined;
     ishighestblockinvalid?: boolean | undefined;
     isoutboundpeer?: boolean | undefined;
     lasttimepeerrequestedmillis?: number | undefined;
@@ -1479,14 +981,14 @@ export declare const PeerInfoViewSchema: z.ZodObject<{
     sentbytespersec?: number | undefined;
     trackedshards?: unknown[] | undefined;
 }, {
+    nonce: number;
     addr: string;
     archival: boolean;
-    nonce: number;
-    accountid?: unknown;
-    blockhash?: unknown;
     peerid?: unknown;
-    connectionestablishedtimemillis?: number | undefined;
+    accountid?: unknown;
     height?: number | undefined;
+    blockhash?: unknown;
+    connectionestablishedtimemillis?: number | undefined;
     ishighestblockinvalid?: boolean | undefined;
     isoutboundpeer?: boolean | undefined;
     lasttimepeerrequestedmillis?: number | undefined;
@@ -1495,7 +997,7 @@ export declare const PeerInfoViewSchema: z.ZodObject<{
     sentbytespersec?: number | undefined;
     trackedshards?: unknown[] | undefined;
 }>;
-export declare const PrepareErrorSchema: z.ZodUnion<[z.ZodEnum<["Serialization"]>, z.ZodEnum<["Deserialization"]>, z.ZodEnum<["InternalMemoryDeclared"]>, z.ZodEnum<["GasInstrumentation"]>, z.ZodEnum<["StackHeightInstrumentation"]>, z.ZodEnum<["Instantiate"]>, z.ZodEnum<["Memory"]>, z.ZodEnum<["TooManyFunctions"]>, z.ZodEnum<["TooManyLocals"]>]>;
+export declare const PrepareErrorSchema: z.ZodUnknown;
 export declare const Rangeofuint64Schema: z.ZodObject<{
     end: z.ZodNumber;
     start: z.ZodNumber;
@@ -1705,14 +1207,14 @@ export declare const RpcErrorSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     code: number;
     message: string;
-    data?: unknown;
     cause?: unknown;
+    data?: unknown;
     name?: unknown;
 }, {
     code: number;
     message: string;
-    data?: unknown;
     cause?: unknown;
+    data?: unknown;
     name?: unknown;
 }>;
 export declare const RpcGasPriceRequestSchema: z.ZodObject<{
@@ -1736,12 +1238,12 @@ export declare const RpcKnownProducerSchema: z.ZodObject<{
     addr: z.ZodOptional<z.ZodString>;
     peerid: z.ZodOptional<z.ZodUnknown>;
 }, "strip", z.ZodTypeAny, {
-    accountid?: unknown;
     peerid?: unknown;
+    accountid?: unknown;
     addr?: string | undefined;
 }, {
-    accountid?: unknown;
     peerid?: unknown;
+    accountid?: unknown;
     addr?: string | undefined;
 }>;
 export declare const RpcLightClientExecutionProofRequestSchema: z.ZodObject<{
@@ -1798,45 +1300,7 @@ export declare const RpcQueryResponseSchema: z.ZodObject<{
     blockhash?: unknown;
     blockheight?: number | undefined;
 }>;
-export declare const RpcRequestValidationErrorKindSchema: z.ZodUnion<[z.ZodObject<{
-    info: z.ZodObject<{
-        methodname: z.ZodOptional<z.ZodString>;
-    }, "strip", z.ZodTypeAny, {
-        methodname?: string | undefined;
-    }, {
-        methodname?: string | undefined;
-    }>;
-    name: z.ZodEnum<["METHOD_NOT_FOUND"]>;
-}, "strip", z.ZodTypeAny, {
-    name: "METHOD_NOT_FOUND";
-    info: {
-        methodname?: string | undefined;
-    };
-}, {
-    name: "METHOD_NOT_FOUND";
-    info: {
-        methodname?: string | undefined;
-    };
-}>, z.ZodObject<{
-    info: z.ZodObject<{
-        errormessage: z.ZodOptional<z.ZodString>;
-    }, "strip", z.ZodTypeAny, {
-        errormessage?: string | undefined;
-    }, {
-        errormessage?: string | undefined;
-    }>;
-    name: z.ZodEnum<["PARSE_ERROR"]>;
-}, "strip", z.ZodTypeAny, {
-    name: "PARSE_ERROR";
-    info: {
-        errormessage?: string | undefined;
-    };
-}, {
-    name: "PARSE_ERROR";
-    info: {
-        errormessage?: string | undefined;
-    };
-}>]>;
+export declare const RpcRequestValidationErrorKindSchema: z.ZodUnknown;
 export declare const RpcSplitStorageInfoRequestSchema: z.ZodRecord<z.ZodString, z.ZodUnknown>;
 export declare const RpcSplitStorageInfoResponseSchema: z.ZodObject<{
     coldheadheight: z.ZodOptional<z.ZodNumber>;
@@ -1899,25 +1363,7 @@ export declare const RuntimeFeesConfigViewSchema: z.ZodObject<{
     storageusageconfig?: unknown;
 }>;
 export declare const ShardIdSchema: z.ZodNumber;
-export declare const ShardLayoutSchema: z.ZodUnion<[z.ZodObject<{
-    v0: z.ZodOptional<z.ZodUnknown>;
-}, "strip", z.ZodTypeAny, {
-    v0?: unknown;
-}, {
-    v0?: unknown;
-}>, z.ZodObject<{
-    v1: z.ZodOptional<z.ZodUnknown>;
-}, "strip", z.ZodTypeAny, {
-    v1?: unknown;
-}, {
-    v1?: unknown;
-}>, z.ZodObject<{
-    v2: z.ZodOptional<z.ZodUnknown>;
-}, "strip", z.ZodTypeAny, {
-    v2?: unknown;
-}, {
-    v2?: unknown;
-}>]>;
+export declare const ShardLayoutSchema: z.ZodUnknown;
 export declare const ShardLayoutV0Schema: z.ZodObject<{
     numshards: z.ZodOptional<z.ZodNumber>;
     version: z.ZodNumber;
@@ -1980,31 +1426,7 @@ export declare const ShardUIdSchema: z.ZodObject<{
     shardid?: number | undefined;
 }>;
 export declare const SignatureSchema: z.ZodString;
-export declare const StorageErrorSchema: z.ZodUnion<[z.ZodEnum<["StorageInternalError"]>, z.ZodObject<{
-    missingTrieValue: z.ZodOptional<z.ZodUnknown>;
-}, "strip", z.ZodTypeAny, {
-    missingTrieValue?: unknown;
-}, {
-    missingTrieValue?: unknown;
-}>, z.ZodEnum<["UnexpectedTrieValue"]>, z.ZodObject<{
-    storageInconsistentState: z.ZodOptional<z.ZodString>;
-}, "strip", z.ZodTypeAny, {
-    storageInconsistentState?: string | undefined;
-}, {
-    storageInconsistentState?: string | undefined;
-}>, z.ZodObject<{
-    flatStorageBlockNotSupported: z.ZodOptional<z.ZodString>;
-}, "strip", z.ZodTypeAny, {
-    flatStorageBlockNotSupported?: string | undefined;
-}, {
-    flatStorageBlockNotSupported?: string | undefined;
-}>, z.ZodObject<{
-    memTrieLoadingError: z.ZodOptional<z.ZodString>;
-}, "strip", z.ZodTypeAny, {
-    memTrieLoadingError?: string | undefined;
-}, {
-    memTrieLoadingError?: string | undefined;
-}>]>;
+export declare const StorageErrorSchema: z.ZodUnknown;
 export declare const StorageGetModeSchema: z.ZodEnum<["FlatStorage", "Trie"]>;
 export declare const StorageUsageConfigViewSchema: z.ZodObject<{
     numbytesaccount: z.ZodOptional<z.ZodNumber>;
@@ -2017,13 +1439,7 @@ export declare const StorageUsageConfigViewSchema: z.ZodObject<{
     numextrabytesrecord?: number | undefined;
 }>;
 export declare const SyncCheckpointSchema: z.ZodEnum<["genesis", "earliest_available"]>;
-export declare const SyncConfigSchema: z.ZodUnion<[z.ZodEnum<["Peers"]>, z.ZodObject<{
-    externalStorage: z.ZodOptional<z.ZodUnknown>;
-}, "strip", z.ZodTypeAny, {
-    externalStorage?: unknown;
-}, {
-    externalStorage?: unknown;
-}>]>;
+export declare const SyncConfigSchema: z.ZodUnknown;
 export declare const Tier1ProxyViewSchema: z.ZodObject<{
     addr: z.ZodString;
     peerid: z.ZodOptional<z.ZodUnknown>;
@@ -2034,31 +1450,7 @@ export declare const Tier1ProxyViewSchema: z.ZodObject<{
     addr: string;
     peerid?: unknown;
 }>;
-export declare const TrackedShardsConfigSchema: z.ZodUnion<[z.ZodEnum<["NoShards"]>, z.ZodObject<{
-    shards: z.ZodOptional<z.ZodArray<z.ZodUnknown, "many">>;
-}, "strip", z.ZodTypeAny, {
-    shards?: unknown[] | undefined;
-}, {
-    shards?: unknown[] | undefined;
-}>, z.ZodEnum<["AllShards"]>, z.ZodObject<{
-    shadowValidator: z.ZodOptional<z.ZodUnknown>;
-}, "strip", z.ZodTypeAny, {
-    shadowValidator?: unknown;
-}, {
-    shadowValidator?: unknown;
-}>, z.ZodObject<{
-    schedule: z.ZodOptional<z.ZodArray<z.ZodArray<z.ZodUnknown, "many">, "many">>;
-}, "strip", z.ZodTypeAny, {
-    schedule?: unknown[][] | undefined;
-}, {
-    schedule?: unknown[][] | undefined;
-}>, z.ZodObject<{
-    accounts: z.ZodOptional<z.ZodArray<z.ZodUnknown, "many">>;
-}, "strip", z.ZodTypeAny, {
-    accounts?: unknown[] | undefined;
-}, {
-    accounts?: unknown[] | undefined;
-}>]>;
+export declare const TrackedShardsConfigSchema: z.ZodUnknown;
 export declare const VMConfigViewSchema: z.ZodObject<{
     discardcustomsections: z.ZodOptional<z.ZodBoolean>;
     ethimplicitaccounts: z.ZodOptional<z.ZodBoolean>;
@@ -2102,7 +1494,7 @@ export declare const VMConfigViewSchema: z.ZodObject<{
     storagegetmode?: unknown;
     vmkind?: unknown;
 }>;
-export declare const VMKindSchema: z.ZodUnion<[z.ZodEnum<["Wasmer0"]>, z.ZodEnum<["Wasmtime"]>, z.ZodEnum<["Wasmer2"]>, z.ZodEnum<["NearVm"]>, z.ZodEnum<["NearVm2"]>]>;
+export declare const VMKindSchema: z.ZodUnknown;
 export declare const VersionSchema: z.ZodObject<{
     build: z.ZodString;
     commit: z.ZodString;
@@ -2119,7 +1511,7 @@ export declare const VersionSchema: z.ZodObject<{
     commit: string;
     rustcversion?: string | undefined;
 }>;
-export declare const WasmTrapSchema: z.ZodUnion<[z.ZodEnum<["Unreachable"]>, z.ZodEnum<["IncorrectCallIndirectSignature"]>, z.ZodEnum<["MemoryOutOfBounds"]>, z.ZodEnum<["CallIndirectOOB"]>, z.ZodEnum<["IllegalArithmetic"]>, z.ZodEnum<["MisalignedAtomicAccess"]>, z.ZodEnum<["IndirectCallToNull"]>, z.ZodEnum<["StackOverflow"]>, z.ZodEnum<["GenericTrap"]>]>;
+export declare const WasmTrapSchema: z.ZodUnknown;
 export declare const WitnessConfigViewSchema: z.ZodObject<{
     combinedtransactionssizelimit: z.ZodOptional<z.ZodNumber>;
     mainstorageproofsizesoftlimit: z.ZodOptional<z.ZodNumber>;

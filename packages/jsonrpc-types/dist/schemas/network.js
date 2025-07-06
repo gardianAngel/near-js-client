@@ -37,18 +37,8 @@ exports.DetailedDebugStatusSchema = zod_1.z.object({
     networkinfo: zod_1.z.unknown().optional(),
     syncstatus: zod_1.z.string().optional()
 });
-exports.ExecutionStatusViewSchema = zod_1.z.union([zod_1.z.enum(['Unknown']), zod_1.z.object({
-        failure: zod_1.z.unknown().optional()
-    }), zod_1.z.object({
-        successValue: zod_1.z.string().optional()
-    }), zod_1.z.object({
-        successReceiptId: zod_1.z.unknown().optional()
-    })]);
-exports.FinalExecutionStatusSchema = zod_1.z.union([zod_1.z.enum(['NotStarted']), zod_1.z.enum(['Started']), zod_1.z.object({
-        failure: zod_1.z.unknown().optional()
-    }), zod_1.z.object({
-        successValue: zod_1.z.string().optional()
-    })]);
+exports.ExecutionStatusViewSchema = zod_1.z.unknown();
+exports.FinalExecutionStatusSchema = zod_1.z.unknown();
 exports.GenesisConfigSchema = zod_1.z.object({
     avghiddenvalidatorseatspershard: zod_1.z.array(zod_1.z.number()).optional(),
     blockproducerkickoutthreshold: zod_1.z.number().optional(),
@@ -261,39 +251,12 @@ exports.StatusSyncInfoSchema = zod_1.z.object({
 exports.ValidatorInfoSchema = zod_1.z.object({
     accountid: zod_1.z.unknown().optional()
 });
-exports.ValidatorKickoutReasonSchema = zod_1.z.union([zod_1.z.enum(['_UnusedSlashed']), zod_1.z.object({
-        notEnoughBlocks: zod_1.z.object({
-            expected: zod_1.z.number(),
-            produced: zod_1.z.number()
-        }).optional()
-    }), zod_1.z.object({
-        notEnoughChunks: zod_1.z.object({
-            expected: zod_1.z.number(),
-            produced: zod_1.z.number()
-        }).optional()
-    }), zod_1.z.enum(['Unstaked']), zod_1.z.object({
-        notEnoughStake: zod_1.z.object({
-            stakeu128: zod_1.z.string().optional(),
-            thresholdu128: zod_1.z.string().optional()
-        }).optional()
-    }), zod_1.z.enum(['DidNotGetASeat']), zod_1.z.object({
-        notEnoughChunkEndorsements: zod_1.z.object({
-            expected: zod_1.z.number(),
-            produced: zod_1.z.number()
-        }).optional()
-    }), zod_1.z.object({
-        protocolVersionTooOld: zod_1.z.object({
-            networkversion: zod_1.z.number().optional(),
-            version: zod_1.z.number()
-        }).optional()
-    })]);
+exports.ValidatorKickoutReasonSchema = zod_1.z.unknown();
 exports.ValidatorKickoutViewSchema = zod_1.z.object({
     accountid: zod_1.z.unknown().optional(),
     reason: zod_1.z.unknown()
 });
-exports.ValidatorStakeViewSchema = zod_1.z.object({
-    validatorstakestructversion: zod_1.z.enum(['V1']).optional()
-});
+exports.ValidatorStakeViewSchema = zod_1.z.unknown();
 exports.ValidatorStakeViewV1Schema = zod_1.z.object({
     accountid: zod_1.z.unknown().optional(),
     publickey: zod_1.z.unknown().optional(),

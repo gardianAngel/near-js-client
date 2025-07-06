@@ -13,9 +13,7 @@ export const BandwidthRequestBitmapSchema = z.object({
   data: z.array(z.number())
 });
 
-export const BandwidthRequestsSchema = z.object({
-  v1: z.unknown().optional()
-});
+export const BandwidthRequestsSchema = z.unknown();
 
 export const BandwidthRequestsV1Schema = z.object({
   requests: z.array(z.unknown())
@@ -26,17 +24,7 @@ export const CallResultSchema = z.object({
   result: z.array(z.number())
 });
 
-export const CompilationErrorSchema = z.union([z.object({
-  codeDoesNotExist: z.object({
-  accountid: z.unknown().optional()
-}).optional()
-}), z.object({
-  prepareError: z.unknown().optional()
-}), z.object({
-  wasmerCompileError: z.object({
-  msg: z.string()
-}).optional()
-})]);
+export const CompilationErrorSchema = z.unknown();
 
 export const CongestionControlConfigViewSchema = z.object({
   allowedshardoutgoinggas: z.number().optional(),
@@ -215,20 +203,7 @@ export const ExternalStorageConfigSchema = z.object({
   numconcurrentrequestsduringcatchup: z.number().optional()
 });
 
-export const ExternalStorageLocationSchema = z.union([z.object({
-  s3: z.object({
-  bucket: z.string(),
-  region: z.string()
-}).optional()
-}), z.object({
-  filesystem: z.object({
-  rootdir: z.string().optional()
-}).optional()
-}), z.object({
-  gCS: z.object({
-  bucket: z.string()
-}).optional()
-})]);
+export const ExternalStorageLocationSchema = z.unknown();
 
 export const FeeSchema = z.object({
   execution: z.number(),
@@ -245,21 +220,7 @@ export const FinalExecutionOutcomeViewSchema = z.object({
 
 export const FinalitySchema = z.enum(['optimistic', 'near-final', 'final']);
 
-export const FunctionCallErrorSchema = z.union([z.enum(['WasmUnknownError', '_EVMError']), z.object({
-  compilationError: z.unknown().optional()
-}), z.object({
-  linkError: z.object({
-  msg: z.string()
-}).optional()
-}), z.object({
-  methodResolveError: z.unknown().optional()
-}), z.object({
-  wasmTrap: z.unknown().optional()
-}), z.object({
-  hostError: z.unknown().optional()
-}), z.object({
-  executionError: z.string().optional()
-})]);
+export const FunctionCallErrorSchema = z.unknown();
 
 export const FunctionCallPermissionSchema = z.object({
   allowance: z.string().optional(),
@@ -274,94 +235,7 @@ export const GCConfigSchema = z.object({
   gcstepperiod: z.unknown().optional()
 });
 
-export const HostErrorSchema = z.union([z.enum(['BadUTF16']), z.enum(['BadUTF8']), z.enum(['GasExceeded']), z.enum(['GasLimitExceeded']), z.enum(['BalanceExceeded']), z.enum(['EmptyMethodName']), z.object({
-  guestPanic: z.object({
-  panicmsg: z.string().optional()
-}).optional()
-}), z.enum(['IntegerOverflow']), z.object({
-  invalidPromiseIndex: z.object({
-  promiseidx: z.number().optional()
-}).optional()
-}), z.enum(['CannotAppendActionToJointPromise']), z.enum(['CannotReturnJointPromise']), z.object({
-  invalidPromiseResultIndex: z.object({
-  resultidx: z.number().optional()
-}).optional()
-}), z.object({
-  invalidRegisterId: z.object({
-  registerid: z.number().optional()
-}).optional()
-}), z.object({
-  iteratorWasInvalidated: z.object({
-  iteratorindex: z.number().optional()
-}).optional()
-}), z.enum(['MemoryAccessViolation']), z.object({
-  invalidReceiptIndex: z.object({
-  receiptindex: z.number().optional()
-}).optional()
-}), z.object({
-  invalidIteratorIndex: z.object({
-  iteratorindex: z.number().optional()
-}).optional()
-}), z.enum(['InvalidAccountId']), z.enum(['InvalidMethodName']), z.enum(['InvalidPublicKey']), z.object({
-  prohibitedInView: z.object({
-  methodname: z.string().optional()
-}).optional()
-}), z.object({
-  numberOfLogsExceeded: z.object({
-  limit: z.number()
-}).optional()
-}), z.object({
-  keyLengthExceeded: z.object({
-  length: z.number(),
-  limit: z.number()
-}).optional()
-}), z.object({
-  valueLengthExceeded: z.object({
-  length: z.number(),
-  limit: z.number()
-}).optional()
-}), z.object({
-  totalLogLengthExceeded: z.object({
-  length: z.number(),
-  limit: z.number()
-}).optional()
-}), z.object({
-  numberPromisesExceeded: z.object({
-  limit: z.number(),
-  numberofpromises: z.number().optional()
-}).optional()
-}), z.object({
-  numberInputDataDependenciesExceeded: z.object({
-  limit: z.number(),
-  numberofinputdatadependencies: z.number().optional()
-}).optional()
-}), z.object({
-  returnedValueLengthExceeded: z.object({
-  length: z.number(),
-  limit: z.number()
-}).optional()
-}), z.object({
-  contractSizeExceeded: z.object({
-  limit: z.number(),
-  size: z.number()
-}).optional()
-}), z.object({
-  deprecated: z.object({
-  methodname: z.string().optional()
-}).optional()
-}), z.object({
-  eCRecoverError: z.object({
-  msg: z.string()
-}).optional()
-}), z.object({
-  altBn128InvalidInput: z.object({
-  msg: z.string()
-}).optional()
-}), z.object({
-  ed25519VerifyInvalidInput: z.object({
-  msg: z.string()
-}).optional()
-})]);
+export const HostErrorSchema = z.unknown();
 
 export const JsonRpcRequestforEXPERIMENTALchangesSchema = z.object({
   id: z.string(),
@@ -536,7 +410,7 @@ export const MissingTrieValueSchema = z.object({
   hash: z.unknown()
 });
 
-export const MissingTrieValueContextSchema = z.union([z.enum(['TrieIterator']), z.enum(['TriePrefetchingStorage']), z.enum(['TrieMemoryPartialStorage']), z.enum(['TrieStorage'])]);
+export const MissingTrieValueContextSchema = z.unknown();
 
 export const MutableConfigValueSchema = z.string();
 
@@ -560,7 +434,7 @@ export const PeerInfoViewSchema = z.object({
   trackedshards: z.array(z.unknown()).optional()
 });
 
-export const PrepareErrorSchema = z.union([z.enum(['Serialization']), z.enum(['Deserialization']), z.enum(['InternalMemoryDeclared']), z.enum(['GasInstrumentation']), z.enum(['StackHeightInstrumentation']), z.enum(['Instantiate']), z.enum(['Memory']), z.enum(['TooManyFunctions']), z.enum(['TooManyLocals'])]);
+export const PrepareErrorSchema = z.unknown();
 
 export const Rangeofuint64Schema = z.object({
   end: z.number(),
@@ -691,17 +565,7 @@ export const RpcQueryResponseSchema = z.object({
   blockheight: z.number().optional()
 });
 
-export const RpcRequestValidationErrorKindSchema = z.union([z.object({
-  info: z.object({
-  methodname: z.string().optional()
-}),
-  name: z.enum(['METHOD_NOT_FOUND'])
-}), z.object({
-  info: z.object({
-  errormessage: z.string().optional()
-}),
-  name: z.enum(['PARSE_ERROR'])
-})]);
+export const RpcRequestValidationErrorKindSchema = z.unknown();
 
 export const RpcSplitStorageInfoRequestSchema = z.record(z.unknown());
 
@@ -732,13 +596,7 @@ export const RuntimeFeesConfigViewSchema = z.object({
 
 export const ShardIdSchema = z.number();
 
-export const ShardLayoutSchema = z.union([z.object({
-  v0: z.unknown().optional()
-}), z.object({
-  v1: z.unknown().optional()
-}), z.object({
-  v2: z.unknown().optional()
-})]);
+export const ShardLayoutSchema = z.unknown();
 
 export const ShardLayoutV0Schema = z.object({
   numshards: z.number().optional(),
@@ -769,15 +627,7 @@ export const ShardUIdSchema = z.object({
 
 export const SignatureSchema = z.string();
 
-export const StorageErrorSchema = z.union([z.enum(['StorageInternalError']), z.object({
-  missingTrieValue: z.unknown().optional()
-}), z.enum(['UnexpectedTrieValue']), z.object({
-  storageInconsistentState: z.string().optional()
-}), z.object({
-  flatStorageBlockNotSupported: z.string().optional()
-}), z.object({
-  memTrieLoadingError: z.string().optional()
-})]);
+export const StorageErrorSchema = z.unknown();
 
 export const StorageGetModeSchema = z.enum(['FlatStorage', 'Trie']);
 
@@ -788,24 +638,14 @@ export const StorageUsageConfigViewSchema = z.object({
 
 export const SyncCheckpointSchema = z.enum(['genesis', 'earliest_available']);
 
-export const SyncConfigSchema = z.union([z.enum(['Peers']), z.object({
-  externalStorage: z.unknown().optional()
-})]);
+export const SyncConfigSchema = z.unknown();
 
 export const Tier1ProxyViewSchema = z.object({
   addr: z.string(),
   peerid: z.unknown().optional()
 });
 
-export const TrackedShardsConfigSchema = z.union([z.enum(['NoShards']), z.object({
-  shards: z.array(z.unknown()).optional()
-}), z.enum(['AllShards']), z.object({
-  shadowValidator: z.unknown().optional()
-}), z.object({
-  schedule: z.array(z.array(z.unknown())).optional()
-}), z.object({
-  accounts: z.array(z.unknown()).optional()
-})]);
+export const TrackedShardsConfigSchema = z.unknown();
 
 export const VMConfigViewSchema = z.object({
   discardcustomsections: z.boolean().optional(),
@@ -823,7 +663,7 @@ export const VMConfigViewSchema = z.object({
   vmkind: z.unknown().optional()
 });
 
-export const VMKindSchema = z.union([z.enum(['Wasmer0']), z.enum(['Wasmtime']), z.enum(['Wasmer2']), z.enum(['NearVm']), z.enum(['NearVm2'])]);
+export const VMKindSchema = z.unknown();
 
 export const VersionSchema = z.object({
   build: z.string(),
@@ -832,7 +672,7 @@ export const VersionSchema = z.object({
   version: z.string()
 });
 
-export const WasmTrapSchema = z.union([z.enum(['Unreachable']), z.enum(['IncorrectCallIndirectSignature']), z.enum(['MemoryOutOfBounds']), z.enum(['CallIndirectOOB']), z.enum(['IllegalArithmetic']), z.enum(['MisalignedAtomicAccess']), z.enum(['IndirectCallToNull']), z.enum(['StackOverflow']), z.enum(['GenericTrap'])]);
+export const WasmTrapSchema = z.unknown();
 
 export const WitnessConfigViewSchema = z.object({
   combinedtransactionssizelimit: z.number().optional(),

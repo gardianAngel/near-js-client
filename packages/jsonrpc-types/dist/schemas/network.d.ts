@@ -36,10 +36,10 @@ export declare const CurrentEpochValidatorInfoSchema: z.ZodObject<{
     shardsendorsed: z.ZodOptional<z.ZodArray<z.ZodUnknown, "many">>;
     stake: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    shards: unknown[];
     stake: string;
-    accountid?: unknown;
+    shards: unknown[];
     publickey?: unknown;
+    accountid?: unknown;
     isslashed?: boolean | undefined;
     numexpectedblocks?: number | undefined;
     numexpectedchunks?: number | undefined;
@@ -53,10 +53,10 @@ export declare const CurrentEpochValidatorInfoSchema: z.ZodObject<{
     numproducedendorsementspershard?: number[] | undefined;
     shardsendorsed?: unknown[] | undefined;
 }, {
-    shards: unknown[];
     stake: string;
-    accountid?: unknown;
+    shards: unknown[];
     publickey?: unknown;
+    accountid?: unknown;
     isslashed?: boolean | undefined;
     numexpectedblocks?: number | undefined;
     numexpectedchunks?: number | undefined;
@@ -92,38 +92,8 @@ export declare const DetailedDebugStatusSchema: z.ZodObject<{
     networkinfo?: unknown;
     syncstatus?: string | undefined;
 }>;
-export declare const ExecutionStatusViewSchema: z.ZodUnion<[z.ZodEnum<["Unknown"]>, z.ZodObject<{
-    failure: z.ZodOptional<z.ZodUnknown>;
-}, "strip", z.ZodTypeAny, {
-    failure?: unknown;
-}, {
-    failure?: unknown;
-}>, z.ZodObject<{
-    successValue: z.ZodOptional<z.ZodString>;
-}, "strip", z.ZodTypeAny, {
-    successValue?: string | undefined;
-}, {
-    successValue?: string | undefined;
-}>, z.ZodObject<{
-    successReceiptId: z.ZodOptional<z.ZodUnknown>;
-}, "strip", z.ZodTypeAny, {
-    successReceiptId?: unknown;
-}, {
-    successReceiptId?: unknown;
-}>]>;
-export declare const FinalExecutionStatusSchema: z.ZodUnion<[z.ZodEnum<["NotStarted"]>, z.ZodEnum<["Started"]>, z.ZodObject<{
-    failure: z.ZodOptional<z.ZodUnknown>;
-}, "strip", z.ZodTypeAny, {
-    failure?: unknown;
-}, {
-    failure?: unknown;
-}>, z.ZodObject<{
-    successValue: z.ZodOptional<z.ZodString>;
-}, "strip", z.ZodTypeAny, {
-    successValue?: string | undefined;
-}, {
-    successValue?: string | undefined;
-}>]>;
+export declare const ExecutionStatusViewSchema: z.ZodUnknown;
+export declare const FinalExecutionStatusSchema: z.ZodUnknown;
 export declare const GenesisConfigSchema: z.ZodObject<{
     avghiddenvalidatorseatspershard: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
     blockproducerkickoutthreshold: z.ZodOptional<z.ZodNumber>;
@@ -166,11 +136,11 @@ export declare const GenesisConfigSchema: z.ZodObject<{
     validators: z.ZodArray<z.ZodUnknown, "many">;
 }, "strip", z.ZodTypeAny, {
     validators: unknown[];
+    totalsupply?: string | undefined;
+    gaslimit?: number | undefined;
     chainid?: string | undefined;
     epochlength?: number | undefined;
     numblockproducerseats?: number | undefined;
-    totalsupply?: string | undefined;
-    gaslimit?: number | undefined;
     avghiddenvalidatorseatspershard?: number[] | undefined;
     blockproducerkickoutthreshold?: number | undefined;
     chunkproducerassignmentchangeslimit?: number | undefined;
@@ -206,11 +176,11 @@ export declare const GenesisConfigSchema: z.ZodObject<{
     useproductionconfig?: boolean | undefined;
 }, {
     validators: unknown[];
+    totalsupply?: string | undefined;
+    gaslimit?: number | undefined;
     chainid?: string | undefined;
     epochlength?: number | undefined;
     numblockproducerseats?: number | undefined;
-    totalsupply?: string | undefined;
-    gaslimit?: number | undefined;
     avghiddenvalidatorseatspershard?: number[] | undefined;
     blockproducerkickoutthreshold?: number | undefined;
     chunkproducerassignmentchangeslimit?: number | undefined;
@@ -433,15 +403,15 @@ export declare const NextEpochValidatorInfoSchema: z.ZodObject<{
     shards: z.ZodArray<z.ZodUnknown, "many">;
     stake: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    shards: unknown[];
     stake: string;
-    accountid?: unknown;
+    shards: unknown[];
     publickey?: unknown;
+    accountid?: unknown;
 }, {
-    shards: unknown[];
     stake: string;
-    accountid?: unknown;
+    shards: unknown[];
     publickey?: unknown;
+    accountid?: unknown;
 }>;
 export declare const RpcNetworkInfoRequestSchema: z.ZodRecord<z.ZodString, z.ZodUnknown>;
 export declare const RpcNetworkInfoResponseSchema: z.ZodObject<{
@@ -502,10 +472,10 @@ export declare const RpcProtocolConfigResponseSchema: z.ZodObject<{
     targetvalidatormandatespershard: z.ZodOptional<z.ZodNumber>;
     transactionvalidityperiod: z.ZodOptional<z.ZodNumber>;
 }, "strip", z.ZodTypeAny, {
+    gaslimit?: number | undefined;
     chainid?: string | undefined;
     epochlength?: number | undefined;
     numblockproducerseats?: number | undefined;
-    gaslimit?: number | undefined;
     avghiddenvalidatorseatspershard?: number[] | undefined;
     blockproducerkickoutthreshold?: number | undefined;
     chunkproducerkickoutthreshold?: number | undefined;
@@ -536,10 +506,10 @@ export declare const RpcProtocolConfigResponseSchema: z.ZodObject<{
     transactionvalidityperiod?: number | undefined;
     runtimeconfig?: unknown;
 }, {
+    gaslimit?: number | undefined;
     chainid?: string | undefined;
     epochlength?: number | undefined;
     numblockproducerseats?: number | undefined;
-    gaslimit?: number | undefined;
     avghiddenvalidatorseatspershard?: number[] | undefined;
     blockproducerkickoutthreshold?: number | undefined;
     chunkproducerkickoutthreshold?: number | undefined;
@@ -588,10 +558,10 @@ export declare const RpcStatusResponseSchema: z.ZodObject<{
     version: z.ZodUnknown;
 }, "strip", z.ZodTypeAny, {
     validators: unknown[];
+    latestprotocolversion?: number | undefined;
     version?: unknown;
     chainid?: string | undefined;
     rpcaddr?: string | undefined;
-    latestprotocolversion?: number | undefined;
     protocolversion?: number | undefined;
     detaileddebugstatus?: unknown;
     genesishash?: unknown;
@@ -603,10 +573,10 @@ export declare const RpcStatusResponseSchema: z.ZodObject<{
     validatorpublickey?: unknown;
 }, {
     validators: unknown[];
+    latestprotocolversion?: number | undefined;
     version?: unknown;
     chainid?: string | undefined;
     rpcaddr?: string | undefined;
-    latestprotocolversion?: number | undefined;
     protocolversion?: number | undefined;
     detaileddebugstatus?: unknown;
     genesishash?: unknown;
@@ -704,112 +674,7 @@ export declare const ValidatorInfoSchema: z.ZodObject<{
 }, {
     accountid?: unknown;
 }>;
-export declare const ValidatorKickoutReasonSchema: z.ZodUnion<[z.ZodEnum<["_UnusedSlashed"]>, z.ZodObject<{
-    notEnoughBlocks: z.ZodOptional<z.ZodObject<{
-        expected: z.ZodNumber;
-        produced: z.ZodNumber;
-    }, "strip", z.ZodTypeAny, {
-        expected: number;
-        produced: number;
-    }, {
-        expected: number;
-        produced: number;
-    }>>;
-}, "strip", z.ZodTypeAny, {
-    notEnoughBlocks?: {
-        expected: number;
-        produced: number;
-    } | undefined;
-}, {
-    notEnoughBlocks?: {
-        expected: number;
-        produced: number;
-    } | undefined;
-}>, z.ZodObject<{
-    notEnoughChunks: z.ZodOptional<z.ZodObject<{
-        expected: z.ZodNumber;
-        produced: z.ZodNumber;
-    }, "strip", z.ZodTypeAny, {
-        expected: number;
-        produced: number;
-    }, {
-        expected: number;
-        produced: number;
-    }>>;
-}, "strip", z.ZodTypeAny, {
-    notEnoughChunks?: {
-        expected: number;
-        produced: number;
-    } | undefined;
-}, {
-    notEnoughChunks?: {
-        expected: number;
-        produced: number;
-    } | undefined;
-}>, z.ZodEnum<["Unstaked"]>, z.ZodObject<{
-    notEnoughStake: z.ZodOptional<z.ZodObject<{
-        stakeu128: z.ZodOptional<z.ZodString>;
-        thresholdu128: z.ZodOptional<z.ZodString>;
-    }, "strip", z.ZodTypeAny, {
-        stakeu128?: string | undefined;
-        thresholdu128?: string | undefined;
-    }, {
-        stakeu128?: string | undefined;
-        thresholdu128?: string | undefined;
-    }>>;
-}, "strip", z.ZodTypeAny, {
-    notEnoughStake?: {
-        stakeu128?: string | undefined;
-        thresholdu128?: string | undefined;
-    } | undefined;
-}, {
-    notEnoughStake?: {
-        stakeu128?: string | undefined;
-        thresholdu128?: string | undefined;
-    } | undefined;
-}>, z.ZodEnum<["DidNotGetASeat"]>, z.ZodObject<{
-    notEnoughChunkEndorsements: z.ZodOptional<z.ZodObject<{
-        expected: z.ZodNumber;
-        produced: z.ZodNumber;
-    }, "strip", z.ZodTypeAny, {
-        expected: number;
-        produced: number;
-    }, {
-        expected: number;
-        produced: number;
-    }>>;
-}, "strip", z.ZodTypeAny, {
-    notEnoughChunkEndorsements?: {
-        expected: number;
-        produced: number;
-    } | undefined;
-}, {
-    notEnoughChunkEndorsements?: {
-        expected: number;
-        produced: number;
-    } | undefined;
-}>, z.ZodObject<{
-    protocolVersionTooOld: z.ZodOptional<z.ZodObject<{
-        networkversion: z.ZodOptional<z.ZodNumber>;
-        version: z.ZodNumber;
-    }, "strip", z.ZodTypeAny, {
-        version: number;
-        networkversion?: number | undefined;
-    }, {
-        version: number;
-        networkversion?: number | undefined;
-    }>>;
-}, "strip", z.ZodTypeAny, {
-    protocolVersionTooOld?: {
-        version: number;
-        networkversion?: number | undefined;
-    } | undefined;
-}, {
-    protocolVersionTooOld?: {
-        version: number;
-        networkversion?: number | undefined;
-    } | undefined;
-}>]>;
+export declare const ValidatorKickoutReasonSchema: z.ZodUnknown;
 export declare const ValidatorKickoutViewSchema: z.ZodObject<{
     accountid: z.ZodOptional<z.ZodUnknown>;
     reason: z.ZodUnknown;
@@ -820,23 +685,17 @@ export declare const ValidatorKickoutViewSchema: z.ZodObject<{
     accountid?: unknown;
     reason?: unknown;
 }>;
-export declare const ValidatorStakeViewSchema: z.ZodObject<{
-    validatorstakestructversion: z.ZodOptional<z.ZodEnum<["V1"]>>;
-}, "strip", z.ZodTypeAny, {
-    validatorstakestructversion?: "V1" | undefined;
-}, {
-    validatorstakestructversion?: "V1" | undefined;
-}>;
+export declare const ValidatorStakeViewSchema: z.ZodUnknown;
 export declare const ValidatorStakeViewV1Schema: z.ZodObject<{
     accountid: z.ZodOptional<z.ZodUnknown>;
     publickey: z.ZodOptional<z.ZodUnknown>;
     stake: z.ZodString;
 }, "strip", z.ZodTypeAny, {
     stake: string;
-    accountid?: unknown;
     publickey?: unknown;
+    accountid?: unknown;
 }, {
     stake: string;
-    accountid?: unknown;
     publickey?: unknown;
+    accountid?: unknown;
 }>;

@@ -24,17 +24,9 @@ export const AccessKeyListSchema = z.object({
   keys: z.array(z.unknown())
 });
 
-export const AccessKeyPermissionSchema = z.union([z.object({
-  functionCall: z.unknown().optional()
-}), z.enum(['FullAccess'])]);
+export const AccessKeyPermissionSchema = z.unknown();
 
-export const AccessKeyPermissionViewSchema = z.union([z.enum(['FullAccess']), z.object({
-  functionCall: z.object({
-  allowance: z.string().optional(),
-  methodnames: z.array(z.string()).optional(),
-  receiverid: z.string().optional()
-}).optional()
-})]);
+export const AccessKeyPermissionViewSchema = z.unknown();
 
 export const AccessKeyViewSchema = z.object({
   nonce: z.number(),
@@ -89,81 +81,17 @@ export const GasKeyViewSchema = z.object({
   permission: z.unknown()
 });
 
-export const GlobalContractDeployModeSchema = z.union([z.enum(['CodeHash']), z.enum(['AccountId'])]);
+export const GlobalContractDeployModeSchema = z.unknown();
 
-export const GlobalContractIdentifierSchema = z.union([z.object({
-  codeHash: z.unknown().optional()
-}), z.object({
-  accountId: z.unknown().optional()
-})]);
+export const GlobalContractIdentifierSchema = z.unknown();
 
-export const InvalidAccessKeyErrorSchema = z.union([z.object({
-  accessKeyNotFound: z.object({
-  accountid: z.unknown().optional(),
-  publickey: z.unknown().optional()
-}).optional()
-}), z.object({
-  receiverMismatch: z.object({
-  akreceiver: z.string().optional(),
-  txreceiver: z.unknown().optional()
-}).optional()
-}), z.object({
-  methodNameMismatch: z.object({
-  methodname: z.string().optional()
-}).optional()
-}), z.enum(['RequiresFullAccess']), z.object({
-  notEnoughAllowance: z.object({
-  accountid: z.unknown().optional(),
-  allowance: z.string(),
-  cost: z.string(),
-  publickey: z.unknown().optional()
-}).optional()
-}), z.enum(['DepositWithFunctionCall'])]);
+export const InvalidAccessKeyErrorSchema = z.unknown();
 
 export const PublicKeySchema = z.string();
 
-export const StateChangeCauseViewSchema = z.union([z.object({
-  type: z.enum(['not_writable_to_disk'])
-}), z.object({
-  type: z.enum(['initial_state'])
-}), z.object({
-  txhash: z.unknown().optional(),
-  type: z.enum(['transaction_processing'])
-}), z.object({
-  receipthash: z.unknown().optional(),
-  type: z.enum(['action_receipt_processing_started'])
-}), z.object({
-  receipthash: z.unknown().optional(),
-  type: z.enum(['action_receipt_gas_reward'])
-}), z.object({
-  receipthash: z.unknown().optional(),
-  type: z.enum(['receipt_processing'])
-}), z.object({
-  receipthash: z.unknown().optional(),
-  type: z.enum(['postponed_receipt'])
-}), z.object({
-  type: z.enum(['updated_delayed_receipts'])
-}), z.object({
-  type: z.enum(['validator_accounts_update'])
-}), z.object({
-  type: z.enum(['migration'])
-}), z.object({
-  type: z.enum(['bandwidth_scheduler_state_update'])
-})]);
+export const StateChangeCauseViewSchema = z.unknown();
 
-export const StateChangeKindViewSchema = z.union([z.object({
-  accountid: z.unknown().optional(),
-  type: z.enum(['account_touched'])
-}), z.object({
-  accountid: z.unknown().optional(),
-  type: z.enum(['access_key_touched'])
-}), z.object({
-  accountid: z.unknown().optional(),
-  type: z.enum(['data_touched'])
-}), z.object({
-  accountid: z.unknown().optional(),
-  type: z.enum(['contract_code_touched'])
-})]);
+export const StateChangeKindViewSchema = z.unknown();
 
 export const StateChangeWithCauseViewSchema = z.object({
   cause: z.unknown()

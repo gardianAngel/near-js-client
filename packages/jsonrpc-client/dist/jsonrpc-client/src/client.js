@@ -8,10 +8,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.NearJsonRpcClient = void 0;
 const zod_1 = require("zod");
 const errors_1 = require("./errors");
-const blocks_1 = require("./methods/blocks");
-const transactions_1 = require("./methods/transactions");
-const accounts_1 = require("./methods/accounts");
-const network_1 = require("./methods/network");
+const simple_1 = require("./methods/simple");
 class NearJsonRpcClient {
     baseUrl;
     apiKey;
@@ -19,11 +16,8 @@ class NearJsonRpcClient {
     retries;
     retryDelay;
     requestId = 0;
-    // Method groups
-    blocks;
-    transactions;
-    accounts;
-    network;
+    // Simplified methods
+    rpc;
     constructor(options) {
         if (typeof options === 'string') {
             this.baseUrl = options;
@@ -38,11 +32,8 @@ class NearJsonRpcClient {
             this.retries = options.retries ?? 3;
             this.retryDelay = options.retryDelay ?? 1000;
         }
-        // Initialize method groups
-        this.blocks = new blocks_1.BlockMethods(this);
-        this.transactions = new transactions_1.TransactionMethods(this);
-        this.accounts = new accounts_1.AccountMethods(this);
-        this.network = new network_1.NetworkMethods(this);
+        // Initialize simplified methods
+        this.rpc = new simple_1.SimpleMethods(this);
     }
     /**
      * Make a JSON-RPC request with type validation
@@ -68,17 +59,20 @@ class NearJsonRpcClient {
                 if (response.result === undefined) {
                     throw new errors_1.NearJsonRpcError('No result in response', -32603);
                 }
-                try {
-                    // Convert snake_case response to camelCase for JS developers
-                    const camelCaseResult = this.transformKeysToCamelCase(response.result);
-                    return responseSchema.parse(camelCaseResult);
-                }
-                catch (parseError) {
-                    if (parseError instanceof zod_1.z.ZodError) {
-                        throw new errors_1.ValidationError(`Response validation failed: ${parseError.message}`, parseError.errors);
+                // Convert snake_case response to camelCase for JS developers
+                const camelCaseResult = this.transformKeysToCamelCase(response.result);
+                if (responseSchema) {
+                    try {
+                        return responseSchema.parse(camelCaseResult);
                     }
-                    throw parseError;
+                    catch (parseError) {
+                        if (parseError instanceof zod_1.z.ZodError) {
+                            throw new errors_1.ValidationError(`Response validation failed: ${parseError.message}`, parseError.errors);
+                        }
+                        throw parseError;
+                    }
                 }
+                return camelCaseResult;
             }
             catch (error) {
                 lastError = error instanceof Error ? error : new Error(String(error));

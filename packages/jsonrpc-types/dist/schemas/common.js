@@ -14,9 +14,7 @@ exports.BandwidthRequestSchema = zod_1.z.object({
 exports.BandwidthRequestBitmapSchema = zod_1.z.object({
     data: zod_1.z.array(zod_1.z.number())
 });
-exports.BandwidthRequestsSchema = zod_1.z.object({
-    v1: zod_1.z.unknown().optional()
-});
+exports.BandwidthRequestsSchema = zod_1.z.unknown();
 exports.BandwidthRequestsV1Schema = zod_1.z.object({
     requests: zod_1.z.array(zod_1.z.unknown())
 });
@@ -24,17 +22,7 @@ exports.CallResultSchema = zod_1.z.object({
     logs: zod_1.z.array(zod_1.z.string()),
     result: zod_1.z.array(zod_1.z.number())
 });
-exports.CompilationErrorSchema = zod_1.z.union([zod_1.z.object({
-        codeDoesNotExist: zod_1.z.object({
-            accountid: zod_1.z.unknown().optional()
-        }).optional()
-    }), zod_1.z.object({
-        prepareError: zod_1.z.unknown().optional()
-    }), zod_1.z.object({
-        wasmerCompileError: zod_1.z.object({
-            msg: zod_1.z.string()
-        }).optional()
-    })]);
+exports.CompilationErrorSchema = zod_1.z.unknown();
 exports.CongestionControlConfigViewSchema = zod_1.z.object({
     allowedshardoutgoinggas: zod_1.z.number().optional(),
     maxcongestionincominggas: zod_1.z.number().optional(),
@@ -197,20 +185,7 @@ exports.ExternalStorageConfigSchema = zod_1.z.object({
     numconcurrentrequests: zod_1.z.number().optional(),
     numconcurrentrequestsduringcatchup: zod_1.z.number().optional()
 });
-exports.ExternalStorageLocationSchema = zod_1.z.union([zod_1.z.object({
-        s3: zod_1.z.object({
-            bucket: zod_1.z.string(),
-            region: zod_1.z.string()
-        }).optional()
-    }), zod_1.z.object({
-        filesystem: zod_1.z.object({
-            rootdir: zod_1.z.string().optional()
-        }).optional()
-    }), zod_1.z.object({
-        gCS: zod_1.z.object({
-            bucket: zod_1.z.string()
-        }).optional()
-    })]);
+exports.ExternalStorageLocationSchema = zod_1.z.unknown();
 exports.FeeSchema = zod_1.z.object({
     execution: zod_1.z.number(),
     sendnotsir: zod_1.z.number().optional(),
@@ -223,21 +198,7 @@ exports.FinalExecutionOutcomeViewSchema = zod_1.z.object({
     transactionoutcome: zod_1.z.unknown().optional()
 });
 exports.FinalitySchema = zod_1.z.enum(['optimistic', 'near-final', 'final']);
-exports.FunctionCallErrorSchema = zod_1.z.union([zod_1.z.enum(['WasmUnknownError', '_EVMError']), zod_1.z.object({
-        compilationError: zod_1.z.unknown().optional()
-    }), zod_1.z.object({
-        linkError: zod_1.z.object({
-            msg: zod_1.z.string()
-        }).optional()
-    }), zod_1.z.object({
-        methodResolveError: zod_1.z.unknown().optional()
-    }), zod_1.z.object({
-        wasmTrap: zod_1.z.unknown().optional()
-    }), zod_1.z.object({
-        hostError: zod_1.z.unknown().optional()
-    }), zod_1.z.object({
-        executionError: zod_1.z.string().optional()
-    })]);
+exports.FunctionCallErrorSchema = zod_1.z.unknown();
 exports.FunctionCallPermissionSchema = zod_1.z.object({
     allowance: zod_1.z.string().optional(),
     methodnames: zod_1.z.array(zod_1.z.string()).optional(),
@@ -249,94 +210,7 @@ exports.GCConfigSchema = zod_1.z.object({
     gcnumepochstokeep: zod_1.z.number().optional(),
     gcstepperiod: zod_1.z.unknown().optional()
 });
-exports.HostErrorSchema = zod_1.z.union([zod_1.z.enum(['BadUTF16']), zod_1.z.enum(['BadUTF8']), zod_1.z.enum(['GasExceeded']), zod_1.z.enum(['GasLimitExceeded']), zod_1.z.enum(['BalanceExceeded']), zod_1.z.enum(['EmptyMethodName']), zod_1.z.object({
-        guestPanic: zod_1.z.object({
-            panicmsg: zod_1.z.string().optional()
-        }).optional()
-    }), zod_1.z.enum(['IntegerOverflow']), zod_1.z.object({
-        invalidPromiseIndex: zod_1.z.object({
-            promiseidx: zod_1.z.number().optional()
-        }).optional()
-    }), zod_1.z.enum(['CannotAppendActionToJointPromise']), zod_1.z.enum(['CannotReturnJointPromise']), zod_1.z.object({
-        invalidPromiseResultIndex: zod_1.z.object({
-            resultidx: zod_1.z.number().optional()
-        }).optional()
-    }), zod_1.z.object({
-        invalidRegisterId: zod_1.z.object({
-            registerid: zod_1.z.number().optional()
-        }).optional()
-    }), zod_1.z.object({
-        iteratorWasInvalidated: zod_1.z.object({
-            iteratorindex: zod_1.z.number().optional()
-        }).optional()
-    }), zod_1.z.enum(['MemoryAccessViolation']), zod_1.z.object({
-        invalidReceiptIndex: zod_1.z.object({
-            receiptindex: zod_1.z.number().optional()
-        }).optional()
-    }), zod_1.z.object({
-        invalidIteratorIndex: zod_1.z.object({
-            iteratorindex: zod_1.z.number().optional()
-        }).optional()
-    }), zod_1.z.enum(['InvalidAccountId']), zod_1.z.enum(['InvalidMethodName']), zod_1.z.enum(['InvalidPublicKey']), zod_1.z.object({
-        prohibitedInView: zod_1.z.object({
-            methodname: zod_1.z.string().optional()
-        }).optional()
-    }), zod_1.z.object({
-        numberOfLogsExceeded: zod_1.z.object({
-            limit: zod_1.z.number()
-        }).optional()
-    }), zod_1.z.object({
-        keyLengthExceeded: zod_1.z.object({
-            length: zod_1.z.number(),
-            limit: zod_1.z.number()
-        }).optional()
-    }), zod_1.z.object({
-        valueLengthExceeded: zod_1.z.object({
-            length: zod_1.z.number(),
-            limit: zod_1.z.number()
-        }).optional()
-    }), zod_1.z.object({
-        totalLogLengthExceeded: zod_1.z.object({
-            length: zod_1.z.number(),
-            limit: zod_1.z.number()
-        }).optional()
-    }), zod_1.z.object({
-        numberPromisesExceeded: zod_1.z.object({
-            limit: zod_1.z.number(),
-            numberofpromises: zod_1.z.number().optional()
-        }).optional()
-    }), zod_1.z.object({
-        numberInputDataDependenciesExceeded: zod_1.z.object({
-            limit: zod_1.z.number(),
-            numberofinputdatadependencies: zod_1.z.number().optional()
-        }).optional()
-    }), zod_1.z.object({
-        returnedValueLengthExceeded: zod_1.z.object({
-            length: zod_1.z.number(),
-            limit: zod_1.z.number()
-        }).optional()
-    }), zod_1.z.object({
-        contractSizeExceeded: zod_1.z.object({
-            limit: zod_1.z.number(),
-            size: zod_1.z.number()
-        }).optional()
-    }), zod_1.z.object({
-        deprecated: zod_1.z.object({
-            methodname: zod_1.z.string().optional()
-        }).optional()
-    }), zod_1.z.object({
-        eCRecoverError: zod_1.z.object({
-            msg: zod_1.z.string()
-        }).optional()
-    }), zod_1.z.object({
-        altBn128InvalidInput: zod_1.z.object({
-            msg: zod_1.z.string()
-        }).optional()
-    }), zod_1.z.object({
-        ed25519VerifyInvalidInput: zod_1.z.object({
-            msg: zod_1.z.string()
-        }).optional()
-    })]);
+exports.HostErrorSchema = zod_1.z.unknown();
 exports.JsonRpcRequestforEXPERIMENTALchangesSchema = zod_1.z.object({
     id: zod_1.z.string(),
     jsonrpc: zod_1.z.string(),
@@ -484,7 +358,7 @@ exports.MissingTrieValueSchema = zod_1.z.object({
     context: zod_1.z.unknown(),
     hash: zod_1.z.unknown()
 });
-exports.MissingTrieValueContextSchema = zod_1.z.union([zod_1.z.enum(['TrieIterator']), zod_1.z.enum(['TriePrefetchingStorage']), zod_1.z.enum(['TrieMemoryPartialStorage']), zod_1.z.enum(['TrieStorage'])]);
+exports.MissingTrieValueContextSchema = zod_1.z.unknown();
 exports.MutableConfigValueSchema = zod_1.z.string();
 exports.PeerIdSchema = zod_1.z.unknown();
 exports.PeerInfoViewSchema = zod_1.z.object({
@@ -504,7 +378,7 @@ exports.PeerInfoViewSchema = zod_1.z.object({
     sentbytespersec: zod_1.z.number().optional(),
     trackedshards: zod_1.z.array(zod_1.z.unknown()).optional()
 });
-exports.PrepareErrorSchema = zod_1.z.union([zod_1.z.enum(['Serialization']), zod_1.z.enum(['Deserialization']), zod_1.z.enum(['InternalMemoryDeclared']), zod_1.z.enum(['GasInstrumentation']), zod_1.z.enum(['StackHeightInstrumentation']), zod_1.z.enum(['Instantiate']), zod_1.z.enum(['Memory']), zod_1.z.enum(['TooManyFunctions']), zod_1.z.enum(['TooManyLocals'])]);
+exports.PrepareErrorSchema = zod_1.z.unknown();
 exports.Rangeofuint64Schema = zod_1.z.object({
     end: zod_1.z.number(),
     start: zod_1.z.number()
@@ -617,17 +491,7 @@ exports.RpcQueryResponseSchema = zod_1.z.object({
     blockhash: zod_1.z.unknown().optional(),
     blockheight: zod_1.z.number().optional()
 });
-exports.RpcRequestValidationErrorKindSchema = zod_1.z.union([zod_1.z.object({
-        info: zod_1.z.object({
-            methodname: zod_1.z.string().optional()
-        }),
-        name: zod_1.z.enum(['METHOD_NOT_FOUND'])
-    }), zod_1.z.object({
-        info: zod_1.z.object({
-            errormessage: zod_1.z.string().optional()
-        }),
-        name: zod_1.z.enum(['PARSE_ERROR'])
-    })]);
+exports.RpcRequestValidationErrorKindSchema = zod_1.z.unknown();
 exports.RpcSplitStorageInfoRequestSchema = zod_1.z.record(zod_1.z.unknown());
 exports.RpcSplitStorageInfoResponseSchema = zod_1.z.object({
     coldheadheight: zod_1.z.number().optional(),
@@ -652,13 +516,7 @@ exports.RuntimeFeesConfigViewSchema = zod_1.z.object({
     storageusageconfig: zod_1.z.unknown().optional()
 });
 exports.ShardIdSchema = zod_1.z.number();
-exports.ShardLayoutSchema = zod_1.z.union([zod_1.z.object({
-        v0: zod_1.z.unknown().optional()
-    }), zod_1.z.object({
-        v1: zod_1.z.unknown().optional()
-    }), zod_1.z.object({
-        v2: zod_1.z.unknown().optional()
-    })]);
+exports.ShardLayoutSchema = zod_1.z.unknown();
 exports.ShardLayoutV0Schema = zod_1.z.object({
     numshards: zod_1.z.number().optional(),
     version: zod_1.z.number()
@@ -683,37 +541,19 @@ exports.ShardUIdSchema = zod_1.z.object({
     version: zod_1.z.number()
 });
 exports.SignatureSchema = zod_1.z.string();
-exports.StorageErrorSchema = zod_1.z.union([zod_1.z.enum(['StorageInternalError']), zod_1.z.object({
-        missingTrieValue: zod_1.z.unknown().optional()
-    }), zod_1.z.enum(['UnexpectedTrieValue']), zod_1.z.object({
-        storageInconsistentState: zod_1.z.string().optional()
-    }), zod_1.z.object({
-        flatStorageBlockNotSupported: zod_1.z.string().optional()
-    }), zod_1.z.object({
-        memTrieLoadingError: zod_1.z.string().optional()
-    })]);
+exports.StorageErrorSchema = zod_1.z.unknown();
 exports.StorageGetModeSchema = zod_1.z.enum(['FlatStorage', 'Trie']);
 exports.StorageUsageConfigViewSchema = zod_1.z.object({
     numbytesaccount: zod_1.z.number().optional(),
     numextrabytesrecord: zod_1.z.number().optional()
 });
 exports.SyncCheckpointSchema = zod_1.z.enum(['genesis', 'earliest_available']);
-exports.SyncConfigSchema = zod_1.z.union([zod_1.z.enum(['Peers']), zod_1.z.object({
-        externalStorage: zod_1.z.unknown().optional()
-    })]);
+exports.SyncConfigSchema = zod_1.z.unknown();
 exports.Tier1ProxyViewSchema = zod_1.z.object({
     addr: zod_1.z.string(),
     peerid: zod_1.z.unknown().optional()
 });
-exports.TrackedShardsConfigSchema = zod_1.z.union([zod_1.z.enum(['NoShards']), zod_1.z.object({
-        shards: zod_1.z.array(zod_1.z.unknown()).optional()
-    }), zod_1.z.enum(['AllShards']), zod_1.z.object({
-        shadowValidator: zod_1.z.unknown().optional()
-    }), zod_1.z.object({
-        schedule: zod_1.z.array(zod_1.z.array(zod_1.z.unknown())).optional()
-    }), zod_1.z.object({
-        accounts: zod_1.z.array(zod_1.z.unknown()).optional()
-    })]);
+exports.TrackedShardsConfigSchema = zod_1.z.unknown();
 exports.VMConfigViewSchema = zod_1.z.object({
     discardcustomsections: zod_1.z.boolean().optional(),
     ethimplicitaccounts: zod_1.z.boolean().optional(),
@@ -729,14 +569,14 @@ exports.VMConfigViewSchema = zod_1.z.object({
     storagegetmode: zod_1.z.unknown().optional(),
     vmkind: zod_1.z.unknown().optional()
 });
-exports.VMKindSchema = zod_1.z.union([zod_1.z.enum(['Wasmer0']), zod_1.z.enum(['Wasmtime']), zod_1.z.enum(['Wasmer2']), zod_1.z.enum(['NearVm']), zod_1.z.enum(['NearVm2'])]);
+exports.VMKindSchema = zod_1.z.unknown();
 exports.VersionSchema = zod_1.z.object({
     build: zod_1.z.string(),
     commit: zod_1.z.string(),
     rustcversion: zod_1.z.string().optional(),
     version: zod_1.z.string()
 });
-exports.WasmTrapSchema = zod_1.z.union([zod_1.z.enum(['Unreachable']), zod_1.z.enum(['IncorrectCallIndirectSignature']), zod_1.z.enum(['MemoryOutOfBounds']), zod_1.z.enum(['CallIndirectOOB']), zod_1.z.enum(['IllegalArithmetic']), zod_1.z.enum(['MisalignedAtomicAccess']), zod_1.z.enum(['IndirectCallToNull']), zod_1.z.enum(['StackOverflow']), zod_1.z.enum(['GenericTrap'])]);
+exports.WasmTrapSchema = zod_1.z.unknown();
 exports.WitnessConfigViewSchema = zod_1.z.object({
     combinedtransactionssizelimit: zod_1.z.number().optional(),
     mainstorageproofsizesoftlimit: zod_1.z.number().optional(),

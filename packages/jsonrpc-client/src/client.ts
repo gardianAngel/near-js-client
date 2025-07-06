@@ -7,10 +7,7 @@
 import { z } from 'zod';
 import { JsonRpcRequest, JsonRpcResponse } from '@near-js/jsonrpc-types';
 import { NearJsonRpcError, NetworkError, ValidationError } from './errors';
-import { BlockMethods } from './methods/blocks';
-import { TransactionMethods } from './methods/transactions';
-import { AccountMethods } from './methods/accounts';
-import { NetworkMethods } from './methods/network';
+import { SimpleMethods } from './methods/simple';
 
 export interface NearJsonRpcClientOptions {
   baseUrl: string;
@@ -28,11 +25,8 @@ export class NearJsonRpcClient {
   private readonly retryDelay: number;
   private requestId: number = 0;
 
-  // Method groups
-  public readonly blocks: BlockMethods;
-  public readonly transactions: TransactionMethods;
-  public readonly accounts: AccountMethods;
-  public readonly network: NetworkMethods;
+  // Simplified methods
+  public readonly rpc: SimpleMethods;
 
   constructor(options: NearJsonRpcClientOptions | string) {
     if (typeof options === 'string') {
@@ -48,11 +42,8 @@ export class NearJsonRpcClient {
       this.retryDelay = options.retryDelay ?? 1000;
     }
 
-    // Initialize method groups
-    this.blocks = new BlockMethods(this);
-    this.transactions = new TransactionMethods(this);
-    this.accounts = new AccountMethods(this);
-    this.network = new NetworkMethods(this);
+    // Initialize simplified methods
+    this.rpc = new SimpleMethods(this);
   }
 
   /**
@@ -60,10 +51,10 @@ export class NearJsonRpcClient {
    * CRITICAL: Always use '/' as path, not the OpenAPI spec paths
    * Converts camelCase input to snake_case for API and snake_case response to camelCase
    */
-  async makeRequest<T>(
+  async makeRequest<T = any>(
     method: string,
     params: unknown,
-    responseSchema: z.ZodSchema<T>
+    responseSchema?: z.ZodSchema<T>
   ): Promise<T> {
     // Convert camelCase input to snake_case for the API
     const snakeCaseParams = this.transformKeysToSnakeCase(params);
@@ -93,19 +84,24 @@ export class NearJsonRpcClient {
           throw new NearJsonRpcError('No result in response', -32603);
         }
 
-        try {
-          // Convert snake_case response to camelCase for JS developers
-          const camelCaseResult = this.transformKeysToCamelCase(response.result);
-          return responseSchema.parse(camelCaseResult);
-        } catch (parseError) {
-          if (parseError instanceof z.ZodError) {
-            throw new ValidationError(
-              `Response validation failed: ${parseError.message}`,
-              parseError.errors
-            );
+        // Convert snake_case response to camelCase for JS developers
+        const camelCaseResult = this.transformKeysToCamelCase(response.result);
+        
+        if (responseSchema) {
+          try {
+            return responseSchema.parse(camelCaseResult);
+          } catch (parseError) {
+            if (parseError instanceof z.ZodError) {
+              throw new ValidationError(
+                `Response validation failed: ${parseError.message}`,
+                parseError.errors
+              );
+            }
+            throw parseError;
           }
-          throw parseError;
         }
+        
+        return camelCaseResult as T;
       } catch (error) {
         lastError = error instanceof Error ? error : new Error(String(error));
         

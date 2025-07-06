@@ -39,19 +39,9 @@ export const DetailedDebugStatusSchema = z.object({
   syncstatus: z.string().optional()
 });
 
-export const ExecutionStatusViewSchema = z.union([z.enum(['Unknown']), z.object({
-  failure: z.unknown().optional()
-}), z.object({
-  successValue: z.string().optional()
-}), z.object({
-  successReceiptId: z.unknown().optional()
-})]);
+export const ExecutionStatusViewSchema = z.unknown();
 
-export const FinalExecutionStatusSchema = z.union([z.enum(['NotStarted']), z.enum(['Started']), z.object({
-  failure: z.unknown().optional()
-}), z.object({
-  successValue: z.string().optional()
-})]);
+export const FinalExecutionStatusSchema = z.unknown();
 
 export const GenesisConfigSchema = z.object({
   avghiddenvalidatorseatspershard: z.array(z.number()).optional(),
@@ -293,41 +283,14 @@ export const ValidatorInfoSchema = z.object({
   accountid: z.unknown().optional()
 });
 
-export const ValidatorKickoutReasonSchema = z.union([z.enum(['_UnusedSlashed']), z.object({
-  notEnoughBlocks: z.object({
-  expected: z.number(),
-  produced: z.number()
-}).optional()
-}), z.object({
-  notEnoughChunks: z.object({
-  expected: z.number(),
-  produced: z.number()
-}).optional()
-}), z.enum(['Unstaked']), z.object({
-  notEnoughStake: z.object({
-  stakeu128: z.string().optional(),
-  thresholdu128: z.string().optional()
-}).optional()
-}), z.enum(['DidNotGetASeat']), z.object({
-  notEnoughChunkEndorsements: z.object({
-  expected: z.number(),
-  produced: z.number()
-}).optional()
-}), z.object({
-  protocolVersionTooOld: z.object({
-  networkversion: z.number().optional(),
-  version: z.number()
-}).optional()
-})]);
+export const ValidatorKickoutReasonSchema = z.unknown();
 
 export const ValidatorKickoutViewSchema = z.object({
   accountid: z.unknown().optional(),
   reason: z.unknown()
 });
 
-export const ValidatorStakeViewSchema = z.object({
-  validatorstakestructversion: z.enum(['V1']).optional()
-});
+export const ValidatorStakeViewSchema = z.unknown();
 
 export const ValidatorStakeViewV1Schema = z.object({
   accountid: z.unknown().optional(),

@@ -1,9 +1,6 @@
 /**
- * @near-js/jsonrpc-client
- *
- * TypeScript client for NEAR Protocol JSON-RPC interface
- * Auto-generated from OpenAPI specification
+ * NEAR Protocol JSON-RPC Client
  */
 export { NearJsonRpcClient } from './client';
-export * from './errors';
-export * from '@near-js/jsonrpc-types';
+export type { NearJsonRpcClientOptions } from './client';
+export { NearJsonRpcError, NetworkError, ValidationError } from './errors';

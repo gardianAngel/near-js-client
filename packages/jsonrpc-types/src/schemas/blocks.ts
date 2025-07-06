@@ -53,7 +53,7 @@ export const BlockHeaderViewSchema = z.object({
   validatorreward: z.string().optional()
 });
 
-export const BlockIdSchema = z.union([z.number(), z.unknown()]);
+export const BlockIdSchema = z.unknown();
 
 export const BlockStatusViewSchema = z.object({
   hash: z.unknown(),

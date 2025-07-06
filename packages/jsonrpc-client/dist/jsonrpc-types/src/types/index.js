@@ -1,9 +1,6 @@
 "use strict";
 /**
- * @near-js/jsonrpc-client
- *
- * TypeScript client for NEAR Protocol JSON-RPC interface
- * Auto-generated from OpenAPI specification
+ * Type exports for NEAR Protocol JSON-RPC
  */
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
@@ -20,9 +17,8 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.NearJsonRpcClient = void 0;
-var client_1 = require("./client");
-Object.defineProperty(exports, "NearJsonRpcClient", { enumerable: true, get: function () { return client_1.NearJsonRpcClient; } });
-__exportStar(require("./errors"), exports);
-// Re-export types for convenience
-__exportStar(require("@near-js/jsonrpc-types"), exports);
+__exportStar(require("./common"), exports);
+__exportStar(require("./blocks"), exports);
+__exportStar(require("./transactions"), exports);
+__exportStar(require("./accounts"), exports);
+__exportStar(require("./network"), exports);

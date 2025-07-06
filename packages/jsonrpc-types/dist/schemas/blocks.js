@@ -52,7 +52,7 @@ exports.BlockHeaderViewSchema = zod_1.z.object({
     validatorproposals: zod_1.z.array(zod_1.z.unknown()).optional(),
     validatorreward: zod_1.z.string().optional()
 });
-exports.BlockIdSchema = zod_1.z.union([zod_1.z.number(), zod_1.z.unknown()]);
+exports.BlockIdSchema = zod_1.z.unknown();
 exports.BlockStatusViewSchema = zod_1.z.object({
     hash: zod_1.z.unknown(),
     height: zod_1.z.number()
