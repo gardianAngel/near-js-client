@@ -1,0 +1,82 @@
+📦 Deliverables: Code generation, GitHub automation, NPM packages, documentation, testing
+
+📘 Background
+The NEAR Protocol provides an OpenAPI specification [link] for its JSON-RPC interface [link] (there is also a patched version for Rust client [link] which might or might not work better) , but a high-quality, type-safe TypeScript client is still missing from the ecosystem.
+
+We’re looking for an experienced TypeScript/Node.js developer or small team to automate the generation and packaging of a developer-friendly TypeScript client using the OpenAPI spec from the nearcore repository.
+
+This tool will serve as a public good: it must be fully automated, thoroughly documented, well-tested, and published under a permissive license for long-term use and contribution.
+
+🧩 Scope of Work
+1. OpenAPI Parsing & TypeScript Code Generation
+Parse the OpenAPI spec provided in the nearcore repo.
+WARNING: The OpenAPI spec does not exactly match nearcore’s JSON-RPC implementation. The spec uses unique paths for each method while the actual JSON-RPC implementation expects that the path is the same - /, so you must patch the generated code to skip using the paths.
+
+Generate a fully type-safe TypeScript client with:
+
+fetch-based RPC calls
+
+Zod-based input/output validation
+
+Automatic conversion from snake_case (from API) to camelCase (TypeScript)
+
+2. Two NPM Packages
+Package A: @near-js/jsonrpc-types
+
+Contains only types and Zod schemas
+
+Lightweight, tree-shakable
+
+Package B: @near-js/jsonrpc-client
+
+Depends on @near-js/jsonrpc-types
+
+Includes all RPC method implementations using fetch and auto-typed requests/responses
+
+3. GitHub Actions Automation
+Set up CI/CD to:
+
+Fetch the latest OpenAPI spec on push or schedule
+
+Regenerate code and types
+
+Submit a PR to the repo to run CI tests and get humans review
+
+Once the PR is merged, release-please automation must pick it up to bump a version and create a new PR with a proposal to make a release (it can be skipped or ignored)
+
+4. Testing Suite
+Unit tests for type safety and runtime validation
+
+Integration tests (mocking or optional real RPC endpoint)
+
+5. Documentation
+README and usage examples for both packages
+
+Instructions for contributing and regenerating code
+
+Deployment workflow documentation (e.g., how GitHub Actions publishes to NPM)
+
+✅ Deliverables
+✅ Full codebase in a new public GitHub repository (MIT or Apache-2.0 licensed)
+
+✅ Two published NPM packages: @near-js/jsonrpc-types and @near-js/jsonrpc-client
+
+✅ GitHub Actions automation for regeneration, testing, and publishing
+
+✅ 80%+ test coverage for core functionality
+
+✅ Developer-focused documentation for use and contribution
+
+🧪 Tech Stack
+TypeScript (strict mode)
+
+Zod for runtime validation
+
+Fetch API (or compatible polyfill for Node.js)
+
+OpenAPI tooling (e.g., openapi-typescript, zod-openapi, or custom tooling)
+
+GitHub Actions for automation
+
+Jest / Vitest or similar for testing
+
