@@ -83,10 +83,13 @@ export interface JsonRpcResponse<T = unknown> {
   id: string | number;
 }
 
+// JSON-RPC Error interface - permissive due to underspecified OpenAPI responses
+// NEAR team confirmed: error responses contain more data than spec indicates
 export interface JsonRpcError {
   code: number;
   message: string;
-  data?: unknown;
+  data?: unknown; // OpenAPI spec underspecifies this - server returns additional fields
+  [key: string]: unknown; // Allow additional properties not in spec
 }
 
 export interface PublicKey {
