@@ -291,9 +291,9 @@ exports.ValidatorKickoutViewSchema = zod_1.z.object({
     accountid: zod_1.z.unknown().optional(),
     reason: zod_1.z.unknown()
 });
-exports.ValidatorStakeViewSchema = zod_1.z.union([zod_1.z.object({
-        validatorstakestructversion: zod_1.z.enum(['V1']).optional()
-    }), zod_1.z.unknown()]);
+exports.ValidatorStakeViewSchema = zod_1.z.object({
+    validatorstakestructversion: zod_1.z.enum(['V1']).optional()
+});
 exports.ValidatorStakeViewV1Schema = zod_1.z.object({
     accountid: zod_1.z.unknown().optional(),
     publickey: zod_1.z.unknown().optional(),

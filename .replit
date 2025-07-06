@@ -1,0 +1,84 @@
+modules = ["nodejs-20"]
+
+[nix]
+channel = "stable-24_05"
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Install Dependencies"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Build Packages"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Type Check"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Run Tests"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Generate"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Lint"
+
+[[workflows.workflow]]
+name = "Install Dependencies"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm install"
+
+[[workflows.workflow]]
+name = "Build Packages"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd packages/jsonrpc-types && npm run build && cd ../jsonrpc-client && npm run build"
+
+[[workflows.workflow]]
+name = "Type Check"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "tsc --noEmit"
+
+[[workflows.workflow]]
+name = "Run Tests"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "jest"
+
+[[workflows.workflow]]
+name = "Generate"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "tsx tools/codegen/generate.ts"
+
+[[workflows.workflow]]
+name = "Lint"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "eslint . --ext .ts,.tsx"

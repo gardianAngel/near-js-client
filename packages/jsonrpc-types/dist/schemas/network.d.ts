@@ -820,13 +820,13 @@ export declare const ValidatorKickoutViewSchema: z.ZodObject<{
     accountid?: unknown;
     reason?: unknown;
 }>;
-export declare const ValidatorStakeViewSchema: z.ZodUnion<[z.ZodObject<{
+export declare const ValidatorStakeViewSchema: z.ZodObject<{
     validatorstakestructversion: z.ZodOptional<z.ZodEnum<["V1"]>>;
 }, "strip", z.ZodTypeAny, {
     validatorstakestructversion?: "V1" | undefined;
 }, {
     validatorstakestructversion?: "V1" | undefined;
-}>, z.ZodUnknown]>;
+}>;
 export declare const ValidatorStakeViewV1Schema: z.ZodObject<{
     accountid: z.ZodOptional<z.ZodUnknown>;
     publickey: z.ZodOptional<z.ZodUnknown>;
