@@ -89,7 +89,7 @@ export interface Schema {
 }
 
 // NEAR Protocol OpenAPI spec URL
-const OPENAPI_SPEC_URL = 'https://raw.githubusercontent.com/near/nearcore/master/chain/jsonrpc/openapi/rpc_light_client.json';
+const OPENAPI_SPEC_URL = 'https://raw.githubusercontent.com/near/nearcore/master/chain/jsonrpc/openapi/openapi.json';
 
 /**
  * Fetch OpenAPI specification from NEAR Protocol repository
