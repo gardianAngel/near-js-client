@@ -15,7 +15,7 @@ export const BandwidthRequestBitmapSchema = z.object({
 
 export const BandwidthRequestsSchema = z.union([z.object({
   v1: z.unknown().optional()
-}), z.unknown()]);
+})]);
 
 export const BandwidthRequestsV1Schema = z.object({
   requests: z.array(z.unknown())
