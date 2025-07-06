@@ -11,8 +11,8 @@ class AccountsMethods {
         this.client = client;
     }
     async query(params) {
-        const validatedParams = jsonrpc_types_1.QueryQuerySchema.parse(params);
-        return this.client.makeRequest('Query', validatedParams, jsonrpc_types_1.QueryResponseSchema);
+        const validatedParams = jsonrpc_types_1.RpcQueryRequestSchema.parse(params);
+        return this.client.makeRequest('Query', validatedParams, jsonrpc_types_1.RpcQueryResponseSchema);
     }
 }
 exports.AccountsMethods = AccountsMethods;

@@ -14,9 +14,23 @@ module.exports = [
         project: './tsconfig.json',
       },
       globals: {
-        node: true,
-        es2022: true,
-        jest: true,
+        ...require('globals').node,
+        ...require('globals').es2022,
+        ...require('globals').jest,
+        process: 'readonly',
+        console: 'readonly',
+        require: 'readonly',
+        module: 'readonly',
+        fetch: 'readonly',
+        AbortSignal: 'readonly',
+        describe: 'readonly',
+        it: 'readonly',
+        expect: 'readonly',
+        beforeEach: 'readonly',
+        beforeAll: 'readonly',
+        afterEach: 'readonly',
+        afterAll: 'readonly',
+        jest: 'readonly',
       },
     },
     plugins: {
@@ -27,6 +41,8 @@ module.exports = [
       '@typescript-eslint/no-unused-vars': 'off',
       '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-empty-object-type': 'off',
+      '@typescript-eslint/no-namespace': 'off',
       // Removed unsafe rules as they're not available in this version
       'prefer-const': 'error',
       'no-var': 'error',
@@ -35,6 +51,6 @@ module.exports = [
     },
   },
   {
-    ignores: ['dist/', 'node_modules/', '*.js'],
+    ignores: ['dist/', 'node_modules/', '*.js', '*.d.ts', 'packages/jsonrpc-types/src/**/*.ts'],
   },
 ];

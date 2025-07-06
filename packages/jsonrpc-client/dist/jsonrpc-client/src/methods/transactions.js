@@ -11,24 +11,24 @@ class TransactionsMethods {
         this.client = client;
     }
     async txstatus(params) {
-        const validatedParams = jsonrpc_types_1.TxstatusQuerySchema.parse(params);
-        return this.client.makeRequest('EXPERIMENTALtxstatus', validatedParams, jsonrpc_types_1.TxstatusResponseSchema);
+        const validatedParams = jsonrpc_types_1.RpcEXPERIMENTALtxstatusRequestSchema.parse(params);
+        return this.client.makeRequest('EXPERIMENTALtxstatus', validatedParams, jsonrpc_types_1.RpcEXPERIMENTALtxstatusResponseSchema);
     }
     async broadcasttxasync(params) {
-        const validatedParams = jsonrpc_types_1.BroadcasttxasyncQuerySchema.parse(params);
-        return this.client.makeRequest('Broadcasttxasync', validatedParams, jsonrpc_types_1.BroadcasttxasyncResponseSchema);
+        const validatedParams = jsonrpc_types_1.RpcBroadcasttxasyncRequestSchema.parse(params);
+        return this.client.makeRequest('Broadcasttxasync', validatedParams, jsonrpc_types_1.RpcBroadcasttxasyncResponseSchema);
     }
     async broadcasttxcommit(params) {
-        const validatedParams = jsonrpc_types_1.BroadcasttxcommitQuerySchema.parse(params);
-        return this.client.makeRequest('Broadcasttxcommit', validatedParams, jsonrpc_types_1.BroadcasttxcommitResponseSchema);
+        const validatedParams = jsonrpc_types_1.RpcBroadcasttxcommitRequestSchema.parse(params);
+        return this.client.makeRequest('Broadcasttxcommit', validatedParams, jsonrpc_types_1.RpcBroadcasttxcommitResponseSchema);
     }
     async sendtx(params) {
-        const validatedParams = jsonrpc_types_1.SendtxQuerySchema.parse(params);
-        return this.client.makeRequest('Sendtx', validatedParams, jsonrpc_types_1.SendtxResponseSchema);
+        const validatedParams = jsonrpc_types_1.RpcSendtxRequestSchema.parse(params);
+        return this.client.makeRequest('Sendtx', validatedParams, jsonrpc_types_1.RpcSendtxResponseSchema);
     }
     async tx(params) {
-        const validatedParams = jsonrpc_types_1.TxQuerySchema.parse(params);
-        return this.client.makeRequest('Tx', validatedParams, jsonrpc_types_1.TxResponseSchema);
+        const validatedParams = jsonrpc_types_1.RpcTxRequestSchema.parse(params);
+        return this.client.makeRequest('Tx', validatedParams, jsonrpc_types_1.RpcTxResponseSchema);
     }
 }
 exports.TransactionsMethods = TransactionsMethods;

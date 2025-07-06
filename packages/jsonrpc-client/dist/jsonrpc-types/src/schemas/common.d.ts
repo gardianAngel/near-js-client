@@ -19,13 +19,13 @@ export declare const BandwidthRequestBitmapSchema: z.ZodObject<{
 }, {
     data: number[];
 }>;
-export declare const BandwidthRequestsSchema: z.ZodUnion<[z.ZodObject<{
+export declare const BandwidthRequestsSchema: z.ZodObject<{
     v1: z.ZodOptional<z.ZodUnknown>;
 }, "strip", z.ZodTypeAny, {
     v1?: unknown;
 }, {
     v1?: unknown;
-}>, z.ZodUnknown]>;
+}>;
 export declare const BandwidthRequestsV1Schema: z.ZodObject<{
     requests: z.ZodArray<z.ZodUnknown, "many">;
 }, "strip", z.ZodTypeAny, {

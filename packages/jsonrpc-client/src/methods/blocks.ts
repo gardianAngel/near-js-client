@@ -3,54 +3,54 @@
  */
 
 import {
-  BlockQuerySchema,
-  BlockRequest,
-  BlockResponse,
-  BlockResponseSchema,
-  ChangesinblockQuerySchema,
-  ChangesinblockRequest,
-  ChangesinblockResponse,
-  ChangesinblockResponseSchema,
-  ChunkQuerySchema,
-  ChunkRequest,
-  ChunkResponse,
-  ChunkResponseSchema,
-  LightclientblockproofQuerySchema,
-  LightclientblockproofRequest,
-  LightclientblockproofResponse,
-  LightclientblockproofResponseSchema,
-  NextlightclientblockQuerySchema,
-  NextlightclientblockRequest,
-  NextlightclientblockResponse,
-  NextlightclientblockResponseSchema
+  RpcBlockRequest,
+  RpcBlockRequestSchema,
+  RpcBlockResponse,
+  RpcBlockResponseSchema,
+  RpcChunkRequest,
+  RpcChunkRequestSchema,
+  RpcChunkResponse,
+  RpcChunkResponseSchema,
+  RpcEXPERIMENTALchangesinblockRequest,
+  RpcEXPERIMENTALchangesinblockRequestSchema,
+  RpcEXPERIMENTALchangesinblockResponse,
+  RpcEXPERIMENTALchangesinblockResponseSchema,
+  RpcEXPERIMENTALlightclientblockproofRequest,
+  RpcEXPERIMENTALlightclientblockproofRequestSchema,
+  RpcEXPERIMENTALlightclientblockproofResponse,
+  RpcEXPERIMENTALlightclientblockproofResponseSchema,
+  RpcNextlightclientblockRequest,
+  RpcNextlightclientblockRequestSchema,
+  RpcNextlightclientblockResponse,
+  RpcNextlightclientblockResponseSchema
 } from '@near-js/jsonrpc-types';
 import type { NearJsonRpcClient } from '../client';
 
 export class BlocksMethods {
   constructor(private client: NearJsonRpcClient) {}
 
-  async changesinblock(params: ChangesinblockQuery): Promise<ChangesinblockResponse> {
-    const validatedParams = ChangesinblockQuerySchema.parse(params);
-    return this.client.makeRequest('EXPERIMENTALchangesinblock', validatedParams, ChangesinblockResponseSchema);
+  async changesinblock(params: RpcEXPERIMENTALchangesinblockRequest): Promise<RpcEXPERIMENTALchangesinblockResponse> {
+    const validatedParams = RpcEXPERIMENTALchangesinblockRequestSchema.parse(params);
+    return this.client.makeRequest('EXPERIMENTALchangesinblock', validatedParams, RpcEXPERIMENTALchangesinblockResponseSchema);
   }
 
-  async lightclientblockproof(params: LightclientblockproofQuery): Promise<LightclientblockproofResponse> {
-    const validatedParams = LightclientblockproofQuerySchema.parse(params);
-    return this.client.makeRequest('EXPERIMENTALlightclientblockproof', validatedParams, LightclientblockproofResponseSchema);
+  async lightclientblockproof(params: RpcEXPERIMENTALlightclientblockproofRequest): Promise<RpcEXPERIMENTALlightclientblockproofResponse> {
+    const validatedParams = RpcEXPERIMENTALlightclientblockproofRequestSchema.parse(params);
+    return this.client.makeRequest('EXPERIMENTALlightclientblockproof', validatedParams, RpcEXPERIMENTALlightclientblockproofResponseSchema);
   }
 
-  async block(params: BlockQuery): Promise<BlockResponse> {
-    const validatedParams = BlockQuerySchema.parse(params);
-    return this.client.makeRequest('Block', validatedParams, BlockResponseSchema);
+  async block(params: RpcBlockRequest): Promise<RpcBlockResponse> {
+    const validatedParams = RpcBlockRequestSchema.parse(params);
+    return this.client.makeRequest('Block', validatedParams, RpcBlockResponseSchema);
   }
 
-  async chunk(params: ChunkQuery): Promise<ChunkResponse> {
-    const validatedParams = ChunkQuerySchema.parse(params);
-    return this.client.makeRequest('Chunk', validatedParams, ChunkResponseSchema);
+  async chunk(params: RpcChunkRequest): Promise<RpcChunkResponse> {
+    const validatedParams = RpcChunkRequestSchema.parse(params);
+    return this.client.makeRequest('Chunk', validatedParams, RpcChunkResponseSchema);
   }
 
-  async nextlightclientblock(params: NextlightclientblockQuery): Promise<NextlightclientblockResponse> {
-    const validatedParams = NextlightclientblockQuerySchema.parse(params);
-    return this.client.makeRequest('Nextlightclientblock', validatedParams, NextlightclientblockResponseSchema);
+  async nextlightclientblock(params: RpcNextlightclientblockRequest): Promise<RpcNextlightclientblockResponse> {
+    const validatedParams = RpcNextlightclientblockRequestSchema.parse(params);
+    return this.client.makeRequest('Nextlightclientblock', validatedParams, RpcNextlightclientblockResponseSchema);
   }
 }

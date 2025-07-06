@@ -90,11 +90,33 @@ function extractClientMethod(path: string, operation: Operation): ClientMethod |
   
   const parameters = extractParameters(operation);
   
+  // Map RPC methods to their actual generated type names
+  const typeMapping: Record<string, { request: string; response: string }> = {
+    'block': { request: 'RpcBlockRequest', response: 'RpcBlockResponse' },
+    'chunk': { request: 'RpcChunkRequest', response: 'RpcChunkResponse' },
+    'tx': { request: 'RpcTransactionStatusRequest', response: 'RpcTransactionResponse' },
+    'EXPERIMENTAL_tx_status': { request: 'RpcTransactionStatusRequest', response: 'RpcTransactionResponse' },
+    'broadcast_tx_async': { request: 'RpcSendTransactionRequest', response: 'RpcTransactionResponse' },
+    'broadcast_tx_commit': { request: 'RpcSendTransactionRequest', response: 'RpcTransactionResponse' },
+    'send_tx': { request: 'RpcSendTransactionRequest', response: 'RpcTransactionResponse' },
+    'EXPERIMENTAL_receipt': { request: 'RpcReceiptRequest', response: 'RpcReceiptResponse' },
+    'query': { request: 'RpcQueryRequest', response: 'RpcQueryResponse' },
+    'status': { request: 'RpcStatusRequest', response: 'RpcStatusResponse' },
+    'network_info': { request: 'RpcNetworkInfoRequest', response: 'RpcNetworkInfoResponse' },
+    'validators': { request: 'RpcValidatorRequest', response: 'RpcValidatorResponse' },
+    'gas_price': { request: 'RpcGasPriceRequest', response: 'RpcGasPriceResponse' },
+    'health': { request: 'RpcHealthRequest', response: 'RpcHealthResponse' },
+  };
+  
+  const mapping = typeMapping[rpcMethod] || typeMapping[rpcMethod.replace('EXPERIMENTAL_', '')];
+  const requestType = mapping?.request || `Rpc${toPascalCase(rpcMethod.replace('EXPERIMENTAL_', ''))}Request`;
+  const responseType = mapping?.response || `Rpc${toPascalCase(rpcMethod.replace('EXPERIMENTAL_', ''))}Response`;
+  
   return {
     name: toCamelCase(methodName),
     rpcMethod,
-    requestType: `${toPascalCase(methodName)}Request`,
-    responseType: `${toPascalCase(methodName)}Response`,
+    requestType,
+    responseType,
     description: operation.description || operation.summary,
     parameters,
   };
@@ -180,7 +202,7 @@ function generateMethodsForGroup(methods: ClientMethod[], options: ClientGenerat
   methods.forEach(method => {
     imports.add(method.requestType);
     imports.add(method.responseType);
-    imports.add(`${method.requestType.replace('Request', 'Query')}Schema`);
+    imports.add(`${method.requestType}Schema`);
     imports.add(`${method.responseType}Schema`);
   });
   
@@ -215,8 +237,7 @@ ${methodCode.join('\n\n')}
  * Generate method implementation
  */
 function generateMethodImplementation(method: ClientMethod, options: ClientGeneratorOptions): string {
-  const paramType = method.requestType.replace('Request', 'Query');
-  const schemaName = `${paramType}Schema`;
+  const requestSchema = `${method.requestType}Schema`;
   const responseSchema = `${method.responseType}Schema`;
   
   let description = '';
@@ -224,8 +245,8 @@ function generateMethodImplementation(method: ClientMethod, options: ClientGener
     description = `  /**\n   * ${method.description}\n   */\n`;
   }
   
-  return `${description}  async ${method.name}(params: ${paramType}): Promise<${method.responseType}> {
-    const validatedParams = ${schemaName}.parse(params);
+  return `${description}  async ${method.name}(params: ${method.requestType}): Promise<${method.responseType}> {
+    const validatedParams = ${requestSchema}.parse(params);
     return this.client.makeRequest('${method.rpcMethod}', validatedParams, ${responseSchema});
   }`;
 }

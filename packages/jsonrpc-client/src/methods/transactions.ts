@@ -3,54 +3,54 @@
  */
 
 import {
-  BroadcasttxasyncQuerySchema,
-  BroadcasttxasyncRequest,
-  BroadcasttxasyncResponse,
-  BroadcasttxasyncResponseSchema,
-  BroadcasttxcommitQuerySchema,
-  BroadcasttxcommitRequest,
-  BroadcasttxcommitResponse,
-  BroadcasttxcommitResponseSchema,
-  SendtxQuerySchema,
-  SendtxRequest,
-  SendtxResponse,
-  SendtxResponseSchema,
-  TxQuerySchema,
-  TxRequest,
-  TxResponse,
-  TxResponseSchema,
-  TxstatusQuerySchema,
-  TxstatusRequest,
-  TxstatusResponse,
-  TxstatusResponseSchema
+  RpcBroadcasttxasyncRequest,
+  RpcBroadcasttxasyncRequestSchema,
+  RpcBroadcasttxasyncResponse,
+  RpcBroadcasttxasyncResponseSchema,
+  RpcBroadcasttxcommitRequest,
+  RpcBroadcasttxcommitRequestSchema,
+  RpcBroadcasttxcommitResponse,
+  RpcBroadcasttxcommitResponseSchema,
+  RpcEXPERIMENTALtxstatusRequest,
+  RpcEXPERIMENTALtxstatusRequestSchema,
+  RpcEXPERIMENTALtxstatusResponse,
+  RpcEXPERIMENTALtxstatusResponseSchema,
+  RpcSendtxRequest,
+  RpcSendtxRequestSchema,
+  RpcSendtxResponse,
+  RpcSendtxResponseSchema,
+  RpcTxRequest,
+  RpcTxRequestSchema,
+  RpcTxResponse,
+  RpcTxResponseSchema
 } from '@near-js/jsonrpc-types';
 import type { NearJsonRpcClient } from '../client';
 
 export class TransactionsMethods {
   constructor(private client: NearJsonRpcClient) {}
 
-  async txstatus(params: TxstatusQuery): Promise<TxstatusResponse> {
-    const validatedParams = TxstatusQuerySchema.parse(params);
-    return this.client.makeRequest('EXPERIMENTALtxstatus', validatedParams, TxstatusResponseSchema);
+  async txstatus(params: RpcEXPERIMENTALtxstatusRequest): Promise<RpcEXPERIMENTALtxstatusResponse> {
+    const validatedParams = RpcEXPERIMENTALtxstatusRequestSchema.parse(params);
+    return this.client.makeRequest('EXPERIMENTALtxstatus', validatedParams, RpcEXPERIMENTALtxstatusResponseSchema);
   }
 
-  async broadcasttxasync(params: BroadcasttxasyncQuery): Promise<BroadcasttxasyncResponse> {
-    const validatedParams = BroadcasttxasyncQuerySchema.parse(params);
-    return this.client.makeRequest('Broadcasttxasync', validatedParams, BroadcasttxasyncResponseSchema);
+  async broadcasttxasync(params: RpcBroadcasttxasyncRequest): Promise<RpcBroadcasttxasyncResponse> {
+    const validatedParams = RpcBroadcasttxasyncRequestSchema.parse(params);
+    return this.client.makeRequest('Broadcasttxasync', validatedParams, RpcBroadcasttxasyncResponseSchema);
   }
 
-  async broadcasttxcommit(params: BroadcasttxcommitQuery): Promise<BroadcasttxcommitResponse> {
-    const validatedParams = BroadcasttxcommitQuerySchema.parse(params);
-    return this.client.makeRequest('Broadcasttxcommit', validatedParams, BroadcasttxcommitResponseSchema);
+  async broadcasttxcommit(params: RpcBroadcasttxcommitRequest): Promise<RpcBroadcasttxcommitResponse> {
+    const validatedParams = RpcBroadcasttxcommitRequestSchema.parse(params);
+    return this.client.makeRequest('Broadcasttxcommit', validatedParams, RpcBroadcasttxcommitResponseSchema);
   }
 
-  async sendtx(params: SendtxQuery): Promise<SendtxResponse> {
-    const validatedParams = SendtxQuerySchema.parse(params);
-    return this.client.makeRequest('Sendtx', validatedParams, SendtxResponseSchema);
+  async sendtx(params: RpcSendtxRequest): Promise<RpcSendtxResponse> {
+    const validatedParams = RpcSendtxRequestSchema.parse(params);
+    return this.client.makeRequest('Sendtx', validatedParams, RpcSendtxResponseSchema);
   }
 
-  async tx(params: TxQuery): Promise<TxResponse> {
-    const validatedParams = TxQuerySchema.parse(params);
-    return this.client.makeRequest('Tx', validatedParams, TxResponseSchema);
+  async tx(params: RpcTxRequest): Promise<RpcTxResponse> {
+    const validatedParams = RpcTxRequestSchema.parse(params);
+    return this.client.makeRequest('Tx', validatedParams, RpcTxResponseSchema);
   }
 }

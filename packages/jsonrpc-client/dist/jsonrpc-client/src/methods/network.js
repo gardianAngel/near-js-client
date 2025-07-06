@@ -11,72 +11,72 @@ class NetworkMethods {
         this.client = client;
     }
     async changes(params) {
-        const validatedParams = jsonrpc_types_1.ChangesQuerySchema.parse(params);
-        return this.client.makeRequest('EXPERIMENTALchanges', validatedParams, jsonrpc_types_1.ChangesResponseSchema);
+        const validatedParams = jsonrpc_types_1.RpcEXPERIMENTALchangesRequestSchema.parse(params);
+        return this.client.makeRequest('EXPERIMENTALchanges', validatedParams, jsonrpc_types_1.RpcEXPERIMENTALchangesResponseSchema);
     }
     async congestionlevel(params) {
-        const validatedParams = jsonrpc_types_1.CongestionlevelQuerySchema.parse(params);
-        return this.client.makeRequest('EXPERIMENTALcongestionlevel', validatedParams, jsonrpc_types_1.CongestionlevelResponseSchema);
+        const validatedParams = jsonrpc_types_1.RpcEXPERIMENTALcongestionlevelRequestSchema.parse(params);
+        return this.client.makeRequest('EXPERIMENTALcongestionlevel', validatedParams, jsonrpc_types_1.RpcEXPERIMENTALcongestionlevelResponseSchema);
     }
     async genesisconfig(params) {
-        const validatedParams = jsonrpc_types_1.GenesisconfigQuerySchema.parse(params);
-        return this.client.makeRequest('EXPERIMENTALgenesisconfig', validatedParams, jsonrpc_types_1.GenesisconfigResponseSchema);
+        const validatedParams = jsonrpc_types_1.RpcEXPERIMENTALgenesisconfigRequestSchema.parse(params);
+        return this.client.makeRequest('EXPERIMENTALgenesisconfig', validatedParams, jsonrpc_types_1.RpcEXPERIMENTALgenesisconfigResponseSchema);
     }
     async lightclientproof(params) {
-        const validatedParams = jsonrpc_types_1.LightclientproofQuerySchema.parse(params);
-        return this.client.makeRequest('EXPERIMENTALlightclientproof', validatedParams, jsonrpc_types_1.LightclientproofResponseSchema);
+        const validatedParams = jsonrpc_types_1.RpcEXPERIMENTALlightclientproofRequestSchema.parse(params);
+        return this.client.makeRequest('EXPERIMENTALlightclientproof', validatedParams, jsonrpc_types_1.RpcEXPERIMENTALlightclientproofResponseSchema);
     }
     async maintenancewindows(params) {
-        const validatedParams = jsonrpc_types_1.MaintenancewindowsQuerySchema.parse(params);
-        return this.client.makeRequest('EXPERIMENTALmaintenancewindows', validatedParams, jsonrpc_types_1.MaintenancewindowsResponseSchema);
+        const validatedParams = jsonrpc_types_1.RpcEXPERIMENTALmaintenancewindowsRequestSchema.parse(params);
+        return this.client.makeRequest('EXPERIMENTALmaintenancewindows', validatedParams, jsonrpc_types_1.RpcEXPERIMENTALmaintenancewindowsResponseSchema);
     }
     async protocolconfig(params) {
-        const validatedParams = jsonrpc_types_1.ProtocolconfigQuerySchema.parse(params);
-        return this.client.makeRequest('EXPERIMENTALprotocolconfig', validatedParams, jsonrpc_types_1.ProtocolconfigResponseSchema);
+        const validatedParams = jsonrpc_types_1.RpcEXPERIMENTALprotocolconfigRequestSchema.parse(params);
+        return this.client.makeRequest('EXPERIMENTALprotocolconfig', validatedParams, jsonrpc_types_1.RpcEXPERIMENTALprotocolconfigResponseSchema);
     }
     async receipt(params) {
-        const validatedParams = jsonrpc_types_1.ReceiptQuerySchema.parse(params);
-        return this.client.makeRequest('EXPERIMENTALreceipt', validatedParams, jsonrpc_types_1.ReceiptResponseSchema);
+        const validatedParams = jsonrpc_types_1.RpcEXPERIMENTALreceiptRequestSchema.parse(params);
+        return this.client.makeRequest('EXPERIMENTALreceipt', validatedParams, jsonrpc_types_1.RpcEXPERIMENTALreceiptResponseSchema);
     }
     async splitstorageinfo(params) {
-        const validatedParams = jsonrpc_types_1.SplitstorageinfoQuerySchema.parse(params);
-        return this.client.makeRequest('EXPERIMENTALsplitstorageinfo', validatedParams, jsonrpc_types_1.SplitstorageinfoResponseSchema);
+        const validatedParams = jsonrpc_types_1.RpcEXPERIMENTALsplitstorageinfoRequestSchema.parse(params);
+        return this.client.makeRequest('EXPERIMENTALsplitstorageinfo', validatedParams, jsonrpc_types_1.RpcEXPERIMENTALsplitstorageinfoResponseSchema);
     }
     async validatorsordered(params) {
-        const validatedParams = jsonrpc_types_1.ValidatorsorderedQuerySchema.parse(params);
-        return this.client.makeRequest('EXPERIMENTALvalidatorsordered', validatedParams, jsonrpc_types_1.ValidatorsorderedResponseSchema);
+        const validatedParams = jsonrpc_types_1.RpcEXPERIMENTALvalidatorsorderedRequestSchema.parse(params);
+        return this.client.makeRequest('EXPERIMENTALvalidatorsordered', validatedParams, jsonrpc_types_1.RpcEXPERIMENTALvalidatorsorderedResponseSchema);
     }
     async changes(params) {
-        const validatedParams = jsonrpc_types_1.ChangesQuerySchema.parse(params);
-        return this.client.makeRequest('Changes', validatedParams, jsonrpc_types_1.ChangesResponseSchema);
+        const validatedParams = jsonrpc_types_1.RpcChangesRequestSchema.parse(params);
+        return this.client.makeRequest('Changes', validatedParams, jsonrpc_types_1.RpcChangesResponseSchema);
     }
     async clientconfig(params) {
-        const validatedParams = jsonrpc_types_1.ClientconfigQuerySchema.parse(params);
-        return this.client.makeRequest('Clientconfig', validatedParams, jsonrpc_types_1.ClientconfigResponseSchema);
+        const validatedParams = jsonrpc_types_1.RpcClientconfigRequestSchema.parse(params);
+        return this.client.makeRequest('Clientconfig', validatedParams, jsonrpc_types_1.RpcClientconfigResponseSchema);
     }
     async gasprice(params) {
-        const validatedParams = jsonrpc_types_1.GaspriceQuerySchema.parse(params);
-        return this.client.makeRequest('Gasprice', validatedParams, jsonrpc_types_1.GaspriceResponseSchema);
+        const validatedParams = jsonrpc_types_1.RpcGaspriceRequestSchema.parse(params);
+        return this.client.makeRequest('Gasprice', validatedParams, jsonrpc_types_1.RpcGaspriceResponseSchema);
     }
     async health(params) {
-        const validatedParams = jsonrpc_types_1.HealthQuerySchema.parse(params);
-        return this.client.makeRequest('Health', validatedParams, jsonrpc_types_1.HealthResponseSchema);
+        const validatedParams = jsonrpc_types_1.RpcHealthRequestSchema.parse(params);
+        return this.client.makeRequest('Health', validatedParams, jsonrpc_types_1.RpcHealthResponseSchema);
     }
     async lightclientproof(params) {
-        const validatedParams = jsonrpc_types_1.LightclientproofQuerySchema.parse(params);
-        return this.client.makeRequest('Lightclientproof', validatedParams, jsonrpc_types_1.LightclientproofResponseSchema);
+        const validatedParams = jsonrpc_types_1.RpcLightclientproofRequestSchema.parse(params);
+        return this.client.makeRequest('Lightclientproof', validatedParams, jsonrpc_types_1.RpcLightclientproofResponseSchema);
     }
     async networkinfo(params) {
-        const validatedParams = jsonrpc_types_1.NetworkinfoQuerySchema.parse(params);
-        return this.client.makeRequest('Networkinfo', validatedParams, jsonrpc_types_1.NetworkinfoResponseSchema);
+        const validatedParams = jsonrpc_types_1.RpcNetworkinfoRequestSchema.parse(params);
+        return this.client.makeRequest('Networkinfo', validatedParams, jsonrpc_types_1.RpcNetworkinfoResponseSchema);
     }
     async status(params) {
-        const validatedParams = jsonrpc_types_1.StatusQuerySchema.parse(params);
-        return this.client.makeRequest('Status', validatedParams, jsonrpc_types_1.StatusResponseSchema);
+        const validatedParams = jsonrpc_types_1.RpcStatusRequestSchema.parse(params);
+        return this.client.makeRequest('Status', validatedParams, jsonrpc_types_1.RpcStatusResponseSchema);
     }
     async validators(params) {
-        const validatedParams = jsonrpc_types_1.ValidatorsQuerySchema.parse(params);
-        return this.client.makeRequest('Validators', validatedParams, jsonrpc_types_1.ValidatorsResponseSchema);
+        const validatedParams = jsonrpc_types_1.RpcValidatorsRequestSchema.parse(params);
+        return this.client.makeRequest('Validators', validatedParams, jsonrpc_types_1.RpcValidatorsResponseSchema);
     }
 }
 exports.NetworkMethods = NetworkMethods;

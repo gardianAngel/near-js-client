@@ -1,22 +1,22 @@
 /**
  * Network-related methods for NEAR JSON-RPC client
  */
-import { ClientconfigResponse, CongestionlevelResponse, GaspriceResponse, GenesisconfigResponse, HealthResponse, MaintenancewindowsResponse, NetworkinfoResponse, ProtocolconfigResponse, ReceiptResponse, SplitstorageinfoResponse, StatusResponse, ValidatorsResponse, ValidatorsorderedResponse } from '@near-js/jsonrpc-types';
+import { RpcClientconfigRequest, RpcClientconfigResponse, RpcEXPERIMENTALcongestionlevelRequest, RpcEXPERIMENTALcongestionlevelResponse, RpcEXPERIMENTALgenesisconfigRequest, RpcEXPERIMENTALgenesisconfigResponse, RpcEXPERIMENTALmaintenancewindowsRequest, RpcEXPERIMENTALmaintenancewindowsResponse, RpcEXPERIMENTALprotocolconfigRequest, RpcEXPERIMENTALprotocolconfigResponse, RpcEXPERIMENTALreceiptRequest, RpcEXPERIMENTALreceiptResponse, RpcEXPERIMENTALsplitstorageinfoRequest, RpcEXPERIMENTALsplitstorageinfoResponse, RpcEXPERIMENTALvalidatorsorderedRequest, RpcEXPERIMENTALvalidatorsorderedResponse, RpcGaspriceRequest, RpcGaspriceResponse, RpcHealthRequest, RpcHealthResponse, RpcNetworkinfoRequest, RpcNetworkinfoResponse, RpcStatusRequest, RpcStatusResponse, RpcValidatorsRequest, RpcValidatorsResponse } from '@near-js/jsonrpc-types';
 import type { NearJsonRpcClient } from '../client';
 export declare class NetworkMethods {
     private client;
     constructor(client: NearJsonRpcClient);
-    congestionlevel(params: CongestionlevelQuery): Promise<CongestionlevelResponse>;
-    genesisconfig(params: GenesisconfigQuery): Promise<GenesisconfigResponse>;
-    maintenancewindows(params: MaintenancewindowsQuery): Promise<MaintenancewindowsResponse>;
-    protocolconfig(params: ProtocolconfigQuery): Promise<ProtocolconfigResponse>;
-    receipt(params: ReceiptQuery): Promise<ReceiptResponse>;
-    splitstorageinfo(params: SplitstorageinfoQuery): Promise<SplitstorageinfoResponse>;
-    validatorsordered(params: ValidatorsorderedQuery): Promise<ValidatorsorderedResponse>;
-    clientconfig(params: ClientconfigQuery): Promise<ClientconfigResponse>;
-    gasprice(params: GaspriceQuery): Promise<GaspriceResponse>;
-    health(params: HealthQuery): Promise<HealthResponse>;
-    networkinfo(params: NetworkinfoQuery): Promise<NetworkinfoResponse>;
-    status(params: StatusQuery): Promise<StatusResponse>;
-    validators(params: ValidatorsQuery): Promise<ValidatorsResponse>;
+    congestionlevel(params: RpcEXPERIMENTALcongestionlevelRequest): Promise<RpcEXPERIMENTALcongestionlevelResponse>;
+    genesisconfig(params: RpcEXPERIMENTALgenesisconfigRequest): Promise<RpcEXPERIMENTALgenesisconfigResponse>;
+    maintenancewindows(params: RpcEXPERIMENTALmaintenancewindowsRequest): Promise<RpcEXPERIMENTALmaintenancewindowsResponse>;
+    protocolconfig(params: RpcEXPERIMENTALprotocolconfigRequest): Promise<RpcEXPERIMENTALprotocolconfigResponse>;
+    receipt(params: RpcEXPERIMENTALreceiptRequest): Promise<RpcEXPERIMENTALreceiptResponse>;
+    splitstorageinfo(params: RpcEXPERIMENTALsplitstorageinfoRequest): Promise<RpcEXPERIMENTALsplitstorageinfoResponse>;
+    validatorsordered(params: RpcEXPERIMENTALvalidatorsorderedRequest): Promise<RpcEXPERIMENTALvalidatorsorderedResponse>;
+    clientconfig(params: RpcClientconfigRequest): Promise<RpcClientconfigResponse>;
+    gasprice(params: RpcGaspriceRequest): Promise<RpcGaspriceResponse>;
+    health(params: RpcHealthRequest): Promise<RpcHealthResponse>;
+    networkinfo(params: RpcNetworkinfoRequest): Promise<RpcNetworkinfoResponse>;
+    status(params: RpcStatusRequest): Promise<RpcStatusResponse>;
+    validators(params: RpcValidatorsRequest): Promise<RpcValidatorsResponse>;
 }

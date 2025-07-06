@@ -58,16 +58,20 @@ export class NearJsonRpcClient {
   /**
    * Make a JSON-RPC request with type validation
    * CRITICAL: Always use '/' as path, not the OpenAPI spec paths
+   * Converts camelCase input to snake_case for API and snake_case response to camelCase
    */
   async makeRequest<T>(
     method: string,
     params: unknown,
     responseSchema: z.ZodSchema<T>
   ): Promise<T> {
+    // Convert camelCase input to snake_case for the API
+    const snakeCaseParams = this.transformKeysToSnakeCase(params);
+    
     const request: JsonRpcRequest = {
       jsonrpc: '2.0',
       method,
-      params,
+      params: snakeCaseParams,
       id: ++this.requestId,
     };
 
@@ -90,7 +94,9 @@ export class NearJsonRpcClient {
         }
 
         try {
-          return responseSchema.parse(response.result);
+          // Convert snake_case response to camelCase for JS developers
+          const camelCaseResult = this.transformKeysToCamelCase(response.result);
+          return responseSchema.parse(camelCaseResult);
         } catch (parseError) {
           if (parseError instanceof z.ZodError) {
             throw new ValidationError(
@@ -162,6 +168,50 @@ export class NearJsonRpcClient {
 
   private delay(ms: number): Promise<void> {
     return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  /**
+   * Transform object keys from camelCase to snake_case recursively
+   */
+  private transformKeysToSnakeCase(obj: unknown): unknown {
+    if (Array.isArray(obj)) {
+      return obj.map(item => this.transformKeysToSnakeCase(item));
+    }
+    
+    if (obj && typeof obj === 'object' && obj.constructor === Object) {
+      const result: Record<string, unknown> = {};
+      
+      for (const [key, value] of Object.entries(obj)) {
+        const snakeKey = key.replace(/[A-Z]/g, letter => `_${letter.toLowerCase()}`);
+        result[snakeKey] = this.transformKeysToSnakeCase(value);
+      }
+      
+      return result;
+    }
+    
+    return obj;
+  }
+
+  /**
+   * Transform object keys from snake_case to camelCase recursively
+   */
+  private transformKeysToCamelCase(obj: unknown): unknown {
+    if (Array.isArray(obj)) {
+      return obj.map(item => this.transformKeysToCamelCase(item));
+    }
+    
+    if (obj && typeof obj === 'object' && obj.constructor === Object) {
+      const result: Record<string, unknown> = {};
+      
+      for (const [key, value] of Object.entries(obj)) {
+        const camelKey = key.replace(/_([a-z])/g, (_, letter) => letter.toUpperCase());
+        result[camelKey] = this.transformKeysToCamelCase(value);
+      }
+      
+      return result;
+    }
+    
+    return obj;
   }
 
   /**

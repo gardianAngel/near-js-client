@@ -3,18 +3,18 @@
  */
 
 import {
-  QueryQuerySchema,
-  QueryRequest,
-  QueryResponse,
-  QueryResponseSchema
+  RpcQueryRequest,
+  RpcQueryRequestSchema,
+  RpcQueryResponse,
+  RpcQueryResponseSchema
 } from '@near-js/jsonrpc-types';
 import type { NearJsonRpcClient } from '../client';
 
 export class AccountsMethods {
   constructor(private client: NearJsonRpcClient) {}
 
-  async query(params: QueryQuery): Promise<QueryResponse> {
-    const validatedParams = QueryQuerySchema.parse(params);
-    return this.client.makeRequest('Query', validatedParams, QueryResponseSchema);
+  async query(params: RpcQueryRequest): Promise<RpcQueryResponse> {
+    const validatedParams = RpcQueryRequestSchema.parse(params);
+    return this.client.makeRequest('Query', validatedParams, RpcQueryResponseSchema);
   }
 }

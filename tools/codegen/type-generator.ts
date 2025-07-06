@@ -533,13 +533,19 @@ function mapSchemaToZod(schema: Schema): string {
   }
   
   if (schema.anyOf) {
-    const unions = schema.anyOf.map(s => mapSchemaToZod(s)).join(', ');
-    return `z.union([${unions}])`;
+    const unions = schema.anyOf.map(s => mapSchemaToZod(s));
+    if (unions.length === 1) {
+      return unions[0];
+    }
+    return `z.union([${unions.join(', ')}])`;
   }
   
   if (schema.oneOf) {
-    const unions = schema.oneOf.map(s => mapSchemaToZod(s)).join(', ');
-    return `z.union([${unions}])`;
+    const unions = schema.oneOf.map(s => mapSchemaToZod(s));
+    if (unions.length === 1) {
+      return unions[0];
+    }
+    return `z.union([${unions.join(', ')}])`;
   }
   
   return 'z.unknown()';

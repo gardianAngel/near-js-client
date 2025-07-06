@@ -14,9 +14,9 @@ exports.BandwidthRequestSchema = zod_1.z.object({
 exports.BandwidthRequestBitmapSchema = zod_1.z.object({
     data: zod_1.z.array(zod_1.z.number())
 });
-exports.BandwidthRequestsSchema = zod_1.z.union([zod_1.z.object({
-        v1: zod_1.z.unknown().optional()
-    }), zod_1.z.unknown()]);
+exports.BandwidthRequestsSchema = zod_1.z.object({
+    v1: zod_1.z.unknown().optional()
+});
 exports.BandwidthRequestsV1Schema = zod_1.z.object({
     requests: zod_1.z.array(zod_1.z.unknown())
 });
