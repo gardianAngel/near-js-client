@@ -5,6 +5,10 @@
  */
 import { z } from 'zod';
 import { SimpleMethods } from './methods/simple';
+import { BlocksMethods } from './methods/blocks';
+import { TransactionsMethods } from './methods/transactions';
+import { AccountsMethods } from './methods/accounts';
+import { NetworkMethods } from './methods/network';
 export interface NearJsonRpcClientOptions {
     baseUrl: string;
     apiKey?: string;
@@ -20,6 +24,10 @@ export declare class NearJsonRpcClient {
     private readonly retryDelay;
     private requestId;
     readonly rpc: SimpleMethods;
+    readonly blocks: BlocksMethods;
+    readonly transactions: TransactionsMethods;
+    readonly accounts: AccountsMethods;
+    readonly network: NetworkMethods;
     constructor(options: NearJsonRpcClientOptions | string);
     /**
      * Make a JSON-RPC request with type validation

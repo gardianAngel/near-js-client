@@ -43,6 +43,8 @@ export async function generateTypes(
   
   // Generate method-specific types from paths
   const pathTypes = generateFromPaths(spec, options);
+  
+  // Simply assign path-generated files (they are now separate)
   Object.assign(files, pathTypes);
   
   // Generate index files
@@ -279,8 +281,49 @@ function generateFromComponents(
 function generateFromPaths(spec: OpenApiSpec, options: TypeGeneratorOptions): Record<string, string> {
   const files: Record<string, string> = {};
   
-  // For now, return empty object as we're using predefined types
-  // In a full implementation, this would analyze paths and generate request/response types
+  // Generate RPC request/response types from paths
+  for (const [path, pathItem] of Object.entries(spec.paths)) {
+    const operation = pathItem.post;
+    if (!operation) continue;
+    
+    const methodName = path.replace('/', '');
+    const requestTypeName = `Rpc${methodName}Request`;
+    const responseTypeName = `Rpc${methodName}Response`;
+    const requestSchemaName = `${requestTypeName}Schema`;
+    const responseSchemaName = `${responseTypeName}Schema`;
+    
+    // Extract request schema
+    const requestSchema = operation.requestBody?.content?.['application/Json']?.schema;
+    const responseSchema = operation.responses['200']?.content?.['application/Json']?.schema;
+    
+    if (requestSchema) {
+      const category = categorizeSchema(methodName);
+      
+      // Add to the existing category files
+      if (!files[`types/${category}.ts`]) {
+        files[`types/${category}.ts`] = '/**\n * Generated types for NEAR Protocol JSON-RPC\n */\n\n';
+      }
+      if (!files[`schemas/${category}.ts`]) {
+        files[`schemas/${category}.ts`] = '/**\n * Generated Zod schemas for NEAR Protocol JSON-RPC\n */\n\nimport { z } from \'zod\';\n\n';
+      }
+      
+      // Add request type and schema (checking for duplicates)
+      if (!files[`types/${category}.ts`].includes(`interface ${requestTypeName}`)) {
+        files[`types/${category}.ts`] += `export interface ${requestTypeName} {\n  [key: string]: any;\n}\n\n`;
+      }
+      if (!files[`schemas/${category}.ts`].includes(`${requestSchemaName} =`)) {
+        files[`schemas/${category}.ts`] += `export const ${requestSchemaName} = z.record(z.unknown());\n\n`;
+      }
+      
+      // Add response type and schema (checking for duplicates)
+      if (!files[`types/${category}.ts`].includes(`interface ${responseTypeName}`)) {
+        files[`types/${category}.ts`] += `export interface ${responseTypeName} {\n  [key: string]: any;\n}\n\n`;
+      }
+      if (!files[`schemas/${category}.ts`].includes(`${responseSchemaName} =`)) {
+        files[`schemas/${category}.ts`] += `export const ${responseSchemaName} = z.record(z.unknown());\n\n`;
+      }
+    }
+  }
   
   return files;
 }

@@ -9,6 +9,10 @@ exports.NearJsonRpcClient = void 0;
 const zod_1 = require("zod");
 const errors_1 = require("./errors");
 const simple_1 = require("./methods/simple");
+const blocks_1 = require("./methods/blocks");
+const transactions_1 = require("./methods/transactions");
+const accounts_1 = require("./methods/accounts");
+const network_1 = require("./methods/network");
 class NearJsonRpcClient {
     baseUrl;
     apiKey;
@@ -18,6 +22,11 @@ class NearJsonRpcClient {
     requestId = 0;
     // Simplified methods
     rpc;
+    // Method groups
+    blocks;
+    transactions;
+    accounts;
+    network;
     constructor(options) {
         if (typeof options === 'string') {
             this.baseUrl = options;
@@ -34,6 +43,11 @@ class NearJsonRpcClient {
         }
         // Initialize simplified methods
         this.rpc = new simple_1.SimpleMethods(this);
+        // Initialize method groups
+        this.blocks = new blocks_1.BlocksMethods(this);
+        this.transactions = new transactions_1.TransactionsMethods(this);
+        this.accounts = new accounts_1.AccountsMethods(this);
+        this.network = new network_1.NetworkMethods(this);
     }
     /**
      * Make a JSON-RPC request with type validation

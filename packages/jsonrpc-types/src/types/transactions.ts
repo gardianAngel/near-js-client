@@ -1,39 +1,52 @@
 /**
  * Generated types for NEAR Protocol JSON-RPC
  */
+
 export interface RpcEXPERIMENTALreceiptRequest {
-    [key: string]: any;
+  [key: string]: any;
 }
+
 export interface RpcEXPERIMENTALreceiptResponse {
-    [key: string]: any;
+  [key: string]: any;
 }
+
 export interface RpcEXPERIMENTALtxstatusRequest {
-    [key: string]: any;
+  [key: string]: any;
 }
+
 export interface RpcEXPERIMENTALtxstatusResponse {
-    [key: string]: any;
+  [key: string]: any;
 }
+
 export interface RpcBroadcasttxasyncRequest {
-    [key: string]: any;
+  [key: string]: any;
 }
+
 export interface RpcBroadcasttxasyncResponse {
-    [key: string]: any;
+  [key: string]: any;
 }
+
 export interface RpcBroadcasttxcommitRequest {
-    [key: string]: any;
+  [key: string]: any;
 }
+
 export interface RpcBroadcasttxcommitResponse {
-    [key: string]: any;
+  [key: string]: any;
 }
+
 export interface RpcSendtxRequest {
-    [key: string]: any;
+  [key: string]: any;
 }
+
 export interface RpcSendtxResponse {
-    [key: string]: any;
+  [key: string]: any;
 }
+
 export interface RpcTxRequest {
-    [key: string]: any;
+  [key: string]: any;
 }
+
 export interface RpcTxResponse {
-    [key: string]: any;
+  [key: string]: any;
 }
+

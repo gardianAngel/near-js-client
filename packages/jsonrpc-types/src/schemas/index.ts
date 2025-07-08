@@ -1,6 +1,7 @@
 /**
- * Type exports for NEAR Protocol JSON-RPC
+ * Schema exports for NEAR Protocol JSON-RPC
  */
+
 export * from './common';
 export * from './blocks';
 export * from './transactions';

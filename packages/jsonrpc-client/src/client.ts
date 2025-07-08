@@ -8,6 +8,10 @@ import { z } from 'zod';
 import { JsonRpcRequest, JsonRpcResponse } from '@near-js/jsonrpc-types';
 import { NearJsonRpcError, NetworkError, ValidationError } from './errors';
 import { SimpleMethods } from './methods/simple';
+import { BlocksMethods } from './methods/blocks';
+import { TransactionsMethods } from './methods/transactions';
+import { AccountsMethods } from './methods/accounts';
+import { NetworkMethods } from './methods/network';
 
 export interface NearJsonRpcClientOptions {
   baseUrl: string;
@@ -27,6 +31,12 @@ export class NearJsonRpcClient {
 
   // Simplified methods
   public readonly rpc: SimpleMethods;
+  
+  // Method groups
+  public readonly blocks: BlocksMethods;
+  public readonly transactions: TransactionsMethods;
+  public readonly accounts: AccountsMethods;
+  public readonly network: NetworkMethods;
 
   constructor(options: NearJsonRpcClientOptions | string) {
     if (typeof options === 'string') {
@@ -44,6 +54,12 @@ export class NearJsonRpcClient {
 
     // Initialize simplified methods
     this.rpc = new SimpleMethods(this);
+    
+    // Initialize method groups
+    this.blocks = new BlocksMethods(this);
+    this.transactions = new TransactionsMethods(this);
+    this.accounts = new AccountsMethods(this);
+    this.network = new NetworkMethods(this);
   }
 
   /**

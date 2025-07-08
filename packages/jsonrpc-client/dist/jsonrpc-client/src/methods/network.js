@@ -10,7 +10,7 @@ class NetworkMethods {
     constructor(client) {
         this.client = client;
     }
-    async changes(params) {
+    async experimentalChanges(params) {
         const validatedParams = jsonrpc_types_1.RpcEXPERIMENTALchangesRequestSchema.parse(params);
         return this.client.makeRequest('EXPERIMENTALchanges', validatedParams, jsonrpc_types_1.RpcEXPERIMENTALchangesResponseSchema);
     }
@@ -22,7 +22,7 @@ class NetworkMethods {
         const validatedParams = jsonrpc_types_1.RpcEXPERIMENTALgenesisconfigRequestSchema.parse(params);
         return this.client.makeRequest('EXPERIMENTALgenesisconfig', validatedParams, jsonrpc_types_1.RpcEXPERIMENTALgenesisconfigResponseSchema);
     }
-    async lightclientproof(params) {
+    async experimentalLightClientProof(params) {
         const validatedParams = jsonrpc_types_1.RpcEXPERIMENTALlightclientproofRequestSchema.parse(params);
         return this.client.makeRequest('EXPERIMENTALlightclientproof', validatedParams, jsonrpc_types_1.RpcEXPERIMENTALlightclientproofResponseSchema);
     }

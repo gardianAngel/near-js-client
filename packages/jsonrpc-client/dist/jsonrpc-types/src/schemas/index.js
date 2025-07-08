@@ -1,6 +1,6 @@
 "use strict";
 /**
- * Type exports for NEAR Protocol JSON-RPC
+ * Schema exports for NEAR Protocol JSON-RPC
  */
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;

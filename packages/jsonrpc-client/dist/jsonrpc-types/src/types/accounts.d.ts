@@ -76,6 +76,7 @@ export interface StateItem {
     value: string;
 }
 export interface StateSyncConfig {
+    concurrency?: unknown;
     dump?: unknown;
     sync?: unknown;
 }
