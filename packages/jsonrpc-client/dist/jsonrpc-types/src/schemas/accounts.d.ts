@@ -13,27 +13,27 @@ export declare const AccessKeySchema: z.ZodObject<{
     permission?: unknown;
 }>;
 export declare const AccessKeyCreationConfigViewSchema: z.ZodObject<{
-    fullaccesscost: z.ZodOptional<z.ZodUnknown>;
-    functioncallcost: z.ZodOptional<z.ZodUnknown>;
-    functioncallcostperbyte: z.ZodOptional<z.ZodUnknown>;
+    fullAccessCost: z.ZodOptional<z.ZodUnknown>;
+    functionCallCost: z.ZodOptional<z.ZodUnknown>;
+    functionCallCostPerByte: z.ZodOptional<z.ZodUnknown>;
 }, "strip", z.ZodTypeAny, {
-    fullaccesscost?: unknown;
-    functioncallcost?: unknown;
-    functioncallcostperbyte?: unknown;
+    functionCallCost?: unknown;
+    functionCallCostPerByte?: unknown;
+    fullAccessCost?: unknown;
 }, {
-    fullaccesscost?: unknown;
-    functioncallcost?: unknown;
-    functioncallcostperbyte?: unknown;
+    functionCallCost?: unknown;
+    functionCallCostPerByte?: unknown;
+    fullAccessCost?: unknown;
 }>;
 export declare const AccessKeyInfoViewSchema: z.ZodObject<{
-    accesskey: z.ZodOptional<z.ZodUnknown>;
-    publickey: z.ZodOptional<z.ZodUnknown>;
+    accessKey: z.ZodOptional<z.ZodUnknown>;
+    publicKey: z.ZodOptional<z.ZodUnknown>;
 }, "strip", z.ZodTypeAny, {
-    accesskey?: unknown;
-    publickey?: unknown;
+    accessKey?: unknown;
+    publicKey?: unknown;
 }, {
-    accesskey?: unknown;
-    publickey?: unknown;
+    accessKey?: unknown;
+    publicKey?: unknown;
 }>;
 export declare const AccessKeyListSchema: z.ZodObject<{
     keys: z.ZodArray<z.ZodUnknown, "many">;
@@ -55,103 +55,103 @@ export declare const AccessKeyViewSchema: z.ZodObject<{
     permission?: unknown;
 }>;
 export declare const AccountCreationConfigViewSchema: z.ZodObject<{
-    minallowedtoplevelaccountlength: z.ZodOptional<z.ZodNumber>;
-    registraraccountid: z.ZodOptional<z.ZodUnknown>;
+    minAllowedTopLevelAccountLength: z.ZodOptional<z.ZodNumber>;
+    registrarAccountId: z.ZodOptional<z.ZodUnknown>;
 }, "strip", z.ZodTypeAny, {
-    minallowedtoplevelaccountlength?: number | undefined;
-    registraraccountid?: unknown;
+    minAllowedTopLevelAccountLength?: number | undefined;
+    registrarAccountId?: unknown;
 }, {
-    minallowedtoplevelaccountlength?: number | undefined;
-    registraraccountid?: unknown;
+    minAllowedTopLevelAccountLength?: number | undefined;
+    registrarAccountId?: unknown;
 }>;
 export declare const AccountDataViewSchema: z.ZodObject<{
-    accountkey: z.ZodOptional<z.ZodUnknown>;
-    peerid: z.ZodOptional<z.ZodUnknown>;
+    accountKey: z.ZodOptional<z.ZodUnknown>;
+    peerId: z.ZodOptional<z.ZodUnknown>;
     proxies: z.ZodArray<z.ZodUnknown, "many">;
     timestamp: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    proxies: unknown[];
     timestamp: string;
-    accountkey?: unknown;
-    peerid?: unknown;
+    proxies: unknown[];
+    peerId?: unknown;
+    accountKey?: unknown;
 }, {
-    proxies: unknown[];
     timestamp: string;
-    accountkey?: unknown;
-    peerid?: unknown;
+    proxies: unknown[];
+    peerId?: unknown;
+    accountKey?: unknown;
 }>;
 export declare const AccountIdSchema: z.ZodString;
 export declare const AccountIdValidityRulesVersionSchema: z.ZodNumber;
 export declare const AccountInfoSchema: z.ZodObject<{
-    accountid: z.ZodOptional<z.ZodUnknown>;
+    accountId: z.ZodOptional<z.ZodUnknown>;
     amount: z.ZodString;
-    publickey: z.ZodOptional<z.ZodUnknown>;
+    publicKey: z.ZodOptional<z.ZodUnknown>;
 }, "strip", z.ZodTypeAny, {
     amount: string;
-    publickey?: unknown;
-    accountid?: unknown;
+    accountId?: unknown;
+    publicKey?: unknown;
 }, {
     amount: string;
-    publickey?: unknown;
-    accountid?: unknown;
+    accountId?: unknown;
+    publicKey?: unknown;
 }>;
 export declare const AccountViewSchema: z.ZodObject<{
     amount: z.ZodString;
-    codehash: z.ZodOptional<z.ZodUnknown>;
-    globalcontractaccountid: z.ZodOptional<z.ZodUnknown>;
-    globalcontracthash: z.ZodOptional<z.ZodUnknown>;
+    codeHash: z.ZodOptional<z.ZodUnknown>;
+    globalContractAccountId: z.ZodOptional<z.ZodUnknown>;
+    globalContractHash: z.ZodOptional<z.ZodUnknown>;
     locked: z.ZodString;
-    storagepaidat: z.ZodOptional<z.ZodNumber>;
-    storageusage: z.ZodOptional<z.ZodNumber>;
+    storagePaidAt: z.ZodOptional<z.ZodNumber>;
+    storageUsage: z.ZodOptional<z.ZodNumber>;
 }, "strip", z.ZodTypeAny, {
     amount: string;
     locked: string;
-    codehash?: unknown;
-    globalcontractaccountid?: unknown;
-    globalcontracthash?: unknown;
-    storagepaidat?: number | undefined;
-    storageusage?: number | undefined;
+    codeHash?: unknown;
+    globalContractAccountId?: unknown;
+    globalContractHash?: unknown;
+    storagePaidAt?: number | undefined;
+    storageUsage?: number | undefined;
 }, {
     amount: string;
     locked: string;
-    codehash?: unknown;
-    globalcontractaccountid?: unknown;
-    globalcontracthash?: unknown;
-    storagepaidat?: number | undefined;
-    storageusage?: number | undefined;
+    codeHash?: unknown;
+    globalContractAccountId?: unknown;
+    globalContractHash?: unknown;
+    storagePaidAt?: number | undefined;
+    storageUsage?: number | undefined;
 }>;
 export declare const AccountWithPublicKeySchema: z.ZodObject<{
-    accountid: z.ZodOptional<z.ZodUnknown>;
-    publickey: z.ZodOptional<z.ZodUnknown>;
+    accountId: z.ZodOptional<z.ZodUnknown>;
+    publicKey: z.ZodOptional<z.ZodUnknown>;
 }, "strip", z.ZodTypeAny, {
-    publickey?: unknown;
-    accountid?: unknown;
+    accountId?: unknown;
+    publicKey?: unknown;
 }, {
-    publickey?: unknown;
-    accountid?: unknown;
+    accountId?: unknown;
+    publicKey?: unknown;
 }>;
 export declare const ContractCodeViewSchema: z.ZodObject<{
-    codebase64: z.ZodOptional<z.ZodString>;
+    codeBase64: z.ZodOptional<z.ZodString>;
     hash: z.ZodUnknown;
 }, "strip", z.ZodTypeAny, {
-    codebase64?: string | undefined;
     hash?: unknown;
+    codeBase64?: string | undefined;
 }, {
-    codebase64?: string | undefined;
     hash?: unknown;
+    codeBase64?: string | undefined;
 }>;
 export declare const GasKeyViewSchema: z.ZodObject<{
     balance: z.ZodNumber;
-    numnonces: z.ZodOptional<z.ZodNumber>;
+    numNonces: z.ZodOptional<z.ZodNumber>;
     permission: z.ZodUnknown;
 }, "strip", z.ZodTypeAny, {
     balance: number;
     permission?: unknown;
-    numnonces?: number | undefined;
+    numNonces?: number | undefined;
 }, {
     balance: number;
     permission?: unknown;
-    numnonces?: number | undefined;
+    numNonces?: number | undefined;
 }>;
 export declare const GlobalContractDeployModeSchema: z.ZodUnknown;
 export declare const GlobalContractIdentifierSchema: z.ZodUnknown;

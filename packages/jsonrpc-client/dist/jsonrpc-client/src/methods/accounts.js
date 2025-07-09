@@ -12,7 +12,7 @@ class AccountsMethods {
     }
     async query(params) {
         const validatedParams = jsonrpc_types_1.RpcQueryRequestSchema.parse(params);
-        return this.client.makeRequest('Query', validatedParams, jsonrpc_types_1.RpcQueryResponseSchema);
+        return this.client.makeRequest('query', validatedParams, jsonrpc_types_1.RpcQueryResponseSchema);
     }
 }
 exports.AccountsMethods = AccountsMethods;

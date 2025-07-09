@@ -79,7 +79,7 @@ export class NearJsonRpcClient {
       jsonrpc: '2.0',
       method,
       params: snakeCaseParams,
-      id: ++this.requestId,
+      id: String(++this.requestId),
     };
 
     let lastError: Error | null = null;

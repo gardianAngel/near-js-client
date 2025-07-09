@@ -374,18 +374,18 @@ export declare const SignedTransactionViewSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     nonce: number;
     actions: unknown[];
-    receiverId?: unknown;
     hash?: unknown;
     signature?: unknown;
+    receiverId?: unknown;
     publicKey?: unknown;
     priorityFee?: number | undefined;
     signerId?: unknown;
 }, {
     nonce: number;
     actions: unknown[];
-    receiverId?: unknown;
     hash?: unknown;
     signature?: unknown;
+    receiverId?: unknown;
     publicKey?: unknown;
     priorityFee?: number | undefined;
     signerId?: unknown;
@@ -415,4 +415,95 @@ export declare const UseGlobalContractActionSchema: z.ZodObject<{
     contractIdentifier?: unknown;
 }, {
     contractIdentifier?: unknown;
+}>;
+export declare const RpcBroadcastTxAsyncRequestSchema: z.ZodObject<{
+    signedTxBase64: z.ZodOptional<z.ZodUnknown>;
+    waitUntil: z.ZodOptional<z.ZodUnknown>;
+}, "strip", z.ZodTypeAny, {
+    signedTxBase64?: unknown;
+    waitUntil?: unknown;
+}, {
+    signedTxBase64?: unknown;
+    waitUntil?: unknown;
+}>;
+export declare const RpcBroadcastTxAsyncResponseSchema: z.ZodObject<{
+    finalExecutionStatus: z.ZodOptional<z.ZodUnknown>;
+}, "strip", z.ZodTypeAny, {
+    finalExecutionStatus?: unknown;
+}, {
+    finalExecutionStatus?: unknown;
+}>;
+export declare const RpcBroadcastTxCommitRequestSchema: z.ZodObject<{
+    signedTxBase64: z.ZodOptional<z.ZodUnknown>;
+    waitUntil: z.ZodOptional<z.ZodUnknown>;
+}, "strip", z.ZodTypeAny, {
+    signedTxBase64?: unknown;
+    waitUntil?: unknown;
+}, {
+    signedTxBase64?: unknown;
+    waitUntil?: unknown;
+}>;
+export declare const RpcBroadcastTxCommitResponseSchema: z.ZodObject<{
+    finalExecutionStatus: z.ZodOptional<z.ZodUnknown>;
+}, "strip", z.ZodTypeAny, {
+    finalExecutionStatus?: unknown;
+}, {
+    finalExecutionStatus?: unknown;
+}>;
+export declare const RpcEXPERIMENTALTxStatusRequestSchema: z.ZodObject<{
+    waitUntil: z.ZodOptional<z.ZodUnknown>;
+}, "strip", z.ZodTypeAny, {
+    waitUntil?: unknown;
+}, {
+    waitUntil?: unknown;
+}>;
+export declare const RpcEXPERIMENTALTxStatusResponseSchema: z.ZodObject<{
+    finalExecutionStatus: z.ZodOptional<z.ZodUnknown>;
+}, "strip", z.ZodTypeAny, {
+    finalExecutionStatus?: unknown;
+}, {
+    finalExecutionStatus?: unknown;
+}>;
+export declare const RpcSendTxRequestSchema: z.ZodObject<{
+    signedTxBase64: z.ZodOptional<z.ZodUnknown>;
+    waitUntil: z.ZodOptional<z.ZodUnknown>;
+}, "strip", z.ZodTypeAny, {
+    signedTxBase64?: unknown;
+    waitUntil?: unknown;
+}, {
+    signedTxBase64?: unknown;
+    waitUntil?: unknown;
+}>;
+export declare const RpcSendTxResponseSchema: z.ZodObject<{
+    finalExecutionStatus: z.ZodOptional<z.ZodUnknown>;
+}, "strip", z.ZodTypeAny, {
+    finalExecutionStatus?: unknown;
+}, {
+    finalExecutionStatus?: unknown;
+}>;
+export declare const RpcEXPERIMENTALReceiptRequestSchema: z.ZodObject<{
+    receiptId: z.ZodOptional<z.ZodUnknown>;
+}, "strip", z.ZodTypeAny, {
+    receiptId?: unknown;
+}, {
+    receiptId?: unknown;
+}>;
+export declare const RpcEXPERIMENTALReceiptResponseSchema: z.ZodObject<{
+    predecessorId: z.ZodOptional<z.ZodUnknown>;
+    priority: z.ZodOptional<z.ZodNumber>;
+    receipt: z.ZodUnknown;
+    receiptId: z.ZodOptional<z.ZodUnknown>;
+    receiverId: z.ZodOptional<z.ZodUnknown>;
+}, "strip", z.ZodTypeAny, {
+    receiverId?: unknown;
+    predecessorId?: unknown;
+    priority?: number | undefined;
+    receipt?: unknown;
+    receiptId?: unknown;
+}, {
+    receiverId?: unknown;
+    predecessorId?: unknown;
+    priority?: number | undefined;
+    receipt?: unknown;
+    receiptId?: unknown;
 }>;

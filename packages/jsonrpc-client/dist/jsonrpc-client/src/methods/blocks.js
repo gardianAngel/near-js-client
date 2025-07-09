@@ -10,25 +10,25 @@ class BlocksMethods {
     constructor(client) {
         this.client = client;
     }
-    async changesinblock(params) {
-        const validatedParams = jsonrpc_types_1.RpcEXPERIMENTALchangesinblockRequestSchema.parse(params);
-        return this.client.makeRequest('EXPERIMENTALchangesinblock', validatedParams, jsonrpc_types_1.RpcEXPERIMENTALchangesinblockResponseSchema);
+    async changesInBlock(params) {
+        const validatedParams = jsonrpc_types_1.RpcEXPERIMENTALChangesInBlockRequestSchema.parse(params);
+        return this.client.makeRequest('EXPERIMENTALChangesInBlock', validatedParams, jsonrpc_types_1.RpcEXPERIMENTALChangesInBlockResponseSchema);
     }
-    async lightclientblockproof(params) {
-        const validatedParams = jsonrpc_types_1.RpcEXPERIMENTALlightclientblockproofRequestSchema.parse(params);
-        return this.client.makeRequest('EXPERIMENTALlightclientblockproof', validatedParams, jsonrpc_types_1.RpcEXPERIMENTALlightclientblockproofResponseSchema);
+    async lightClientBlockProof(params) {
+        const validatedParams = jsonrpc_types_1.RpcEXPERIMENTALLightClientBlockProofRequestSchema.parse(params);
+        return this.client.makeRequest('EXPERIMENTALLightClientBlockProof', validatedParams, jsonrpc_types_1.RpcEXPERIMENTALLightClientBlockProofResponseSchema);
     }
     async block(params) {
         const validatedParams = jsonrpc_types_1.RpcBlockRequestSchema.parse(params);
-        return this.client.makeRequest('Block', validatedParams, jsonrpc_types_1.RpcBlockResponseSchema);
+        return this.client.makeRequest('block', validatedParams, jsonrpc_types_1.RpcBlockResponseSchema);
     }
     async chunk(params) {
         const validatedParams = jsonrpc_types_1.RpcChunkRequestSchema.parse(params);
-        return this.client.makeRequest('Chunk', validatedParams, jsonrpc_types_1.RpcChunkResponseSchema);
+        return this.client.makeRequest('chunk', validatedParams, jsonrpc_types_1.RpcChunkResponseSchema);
     }
-    async nextlightclientblock(params) {
-        const validatedParams = jsonrpc_types_1.RpcNextlightclientblockRequestSchema.parse(params);
-        return this.client.makeRequest('Nextlightclientblock', validatedParams, jsonrpc_types_1.RpcNextlightclientblockResponseSchema);
+    async nextLightClientBlock(params) {
+        const validatedParams = jsonrpc_types_1.RpcNextLightClientBlockRequestSchema.parse(params);
+        return this.client.makeRequest('nextLightClientBlock', validatedParams, jsonrpc_types_1.RpcNextLightClientBlockResponseSchema);
     }
 }
 exports.BlocksMethods = BlocksMethods;

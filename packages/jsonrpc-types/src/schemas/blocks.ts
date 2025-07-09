@@ -217,3 +217,11 @@ export const RpcStateChangesInBlockResponseSchema = z.object({
   blockHash: z.unknown().optional(),
   changes: z.array(z.unknown())
 });
+
+// Schema aliases for client compatibility
+export const RpcEXPERIMENTALChangesInBlockRequestSchema = RpcStateChangesInBlockRequestSchema;
+export const RpcEXPERIMENTALChangesInBlockResponseSchema = RpcStateChangesInBlockResponseSchema;
+export const RpcEXPERIMENTALLightClientBlockProofRequestSchema = RpcLightClientBlockProofRequestSchema;
+export const RpcEXPERIMENTALLightClientBlockProofResponseSchema = RpcLightClientBlockProofResponseSchema;
+export const RpcNextLightClientBlockRequestSchema = RpcLightClientNextBlockRequestSchema;
+export const RpcNextLightClientBlockResponseSchema = RpcLightClientNextBlockResponseSchema;

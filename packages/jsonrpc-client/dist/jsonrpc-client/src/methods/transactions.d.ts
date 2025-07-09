@@ -1,14 +1,14 @@
 /**
  * Transactions-related methods for NEAR JSON-RPC client
  */
-import { RpcBroadcasttxasyncRequest, RpcBroadcasttxasyncResponse, RpcBroadcasttxcommitRequest, RpcBroadcasttxcommitResponse, RpcEXPERIMENTALtxstatusRequest, RpcEXPERIMENTALtxstatusResponse, RpcSendtxRequest, RpcSendtxResponse, RpcTxRequest, RpcTxResponse } from '@near-js/jsonrpc-types';
+import { RpcBroadcastTxAsyncRequest, RpcBroadcastTxAsyncResponse, RpcBroadcastTxCommitRequest, RpcBroadcastTxCommitResponse, RpcEXPERIMENTALTxStatusRequest, RpcEXPERIMENTALTxStatusResponse, RpcSendTxRequest, RpcSendTxResponse, RpcTransactionResponse, RpcTransactionStatusRequest } from '@near-js/jsonrpc-types';
 import type { NearJsonRpcClient } from '../client';
 export declare class TransactionsMethods {
     private client;
     constructor(client: NearJsonRpcClient);
-    txstatus(params: RpcEXPERIMENTALtxstatusRequest): Promise<RpcEXPERIMENTALtxstatusResponse>;
-    broadcasttxasync(params: RpcBroadcasttxasyncRequest): Promise<RpcBroadcasttxasyncResponse>;
-    broadcasttxcommit(params: RpcBroadcasttxcommitRequest): Promise<RpcBroadcasttxcommitResponse>;
-    sendtx(params: RpcSendtxRequest): Promise<RpcSendtxResponse>;
-    tx(params: RpcTxRequest): Promise<RpcTxResponse>;
+    txStatus(params: RpcEXPERIMENTALTxStatusRequest): Promise<RpcEXPERIMENTALTxStatusResponse>;
+    broadcastTxAsync(params: RpcBroadcastTxAsyncRequest): Promise<RpcBroadcastTxAsyncResponse>;
+    broadcastTxCommit(params: RpcBroadcastTxCommitRequest): Promise<RpcBroadcastTxCommitResponse>;
+    sendTx(params: RpcSendTxRequest): Promise<RpcSendTxResponse>;
+    tx(params: RpcTransactionStatusRequest): Promise<RpcTransactionResponse>;
 }

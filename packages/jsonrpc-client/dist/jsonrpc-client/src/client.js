@@ -61,7 +61,7 @@ class NearJsonRpcClient {
             jsonrpc: '2.0',
             method,
             params: snakeCaseParams,
-            id: ++this.requestId,
+            id: String(++this.requestId),
         };
         let lastError = null;
         for (let attempt = 0; attempt <= this.retries; attempt++) {

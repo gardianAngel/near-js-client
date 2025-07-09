@@ -1,7 +1,7 @@
 /**
  * Generated types for NEAR Protocol JSON-RPC
  */
-import { AccountId, CryptoHash, PublicKey } from './common';
+import { AccountId, CryptoHash, PublicKey, ShardId, BlockStatusView, AccountInfo, PeerInfoView, KnownProducerView, AccountDataView, RpcPeerInfo, RpcKnownProducer, ValidatorStakeViewV1 } from './common';
 export interface CatchupStatusView {
     blocksToCatchup?: BlockStatusView[];
     shardSyncStatus?: Record<string, unknown>;
@@ -222,21 +222,17 @@ export interface RpcStatusResponse {
 export interface RpcValidatorRequest {
 }
 export interface RpcValidatorResponse {
-    currentFishermen?: ValidatorStakeView[];
-    currentProposals?: ValidatorStakeView[];
+    currentFishermen?: ValidatorStakeViewV1[];
+    currentProposals?: ValidatorStakeViewV1[];
     currentValidators?: CurrentEpochValidatorInfo[];
     epochHeight?: number;
     epochStartHeight?: number;
-    nextFishermen?: ValidatorStakeView[];
+    nextFishermen?: ValidatorStakeViewV1[];
     nextValidators?: NextEpochValidatorInfo[];
     prevEpochKickout?: ValidatorKickoutView[];
 }
 export interface RpcValidatorsOrderedRequest {
     blockId?: unknown;
-}
-export interface SlashedValidator {
-    accountId?: AccountId;
-    isDoubleSign?: boolean;
 }
 export interface StatusSyncInfo {
     earliestBlockHash?: unknown;
@@ -258,9 +254,9 @@ export interface ValidatorKickoutView {
     accountId?: AccountId;
     reason: ValidatorKickoutReason;
 }
-export type ValidatorStakeView = unknown;
-export interface ValidatorStakeViewV1 {
-    accountId?: AccountId;
-    publicKey?: PublicKey;
-    stake: string;
-}
+export type RpcEXPERIMENTALGenesisConfigRequest = GenesisConfigRequest;
+export type RpcEXPERIMENTALGenesisConfigResponse = GenesisConfig;
+export type RpcEXPERIMENTALProtocolConfigRequest = RpcProtocolConfigRequest;
+export type RpcEXPERIMENTALProtocolConfigResponse = RpcProtocolConfigResponse;
+export type RpcEXPERIMENTALValidatorsOrderedRequest = RpcValidatorsOrderedRequest;
+export type RpcEXPERIMENTALValidatorsOrderedResponse = ValidatorStakeViewV1[];

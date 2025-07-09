@@ -2,7 +2,7 @@
  * Generated types for NEAR Protocol JSON-RPC
  */
 
-import { AccountId, CryptoHash, PublicKey } from './common';
+import { AccountId, CryptoHash, PublicKey, ShardId, Signature, SlashedValidator, ReceiptView, SignedTransactionView, MerklePathItem, StateChangeKindView, StateChangeWithCauseView, RpcStateChangesInBlockByTypeRequest, LightClientBlockLiteView, ValidatorStakeViewV1 } from './common';
 
 export interface BlockHeaderInnerLiteView {
   blockMerkleRoot?: CryptoHash;
@@ -49,16 +49,13 @@ export interface BlockHeaderView {
   timestamp: number;
   timestampNanosec?: string;
   totalSupply?: string;
-  validatorProposals?: ValidatorStakeView[];
+  validatorProposals?: ValidatorStakeViewV1[];
   validatorReward?: string;
 }
 
 export type BlockId = unknown;
 
-export interface BlockStatusView {
-  hash: CryptoHash;
-  height: number;
-}
+// BlockStatusView is now defined in common.ts to avoid circular imports
 
 export interface ChunkDistributionNetworkConfig {
   enabled: boolean;
@@ -89,7 +86,7 @@ export interface ChunkHeaderView {
   shardId?: ShardId;
   signature: Signature;
   txRoot?: CryptoHash;
-  validatorProposals?: ValidatorStakeView[];
+  validatorProposals?: ValidatorStakeViewV1[];
   validatorReward?: string;
 }
 
@@ -158,11 +155,7 @@ export interface JsonRpcResponseForRpcStateChangesInBlockResponseAndRpcError {
   jsonrpc: string;
 }
 
-export interface LightClientBlockLiteView {
-  innerLite?: BlockHeaderInnerLiteView;
-  innerRestHash?: CryptoHash;
-  prevBlockHash?: CryptoHash;
-}
+// LightClientBlockLiteView is now defined in common.ts to avoid conflicts
 
 export interface RpcBlockRequest {
 
@@ -204,13 +197,11 @@ export interface RpcLightClientNextBlockResponse {
   innerLite?: BlockHeaderInnerLiteView;
   innerRestHash?: CryptoHash;
   nextBlockInnerHash?: CryptoHash;
-  nextBps?: ValidatorStakeView[];
+  nextBps?: ValidatorStakeViewV1[];
   prevBlockHash?: CryptoHash;
 }
 
-export interface RpcStateChangesInBlockByTypeRequest {
-
-}
+// RpcStateChangesInBlockByTypeRequest is now defined in common.ts
 
 export interface RpcStateChangesInBlockByTypeResponse {
   blockHash?: CryptoHash;
@@ -225,3 +216,11 @@ export interface RpcStateChangesInBlockResponse {
   blockHash?: CryptoHash;
   changes: StateChangeWithCauseView[];
 }
+
+// Type aliases for client compatibility
+export type RpcEXPERIMENTALChangesInBlockRequest = RpcStateChangesInBlockRequest;
+export type RpcEXPERIMENTALChangesInBlockResponse = RpcStateChangesInBlockResponse;
+export type RpcEXPERIMENTALLightClientBlockProofRequest = RpcLightClientBlockProofRequest;
+export type RpcEXPERIMENTALLightClientBlockProofResponse = RpcLightClientBlockProofResponse;
+export type RpcNextLightClientBlockRequest = RpcLightClientNextBlockRequest;
+export type RpcNextLightClientBlockResponse = RpcLightClientNextBlockResponse;

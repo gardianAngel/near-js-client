@@ -72,8 +72,6 @@ export declare const BlockHeaderViewSchema: z.ZodObject<{
     height: number;
     timestamp: number;
     approvals: unknown[];
-    hash?: unknown;
-    gasPrice?: string | undefined;
     blockMerkleRoot?: unknown;
     epochId?: unknown;
     nextBpHash?: unknown;
@@ -92,6 +90,8 @@ export declare const BlockHeaderViewSchema: z.ZodObject<{
     chunkTxRoot?: unknown;
     chunksIncluded?: number | undefined;
     epochSyncDataHash?: unknown;
+    gasPrice?: string | undefined;
+    hash?: unknown;
     lastDsFinalBlock?: unknown;
     lastFinalBlock?: unknown;
     latestProtocolVersion?: number | undefined;
@@ -107,8 +107,6 @@ export declare const BlockHeaderViewSchema: z.ZodObject<{
     height: number;
     timestamp: number;
     approvals: unknown[];
-    hash?: unknown;
-    gasPrice?: string | undefined;
     blockMerkleRoot?: unknown;
     epochId?: unknown;
     nextBpHash?: unknown;
@@ -127,6 +125,8 @@ export declare const BlockHeaderViewSchema: z.ZodObject<{
     chunkTxRoot?: unknown;
     chunksIncluded?: number | undefined;
     epochSyncDataHash?: unknown;
+    gasPrice?: string | undefined;
+    hash?: unknown;
     lastDsFinalBlock?: unknown;
     lastFinalBlock?: unknown;
     latestProtocolVersion?: number | undefined;
@@ -192,8 +192,6 @@ export declare const ChunkHeaderViewSchema: z.ZodObject<{
     validatorProposals: z.ZodOptional<z.ZodArray<z.ZodUnknown, "many">>;
     validatorReward: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    gasUsed?: number | undefined;
-    shardId?: unknown;
     outcomeRoot?: unknown;
     prevStateRoot?: unknown;
     rentPaid?: string | undefined;
@@ -207,14 +205,14 @@ export declare const ChunkHeaderViewSchema: z.ZodObject<{
     encodedLength?: number | undefined;
     encodedMerkleRoot?: unknown;
     gasLimit?: number | undefined;
+    gasUsed?: number | undefined;
     heightCreated?: number | undefined;
     heightIncluded?: number | undefined;
     outgoingReceiptsRoot?: unknown;
     prevBlockHash?: unknown;
+    shardId?: unknown;
     txRoot?: unknown;
 }, {
-    gasUsed?: number | undefined;
-    shardId?: unknown;
     outcomeRoot?: unknown;
     prevStateRoot?: unknown;
     rentPaid?: string | undefined;
@@ -228,10 +226,12 @@ export declare const ChunkHeaderViewSchema: z.ZodObject<{
     encodedLength?: number | undefined;
     encodedMerkleRoot?: unknown;
     gasLimit?: number | undefined;
+    gasUsed?: number | undefined;
     heightCreated?: number | undefined;
     heightIncluded?: number | undefined;
     outgoingReceiptsRoot?: unknown;
     prevBlockHash?: unknown;
+    shardId?: unknown;
     txRoot?: unknown;
 }>;
 export declare const JsonRpcRequestForEXPERIMENTALChangesInBlockSchema: z.ZodObject<{
@@ -488,4 +488,64 @@ export declare const RpcStateChangesInBlockResponseSchema: z.ZodObject<{
 }, {
     changes: unknown[];
     blockHash?: unknown;
+}>;
+export declare const RpcEXPERIMENTALChangesInBlockRequestSchema: z.ZodRecord<z.ZodString, z.ZodUnknown>;
+export declare const RpcEXPERIMENTALChangesInBlockResponseSchema: z.ZodObject<{
+    blockHash: z.ZodOptional<z.ZodUnknown>;
+    changes: z.ZodArray<z.ZodUnknown, "many">;
+}, "strip", z.ZodTypeAny, {
+    changes: unknown[];
+    blockHash?: unknown;
+}, {
+    changes: unknown[];
+    blockHash?: unknown;
+}>;
+export declare const RpcEXPERIMENTALLightClientBlockProofRequestSchema: z.ZodObject<{
+    blockHash: z.ZodOptional<z.ZodUnknown>;
+    lightClientHead: z.ZodOptional<z.ZodUnknown>;
+}, "strip", z.ZodTypeAny, {
+    blockHash?: unknown;
+    lightClientHead?: unknown;
+}, {
+    blockHash?: unknown;
+    lightClientHead?: unknown;
+}>;
+export declare const RpcEXPERIMENTALLightClientBlockProofResponseSchema: z.ZodObject<{
+    blockHeaderLite: z.ZodOptional<z.ZodUnknown>;
+    blockProof: z.ZodOptional<z.ZodArray<z.ZodUnknown, "many">>;
+}, "strip", z.ZodTypeAny, {
+    blockHeaderLite?: unknown;
+    blockProof?: unknown[] | undefined;
+}, {
+    blockHeaderLite?: unknown;
+    blockProof?: unknown[] | undefined;
+}>;
+export declare const RpcNextLightClientBlockRequestSchema: z.ZodObject<{
+    lastBlockHash: z.ZodOptional<z.ZodUnknown>;
+}, "strip", z.ZodTypeAny, {
+    lastBlockHash?: unknown;
+}, {
+    lastBlockHash?: unknown;
+}>;
+export declare const RpcNextLightClientBlockResponseSchema: z.ZodObject<{
+    approvalsAfterNext: z.ZodOptional<z.ZodArray<z.ZodUnknown, "many">>;
+    innerLite: z.ZodOptional<z.ZodUnknown>;
+    innerRestHash: z.ZodOptional<z.ZodUnknown>;
+    nextBlockInnerHash: z.ZodOptional<z.ZodUnknown>;
+    nextBps: z.ZodOptional<z.ZodArray<z.ZodUnknown, "many">>;
+    prevBlockHash: z.ZodOptional<z.ZodUnknown>;
+}, "strip", z.ZodTypeAny, {
+    prevBlockHash?: unknown;
+    innerLite?: unknown;
+    innerRestHash?: unknown;
+    approvalsAfterNext?: unknown[] | undefined;
+    nextBlockInnerHash?: unknown;
+    nextBps?: unknown[] | undefined;
+}, {
+    prevBlockHash?: unknown;
+    innerLite?: unknown;
+    innerRestHash?: unknown;
+    approvalsAfterNext?: unknown[] | undefined;
+    nextBlockInnerHash?: unknown;
+    nextBps?: unknown[] | undefined;
 }>;

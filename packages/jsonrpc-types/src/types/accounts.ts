@@ -2,7 +2,7 @@
  * Generated types for NEAR Protocol JSON-RPC
  */
 
-import { AccountId, CryptoHash, PublicKey } from './common';
+import { AccountId, CryptoHash, PublicKey, Tier1ProxyView, AccountInfo, AccountDataView, GlobalContractDeployMode, GlobalContractIdentifier, SyncConcurrency, SyncConfig } from './common';
 
 export interface AccessKey {
   nonce: number;
@@ -38,22 +38,11 @@ export interface AccountCreationConfigView {
   registrarAccountId?: unknown;
 }
 
-export interface AccountDataView {
-  accountKey?: PublicKey;
-  peerId?: PublicKey;
-  proxies: Tier1ProxyView[];
-  timestamp: string;
-}
-
-export type AccountId = string;
+// AccountDataView is now defined in common.ts
+// AccountId is now defined in common.ts
+// AccountInfo is now defined in common.ts
 
 export type AccountIdValidityRulesVersion = number;
-
-export interface AccountInfo {
-  accountId?: AccountId;
-  amount: string;
-  publicKey?: PublicKey;
-}
 
 export interface AccountView {
   amount: string;
@@ -81,21 +70,17 @@ export interface GasKeyView {
   permission: AccessKeyPermissionView;
 }
 
-export type GlobalContractDeployMode = unknown;
-
-export type GlobalContractIdentifier = unknown;
+// GlobalContractDeployMode is now defined in common.ts
+// GlobalContractIdentifier is now defined in common.ts
 
 export type InvalidAccessKeyError = unknown;
 
-export type PublicKey = string;
+// PublicKey is now defined in common.ts
 
 export type StateChangeCauseView = unknown;
 
-export type StateChangeKindView = unknown;
-
-export interface StateChangeWithCauseView {
-  cause: StateChangeCauseView;
-}
+// StateChangeKindView is now defined in common.ts
+// StateChangeWithCauseView is now defined in common.ts
 
 export interface StateItem {
   key: string;

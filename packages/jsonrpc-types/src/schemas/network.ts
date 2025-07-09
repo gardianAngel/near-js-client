@@ -297,3 +297,11 @@ export const ValidatorStakeViewV1Schema = z.object({
   publicKey: z.unknown().optional(),
   stake: z.string()
 });
+
+// Schema aliases for client compatibility
+export const RpcEXPERIMENTALGenesisConfigRequestSchema = GenesisConfigRequestSchema;
+export const RpcEXPERIMENTALGenesisConfigResponseSchema = GenesisConfigSchema;
+export const RpcEXPERIMENTALProtocolConfigRequestSchema = RpcProtocolConfigRequestSchema;
+export const RpcEXPERIMENTALProtocolConfigResponseSchema = RpcProtocolConfigResponseSchema;
+export const RpcEXPERIMENTALValidatorsOrderedRequestSchema = RpcValidatorsOrderedRequestSchema;
+export const RpcEXPERIMENTALValidatorsOrderedResponseSchema = z.array(ValidatorStakeViewV1Schema);

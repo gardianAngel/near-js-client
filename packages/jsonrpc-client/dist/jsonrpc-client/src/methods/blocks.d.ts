@@ -1,14 +1,14 @@
 /**
  * Blocks-related methods for NEAR JSON-RPC client
  */
-import { RpcBlockRequest, RpcBlockResponse, RpcChunkRequest, RpcChunkResponse, RpcEXPERIMENTALchangesinblockRequest, RpcEXPERIMENTALchangesinblockResponse, RpcEXPERIMENTALlightclientblockproofRequest, RpcEXPERIMENTALlightclientblockproofResponse, RpcNextlightclientblockRequest, RpcNextlightclientblockResponse } from '@near-js/jsonrpc-types';
+import { RpcBlockRequest, RpcBlockResponse, RpcChunkRequest, RpcChunkResponse, RpcEXPERIMENTALChangesInBlockRequest, RpcEXPERIMENTALChangesInBlockResponse, RpcEXPERIMENTALLightClientBlockProofRequest, RpcEXPERIMENTALLightClientBlockProofResponse, RpcNextLightClientBlockRequest, RpcNextLightClientBlockResponse } from '@near-js/jsonrpc-types';
 import type { NearJsonRpcClient } from '../client';
 export declare class BlocksMethods {
     private client;
     constructor(client: NearJsonRpcClient);
-    changesinblock(params: RpcEXPERIMENTALchangesinblockRequest): Promise<RpcEXPERIMENTALchangesinblockResponse>;
-    lightclientblockproof(params: RpcEXPERIMENTALlightclientblockproofRequest): Promise<RpcEXPERIMENTALlightclientblockproofResponse>;
+    changesInBlock(params: RpcEXPERIMENTALChangesInBlockRequest): Promise<RpcEXPERIMENTALChangesInBlockResponse>;
+    lightClientBlockProof(params: RpcEXPERIMENTALLightClientBlockProofRequest): Promise<RpcEXPERIMENTALLightClientBlockProofResponse>;
     block(params: RpcBlockRequest): Promise<RpcBlockResponse>;
     chunk(params: RpcChunkRequest): Promise<RpcChunkResponse>;
-    nextlightclientblock(params: RpcNextlightclientblockRequest): Promise<RpcNextlightclientblockResponse>;
+    nextLightClientBlock(params: RpcNextLightClientBlockRequest): Promise<RpcNextLightClientBlockResponse>;
 }

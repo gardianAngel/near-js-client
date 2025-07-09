@@ -10,25 +10,25 @@ class TransactionsMethods {
     constructor(client) {
         this.client = client;
     }
-    async txstatus(params) {
-        const validatedParams = jsonrpc_types_1.RpcEXPERIMENTALtxstatusRequestSchema.parse(params);
-        return this.client.makeRequest('EXPERIMENTALtxstatus', validatedParams, jsonrpc_types_1.RpcEXPERIMENTALtxstatusResponseSchema);
+    async txStatus(params) {
+        const validatedParams = jsonrpc_types_1.RpcEXPERIMENTALTxStatusRequestSchema.parse(params);
+        return this.client.makeRequest('EXPERIMENTALTxStatus', validatedParams, jsonrpc_types_1.RpcEXPERIMENTALTxStatusResponseSchema);
     }
-    async broadcasttxasync(params) {
-        const validatedParams = jsonrpc_types_1.RpcBroadcasttxasyncRequestSchema.parse(params);
-        return this.client.makeRequest('Broadcasttxasync', validatedParams, jsonrpc_types_1.RpcBroadcasttxasyncResponseSchema);
+    async broadcastTxAsync(params) {
+        const validatedParams = jsonrpc_types_1.RpcBroadcastTxAsyncRequestSchema.parse(params);
+        return this.client.makeRequest('broadcastTxAsync', validatedParams, jsonrpc_types_1.RpcBroadcastTxAsyncResponseSchema);
     }
-    async broadcasttxcommit(params) {
-        const validatedParams = jsonrpc_types_1.RpcBroadcasttxcommitRequestSchema.parse(params);
-        return this.client.makeRequest('Broadcasttxcommit', validatedParams, jsonrpc_types_1.RpcBroadcasttxcommitResponseSchema);
+    async broadcastTxCommit(params) {
+        const validatedParams = jsonrpc_types_1.RpcBroadcastTxCommitRequestSchema.parse(params);
+        return this.client.makeRequest('broadcastTxCommit', validatedParams, jsonrpc_types_1.RpcBroadcastTxCommitResponseSchema);
     }
-    async sendtx(params) {
-        const validatedParams = jsonrpc_types_1.RpcSendtxRequestSchema.parse(params);
-        return this.client.makeRequest('Sendtx', validatedParams, jsonrpc_types_1.RpcSendtxResponseSchema);
+    async sendTx(params) {
+        const validatedParams = jsonrpc_types_1.RpcSendTxRequestSchema.parse(params);
+        return this.client.makeRequest('sendTx', validatedParams, jsonrpc_types_1.RpcSendTxResponseSchema);
     }
     async tx(params) {
-        const validatedParams = jsonrpc_types_1.RpcTxRequestSchema.parse(params);
-        return this.client.makeRequest('Tx', validatedParams, jsonrpc_types_1.RpcTxResponseSchema);
+        const validatedParams = jsonrpc_types_1.RpcTransactionStatusRequestSchema.parse(params);
+        return this.client.makeRequest('tx', validatedParams, jsonrpc_types_1.RpcTransactionResponseSchema);
     }
 }
 exports.TransactionsMethods = TransactionsMethods;

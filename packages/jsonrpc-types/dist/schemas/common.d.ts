@@ -100,12 +100,12 @@ export declare const CostGasUsedSchema: z.ZodObject<{
     gasUsed: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     cost: string;
-    costCategory?: string | undefined;
     gasUsed?: string | undefined;
+    costCategory?: string | undefined;
 }, {
     cost: string;
-    costCategory?: string | undefined;
     gasUsed?: string | undefined;
+    costCategory?: string | undefined;
 }>;
 export declare const CryptoHashSchema: z.ZodString;
 export declare const DataReceiverViewSchema: z.ZodObject<{
@@ -204,13 +204,13 @@ export declare const ExecutionOutcomeWithIdViewSchema: z.ZodObject<{
     proof: z.ZodArray<z.ZodUnknown, "many">;
 }, "strip", z.ZodTypeAny, {
     proof: unknown[];
-    blockHash?: unknown;
     id?: unknown;
+    blockHash?: unknown;
     outcome?: unknown;
 }, {
     proof: unknown[];
-    blockHash?: unknown;
     id?: unknown;
+    blockHash?: unknown;
     outcome?: unknown;
 }>;
 export declare const ExtCostsConfigViewSchema: z.ZodObject<{
@@ -928,11 +928,11 @@ export declare const MerklePathItemSchema: z.ZodObject<{
     direction: z.ZodUnknown;
     hash: z.ZodUnknown;
 }, "strip", z.ZodTypeAny, {
-    direction?: unknown;
     hash?: unknown;
+    direction?: unknown;
 }, {
-    direction?: unknown;
     hash?: unknown;
+    direction?: unknown;
 }>;
 export declare const MethodResolveErrorSchema: z.ZodEnum<["MethodEmptyName", "MethodNotFound", "MethodInvalidSignature"]>;
 export declare const MissingTrieValueSchema: z.ZodObject<{
@@ -968,11 +968,11 @@ export declare const PeerInfoViewSchema: z.ZodObject<{
     addr: string;
     archival: boolean;
     nonce: number;
+    height?: number | undefined;
     blockHash?: unknown;
     accountId?: unknown;
     peerId?: unknown;
     connectionEstablishedTimeMillis?: number | undefined;
-    height?: number | undefined;
     isHighestBlockInvalid?: boolean | undefined;
     isOutboundPeer?: boolean | undefined;
     lastTimePeerRequestedMillis?: number | undefined;
@@ -984,11 +984,11 @@ export declare const PeerInfoViewSchema: z.ZodObject<{
     addr: string;
     archival: boolean;
     nonce: number;
+    height?: number | undefined;
     blockHash?: unknown;
     accountId?: unknown;
     peerId?: unknown;
     connectionEstablishedTimeMillis?: number | undefined;
-    height?: number | undefined;
     isHighestBlockInvalid?: boolean | undefined;
     isOutboundPeer?: boolean | undefined;
     lastTimePeerRequestedMillis?: number | undefined;
@@ -1540,4 +1540,105 @@ export declare const WitnessConfigViewSchema: z.ZodObject<{
     combinedTransactionsSizeLimit?: number | undefined;
     mainStorageProofSizeSoftLimit?: number | undefined;
     newTransactionsValidationStateSizeSoftLimit?: number | undefined;
+}>;
+export declare const RpcEXPERIMENTALLightClientProofRequestSchema: z.ZodObject<{
+    lightClientHead: z.ZodOptional<z.ZodUnknown>;
+}, "strip", z.ZodTypeAny, {
+    lightClientHead?: unknown;
+}, {
+    lightClientHead?: unknown;
+}>;
+export declare const RpcEXPERIMENTALLightClientProofResponseSchema: z.ZodObject<{
+    blockHeaderLite: z.ZodOptional<z.ZodUnknown>;
+    blockProof: z.ZodOptional<z.ZodArray<z.ZodUnknown, "many">>;
+    outcomeProof: z.ZodOptional<z.ZodUnknown>;
+    outcomeRootProof: z.ZodOptional<z.ZodArray<z.ZodUnknown, "many">>;
+}, "strip", z.ZodTypeAny, {
+    blockHeaderLite?: unknown;
+    blockProof?: unknown[] | undefined;
+    outcomeProof?: unknown;
+    outcomeRootProof?: unknown[] | undefined;
+}, {
+    blockHeaderLite?: unknown;
+    blockProof?: unknown[] | undefined;
+    outcomeProof?: unknown;
+    outcomeRootProof?: unknown[] | undefined;
+}>;
+export declare const RpcLightClientProofRequestSchema: z.ZodObject<{
+    lightClientHead: z.ZodOptional<z.ZodUnknown>;
+}, "strip", z.ZodTypeAny, {
+    lightClientHead?: unknown;
+}, {
+    lightClientHead?: unknown;
+}>;
+export declare const RpcLightClientProofResponseSchema: z.ZodObject<{
+    blockHeaderLite: z.ZodOptional<z.ZodUnknown>;
+    blockProof: z.ZodOptional<z.ZodArray<z.ZodUnknown, "many">>;
+    outcomeProof: z.ZodOptional<z.ZodUnknown>;
+    outcomeRootProof: z.ZodOptional<z.ZodArray<z.ZodUnknown, "many">>;
+}, "strip", z.ZodTypeAny, {
+    blockHeaderLite?: unknown;
+    blockProof?: unknown[] | undefined;
+    outcomeProof?: unknown;
+    outcomeRootProof?: unknown[] | undefined;
+}, {
+    blockHeaderLite?: unknown;
+    blockProof?: unknown[] | undefined;
+    outcomeProof?: unknown;
+    outcomeRootProof?: unknown[] | undefined;
+}>;
+export declare const RpcChangesRequestSchema: z.ZodRecord<z.ZodString, z.ZodUnknown>;
+export declare const RpcChangesResponseSchema: z.ZodObject<{
+    blockHash: z.ZodOptional<z.ZodUnknown>;
+    changes: z.ZodArray<z.ZodUnknown, "many">;
+}, "strip", z.ZodTypeAny, {
+    changes: unknown[];
+    blockHash?: unknown;
+}, {
+    changes: unknown[];
+    blockHash?: unknown;
+}>;
+export declare const RpcEXPERIMENTALChangesRequestSchema: z.ZodRecord<z.ZodString, z.ZodUnknown>;
+export declare const RpcEXPERIMENTALChangesResponseSchema: z.ZodObject<{
+    blockHash: z.ZodOptional<z.ZodUnknown>;
+    changes: z.ZodArray<z.ZodUnknown, "many">;
+}, "strip", z.ZodTypeAny, {
+    changes: unknown[];
+    blockHash?: unknown;
+}, {
+    changes: unknown[];
+    blockHash?: unknown;
+}>;
+export declare const RpcEXPERIMENTALCongestionLevelRequestSchema: z.ZodRecord<z.ZodString, z.ZodUnknown>;
+export declare const RpcEXPERIMENTALCongestionLevelResponseSchema: z.ZodObject<{
+    congestionLevel: z.ZodOptional<z.ZodNumber>;
+}, "strip", z.ZodTypeAny, {
+    congestionLevel?: number | undefined;
+}, {
+    congestionLevel?: number | undefined;
+}>;
+export declare const RpcEXPERIMENTALMaintenanceWindowsRequestSchema: z.ZodObject<{
+    accountId: z.ZodOptional<z.ZodUnknown>;
+}, "strip", z.ZodTypeAny, {
+    accountId?: unknown;
+}, {
+    accountId?: unknown;
+}>;
+export declare const RpcEXPERIMENTALMaintenanceWindowsResponseSchema: z.ZodAny;
+export declare const RpcEXPERIMENTALSplitStorageInfoRequestSchema: z.ZodRecord<z.ZodString, z.ZodUnknown>;
+export declare const RpcEXPERIMENTALSplitStorageInfoResponseSchema: z.ZodObject<{
+    coldHeadHeight: z.ZodOptional<z.ZodNumber>;
+    finalHeadHeight: z.ZodOptional<z.ZodNumber>;
+    headHeight: z.ZodOptional<z.ZodNumber>;
+    hotDbKind: z.ZodOptional<z.ZodString>;
+}, "strip", z.ZodTypeAny, {
+    coldHeadHeight?: number | undefined;
+    finalHeadHeight?: number | undefined;
+    headHeight?: number | undefined;
+    hotDbKind?: string | undefined;
+}, {
+    coldHeadHeight?: number | undefined;
+    finalHeadHeight?: number | undefined;
+    headHeight?: number | undefined;
+    hotDbKind?: string | undefined;
 }>;
