@@ -7,11 +7,8 @@
  */
 export function toCamelCase(str: string): string {
   return str
-    .replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => {
-      return index === 0 ? word.toLowerCase() : word.toUpperCase();
-    })
-    .replace(/\s+/g, '')
-    .replace(/[-_]/g, '');
+    .replace(/[-_](.)/g, (_, char) => char.toUpperCase())
+    .replace(/^./, (char) => char.toLowerCase());
 }
 
 /**
@@ -19,11 +16,8 @@ export function toCamelCase(str: string): string {
  */
 export function toPascalCase(str: string): string {
   return str
-    .replace(/(?:^\w|[A-Z]|\b\w)/g, (word) => {
-      return word.toUpperCase();
-    })
-    .replace(/\s+/g, '')
-    .replace(/[-_]/g, '');
+    .replace(/[-_](.)/g, (_, char) => char.toUpperCase())
+    .replace(/^./, (char) => char.toUpperCase());
 }
 
 /**

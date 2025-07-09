@@ -2,7 +2,7 @@
  * Generated types for NEAR Protocol JSON-RPC
  */
 
-
+import { AccountId, CryptoHash, PublicKey } from './common';
 
 export interface AccessKey {
   nonce: number;
@@ -10,18 +10,18 @@ export interface AccessKey {
 }
 
 export interface AccessKeyCreationConfigView {
-  fullaccesscost?: unknown;
-  functioncallcost?: unknown;
-  functioncallcostperbyte?: unknown;
+  fullAccessCost?: unknown;
+  functionCallCost?: unknown;
+  functionCallCostPerByte?: unknown;
 }
 
 export interface AccessKeyInfoView {
-  accesskey?: unknown;
-  publickey?: unknown;
+  accessKey?: AccessKeyView;
+  publicKey?: PublicKey;
 }
 
 export interface AccessKeyList {
-  keys: unknown[];
+  keys: AccessKeyInfoView[];
 }
 
 export type AccessKeyPermission = unknown;
@@ -30,18 +30,18 @@ export type AccessKeyPermissionView = unknown;
 
 export interface AccessKeyView {
   nonce: number;
-  permission: unknown;
+  permission: AccessKeyPermissionView;
 }
 
 export interface AccountCreationConfigView {
-  minallowedtoplevelaccountlength?: number;
-  registraraccountid?: unknown;
+  minAllowedTopLevelAccountLength?: number;
+  registrarAccountId?: unknown;
 }
 
 export interface AccountDataView {
-  accountkey?: unknown;
-  peerid?: unknown;
-  proxies: unknown[];
+  accountKey?: PublicKey;
+  peerId?: PublicKey;
+  proxies: Tier1ProxyView[];
   timestamp: string;
 }
 
@@ -50,35 +50,35 @@ export type AccountId = string;
 export type AccountIdValidityRulesVersion = number;
 
 export interface AccountInfo {
-  accountid?: unknown;
+  accountId?: AccountId;
   amount: string;
-  publickey?: unknown;
+  publicKey?: PublicKey;
 }
 
 export interface AccountView {
   amount: string;
-  codehash?: unknown;
-  globalcontractaccountid?: unknown;
-  globalcontracthash?: unknown;
+  codeHash?: CryptoHash;
+  globalContractAccountId?: unknown;
+  globalContractHash?: unknown;
   locked: string;
-  storagepaidat?: number;
-  storageusage?: number;
+  storagePaidAt?: number;
+  storageUsage?: number;
 }
 
 export interface AccountWithPublicKey {
-  accountid?: unknown;
-  publickey?: unknown;
+  accountId?: AccountId;
+  publicKey?: PublicKey;
 }
 
 export interface ContractCodeView {
-  codebase64?: string;
-  hash: unknown;
+  codeBase64?: string;
+  hash: CryptoHash;
 }
 
 export interface GasKeyView {
   balance: number;
-  numnonces?: number;
-  permission: unknown;
+  numNonces?: number;
+  permission: AccessKeyPermissionView;
 }
 
 export type GlobalContractDeployMode = unknown;
@@ -94,7 +94,7 @@ export type StateChangeCauseView = unknown;
 export type StateChangeKindView = unknown;
 
 export interface StateChangeWithCauseView {
-  cause: unknown;
+  cause: StateChangeCauseView;
 }
 
 export interface StateItem {
@@ -103,12 +103,12 @@ export interface StateItem {
 }
 
 export interface StateSyncConfig {
-  concurrency?: unknown;
+  concurrency?: SyncConcurrency;
   dump?: unknown;
-  sync?: unknown;
+  sync?: SyncConfig;
 }
 
 export interface ViewStateResult {
   proof?: string[];
-  values: unknown[];
+  values: StateItem[];
 }

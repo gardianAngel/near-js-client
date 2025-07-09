@@ -1,6 +1,6 @@
 {
   "name": "@near-js/jsonrpc-types",
-  "version": "1.0.20250708",
+  "version": "1.0.20250709",
   "description": "TypeScript types and Zod schemas for NEAR Protocol JSON-RPC",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

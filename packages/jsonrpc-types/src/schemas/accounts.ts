@@ -10,14 +10,14 @@ export const AccessKeySchema = z.object({
 });
 
 export const AccessKeyCreationConfigViewSchema = z.object({
-  fullaccesscost: z.unknown().optional(),
-  functioncallcost: z.unknown().optional(),
-  functioncallcostperbyte: z.unknown().optional()
+  fullAccessCost: z.unknown().optional(),
+  functionCallCost: z.unknown().optional(),
+  functionCallCostPerByte: z.unknown().optional()
 });
 
 export const AccessKeyInfoViewSchema = z.object({
-  accesskey: z.unknown().optional(),
-  publickey: z.unknown().optional()
+  accessKey: z.unknown().optional(),
+  publicKey: z.unknown().optional()
 });
 
 export const AccessKeyListSchema = z.object({
@@ -34,13 +34,13 @@ export const AccessKeyViewSchema = z.object({
 });
 
 export const AccountCreationConfigViewSchema = z.object({
-  minallowedtoplevelaccountlength: z.number().optional(),
-  registraraccountid: z.unknown().optional()
+  minAllowedTopLevelAccountLength: z.number().optional(),
+  registrarAccountId: z.unknown().optional()
 });
 
 export const AccountDataViewSchema = z.object({
-  accountkey: z.unknown().optional(),
-  peerid: z.unknown().optional(),
+  accountKey: z.unknown().optional(),
+  peerId: z.unknown().optional(),
   proxies: z.array(z.unknown()),
   timestamp: z.string()
 });
@@ -50,34 +50,34 @@ export const AccountIdSchema = z.string();
 export const AccountIdValidityRulesVersionSchema = z.number();
 
 export const AccountInfoSchema = z.object({
-  accountid: z.unknown().optional(),
+  accountId: z.unknown().optional(),
   amount: z.string(),
-  publickey: z.unknown().optional()
+  publicKey: z.unknown().optional()
 });
 
 export const AccountViewSchema = z.object({
   amount: z.string(),
-  codehash: z.unknown().optional(),
-  globalcontractaccountid: z.unknown().optional(),
-  globalcontracthash: z.unknown().optional(),
+  codeHash: z.unknown().optional(),
+  globalContractAccountId: z.unknown().optional(),
+  globalContractHash: z.unknown().optional(),
   locked: z.string(),
-  storagepaidat: z.number().optional(),
-  storageusage: z.number().optional()
+  storagePaidAt: z.number().optional(),
+  storageUsage: z.number().optional()
 });
 
 export const AccountWithPublicKeySchema = z.object({
-  accountid: z.unknown().optional(),
-  publickey: z.unknown().optional()
+  accountId: z.unknown().optional(),
+  publicKey: z.unknown().optional()
 });
 
 export const ContractCodeViewSchema = z.object({
-  codebase64: z.string().optional(),
+  codeBase64: z.string().optional(),
   hash: z.unknown()
 });
 
 export const GasKeyViewSchema = z.object({
   balance: z.number(),
-  numnonces: z.number().optional(),
+  numNonces: z.number().optional(),
   permission: z.unknown()
 });
 

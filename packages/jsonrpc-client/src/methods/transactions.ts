@@ -3,54 +3,54 @@
  */
 
 import {
-  RpcBroadcasttxasyncRequest,
-  RpcBroadcasttxasyncRequestSchema,
-  RpcBroadcasttxasyncResponse,
-  RpcBroadcasttxasyncResponseSchema,
-  RpcBroadcasttxcommitRequest,
-  RpcBroadcasttxcommitRequestSchema,
-  RpcBroadcasttxcommitResponse,
-  RpcBroadcasttxcommitResponseSchema,
-  RpcEXPERIMENTALtxstatusRequest,
-  RpcEXPERIMENTALtxstatusRequestSchema,
-  RpcEXPERIMENTALtxstatusResponse,
-  RpcEXPERIMENTALtxstatusResponseSchema,
-  RpcSendtxRequest,
-  RpcSendtxRequestSchema,
-  RpcSendtxResponse,
-  RpcSendtxResponseSchema,
-  RpcTxRequest,
-  RpcTxRequestSchema,
-  RpcTxResponse,
-  RpcTxResponseSchema
+  RpcBroadcastTxAsyncRequest,
+  RpcBroadcastTxAsyncRequestSchema,
+  RpcBroadcastTxAsyncResponse,
+  RpcBroadcastTxAsyncResponseSchema,
+  RpcBroadcastTxCommitRequest,
+  RpcBroadcastTxCommitRequestSchema,
+  RpcBroadcastTxCommitResponse,
+  RpcBroadcastTxCommitResponseSchema,
+  RpcEXPERIMENTALTxStatusRequest,
+  RpcEXPERIMENTALTxStatusRequestSchema,
+  RpcEXPERIMENTALTxStatusResponse,
+  RpcEXPERIMENTALTxStatusResponseSchema,
+  RpcSendTxRequest,
+  RpcSendTxRequestSchema,
+  RpcSendTxResponse,
+  RpcSendTxResponseSchema,
+  RpcTransactionResponse,
+  RpcTransactionResponseSchema,
+  RpcTransactionStatusRequest,
+  RpcTransactionStatusRequestSchema
 } from '@near-js/jsonrpc-types';
 import type { NearJsonRpcClient } from '../client';
 
 export class TransactionsMethods {
   constructor(private client: NearJsonRpcClient) {}
 
-  async txstatus(params: RpcEXPERIMENTALtxstatusRequest): Promise<RpcEXPERIMENTALtxstatusResponse> {
-    const validatedParams = RpcEXPERIMENTALtxstatusRequestSchema.parse(params);
-    return this.client.makeRequest('EXPERIMENTALtxstatus', validatedParams, RpcEXPERIMENTALtxstatusResponseSchema);
+  async txStatus(params: RpcEXPERIMENTALTxStatusRequest): Promise<RpcEXPERIMENTALTxStatusResponse> {
+    const validatedParams = RpcEXPERIMENTALTxStatusRequestSchema.parse(params);
+    return this.client.makeRequest('EXPERIMENTALTxStatus', validatedParams, RpcEXPERIMENTALTxStatusResponseSchema);
   }
 
-  async broadcasttxasync(params: RpcBroadcasttxasyncRequest): Promise<RpcBroadcasttxasyncResponse> {
-    const validatedParams = RpcBroadcasttxasyncRequestSchema.parse(params);
-    return this.client.makeRequest('Broadcasttxasync', validatedParams, RpcBroadcasttxasyncResponseSchema);
+  async broadcastTxAsync(params: RpcBroadcastTxAsyncRequest): Promise<RpcBroadcastTxAsyncResponse> {
+    const validatedParams = RpcBroadcastTxAsyncRequestSchema.parse(params);
+    return this.client.makeRequest('broadcastTxAsync', validatedParams, RpcBroadcastTxAsyncResponseSchema);
   }
 
-  async broadcasttxcommit(params: RpcBroadcasttxcommitRequest): Promise<RpcBroadcasttxcommitResponse> {
-    const validatedParams = RpcBroadcasttxcommitRequestSchema.parse(params);
-    return this.client.makeRequest('Broadcasttxcommit', validatedParams, RpcBroadcasttxcommitResponseSchema);
+  async broadcastTxCommit(params: RpcBroadcastTxCommitRequest): Promise<RpcBroadcastTxCommitResponse> {
+    const validatedParams = RpcBroadcastTxCommitRequestSchema.parse(params);
+    return this.client.makeRequest('broadcastTxCommit', validatedParams, RpcBroadcastTxCommitResponseSchema);
   }
 
-  async sendtx(params: RpcSendtxRequest): Promise<RpcSendtxResponse> {
-    const validatedParams = RpcSendtxRequestSchema.parse(params);
-    return this.client.makeRequest('Sendtx', validatedParams, RpcSendtxResponseSchema);
+  async sendTx(params: RpcSendTxRequest): Promise<RpcSendTxResponse> {
+    const validatedParams = RpcSendTxRequestSchema.parse(params);
+    return this.client.makeRequest('sendTx', validatedParams, RpcSendTxResponseSchema);
   }
 
-  async tx(params: RpcTxRequest): Promise<RpcTxResponse> {
-    const validatedParams = RpcTxRequestSchema.parse(params);
-    return this.client.makeRequest('Tx', validatedParams, RpcTxResponseSchema);
+  async tx(params: RpcTransactionStatusRequest): Promise<RpcTransactionResponse> {
+    const validatedParams = RpcTransactionStatusRequestSchema.parse(params);
+    return this.client.makeRequest('tx', validatedParams, RpcTransactionResponseSchema);
   }
 }

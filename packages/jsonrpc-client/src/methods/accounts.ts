@@ -15,6 +15,6 @@ export class AccountsMethods {
 
   async query(params: RpcQueryRequest): Promise<RpcQueryResponse> {
     const validatedParams = RpcQueryRequestSchema.parse(params);
-    return this.client.makeRequest('Query', validatedParams, RpcQueryResponseSchema);
+    return this.client.makeRequest('query', validatedParams, RpcQueryResponseSchema);
   }
 }

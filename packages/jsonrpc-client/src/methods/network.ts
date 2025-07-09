@@ -7,158 +7,158 @@ import {
   RpcChangesRequestSchema,
   RpcChangesResponse,
   RpcChangesResponseSchema,
-  RpcClientconfigRequest,
-  RpcClientconfigRequestSchema,
-  RpcClientconfigResponse,
-  RpcClientconfigResponseSchema,
-  RpcEXPERIMENTALchangesRequest,
-  RpcEXPERIMENTALchangesRequestSchema,
-  RpcEXPERIMENTALchangesResponse,
-  RpcEXPERIMENTALchangesResponseSchema,
-  RpcEXPERIMENTALcongestionlevelRequest,
-  RpcEXPERIMENTALcongestionlevelRequestSchema,
-  RpcEXPERIMENTALcongestionlevelResponse,
-  RpcEXPERIMENTALcongestionlevelResponseSchema,
-  RpcEXPERIMENTALgenesisconfigRequest,
-  RpcEXPERIMENTALgenesisconfigRequestSchema,
-  RpcEXPERIMENTALgenesisconfigResponse,
-  RpcEXPERIMENTALgenesisconfigResponseSchema,
-  RpcEXPERIMENTALlightclientproofRequest,
-  RpcEXPERIMENTALlightclientproofRequestSchema,
-  RpcEXPERIMENTALlightclientproofResponse,
-  RpcEXPERIMENTALlightclientproofResponseSchema,
-  RpcEXPERIMENTALmaintenancewindowsRequest,
-  RpcEXPERIMENTALmaintenancewindowsRequestSchema,
-  RpcEXPERIMENTALmaintenancewindowsResponse,
-  RpcEXPERIMENTALmaintenancewindowsResponseSchema,
-  RpcEXPERIMENTALprotocolconfigRequest,
-  RpcEXPERIMENTALprotocolconfigRequestSchema,
-  RpcEXPERIMENTALprotocolconfigResponse,
-  RpcEXPERIMENTALprotocolconfigResponseSchema,
-  RpcEXPERIMENTALreceiptRequest,
-  RpcEXPERIMENTALreceiptRequestSchema,
-  RpcEXPERIMENTALreceiptResponse,
-  RpcEXPERIMENTALreceiptResponseSchema,
-  RpcEXPERIMENTALsplitstorageinfoRequest,
-  RpcEXPERIMENTALsplitstorageinfoRequestSchema,
-  RpcEXPERIMENTALsplitstorageinfoResponse,
-  RpcEXPERIMENTALsplitstorageinfoResponseSchema,
-  RpcEXPERIMENTALvalidatorsorderedRequest,
-  RpcEXPERIMENTALvalidatorsorderedRequestSchema,
-  RpcEXPERIMENTALvalidatorsorderedResponse,
-  RpcEXPERIMENTALvalidatorsorderedResponseSchema,
-  RpcGaspriceRequest,
-  RpcGaspriceRequestSchema,
-  RpcGaspriceResponse,
-  RpcGaspriceResponseSchema,
+  RpcClientConfigRequest,
+  RpcClientConfigRequestSchema,
+  RpcClientConfigResponse,
+  RpcClientConfigResponseSchema,
+  RpcEXPERIMENTALChangesRequest,
+  RpcEXPERIMENTALChangesRequestSchema,
+  RpcEXPERIMENTALChangesResponse,
+  RpcEXPERIMENTALChangesResponseSchema,
+  RpcEXPERIMENTALCongestionLevelRequest,
+  RpcEXPERIMENTALCongestionLevelRequestSchema,
+  RpcEXPERIMENTALCongestionLevelResponse,
+  RpcEXPERIMENTALCongestionLevelResponseSchema,
+  RpcEXPERIMENTALGenesisConfigRequest,
+  RpcEXPERIMENTALGenesisConfigRequestSchema,
+  RpcEXPERIMENTALGenesisConfigResponse,
+  RpcEXPERIMENTALGenesisConfigResponseSchema,
+  RpcEXPERIMENTALLightClientProofRequest,
+  RpcEXPERIMENTALLightClientProofRequestSchema,
+  RpcEXPERIMENTALLightClientProofResponse,
+  RpcEXPERIMENTALLightClientProofResponseSchema,
+  RpcEXPERIMENTALMaintenanceWindowsRequest,
+  RpcEXPERIMENTALMaintenanceWindowsRequestSchema,
+  RpcEXPERIMENTALMaintenanceWindowsResponse,
+  RpcEXPERIMENTALMaintenanceWindowsResponseSchema,
+  RpcEXPERIMENTALProtocolConfigRequest,
+  RpcEXPERIMENTALProtocolConfigRequestSchema,
+  RpcEXPERIMENTALProtocolConfigResponse,
+  RpcEXPERIMENTALProtocolConfigResponseSchema,
+  RpcEXPERIMENTALReceiptRequest,
+  RpcEXPERIMENTALReceiptRequestSchema,
+  RpcEXPERIMENTALReceiptResponse,
+  RpcEXPERIMENTALReceiptResponseSchema,
+  RpcEXPERIMENTALSplitStorageInfoRequest,
+  RpcEXPERIMENTALSplitStorageInfoRequestSchema,
+  RpcEXPERIMENTALSplitStorageInfoResponse,
+  RpcEXPERIMENTALSplitStorageInfoResponseSchema,
+  RpcEXPERIMENTALValidatorsOrderedRequest,
+  RpcEXPERIMENTALValidatorsOrderedRequestSchema,
+  RpcEXPERIMENTALValidatorsOrderedResponse,
+  RpcEXPERIMENTALValidatorsOrderedResponseSchema,
+  RpcGasPriceRequest,
+  RpcGasPriceRequestSchema,
+  RpcGasPriceResponse,
+  RpcGasPriceResponseSchema,
   RpcHealthRequest,
   RpcHealthRequestSchema,
   RpcHealthResponse,
   RpcHealthResponseSchema,
-  RpcLightclientproofRequest,
-  RpcLightclientproofRequestSchema,
-  RpcLightclientproofResponse,
-  RpcLightclientproofResponseSchema,
-  RpcNetworkinfoRequest,
-  RpcNetworkinfoRequestSchema,
-  RpcNetworkinfoResponse,
-  RpcNetworkinfoResponseSchema,
+  RpcLightClientProofRequest,
+  RpcLightClientProofRequestSchema,
+  RpcLightClientProofResponse,
+  RpcLightClientProofResponseSchema,
+  RpcNetworkInfoRequest,
+  RpcNetworkInfoRequestSchema,
+  RpcNetworkInfoResponse,
+  RpcNetworkInfoResponseSchema,
   RpcStatusRequest,
   RpcStatusRequestSchema,
   RpcStatusResponse,
   RpcStatusResponseSchema,
-  RpcValidatorsRequest,
-  RpcValidatorsRequestSchema,
-  RpcValidatorsResponse,
-  RpcValidatorsResponseSchema
+  RpcValidatorRequest,
+  RpcValidatorRequestSchema,
+  RpcValidatorResponse,
+  RpcValidatorResponseSchema
 } from '@near-js/jsonrpc-types';
 import type { NearJsonRpcClient } from '../client';
 
 export class NetworkMethods {
   constructor(private client: NearJsonRpcClient) {}
 
-  async experimentalChanges(params: RpcEXPERIMENTALchangesRequest): Promise<RpcEXPERIMENTALchangesResponse> {
-    const validatedParams = RpcEXPERIMENTALchangesRequestSchema.parse(params);
-    return this.client.makeRequest('EXPERIMENTALchanges', validatedParams, RpcEXPERIMENTALchangesResponseSchema);
+  async changes(params: RpcEXPERIMENTALChangesRequest): Promise<RpcEXPERIMENTALChangesResponse> {
+    const validatedParams = RpcEXPERIMENTALChangesRequestSchema.parse(params);
+    return this.client.makeRequest('EXPERIMENTALChanges', validatedParams, RpcEXPERIMENTALChangesResponseSchema);
   }
 
-  async congestionlevel(params: RpcEXPERIMENTALcongestionlevelRequest): Promise<RpcEXPERIMENTALcongestionlevelResponse> {
-    const validatedParams = RpcEXPERIMENTALcongestionlevelRequestSchema.parse(params);
-    return this.client.makeRequest('EXPERIMENTALcongestionlevel', validatedParams, RpcEXPERIMENTALcongestionlevelResponseSchema);
+  async congestionLevel(params: RpcEXPERIMENTALCongestionLevelRequest): Promise<RpcEXPERIMENTALCongestionLevelResponse> {
+    const validatedParams = RpcEXPERIMENTALCongestionLevelRequestSchema.parse(params);
+    return this.client.makeRequest('EXPERIMENTALCongestionLevel', validatedParams, RpcEXPERIMENTALCongestionLevelResponseSchema);
   }
 
-  async genesisconfig(params: RpcEXPERIMENTALgenesisconfigRequest): Promise<RpcEXPERIMENTALgenesisconfigResponse> {
-    const validatedParams = RpcEXPERIMENTALgenesisconfigRequestSchema.parse(params);
-    return this.client.makeRequest('EXPERIMENTALgenesisconfig', validatedParams, RpcEXPERIMENTALgenesisconfigResponseSchema);
+  async genesisConfig(params: RpcEXPERIMENTALGenesisConfigRequest): Promise<RpcEXPERIMENTALGenesisConfigResponse> {
+    const validatedParams = RpcEXPERIMENTALGenesisConfigRequestSchema.parse(params);
+    return this.client.makeRequest('EXPERIMENTALGenesisConfig', validatedParams, RpcEXPERIMENTALGenesisConfigResponseSchema);
   }
 
-  async experimentalLightClientProof(params: RpcEXPERIMENTALlightclientproofRequest): Promise<RpcEXPERIMENTALlightclientproofResponse> {
-    const validatedParams = RpcEXPERIMENTALlightclientproofRequestSchema.parse(params);
-    return this.client.makeRequest('EXPERIMENTALlightclientproof', validatedParams, RpcEXPERIMENTALlightclientproofResponseSchema);
+  async lightClientProof(params: RpcEXPERIMENTALLightClientProofRequest): Promise<RpcEXPERIMENTALLightClientProofResponse> {
+    const validatedParams = RpcEXPERIMENTALLightClientProofRequestSchema.parse(params);
+    return this.client.makeRequest('EXPERIMENTALLightClientProof', validatedParams, RpcEXPERIMENTALLightClientProofResponseSchema);
   }
 
-  async maintenancewindows(params: RpcEXPERIMENTALmaintenancewindowsRequest): Promise<RpcEXPERIMENTALmaintenancewindowsResponse> {
-    const validatedParams = RpcEXPERIMENTALmaintenancewindowsRequestSchema.parse(params);
-    return this.client.makeRequest('EXPERIMENTALmaintenancewindows', validatedParams, RpcEXPERIMENTALmaintenancewindowsResponseSchema);
+  async maintenanceWindows(params: RpcEXPERIMENTALMaintenanceWindowsRequest): Promise<RpcEXPERIMENTALMaintenanceWindowsResponse> {
+    const validatedParams = RpcEXPERIMENTALMaintenanceWindowsRequestSchema.parse(params);
+    return this.client.makeRequest('EXPERIMENTALMaintenanceWindows', validatedParams, RpcEXPERIMENTALMaintenanceWindowsResponseSchema);
   }
 
-  async protocolconfig(params: RpcEXPERIMENTALprotocolconfigRequest): Promise<RpcEXPERIMENTALprotocolconfigResponse> {
-    const validatedParams = RpcEXPERIMENTALprotocolconfigRequestSchema.parse(params);
-    return this.client.makeRequest('EXPERIMENTALprotocolconfig', validatedParams, RpcEXPERIMENTALprotocolconfigResponseSchema);
+  async protocolConfig(params: RpcEXPERIMENTALProtocolConfigRequest): Promise<RpcEXPERIMENTALProtocolConfigResponse> {
+    const validatedParams = RpcEXPERIMENTALProtocolConfigRequestSchema.parse(params);
+    return this.client.makeRequest('EXPERIMENTALProtocolConfig', validatedParams, RpcEXPERIMENTALProtocolConfigResponseSchema);
   }
 
-  async receipt(params: RpcEXPERIMENTALreceiptRequest): Promise<RpcEXPERIMENTALreceiptResponse> {
-    const validatedParams = RpcEXPERIMENTALreceiptRequestSchema.parse(params);
-    return this.client.makeRequest('EXPERIMENTALreceipt', validatedParams, RpcEXPERIMENTALreceiptResponseSchema);
+  async receipt(params: RpcEXPERIMENTALReceiptRequest): Promise<RpcEXPERIMENTALReceiptResponse> {
+    const validatedParams = RpcEXPERIMENTALReceiptRequestSchema.parse(params);
+    return this.client.makeRequest('EXPERIMENTALReceipt', validatedParams, RpcEXPERIMENTALReceiptResponseSchema);
   }
 
-  async splitstorageinfo(params: RpcEXPERIMENTALsplitstorageinfoRequest): Promise<RpcEXPERIMENTALsplitstorageinfoResponse> {
-    const validatedParams = RpcEXPERIMENTALsplitstorageinfoRequestSchema.parse(params);
-    return this.client.makeRequest('EXPERIMENTALsplitstorageinfo', validatedParams, RpcEXPERIMENTALsplitstorageinfoResponseSchema);
+  async splitStorageInfo(params: RpcEXPERIMENTALSplitStorageInfoRequest): Promise<RpcEXPERIMENTALSplitStorageInfoResponse> {
+    const validatedParams = RpcEXPERIMENTALSplitStorageInfoRequestSchema.parse(params);
+    return this.client.makeRequest('EXPERIMENTALSplitStorageInfo', validatedParams, RpcEXPERIMENTALSplitStorageInfoResponseSchema);
   }
 
-  async validatorsordered(params: RpcEXPERIMENTALvalidatorsorderedRequest): Promise<RpcEXPERIMENTALvalidatorsorderedResponse> {
-    const validatedParams = RpcEXPERIMENTALvalidatorsorderedRequestSchema.parse(params);
-    return this.client.makeRequest('EXPERIMENTALvalidatorsordered', validatedParams, RpcEXPERIMENTALvalidatorsorderedResponseSchema);
+  async validatorsOrdered(params: RpcEXPERIMENTALValidatorsOrderedRequest): Promise<RpcEXPERIMENTALValidatorsOrderedResponse> {
+    const validatedParams = RpcEXPERIMENTALValidatorsOrderedRequestSchema.parse(params);
+    return this.client.makeRequest('EXPERIMENTALValidatorsOrdered', validatedParams, RpcEXPERIMENTALValidatorsOrderedResponseSchema);
   }
 
   async changes(params: RpcChangesRequest): Promise<RpcChangesResponse> {
     const validatedParams = RpcChangesRequestSchema.parse(params);
-    return this.client.makeRequest('Changes', validatedParams, RpcChangesResponseSchema);
+    return this.client.makeRequest('changes', validatedParams, RpcChangesResponseSchema);
   }
 
-  async clientconfig(params: RpcClientconfigRequest): Promise<RpcClientconfigResponse> {
-    const validatedParams = RpcClientconfigRequestSchema.parse(params);
-    return this.client.makeRequest('Clientconfig', validatedParams, RpcClientconfigResponseSchema);
+  async clientConfig(params: RpcClientConfigRequest): Promise<RpcClientConfigResponse> {
+    const validatedParams = RpcClientConfigRequestSchema.parse(params);
+    return this.client.makeRequest('clientConfig', validatedParams, RpcClientConfigResponseSchema);
   }
 
-  async gasprice(params: RpcGaspriceRequest): Promise<RpcGaspriceResponse> {
-    const validatedParams = RpcGaspriceRequestSchema.parse(params);
-    return this.client.makeRequest('Gasprice', validatedParams, RpcGaspriceResponseSchema);
+  async gasPrice(params: RpcGasPriceRequest): Promise<RpcGasPriceResponse> {
+    const validatedParams = RpcGasPriceRequestSchema.parse(params);
+    return this.client.makeRequest('gasPrice', validatedParams, RpcGasPriceResponseSchema);
   }
 
   async health(params: RpcHealthRequest): Promise<RpcHealthResponse> {
     const validatedParams = RpcHealthRequestSchema.parse(params);
-    return this.client.makeRequest('Health', validatedParams, RpcHealthResponseSchema);
+    return this.client.makeRequest('health', validatedParams, RpcHealthResponseSchema);
   }
 
-  async lightclientproof(params: RpcLightclientproofRequest): Promise<RpcLightclientproofResponse> {
-    const validatedParams = RpcLightclientproofRequestSchema.parse(params);
-    return this.client.makeRequest('Lightclientproof', validatedParams, RpcLightclientproofResponseSchema);
+  async lightClientProof(params: RpcLightClientProofRequest): Promise<RpcLightClientProofResponse> {
+    const validatedParams = RpcLightClientProofRequestSchema.parse(params);
+    return this.client.makeRequest('lightClientProof', validatedParams, RpcLightClientProofResponseSchema);
   }
 
-  async networkinfo(params: RpcNetworkinfoRequest): Promise<RpcNetworkinfoResponse> {
-    const validatedParams = RpcNetworkinfoRequestSchema.parse(params);
-    return this.client.makeRequest('Networkinfo', validatedParams, RpcNetworkinfoResponseSchema);
+  async networkInfo(params: RpcNetworkInfoRequest): Promise<RpcNetworkInfoResponse> {
+    const validatedParams = RpcNetworkInfoRequestSchema.parse(params);
+    return this.client.makeRequest('networkInfo', validatedParams, RpcNetworkInfoResponseSchema);
   }
 
   async status(params: RpcStatusRequest): Promise<RpcStatusResponse> {
     const validatedParams = RpcStatusRequestSchema.parse(params);
-    return this.client.makeRequest('Status', validatedParams, RpcStatusResponseSchema);
+    return this.client.makeRequest('status', validatedParams, RpcStatusResponseSchema);
   }
 
-  async validators(params: RpcValidatorsRequest): Promise<RpcValidatorsResponse> {
-    const validatedParams = RpcValidatorsRequestSchema.parse(params);
-    return this.client.makeRequest('Validators', validatedParams, RpcValidatorsResponseSchema);
+  async validators(params: RpcValidatorRequest): Promise<RpcValidatorResponse> {
+    const validatedParams = RpcValidatorRequestSchema.parse(params);
+    return this.client.makeRequest('validators', validatedParams, RpcValidatorResponseSchema);
   }
 }

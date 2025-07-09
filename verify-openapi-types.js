@@ -24,16 +24,16 @@ function checkFileForTypes(filePath, expectedTypes) {
   return { found, missing };
 }
 
-// Check transaction types
+// Check transaction types - these are the actual names from OpenAPI spec
 const transactionTypes = [
-  'RpcBroadcasttxasyncRequest',
-  'RpcBroadcasttxasyncResponse', 
-  'RpcBroadcasttxcommitRequest',
-  'RpcBroadcasttxcommitResponse',
-  'RpcSendtxRequest',
-  'RpcSendtxResponse',
-  'RpcTxRequest',
-  'RpcTxResponse'
+  'JsonRpcRequestForBroadcastTxAsync',
+  'JsonRpcRequestForBroadcastTxCommit',
+  'JsonRpcRequestForSendTx',
+  'JsonRpcRequestForTx',
+  'JsonRpcRequestForEXPERIMENTALReceipt',
+  'JsonRpcRequestForEXPERIMENTALTxStatus',
+  'RpcSendTransactionRequest',
+  'RpcTransactionStatusRequest'
 ];
 
 const transactionTypesFile = path.join(typesPath, 'transactions.ts');
@@ -61,7 +61,10 @@ const commonTypes = [
   'JsonRpcError',
   'Finality',
   'BlockId',
-  'BlockReference'
+  'BlockReference',
+  'AccountId',
+  'PublicKey',
+  'CryptoHash'
 ];
 
 const commonTypesFile = path.join(typesPath, 'common.ts');

@@ -99,6 +99,9 @@ export interface PublicKey {
   data: string;
 }
 
+export type AccountId = string;
+export type CryptoHash = string;
+
 export interface Signature {
   keyType: number;
   data: string;
@@ -307,20 +310,29 @@ function generateFromPaths(spec: OpenApiSpec, options: TypeGeneratorOptions): Re
         files[`schemas/${category}.ts`] = '/**\n * Generated Zod schemas for NEAR Protocol JSON-RPC\n */\n\nimport { z } from \'zod\';\n\n';
       }
       
+      // Generate proper types from schemas
+      const requestTypeResult = generateTypeFromSchema(requestTypeName, requestSchema, options);
+      const responseTypeResult = responseSchema ? generateTypeFromSchema(responseTypeName, responseSchema, options) : null;
+      
+      const requestSchemaResult = generateSchemaFromSchema(requestTypeName, requestSchema, options);
+      const responseSchemaResult = responseSchema ? generateSchemaFromSchema(responseTypeName, responseSchema, options) : null;
+      
       // Add request type and schema (checking for duplicates)
       if (!files[`types/${category}.ts`].includes(`interface ${requestTypeName}`)) {
-        files[`types/${category}.ts`] += `export interface ${requestTypeName} {\n  [key: string]: any;\n}\n\n`;
+        files[`types/${category}.ts`] += `${requestTypeResult.interface}\n\n`;
       }
       if (!files[`schemas/${category}.ts`].includes(`${requestSchemaName} =`)) {
-        files[`schemas/${category}.ts`] += `export const ${requestSchemaName} = z.record(z.unknown());\n\n`;
+        files[`schemas/${category}.ts`] += `${requestSchemaResult.schema}\n\n`;
       }
       
       // Add response type and schema (checking for duplicates)
-      if (!files[`types/${category}.ts`].includes(`interface ${responseTypeName}`)) {
-        files[`types/${category}.ts`] += `export interface ${responseTypeName} {\n  [key: string]: any;\n}\n\n`;
-      }
-      if (!files[`schemas/${category}.ts`].includes(`${responseSchemaName} =`)) {
-        files[`schemas/${category}.ts`] += `export const ${responseSchemaName} = z.record(z.unknown());\n\n`;
+      if (responseTypeResult && responseSchemaResult) {
+        if (!files[`types/${category}.ts`].includes(`interface ${responseTypeName}`)) {
+          files[`types/${category}.ts`] += `${responseTypeResult.interface}\n\n`;
+        }
+        if (!files[`schemas/${category}.ts`].includes(`${responseSchemaName} =`)) {
+          files[`schemas/${category}.ts`] += `${responseSchemaResult.schema}\n\n`;
+        }
       }
     }
   }
@@ -370,6 +382,9 @@ function generateTypesForCategory(
     types.push(interfaceCode);
     schemaImports.forEach(imp => imports.add(imp));
   }
+  
+  // Add common type imports
+  imports.add("import { AccountId, CryptoHash, PublicKey } from './common';");
   
   const importStatements = Array.from(imports).sort().join('\n');
   const typeDefinitions = types.join('\n\n');
