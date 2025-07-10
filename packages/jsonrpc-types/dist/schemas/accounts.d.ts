@@ -29,11 +29,11 @@ export declare const AccessKeyInfoViewSchema: z.ZodObject<{
     accessKey: z.ZodOptional<z.ZodUnknown>;
     publicKey: z.ZodOptional<z.ZodUnknown>;
 }, "strip", z.ZodTypeAny, {
-    publicKey?: unknown;
     accessKey?: unknown;
+    publicKey?: unknown;
 }, {
-    publicKey?: unknown;
     accessKey?: unknown;
+    publicKey?: unknown;
 }>;
 export declare const AccessKeyListSchema: z.ZodObject<{
     keys: z.ZodArray<z.ZodUnknown, "many">;
@@ -70,13 +70,13 @@ export declare const AccountDataViewSchema: z.ZodObject<{
     proxies: z.ZodArray<z.ZodUnknown, "many">;
     timestamp: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    proxies: unknown[];
     timestamp: string;
+    proxies: unknown[];
     accountKey?: unknown;
     peerId?: unknown;
 }, {
-    proxies: unknown[];
     timestamp: string;
+    proxies: unknown[];
     accountKey?: unknown;
     peerId?: unknown;
 }>;
@@ -88,12 +88,12 @@ export declare const AccountInfoSchema: z.ZodObject<{
     publicKey: z.ZodOptional<z.ZodUnknown>;
 }, "strip", z.ZodTypeAny, {
     amount: string;
-    accountId?: unknown;
     publicKey?: unknown;
+    accountId?: unknown;
 }, {
     amount: string;
-    accountId?: unknown;
     publicKey?: unknown;
+    accountId?: unknown;
 }>;
 export declare const AccountViewSchema: z.ZodObject<{
     amount: z.ZodString;
@@ -106,29 +106,29 @@ export declare const AccountViewSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     amount: string;
     locked: string;
-    storageUsage?: number | undefined;
     codeHash?: unknown;
     globalContractAccountId?: unknown;
     globalContractHash?: unknown;
     storagePaidAt?: number | undefined;
+    storageUsage?: number | undefined;
 }, {
     amount: string;
     locked: string;
-    storageUsage?: number | undefined;
     codeHash?: unknown;
     globalContractAccountId?: unknown;
     globalContractHash?: unknown;
     storagePaidAt?: number | undefined;
+    storageUsage?: number | undefined;
 }>;
 export declare const AccountWithPublicKeySchema: z.ZodObject<{
     accountId: z.ZodOptional<z.ZodUnknown>;
     publicKey: z.ZodOptional<z.ZodUnknown>;
 }, "strip", z.ZodTypeAny, {
-    accountId?: unknown;
     publicKey?: unknown;
+    accountId?: unknown;
 }, {
-    accountId?: unknown;
     publicKey?: unknown;
+    accountId?: unknown;
 }>;
 export declare const ContractCodeViewSchema: z.ZodObject<{
     codeBase64: z.ZodOptional<z.ZodString>;

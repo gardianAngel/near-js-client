@@ -118,22 +118,22 @@ export declare const StatusResponseSchema: z.ZodObject<{
         epoch_id: z.ZodOptional<z.ZodString>;
         epoch_start_height: z.ZodOptional<z.ZodNumber>;
     }, "strip", z.ZodTypeAny, {
-        syncing: boolean;
         latest_block_hash: string;
         latest_block_height: number;
         latest_state_root: string;
         latest_block_time: string;
+        syncing: boolean;
         earliest_block_hash?: string | undefined;
         earliest_block_height?: number | undefined;
         earliest_block_time?: string | undefined;
         epoch_id?: string | undefined;
         epoch_start_height?: number | undefined;
     }, {
-        syncing: boolean;
         latest_block_hash: string;
         latest_block_height: number;
         latest_state_root: string;
         latest_block_time: string;
+        syncing: boolean;
         earliest_block_hash?: string | undefined;
         earliest_block_height?: number | undefined;
         earliest_block_time?: string | undefined;
@@ -152,16 +152,16 @@ export declare const StatusResponseSchema: z.ZodObject<{
         build: string;
         rustc_version: string;
     };
-    validators: string[];
     chain_id: string;
     protocol_version: number;
     latest_protocol_version: number;
+    validators: string[];
     sync_info: {
-        syncing: boolean;
         latest_block_hash: string;
         latest_block_height: number;
         latest_state_root: string;
         latest_block_time: string;
+        syncing: boolean;
         earliest_block_hash?: string | undefined;
         earliest_block_height?: number | undefined;
         earliest_block_time?: string | undefined;
@@ -181,16 +181,16 @@ export declare const StatusResponseSchema: z.ZodObject<{
         build: string;
         rustc_version: string;
     };
-    validators: string[];
     chain_id: string;
     protocol_version: number;
     latest_protocol_version: number;
+    validators: string[];
     sync_info: {
-        syncing: boolean;
         latest_block_hash: string;
         latest_block_height: number;
         latest_state_root: string;
         latest_block_time: string;
+        syncing: boolean;
         earliest_block_hash?: string | undefined;
         earliest_block_height?: number | undefined;
         earliest_block_time?: string | undefined;
@@ -239,14 +239,11 @@ export declare const BlockResponseSchema: z.ZodObject<{
         signature: z.ZodString;
         latest_protocol_version: z.ZodNumber;
     }, "strip", z.ZodTypeAny, {
-        timestamp: number;
-        height: number;
-        approvals: (string | null)[];
-        hash: string;
-        signature: string;
         latest_protocol_version: number;
         epoch_id: string;
+        height: number;
         next_epoch_id: string;
+        hash: string;
         prev_hash: string;
         prev_state_root: string;
         chunk_receipts_root: string;
@@ -255,6 +252,7 @@ export declare const BlockResponseSchema: z.ZodObject<{
         outcome_root: string;
         chunks_included: number;
         challenges_root: string;
+        timestamp: number;
         timestamp_nanosec: string;
         random_value: string;
         validator_proposals: any[];
@@ -268,16 +266,15 @@ export declare const BlockResponseSchema: z.ZodObject<{
         last_ds_final_block: string;
         next_bp_hash: string;
         block_merkle_root: string;
+        approvals: (string | null)[];
+        signature: string;
         prev_height?: number | undefined;
     }, {
-        timestamp: number;
-        height: number;
-        approvals: (string | null)[];
-        hash: string;
-        signature: string;
         latest_protocol_version: number;
         epoch_id: string;
+        height: number;
         next_epoch_id: string;
+        hash: string;
         prev_hash: string;
         prev_state_root: string;
         chunk_receipts_root: string;
@@ -286,6 +283,7 @@ export declare const BlockResponseSchema: z.ZodObject<{
         outcome_root: string;
         chunks_included: number;
         challenges_root: string;
+        timestamp: number;
         timestamp_nanosec: string;
         random_value: string;
         validator_proposals: any[];
@@ -299,6 +297,8 @@ export declare const BlockResponseSchema: z.ZodObject<{
         last_ds_final_block: string;
         next_bp_hash: string;
         block_merkle_root: string;
+        approvals: (string | null)[];
+        signature: string;
         prev_height?: number | undefined;
     }>;
     chunks: z.ZodArray<z.ZodObject<{
@@ -321,12 +321,12 @@ export declare const BlockResponseSchema: z.ZodObject<{
         validator_proposals: z.ZodArray<z.ZodAny, "many">;
         signature: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        signature: string;
         prev_state_root: string;
         outcome_root: string;
         validator_proposals: any[];
         rent_paid: string;
         validator_reward: string;
+        signature: string;
         chunk_hash: string;
         prev_block_hash: string;
         encoded_merkle_root: string;
@@ -340,12 +340,12 @@ export declare const BlockResponseSchema: z.ZodObject<{
         outgoing_receipts_root: string;
         tx_root: string;
     }, {
-        signature: string;
         prev_state_root: string;
         outcome_root: string;
         validator_proposals: any[];
         rent_paid: string;
         validator_reward: string;
+        signature: string;
         chunk_hash: string;
         prev_block_hash: string;
         encoded_merkle_root: string;
@@ -360,15 +360,13 @@ export declare const BlockResponseSchema: z.ZodObject<{
         tx_root: string;
     }>, "many">;
 }, "strip", z.ZodTypeAny, {
+    author: string;
     header: {
-        timestamp: number;
-        height: number;
-        approvals: (string | null)[];
-        hash: string;
-        signature: string;
         latest_protocol_version: number;
         epoch_id: string;
+        height: number;
         next_epoch_id: string;
+        hash: string;
         prev_hash: string;
         prev_state_root: string;
         chunk_receipts_root: string;
@@ -377,6 +375,7 @@ export declare const BlockResponseSchema: z.ZodObject<{
         outcome_root: string;
         chunks_included: number;
         challenges_root: string;
+        timestamp: number;
         timestamp_nanosec: string;
         random_value: string;
         validator_proposals: any[];
@@ -390,15 +389,17 @@ export declare const BlockResponseSchema: z.ZodObject<{
         last_ds_final_block: string;
         next_bp_hash: string;
         block_merkle_root: string;
+        approvals: (string | null)[];
+        signature: string;
         prev_height?: number | undefined;
     };
     chunks: {
-        signature: string;
         prev_state_root: string;
         outcome_root: string;
         validator_proposals: any[];
         rent_paid: string;
         validator_reward: string;
+        signature: string;
         chunk_hash: string;
         prev_block_hash: string;
         encoded_merkle_root: string;
@@ -412,17 +413,14 @@ export declare const BlockResponseSchema: z.ZodObject<{
         outgoing_receipts_root: string;
         tx_root: string;
     }[];
-    author: string;
 }, {
+    author: string;
     header: {
-        timestamp: number;
-        height: number;
-        approvals: (string | null)[];
-        hash: string;
-        signature: string;
         latest_protocol_version: number;
         epoch_id: string;
+        height: number;
         next_epoch_id: string;
+        hash: string;
         prev_hash: string;
         prev_state_root: string;
         chunk_receipts_root: string;
@@ -431,6 +429,7 @@ export declare const BlockResponseSchema: z.ZodObject<{
         outcome_root: string;
         chunks_included: number;
         challenges_root: string;
+        timestamp: number;
         timestamp_nanosec: string;
         random_value: string;
         validator_proposals: any[];
@@ -444,15 +443,17 @@ export declare const BlockResponseSchema: z.ZodObject<{
         last_ds_final_block: string;
         next_bp_hash: string;
         block_merkle_root: string;
+        approvals: (string | null)[];
+        signature: string;
         prev_height?: number | undefined;
     };
     chunks: {
-        signature: string;
         prev_state_root: string;
         outcome_root: string;
         validator_proposals: any[];
         rent_paid: string;
         validator_reward: string;
+        signature: string;
         chunk_hash: string;
         prev_block_hash: string;
         encoded_merkle_root: string;
@@ -466,7 +467,6 @@ export declare const BlockResponseSchema: z.ZodObject<{
         outgoing_receipts_root: string;
         tx_root: string;
     }[];
-    author: string;
 }>;
 export declare const QueryResponseSchema: z.ZodObject<{
     block_height: z.ZodNumber;
@@ -489,20 +489,20 @@ export declare const ViewAccountResponseSchema: z.ZodObject<{
     storage_usage: z.ZodNumber;
     storage_paid_at: z.ZodNumber;
 }, "strip", z.ZodTypeAny, {
-    amount: string;
-    locked: string;
     account_id: string;
     block_height: number;
     block_hash: string;
+    amount: string;
+    locked: string;
     code_hash: string;
     storage_usage: number;
     storage_paid_at: number;
 }, {
-    amount: string;
-    locked: string;
     account_id: string;
     block_height: number;
     block_hash: string;
+    amount: string;
+    locked: string;
     code_hash: string;
     storage_usage: number;
     storage_paid_at: number;
@@ -540,6 +540,8 @@ export declare const ViewAccessKeyResponseSchema: z.ZodObject<{
         };
     }>]>;
 }, "strip", z.ZodTypeAny, {
+    block_height: number;
+    block_hash: string;
     nonce: number;
     permission: string | {
         FunctionCall: {
@@ -548,9 +550,9 @@ export declare const ViewAccessKeyResponseSchema: z.ZodObject<{
             allowance?: string | undefined;
         };
     };
-    block_height: number;
-    block_hash: string;
 }, {
+    block_height: number;
+    block_hash: string;
     nonce: number;
     permission: string | {
         FunctionCall: {
@@ -559,8 +561,6 @@ export declare const ViewAccessKeyResponseSchema: z.ZodObject<{
             allowance?: string | undefined;
         };
     };
-    block_height: number;
-    block_hash: string;
 }>;
 export declare const ViewAccessKeyListResponseSchema: z.ZodObject<{
     block_height: z.ZodNumber;
@@ -684,19 +684,19 @@ export declare const ValidatorsResponseSchema: z.ZodObject<{
         num_produced_blocks: z.ZodNumber;
         num_expected_blocks: z.ZodNumber;
     }, "strip", z.ZodTypeAny, {
-        shards: number[];
-        stake: string;
         account_id: string;
         public_key: string;
         is_slashed: boolean;
+        stake: string;
+        shards: number[];
         num_produced_blocks: number;
         num_expected_blocks: number;
     }, {
-        shards: number[];
-        stake: string;
         account_id: string;
         public_key: string;
         is_slashed: boolean;
+        stake: string;
+        shards: number[];
         num_produced_blocks: number;
         num_expected_blocks: number;
     }>, "many">;
@@ -706,54 +706,54 @@ export declare const ValidatorsResponseSchema: z.ZodObject<{
         stake: z.ZodString;
         shards: z.ZodArray<z.ZodNumber, "many">;
     }, "strip", z.ZodTypeAny, {
-        shards: number[];
-        stake: string;
         account_id: string;
         public_key: string;
+        stake: string;
+        shards: number[];
     }, {
-        shards: number[];
-        stake: string;
         account_id: string;
         public_key: string;
+        stake: string;
+        shards: number[];
     }>, "many">;
     current_fishermen: z.ZodArray<z.ZodObject<{
         account_id: z.ZodString;
         public_key: z.ZodString;
         stake: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        stake: string;
         account_id: string;
         public_key: string;
+        stake: string;
     }, {
-        stake: string;
         account_id: string;
         public_key: string;
+        stake: string;
     }>, "many">;
     next_fishermen: z.ZodArray<z.ZodObject<{
         account_id: z.ZodString;
         public_key: z.ZodString;
         stake: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        stake: string;
         account_id: string;
         public_key: string;
+        stake: string;
     }, {
-        stake: string;
         account_id: string;
         public_key: string;
+        stake: string;
     }>, "many">;
     current_proposals: z.ZodArray<z.ZodObject<{
         account_id: z.ZodString;
         public_key: z.ZodString;
         stake: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        stake: string;
         account_id: string;
         public_key: string;
+        stake: string;
     }, {
-        stake: string;
         account_id: string;
         public_key: string;
+        stake: string;
     }>, "many">;
     epoch_start_height: z.ZodNumber;
     epoch_height: z.ZodNumber;
@@ -770,34 +770,34 @@ export declare const ValidatorsResponseSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     epoch_start_height: number;
     current_validators: {
-        shards: number[];
-        stake: string;
         account_id: string;
         public_key: string;
         is_slashed: boolean;
+        stake: string;
+        shards: number[];
         num_produced_blocks: number;
         num_expected_blocks: number;
     }[];
     next_validators: {
-        shards: number[];
-        stake: string;
         account_id: string;
         public_key: string;
+        stake: string;
+        shards: number[];
     }[];
     current_fishermen: {
-        stake: string;
         account_id: string;
         public_key: string;
+        stake: string;
     }[];
     next_fishermen: {
-        stake: string;
         account_id: string;
         public_key: string;
+        stake: string;
     }[];
     current_proposals: {
-        stake: string;
         account_id: string;
         public_key: string;
+        stake: string;
     }[];
     epoch_height: number;
     prev_epoch_kickout: {
@@ -807,34 +807,34 @@ export declare const ValidatorsResponseSchema: z.ZodObject<{
 }, {
     epoch_start_height: number;
     current_validators: {
-        shards: number[];
-        stake: string;
         account_id: string;
         public_key: string;
         is_slashed: boolean;
+        stake: string;
+        shards: number[];
         num_produced_blocks: number;
         num_expected_blocks: number;
     }[];
     next_validators: {
-        shards: number[];
-        stake: string;
         account_id: string;
         public_key: string;
+        stake: string;
+        shards: number[];
     }[];
     current_fishermen: {
-        stake: string;
         account_id: string;
         public_key: string;
+        stake: string;
     }[];
     next_fishermen: {
-        stake: string;
         account_id: string;
         public_key: string;
+        stake: string;
     }[];
     current_proposals: {
-        stake: string;
         account_id: string;
         public_key: string;
+        stake: string;
     }[];
     epoch_height: number;
     prev_epoch_kickout: {
@@ -971,21 +971,21 @@ export declare const TransactionResponseSchema: z.ZodObject<{
         signature: z.ZodString;
         hash: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        nonce: number;
         hash: string;
         signature: string;
-        actions: any[];
+        nonce: number;
         receiver_id: string;
         public_key: string;
         signer_id: string;
+        actions: any[];
     }, {
-        nonce: number;
         hash: string;
         signature: string;
-        actions: any[];
+        nonce: number;
         receiver_id: string;
         public_key: string;
         signer_id: string;
+        actions: any[];
     }>;
     transaction_outcome: z.ZodObject<{
         proof: z.ZodArray<z.ZodAny, "many">;
@@ -1015,6 +1015,8 @@ export declare const TransactionResponseSchema: z.ZodObject<{
         }>;
     }, "strip", z.ZodTypeAny, {
         id: string;
+        block_hash: string;
+        proof: any[];
         outcome: {
             logs: string[];
             receipt_ids: string[];
@@ -1023,10 +1025,10 @@ export declare const TransactionResponseSchema: z.ZodObject<{
             executor_id: string;
             status?: any;
         };
-        proof: any[];
-        block_hash: string;
     }, {
         id: string;
+        block_hash: string;
+        proof: any[];
         outcome: {
             logs: string[];
             receipt_ids: string[];
@@ -1035,8 +1037,6 @@ export declare const TransactionResponseSchema: z.ZodObject<{
             executor_id: string;
             status?: any;
         };
-        proof: any[];
-        block_hash: string;
     }>;
     receipts_outcome: z.ZodArray<z.ZodObject<{
         proof: z.ZodArray<z.ZodAny, "many">;
@@ -1066,6 +1066,8 @@ export declare const TransactionResponseSchema: z.ZodObject<{
         }>;
     }, "strip", z.ZodTypeAny, {
         id: string;
+        block_hash: string;
+        proof: any[];
         outcome: {
             logs: string[];
             receipt_ids: string[];
@@ -1074,10 +1076,10 @@ export declare const TransactionResponseSchema: z.ZodObject<{
             executor_id: string;
             status?: any;
         };
-        proof: any[];
-        block_hash: string;
     }, {
         id: string;
+        block_hash: string;
+        proof: any[];
         outcome: {
             logs: string[];
             receipt_ids: string[];
@@ -1086,8 +1088,6 @@ export declare const TransactionResponseSchema: z.ZodObject<{
             executor_id: string;
             status?: any;
         };
-        proof: any[];
-        block_hash: string;
     }>, "many">;
 }, "strip", z.ZodTypeAny, {
     status: {
@@ -1103,16 +1103,18 @@ export declare const TransactionResponseSchema: z.ZodObject<{
         };
     };
     transaction: {
-        nonce: number;
         hash: string;
         signature: string;
-        actions: any[];
+        nonce: number;
         receiver_id: string;
         public_key: string;
         signer_id: string;
+        actions: any[];
     };
     transaction_outcome: {
         id: string;
+        block_hash: string;
+        proof: any[];
         outcome: {
             logs: string[];
             receipt_ids: string[];
@@ -1121,11 +1123,11 @@ export declare const TransactionResponseSchema: z.ZodObject<{
             executor_id: string;
             status?: any;
         };
-        proof: any[];
-        block_hash: string;
     };
     receipts_outcome: {
         id: string;
+        block_hash: string;
+        proof: any[];
         outcome: {
             logs: string[];
             receipt_ids: string[];
@@ -1134,8 +1136,6 @@ export declare const TransactionResponseSchema: z.ZodObject<{
             executor_id: string;
             status?: any;
         };
-        proof: any[];
-        block_hash: string;
     }[];
 }, {
     status: {
@@ -1151,16 +1151,18 @@ export declare const TransactionResponseSchema: z.ZodObject<{
         };
     };
     transaction: {
-        nonce: number;
         hash: string;
         signature: string;
-        actions: any[];
+        nonce: number;
         receiver_id: string;
         public_key: string;
         signer_id: string;
+        actions: any[];
     };
     transaction_outcome: {
         id: string;
+        block_hash: string;
+        proof: any[];
         outcome: {
             logs: string[];
             receipt_ids: string[];
@@ -1169,11 +1171,11 @@ export declare const TransactionResponseSchema: z.ZodObject<{
             executor_id: string;
             status?: any;
         };
-        proof: any[];
-        block_hash: string;
     };
     receipts_outcome: {
         id: string;
+        block_hash: string;
+        proof: any[];
         outcome: {
             logs: string[];
             receipt_ids: string[];
@@ -1182,8 +1184,6 @@ export declare const TransactionResponseSchema: z.ZodObject<{
             executor_id: string;
             status?: any;
         };
-        proof: any[];
-        block_hash: string;
     }[];
 }>;
 export declare const ChunkResponseSchema: z.ZodObject<{
@@ -1208,12 +1208,12 @@ export declare const ChunkResponseSchema: z.ZodObject<{
         validator_proposals: z.ZodArray<z.ZodAny, "many">;
         signature: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        signature: string;
         prev_state_root: string;
         outcome_root: string;
         validator_proposals: any[];
         rent_paid: string;
         validator_reward: string;
+        signature: string;
         chunk_hash: string;
         prev_block_hash: string;
         encoded_merkle_root: string;
@@ -1227,12 +1227,12 @@ export declare const ChunkResponseSchema: z.ZodObject<{
         outgoing_receipts_root: string;
         tx_root: string;
     }, {
-        signature: string;
         prev_state_root: string;
         outcome_root: string;
         validator_proposals: any[];
         rent_paid: string;
         validator_reward: string;
+        signature: string;
         chunk_hash: string;
         prev_block_hash: string;
         encoded_merkle_root: string;
@@ -1255,31 +1255,32 @@ export declare const ChunkResponseSchema: z.ZodObject<{
         signature: z.ZodString;
         hash: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        nonce: number;
         hash: string;
         signature: string;
-        actions: any[];
+        nonce: number;
         receiver_id: string;
         public_key: string;
         signer_id: string;
+        actions: any[];
     }, {
-        nonce: number;
         hash: string;
         signature: string;
-        actions: any[];
+        nonce: number;
         receiver_id: string;
         public_key: string;
         signer_id: string;
+        actions: any[];
     }>, "many">;
     receipts: z.ZodArray<z.ZodAny, "many">;
 }, "strip", z.ZodTypeAny, {
+    author: string;
     header: {
-        signature: string;
         prev_state_root: string;
         outcome_root: string;
         validator_proposals: any[];
         rent_paid: string;
         validator_reward: string;
+        signature: string;
         chunk_hash: string;
         prev_block_hash: string;
         encoded_merkle_root: string;
@@ -1294,24 +1295,24 @@ export declare const ChunkResponseSchema: z.ZodObject<{
         tx_root: string;
     };
     transactions: {
-        nonce: number;
         hash: string;
         signature: string;
-        actions: any[];
+        nonce: number;
         receiver_id: string;
         public_key: string;
         signer_id: string;
+        actions: any[];
     }[];
     receipts: any[];
-    author: string;
 }, {
+    author: string;
     header: {
-        signature: string;
         prev_state_root: string;
         outcome_root: string;
         validator_proposals: any[];
         rent_paid: string;
         validator_reward: string;
+        signature: string;
         chunk_hash: string;
         prev_block_hash: string;
         encoded_merkle_root: string;
@@ -1326,16 +1327,15 @@ export declare const ChunkResponseSchema: z.ZodObject<{
         tx_root: string;
     };
     transactions: {
-        nonce: number;
         hash: string;
         signature: string;
-        actions: any[];
+        nonce: number;
         receiver_id: string;
         public_key: string;
         signer_id: string;
+        actions: any[];
     }[];
     receipts: any[];
-    author: string;
 }>;
 export declare const StatusRequestSchema: z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>;
 export declare const BlockRequestSchema: z.ZodObject<{

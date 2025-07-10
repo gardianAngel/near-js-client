@@ -57,11 +57,11 @@ export declare const AddKeyActionSchema: z.ZodObject<{
     accessKey: z.ZodOptional<z.ZodUnknown>;
     publicKey: z.ZodOptional<z.ZodUnknown>;
 }, "strip", z.ZodTypeAny, {
-    publicKey?: unknown;
     accessKey?: unknown;
+    publicKey?: unknown;
 }, {
-    publicKey?: unknown;
     accessKey?: unknown;
+    publicKey?: unknown;
 }>;
 export declare const CreateAccountActionSchema: z.ZodRecord<z.ZodString, z.ZodUnknown>;
 export declare const DataReceiptCreationConfigViewSchema: z.ZodObject<{
@@ -136,14 +136,14 @@ export declare const FinalExecutionOutcomeWithReceiptViewSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     receipts: unknown[];
     status?: unknown;
-    receiptsOutcome?: unknown[] | undefined;
     transaction?: unknown;
+    receiptsOutcome?: unknown[] | undefined;
     transactionOutcome?: unknown;
 }, {
     receipts: unknown[];
     status?: unknown;
-    receiptsOutcome?: unknown[] | undefined;
     transaction?: unknown;
+    receiptsOutcome?: unknown[] | undefined;
     transactionOutcome?: unknown;
 }>;
 export declare const FunctionCallActionSchema: z.ZodObject<{
@@ -374,18 +374,18 @@ export declare const SignedTransactionViewSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     nonce: number;
     actions: unknown[];
-    publicKey?: unknown;
     hash?: unknown;
     signature?: unknown;
+    publicKey?: unknown;
     receiverId?: unknown;
     priorityFee?: number | undefined;
     signerId?: unknown;
 }, {
     nonce: number;
     actions: unknown[];
-    publicKey?: unknown;
     hash?: unknown;
     signature?: unknown;
+    publicKey?: unknown;
     receiverId?: unknown;
     priorityFee?: number | undefined;
     signerId?: unknown;

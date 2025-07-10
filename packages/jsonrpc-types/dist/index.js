@@ -20,9 +20,6 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 }) : function(o, v) {
     o["default"] = v;
 });
-var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
-};
 var __importStar = (this && this.__importStar) || (function () {
     var ownKeys = function(o) {
         ownKeys = Object.getOwnPropertyNames || function (o) {
@@ -41,14 +38,9 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ValidatedSchemas = exports.ValidatedTypes = exports.NearcoreSchemas = exports.NearcoreTypes = exports.z = void 0;
-__exportStar(require("./types"), exports);
-__exportStar(require("./schemas"), exports);
+exports.ValidatedSchemas = exports.ValidatedTypes = exports.z = void 0;
 var zod_1 = require("zod");
 Object.defineProperty(exports, "z", { enumerable: true, get: function () { return zod_1.z; } });
-// Export nearcore-generated types and schemas
-exports.NearcoreTypes = __importStar(require("./types/nearcore"));
-exports.NearcoreSchemas = __importStar(require("./schemas/nearcore"));
-// Export validated types and schemas
-exports.ValidatedTypes = __importStar(require("./types/validated"));
+// Export working validated types and schemas (generated from real API responses)
+exports.ValidatedTypes = __importStar(require("./types/validated-real"));
 exports.ValidatedSchemas = __importStar(require("./schemas/validated"));

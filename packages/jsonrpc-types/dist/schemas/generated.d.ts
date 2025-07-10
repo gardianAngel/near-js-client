@@ -14,11 +14,11 @@ export declare const ViewAccessKeyParamsSchema: z.ZodObject<{
     accountId: z.ZodOptional<z.ZodString>;
     publicKey: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    accountId?: string | undefined;
     publicKey?: string | undefined;
+    accountId?: string | undefined;
 }, {
-    accountId?: string | undefined;
     publicKey?: string | undefined;
+    accountId?: string | undefined;
 }>;
 export declare const ViewAccessKeyResultSchema: z.ZodObject<{
     nonce: z.ZodOptional<z.ZodNumber>;
@@ -28,13 +28,13 @@ export declare const ViewAccessKeyResultSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     nonce?: number | undefined;
     permission?: string | undefined;
-    blockHeight?: number | undefined;
     blockHash?: string | undefined;
+    blockHeight?: number | undefined;
 }, {
     nonce?: number | undefined;
     permission?: string | undefined;
-    blockHeight?: number | undefined;
     blockHash?: string | undefined;
+    blockHeight?: number | undefined;
 }>;
 export declare const ViewAccessKeyListParamsSchema: z.ZodObject<{
     accountId: z.ZodOptional<z.ZodString>;
@@ -60,18 +60,18 @@ export declare const ViewAccountResultSchema: z.ZodObject<{
     blockHash: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     accountId?: string | undefined;
-    blockHeight?: number | undefined;
-    blockHash?: string | undefined;
-    balance?: string | undefined;
-    storageUsage?: number | undefined;
     codeHash?: string | undefined;
+    storageUsage?: number | undefined;
+    balance?: string | undefined;
+    blockHash?: string | undefined;
+    blockHeight?: number | undefined;
 }, {
     accountId?: string | undefined;
-    blockHeight?: number | undefined;
-    blockHash?: string | undefined;
-    balance?: string | undefined;
-    storageUsage?: number | undefined;
     codeHash?: string | undefined;
+    storageUsage?: number | undefined;
+    balance?: string | undefined;
+    blockHash?: string | undefined;
+    blockHeight?: number | undefined;
 }>;
 export declare const ViewCodeResultSchema: z.ZodAny;
 export declare const ViewStateResultSchema: z.ZodAny;
