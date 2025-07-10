@@ -41,7 +41,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.NearcoreSchemas = exports.NearcoreTypes = exports.z = void 0;
+exports.ValidatedSchemas = exports.ValidatedTypes = exports.NearcoreSchemas = exports.NearcoreTypes = exports.z = void 0;
 __exportStar(require("./types"), exports);
 __exportStar(require("./schemas"), exports);
 var zod_1 = require("zod");
@@ -49,3 +49,6 @@ Object.defineProperty(exports, "z", { enumerable: true, get: function () { retur
 // Export nearcore-generated types and schemas
 exports.NearcoreTypes = __importStar(require("./types/nearcore"));
 exports.NearcoreSchemas = __importStar(require("./schemas/nearcore"));
+// Export validated types and schemas
+exports.ValidatedTypes = __importStar(require("./types/validated"));
+exports.ValidatedSchemas = __importStar(require("./schemas/validated"));
