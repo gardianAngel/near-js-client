@@ -162,7 +162,7 @@ export class NearRpcClient {
   }
 
   // Convenience methods
-  async viewAccount(accountId: string): Promise<Types.ViewAccountResponse> {
+  async viewAccount(accountId: string): Promise<any> {
     return this.query({
       request_type: 'view_account',
       account_id: accountId,
@@ -170,7 +170,7 @@ export class NearRpcClient {
     });
   }
 
-  async viewAccessKeyList(accountId: string): Promise<Types.AccessKeyListResponse> {
+  async viewAccessKeyList(accountId: string): Promise<any> {
     return this.query({
       request_type: 'view_access_key_list',
       account_id: accountId,
@@ -178,7 +178,7 @@ export class NearRpcClient {
     });
   }
 
-  async viewState(accountId: string, prefix: string = ''): Promise<Types.ViewStateResponse> {
+  async viewState(accountId: string, prefix: string = ''): Promise<any> {
     return this.query({
       request_type: 'view_state',
       account_id: accountId,
@@ -210,13 +210,13 @@ export class NearRpcClient {
     });
   }
 
-  async broadcastTxAsync(signedTransaction: string): Promise<Types.BroadcastTxAsyncResponse> {
+  async broadcastTxAsync(signedTransaction: string): Promise<any> {
     return this.request('broadcast_tx_async', {
       signed_tx_base64: signedTransaction
     });
   }
 
-  async broadcastTxCommit(signedTransaction: string): Promise<Types.BroadcastTxCommitResponse> {
+  async broadcastTxCommit(signedTransaction: string): Promise<any> {
     return this.request('broadcast_tx_commit', {
       signed_tx_base64: signedTransaction
     });
@@ -252,11 +252,6 @@ export type {
   GasPriceResponse,
   NetworkInfoResponse,
   QueryResponse,
-  ViewAccountResponse,
-  AccessKeyListResponse,
-  ViewStateResponse,
-  BroadcastTxAsyncResponse,
-  BroadcastTxCommitResponse,
   EXPERIMENTALProtocolConfigResponse,
   EXPERIMENTALGenesisConfigResponse,
   Finality,
