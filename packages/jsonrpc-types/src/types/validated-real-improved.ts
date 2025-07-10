@@ -501,7 +501,6 @@ export interface LimitConfig {
   maxTransactionSize: number;
   maxReceiptSize: number;
   maxTotalTxGas: number;
-  maxTotalPrepaidGas: number;
   maxOutstandingReceiptsMemoeryLimit: number;
 }
 
