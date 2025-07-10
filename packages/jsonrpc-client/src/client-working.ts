@@ -135,7 +135,7 @@ export class NearRpcClient {
     return this.request('block', params);
   }
 
-  async validators(params: { finality?: Types.Finality } = {}): Promise<Types.ValidatorsResponse> {
+  async validators(params: { finality?: Types.Finality } = {}): Promise<any> {
     return this.request('validators', params);
   }
 
@@ -158,11 +158,11 @@ export class NearRpcClient {
     return this.request('query', params);
   }
 
-  async experimentalProtocolConfig(params: { finality?: Types.Finality } = {}): Promise<Types.ExperimentalProtocolConfigResponse> {
+  async experimentalProtocolConfig(params: { finality?: Types.Finality } = {}): Promise<Types.EXPERIMENTALProtocolConfigResponse> {
     return this.request('EXPERIMENTAL_protocol_config', params);
   }
 
-  async experimentalGenesisConfig(): Promise<Types.ExperimentalGenesisConfigResponse> {
+  async experimentalGenesisConfig(): Promise<Types.EXPERIMENTALGenesisConfigResponse> {
     return this.request('EXPERIMENTAL_genesis_config', {});
   }
 }

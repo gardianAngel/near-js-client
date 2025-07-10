@@ -4,14 +4,8 @@
  * TypeScript types and Zod schemas for NEAR Protocol JSON-RPC interface
  */
 
-export * from './types';
-export * from './schemas';
 export { z } from 'zod';
 
-// Export nearcore-generated types and schemas
-export * as NearcoreTypes from './types/nearcore';
-export * as NearcoreSchemas from './schemas/nearcore';
-
-// Export validated types and schemas
-export * as ValidatedTypes from './types/validated';
+// Export working validated types and schemas (generated from real API responses)
+export * as ValidatedTypes from './types/validated-real';
 export * as ValidatedSchemas from './schemas/validated';
