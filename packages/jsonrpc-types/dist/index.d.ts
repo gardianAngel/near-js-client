@@ -6,3 +6,4 @@
 export { z } from 'zod';
 export * as ValidatedTypes from './types/validated-real-improved';
 export * as ValidatedSchemas from './schemas/validated-improved';
+export type { StatusResponse, BlockResponse, GasPriceResponse, NetworkInfoResponse, QueryResponse, ViewAccountResponse, AccessKeyListResponse, ViewStateResponse, BroadcastTxAsyncResponse, BroadcastTxCommitResponse, EXPERIMENTALProtocolConfigResponse, EXPERIMENTALGenesisConfigResponse, Finality, AccountId, PublicKey, CryptoHash, BlockHeight, BlockHash, JsonRpcRequest, JsonRpcResponse, JsonRpcError } from './types/validated-real-improved';

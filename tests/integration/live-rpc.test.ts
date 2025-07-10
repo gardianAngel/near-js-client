@@ -5,8 +5,8 @@
  * and should be run carefully to avoid rate limiting.
  */
 
-import { NearJsonRpcClient } from '@near-js/jsonrpc-client';
-import { NearJsonRpcError, NetworkError } from '@near-js/jsonrpc-client';
+import { NearRpcClient } from '@near-js/jsonrpc-client';
+import { NearRpcError, NetworkError } from '@near-js/jsonrpc-client';
 
 // Use testnet for integration tests
 const TESTNET_RPC_URL = 'https://rpc.testnet.near.org';

@@ -30,8 +30,5 @@ class BlocksMethods {
         const validatedParams = jsonrpc_types_1.RpcNextLightClientBlockRequestSchema.parse(params);
         return this.client.makeRequest('nextLightClientBlock', validatedParams, jsonrpc_types_1.RpcNextLightClientBlockResponseSchema);
     }
-    async getLatestBlock() {
-        return this.client.makeRequest('block', { finality: 'final' }, jsonrpc_types_1.RpcBlockResponseSchema);
-    }
 }
 exports.BlocksMethods = BlocksMethods;

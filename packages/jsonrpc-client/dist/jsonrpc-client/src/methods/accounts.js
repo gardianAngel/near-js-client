@@ -14,12 +14,5 @@ class AccountsMethods {
         const validatedParams = jsonrpc_types_1.RpcQueryRequestSchema.parse(params);
         return this.client.makeRequest('query', validatedParams, jsonrpc_types_1.RpcQueryResponseSchema);
     }
-    async viewAccount(params) {
-        return this.client.makeRequest('query', {
-            request_type: 'view_account',
-            account_id: params.account_id,
-            finality: 'final'
-        });
-    }
 }
 exports.AccountsMethods = AccountsMethods;

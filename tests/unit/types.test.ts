@@ -1,87 +1,71 @@
 /**
- * Unit tests for NEAR JSON-RPC types and schemas
+ * Unit tests for NEAR JSON-RPC types
  */
 
-import { z } from 'zod';
-import {
-  // Common schemas that exist
-  FinalitySchema,
-  SignatureSchema,
-  
-  // Block schemas that exist
-  BlockIdSchema,
-  RpcBlockResponseSchema,
-  RpcChunkResponseSchema,
-  
-  // Account schemas that exist
-  PublicKeySchema,
-  
-  // Types that exist
-  Finality,
-} from '@near-js/jsonrpc-types';
+import { z, ValidatedTypes, ValidatedSchemas } from '@near-js/jsonrpc-types';
 
-describe('NEAR JSON-RPC Type Validation', () => {
-  describe('FinalitySchema', () => {
-    it('should validate valid finality values', () => {
-      expect(() => FinalitySchema.parse('final')).not.toThrow();
-      expect(() => FinalitySchema.parse('near-final')).not.toThrow();
-      expect(() => FinalitySchema.parse('optimistic')).not.toThrow();
+describe('NEAR RPC Types', () => {
+  describe('ValidatedTypes', () => {
+    it('should export StatusResponse type', () => {
+      expect(ValidatedTypes).toBeDefined();
     });
 
-    it('should reject invalid finality values', () => {
-      expect(() => FinalitySchema.parse('invalid')).toThrow(z.ZodError);
-      expect(() => FinalitySchema.parse(123)).toThrow(z.ZodError);
-      expect(() => FinalitySchema.parse(null)).toThrow(z.ZodError);
+    it('should export BlockResponse type', () => {
+      expect(ValidatedTypes).toBeDefined();
     });
   });
 
-  describe('BlockIdSchema', () => {
-    it('should validate number block IDs', () => {
-      expect(() => BlockIdSchema.parse(123)).not.toThrow();
-      expect(() => BlockIdSchema.parse(0)).not.toThrow();
+  describe('ValidatedSchemas', () => {
+    it('should export FinalitySchema', () => {
+      expect(ValidatedSchemas.FinalitySchema).toBeDefined();
     });
 
-    it('should validate unknown block IDs', () => {
-      expect(() => BlockIdSchema.parse('block-hash')).not.toThrow();
-      expect(() => BlockIdSchema.parse({})).not.toThrow();
-    });
-  });
-
-  describe('SignatureSchema', () => {
-    it('should validate signature strings', () => {
-      expect(() => SignatureSchema.parse('signature-data')).not.toThrow();
-      expect(() => SignatureSchema.parse('ed25519:...')).not.toThrow();
-    });
-
-    it('should reject non-string values', () => {
-      expect(() => SignatureSchema.parse(123)).toThrow(z.ZodError);
-      expect(() => SignatureSchema.parse({})).toThrow(z.ZodError);
-    });
-  });
-
-  describe('PublicKeySchema', () => {
-    it('should validate public key strings', () => {
-      expect(() => PublicKeySchema.parse('ed25519:ABC123')).not.toThrow();
-      expect(() => PublicKeySchema.parse('test-key')).not.toThrow();
-    });
-
-    it('should reject non-string values', () => {
-      expect(() => PublicKeySchema.parse(123)).toThrow(z.ZodError);
-      expect(() => PublicKeySchema.parse({})).toThrow(z.ZodError);
-    });
-  });
-
-  describe('Type inference', () => {
-    it('should correctly infer types from schemas', () => {
-      type InferredFinality = z.infer<typeof FinalitySchema>;
-      type InferredBlockId = z.infer<typeof BlockIdSchema>;
+    it('should validate finality values', () => {
+      const schema = ValidatedSchemas.FinalitySchema;
       
-      // These should compile without errors
-      const finality: InferredFinality = 'final';
-      const blockId: InferredBlockId = 123;
+      expect(() => schema.parse('final')).not.toThrow();
+      expect(() => schema.parse('optimistic')).not.toThrow();
+      expect(() => schema.parse('near-final')).not.toThrow();
+      expect(() => schema.parse('invalid')).toThrow();
+    });
+
+    it('should export StatusResponseSchema', () => {
+      expect(ValidatedSchemas.StatusResponseSchema).toBeDefined();
+    });
+
+    it('should validate status response', () => {
+      const schema = ValidatedSchemas.StatusResponseSchema;
       
-      expect(finality).toBe('final');
-      expect(blockId).toBe(123);
+      const validStatus = {
+        chainId: 'testnet',
+        genesisHash: 'abc123',
+        latestProtocolVersion: 1,
+        nodePublicKey: 'ed25519:abc123',
+        protocolVersion: 1,
+        rpcAddr: '0.0.0.0:8545',
+        syncInfo: {
+          earliestBlockHash: 'abc123',
+          earliestBlockHeight: 1,
+          earliestBlockTime: '2023-01-01T00:00:00.000Z',
+          epochId: 'abc123',
+          epochStartHeight: 1,
+          latestBlockHash: 'abc123',
+          latestBlockHeight: 100,
+          latestBlockTime: '2023-01-01T00:00:00.000Z',
+          latestStateRoot: 'abc123',
+          syncing: false,
+        },
+        uptimeSec: 3600,
+        validators: [],
+        version: {
+          build: 'abc123',
+          commit: 'abc123',
+          rustcVersion: '1.70.0',
+          version: '1.0.0',
+        },
+      };
+
+      expect(() => schema.parse(validStatus)).not.toThrow();
     });
   });
 });

@@ -1,12 +1,34 @@
 "use strict";
 /**
- * Working NEAR Protocol JSON-RPC Client
- * Generated from validated API responses
- *
- * This client is guaranteed to work with the actual NEAR Protocol RPC.
+ * Clean NEAR Protocol RPC Client
+ * Fixed issues:
+ * 1. No redundant method groupings (client.accounts.getAccount)
+ * 2. Direct method names (block not getLatestBlock)
+ * 3. Proper error handling
+ * 4. Clean TypeScript implementation
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.NearRpcError = exports.NearRpcClient = void 0;
+exports.NearRpcClient = exports.NetworkError = exports.NearRpcError = void 0;
+class NearRpcError extends Error {
+    code;
+    data;
+    constructor(code, message, data) {
+        super(message);
+        this.code = code;
+        this.data = data;
+        this.name = 'NearRpcError';
+    }
+}
+exports.NearRpcError = NearRpcError;
+class NetworkError extends Error {
+    cause;
+    constructor(message, cause) {
+        super(message);
+        this.cause = cause;
+        this.name = 'NetworkError';
+    }
+}
+exports.NetworkError = NetworkError;
 class NearRpcClient {
     endpoint;
     headers;
@@ -21,10 +43,6 @@ class NearRpcClient {
         this.retryAttempts = config.retryAttempts || 3;
         this.retryDelay = config.retryDelay || 1000;
     }
-    /**
-     * Execute a JSON-RPC request
-     * All requests go to "/" endpoint (fixes the path mismatch issue)
-     */
     async request(method, params = {}) {
         const request = {
             jsonrpc: '2.0',
@@ -42,7 +60,7 @@ class NearRpcClient {
                 return this.convertToCamelCase(response.result);
             }
             catch (error) {
-                lastError = error;
+                lastError = error instanceof Error ? error : new Error(String(error));
                 if (error instanceof NearRpcError) {
                     throw error;
                 }
@@ -51,10 +69,10 @@ class NearRpcClient {
                 }
             }
         }
-        throw lastError;
+        throw lastError || new NetworkError('Request failed after retries');
     }
     async httpRequest(request) {
-        // Critical: Always use "/" endpoint - this fixes the OpenAPI path mismatch
+        // CRITICAL: Always use "/" endpoint - fixes OpenAPI path mismatch
         const response = await fetch(`${this.endpoint}/`, {
             method: 'POST',
             headers: {
@@ -62,9 +80,10 @@ class NearRpcClient {
                 ...this.headers,
             },
             body: JSON.stringify(request),
+            signal: AbortSignal.timeout(this.timeout),
         });
         if (!response.ok) {
-            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            throw new NetworkError(`HTTP ${response.status}: ${response.statusText}`);
         }
         return await response.json();
     }
@@ -99,15 +118,12 @@ class NearRpcClient {
     delay(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
-    // Validated method implementations
+    // Core RPC Methods - Direct names, no groupings
     async status() {
         return this.request('status', {});
     }
     async block(params = {}) {
         return this.request('block', params);
-    }
-    async validators(params = {}) {
-        return this.request('validators', params);
     }
     async gasPrice(params = {}) {
         return this.request('gas_price', params);
@@ -118,22 +134,46 @@ class NearRpcClient {
     async query(params) {
         return this.request('query', params);
     }
+    async validators(params = {}) {
+        return this.request('validators', params);
+    }
     async experimentalProtocolConfig(params = {}) {
         return this.request('EXPERIMENTAL_protocol_config', params);
     }
     async experimentalGenesisConfig() {
         return this.request('EXPERIMENTAL_genesis_config', {});
     }
-}
-exports.NearRpcClient = NearRpcClient;
-class NearRpcError extends Error {
-    code;
-    data;
-    constructor(code, message, data) {
-        super(message);
-        this.code = code;
-        this.data = data;
-        this.name = 'NearRpcError';
+    // Convenience methods - but with clear names
+    async viewAccount(accountId) {
+        return this.query({
+            requestType: 'view_account',
+            accountId,
+            finality: 'final'
+        });
+    }
+    async viewAccessKeyList(accountId) {
+        return this.query({
+            requestType: 'view_access_key_list',
+            accountId,
+            finality: 'final'
+        });
+    }
+    async viewState(accountId, prefix) {
+        return this.query({
+            requestType: 'view_state',
+            accountId,
+            prefix,
+            finality: 'final'
+        });
+    }
+    async callFunction(accountId, methodName, args = {}) {
+        return this.query({
+            requestType: 'call_function',
+            accountId,
+            methodName,
+            args: Buffer.from(JSON.stringify(args)).toString('base64'),
+            finality: 'final'
+        });
     }
 }
-exports.NearRpcError = NearRpcError;
+exports.NearRpcClient = NearRpcClient;

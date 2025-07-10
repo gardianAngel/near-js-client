@@ -9,3 +9,28 @@ export { z } from 'zod';
 // Export working validated types and schemas (generated from real API responses)
 export * as ValidatedTypes from './types/validated-real-improved';
 export * as ValidatedSchemas from './schemas/validated-improved';
+
+// Re-export specific types for convenience
+export type {
+  StatusResponse,
+  BlockResponse,
+  GasPriceResponse,
+  NetworkInfoResponse,
+  QueryResponse,
+  ViewAccountResponse,
+  AccessKeyListResponse,
+  ViewStateResponse,
+  BroadcastTxAsyncResponse,
+  BroadcastTxCommitResponse,
+  EXPERIMENTALProtocolConfigResponse,
+  EXPERIMENTALGenesisConfigResponse,
+  Finality,
+  AccountId,
+  PublicKey,
+  CryptoHash,
+  BlockHeight,
+  BlockHash,
+  JsonRpcRequest,
+  JsonRpcResponse,
+  JsonRpcError
+} from './types/validated-real-improved';

@@ -46,6 +46,10 @@ class NetworkMethods {
         const validatedParams = jsonrpc_types_1.RpcEXPERIMENTALValidatorsOrderedRequestSchema.parse(params);
         return this.client.makeRequest('EXPERIMENTALValidatorsOrdered', validatedParams, jsonrpc_types_1.RpcEXPERIMENTALValidatorsOrderedResponseSchema);
     }
+    async changes(params) {
+        const validatedParams = jsonrpc_types_1.RpcChangesRequestSchema.parse(params);
+        return this.client.makeRequest('changes', validatedParams, jsonrpc_types_1.RpcChangesResponseSchema);
+    }
     async clientConfig(params) {
         const validatedParams = jsonrpc_types_1.RpcClientConfigRequestSchema.parse(params);
         return this.client.makeRequest('clientConfig', validatedParams, jsonrpc_types_1.RpcClientConfigResponseSchema);
@@ -57,6 +61,10 @@ class NetworkMethods {
     async health(params) {
         const validatedParams = jsonrpc_types_1.RpcHealthRequestSchema.parse(params);
         return this.client.makeRequest('health', validatedParams, jsonrpc_types_1.RpcHealthResponseSchema);
+    }
+    async lightClientProof(params) {
+        const validatedParams = jsonrpc_types_1.RpcLightClientProofRequestSchema.parse(params);
+        return this.client.makeRequest('lightClientProof', validatedParams, jsonrpc_types_1.RpcLightClientProofResponseSchema);
     }
     async networkInfo(params) {
         const validatedParams = jsonrpc_types_1.RpcNetworkInfoRequestSchema.parse(params);

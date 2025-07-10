@@ -4,7 +4,7 @@
  *
  * This client is guaranteed to work with the actual NEAR Protocol RPC.
  */
-import * as Types from '../../jsonrpc-types/src/types/validated-real';
+import * as Types from '../../jsonrpc-types/src/types/validated-real-improved';
 export interface NearRpcClientConfig {
     endpoint: string;
     headers?: Record<string, string>;
@@ -36,7 +36,7 @@ export declare class NearRpcClient {
     }): Promise<Types.BlockResponse>;
     validators(params?: {
         finality?: Types.Finality;
-    }): Promise<Types.ValidatorsResponse>;
+    }): Promise<any>;
     gasPrice(params?: {
         finality?: Types.Finality;
     }): Promise<Types.GasPriceResponse>;
@@ -51,11 +51,11 @@ export declare class NearRpcClient {
     }): Promise<any>;
     experimentalProtocolConfig(params?: {
         finality?: Types.Finality;
-    }): Promise<Types.ExperimentalProtocolConfigResponse>;
-    experimentalGenesisConfig(): Promise<Types.ExperimentalGenesisConfigResponse>;
+    }): Promise<Types.EXPERIMENTALProtocolConfigResponse>;
+    experimentalGenesisConfig(): Promise<Types.EXPERIMENTALGenesisConfigResponse>;
 }
 export declare class NearRpcError extends Error {
     code: number;
-    data?: any;
-    constructor(code: number, message: string, data?: any);
+    data?: any | undefined;
+    constructor(code: number, message: string, data?: any | undefined);
 }

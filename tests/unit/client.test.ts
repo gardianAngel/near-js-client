@@ -2,19 +2,21 @@
  * Unit tests for NEAR JSON-RPC client
  */
 
-import { NearJsonRpcClient } from '@near-js/jsonrpc-client';
-import { NearJsonRpcError, NetworkError, ValidationError } from '@near-js/jsonrpc-client';
+import { NearRpcClient } from '@near-js/jsonrpc-client';
+import { NearRpcError, NetworkError } from '@near-js/jsonrpc-client';
 import { z } from 'zod';
 
 // Mock fetch globally
 const mockFetch = jest.fn();
 global.fetch = mockFetch;
 
-describe('NearJsonRpcClient', () => {
-  let client: NearJsonRpcClient;
+describe('NearRpcClient', () => {
+  let client: NearRpcClient;
   
   beforeEach(() => {
-    client = new NearJsonRpcClient('https://rpc.testnet.near.org');
+    client = new NearRpcClient({
+      endpoint: 'https://rpc.testnet.near.org'
+    });
     mockFetch.mockClear();
   });
 
