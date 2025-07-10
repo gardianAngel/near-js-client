@@ -211,15 +211,3 @@ export const TxExecutionStatusSchema = z.unknown();
 export const UseGlobalContractActionSchema = z.object({
   contractIdentifier: z.unknown().optional()
 });
-
-// Schema aliases for client compatibility
-export const RpcBroadcastTxAsyncRequestSchema = RpcSendTransactionRequestSchema;
-export const RpcBroadcastTxAsyncResponseSchema = RpcTransactionResponseSchema;
-export const RpcBroadcastTxCommitRequestSchema = RpcSendTransactionRequestSchema;
-export const RpcBroadcastTxCommitResponseSchema = RpcTransactionResponseSchema;
-export const RpcEXPERIMENTALTxStatusRequestSchema = RpcTransactionStatusRequestSchema;
-export const RpcEXPERIMENTALTxStatusResponseSchema = RpcTransactionResponseSchema;
-export const RpcSendTxRequestSchema = RpcSendTransactionRequestSchema;
-export const RpcSendTxResponseSchema = RpcTransactionResponseSchema;
-export const RpcEXPERIMENTALReceiptRequestSchema = RpcReceiptRequestSchema;
-export const RpcEXPERIMENTALReceiptResponseSchema = RpcReceiptResponseSchema;

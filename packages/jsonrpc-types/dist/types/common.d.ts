@@ -4,7 +4,91 @@
 export type AccountId = string;
 export type CryptoHash = string;
 export type PublicKey = string;
-import { RpcStateChangesInBlockByTypeResponse } from './blocks';
+export type ShardId = number;
+export type Signature = string;
+export type PeerId = string;
+export type BlockId = string;
+export interface MerklePathItem {
+    hash: CryptoHash;
+    direction: Direction;
+}
+export interface ValidatorStakeView {
+    accountId: AccountId;
+    publicKey: PublicKey;
+    stake: string;
+}
+export interface SlashedValidator {
+    accountId: AccountId;
+    slashingPercentage: number;
+}
+export interface ReceiptView {
+    predecessorId: AccountId;
+    receiverId: AccountId;
+    receiptId: CryptoHash;
+    receipt: unknown;
+}
+export interface SignedTransactionView {
+    signerId: AccountId;
+    publicKey: PublicKey;
+    nonce: number;
+    receiverId: AccountId;
+    actions: unknown[];
+    signature: Signature;
+    hash: CryptoHash;
+}
+export interface LightClientBlockLiteView {
+    prevBlockHash: CryptoHash;
+    innerRestHash: CryptoHash;
+    innerLite: unknown;
+}
+export interface StateChangeKindView {
+    account: unknown;
+    data: unknown;
+    contract: unknown;
+    accessKey: unknown;
+}
+export interface StateChangeWithCauseView {
+    cause: unknown;
+    change: StateChangeKindView;
+}
+export interface BlockStatusView {
+    hash: CryptoHash;
+    height: number;
+}
+export interface PeerInfoView {
+    id: PeerId;
+    addr: string;
+    accountId?: AccountId;
+}
+export interface KnownProducerView {
+    accountId: AccountId;
+    addr?: string;
+    peerId: PeerId;
+}
+export interface AccountDataView {
+    accountId: AccountId;
+    data: unknown;
+}
+export interface AccountInfo {
+    accountId: AccountId;
+    publicKey: PublicKey;
+    stake: string;
+}
+export interface RpcKnownProducer {
+    accountId: AccountId;
+    addr?: string;
+    peerId: PeerId;
+}
+export interface RpcStateChangesInBlockByTypeRequest {
+    blockId: BlockId;
+    changeType: string;
+}
+export interface GlobalContractDeployMode {
+    enabled: boolean;
+}
+export interface GlobalContractIdentifier {
+    contractId: AccountId;
+}
 export interface BandwidthRequest {
     requestedValuesBitmap?: unknown;
     toShard?: number;
@@ -310,7 +394,7 @@ export interface JsonRpcResponseForRpcSplitStorageInfoResponseAndRpcError {
     id: string;
     jsonrpc: string;
 }
-export interface KnownProducerView {
+export interface KnownProducerViewGenerated {
     accountId?: AccountId;
     nextHops?: PublicKey[];
     peerId?: PublicKey;
@@ -346,7 +430,7 @@ export interface LimitConfig {
     yieldTimeoutLengthInBlocks?: number;
 }
 export type LogSummaryStyle = 'plain' | 'colored';
-export interface MerklePathItem {
+export interface MerklePathItemGenerated {
     direction: Direction;
     hash: CryptoHash;
 }
@@ -357,8 +441,8 @@ export interface MissingTrieValue {
 }
 export type MissingTrieValueContext = unknown;
 export type MutableConfigValue = string;
-export type PeerId = unknown;
-export interface PeerInfoView {
+export type PeerIdGenerated = unknown;
+export interface PeerInfoViewGenerated {
     accountId?: unknown;
     addr: string;
     archival: boolean;
@@ -518,7 +602,6 @@ export interface RuntimeFeesConfigView {
     pessimisticGasPriceInflationRatio?: number[];
     storageUsageConfig?: unknown;
 }
-export type ShardId = number;
 export type ShardLayout = unknown;
 export interface ShardLayoutV0 {
     numShards?: number;
@@ -543,117 +626,6 @@ export interface ShardUId {
     shardId?: number;
     version: number;
 }
-export type Signature = string;
-export interface SlashedValidator {
-    accountId?: AccountId;
-    publicKey?: PublicKey;
-    stake?: string;
-}
-export interface ValidatorStakeView {
-    accountId?: AccountId;
-    publicKey?: PublicKey;
-    stake?: string;
-}
-export interface ValidatorStakeViewV1 {
-    accountId?: AccountId;
-    publicKey?: PublicKey;
-    stake: string;
-}
-export interface BlockStatusView {
-    hash: CryptoHash;
-    height: number;
-}
-export interface AccountInfo {
-    accountId?: AccountId;
-    amount: string;
-    publicKey?: PublicKey;
-}
-export interface AccountDataView {
-    accountKey?: PublicKey;
-    peerId?: PublicKey;
-    proxies: Tier1ProxyView[];
-    timestamp: string;
-}
-export type GlobalContractDeployMode = unknown;
-export type GlobalContractIdentifier = unknown;
-export interface RpcStateChangesInBlockByTypeRequest {
-    changes_type: string;
-    block_id?: string | number;
-    finality?: string;
-    key_prefix_base64?: string;
-    account_id?: string;
-}
-export interface LightClientBlockLiteView {
-    height?: number;
-    epochId?: CryptoHash;
-    nextEpochId?: CryptoHash;
-    prevBlockHash?: CryptoHash;
-    timestamp?: number;
-    timestampNanos?: string;
-    blockMerkleRoot?: CryptoHash;
-    outcomeRoot?: CryptoHash;
-}
-export interface ReceiptView {
-    predecessorId?: AccountId;
-    receiptId?: CryptoHash;
-    receipt?: unknown;
-}
-export interface SignedTransactionView {
-    signerId?: AccountId;
-    publicKey?: PublicKey;
-    nonce?: number;
-    receiverId?: AccountId;
-    actions?: unknown[];
-    signature?: Signature;
-    hash?: CryptoHash;
-}
-export interface MerklePathItem {
-    direction: Direction;
-    hash: CryptoHash;
-}
-export interface StateChangeKindView {
-    type?: string;
-    key?: string;
-    value?: string;
-}
-export interface StateChangeWithCauseView {
-    cause?: unknown;
-    type?: string;
-    key?: string;
-    value?: string;
-}
-export interface SyncConcurrency {
-    maxConcurrentRequests?: number;
-}
-export interface SyncConfig {
-    concurrency?: SyncConcurrency;
-}
-export interface JsonRpcRequest<T = any> {
-    id: string;
-    jsonrpc: string;
-    method: string;
-    params: T;
-}
-export interface JsonRpcResponse<T = any> {
-    id: string;
-    jsonrpc: string;
-    result?: T;
-    error?: any;
-}
-export type RpcEXPERIMENTALLightClientProofRequest = RpcLightClientExecutionProofRequest;
-export type RpcEXPERIMENTALLightClientProofResponse = RpcLightClientExecutionProofResponse;
-export type RpcLightClientProofRequest = RpcLightClientExecutionProofRequest;
-export type RpcLightClientProofResponse = RpcLightClientExecutionProofResponse;
-export type RpcChangesRequest = RpcStateChangesInBlockByTypeRequest;
-export type RpcChangesResponse = RpcStateChangesInBlockByTypeResponse;
-export type RpcEXPERIMENTALChangesRequest = RpcStateChangesInBlockByTypeRequest;
-export type RpcEXPERIMENTALChangesResponse = RpcStateChangesInBlockByTypeResponse;
-export type RpcEXPERIMENTALCongestionLevelRequest = RpcCongestionLevelRequest;
-export type RpcEXPERIMENTALCongestionLevelResponse = RpcCongestionLevelResponse;
-export type RpcEXPERIMENTALMaintenanceWindowsRequest = RpcMaintenanceWindowsRequest;
-export type RpcEXPERIMENTALMaintenanceWindowsResponse = any;
-export type RpcEXPERIMENTALSplitStorageInfoRequest = RpcSplitStorageInfoRequest;
-export type RpcEXPERIMENTALSplitStorageInfoResponse = RpcSplitStorageInfoResponse;
 export type StorageError = unknown;
 export type StorageGetMode = 'FlatStorage' | 'Trie';
 export interface StorageUsageConfigView {
@@ -661,6 +633,13 @@ export interface StorageUsageConfigView {
     numExtraBytesRecord?: number;
 }
 export type SyncCheckpoint = 'genesis' | 'earliest_available';
+export interface SyncConcurrency {
+    apply: number;
+    applyDuringCatchup?: number;
+    peerDownloads?: number;
+    perShard?: number;
+}
+export type SyncConfig = unknown;
 export interface Tier1ProxyView {
     addr: string;
     peerId?: PublicKey;

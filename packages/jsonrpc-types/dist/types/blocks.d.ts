@@ -1,7 +1,7 @@
 /**
  * Generated types for NEAR Protocol JSON-RPC
  */
-import { AccountId, CryptoHash, ShardId, Signature, SlashedValidator, ReceiptView, SignedTransactionView, MerklePathItem, StateChangeKindView, StateChangeWithCauseView, LightClientBlockLiteView, ValidatorStakeViewV1 } from './common';
+import { AccountId, CryptoHash } from './common';
 export interface BlockHeaderInnerLiteView {
     blockMerkleRoot?: CryptoHash;
     epochId?: CryptoHash;
@@ -46,10 +46,14 @@ export interface BlockHeaderView {
     timestamp: number;
     timestampNanosec?: string;
     totalSupply?: string;
-    validatorProposals?: ValidatorStakeViewV1[];
+    validatorProposals?: ValidatorStakeView[];
     validatorReward?: string;
 }
 export type BlockId = unknown;
+export interface BlockStatusView {
+    hash: CryptoHash;
+    height: number;
+}
 export interface ChunkDistributionNetworkConfig {
     enabled: boolean;
     uris: ChunkDistributionUris;
@@ -77,7 +81,7 @@ export interface ChunkHeaderView {
     shardId?: ShardId;
     signature: Signature;
     txRoot?: CryptoHash;
-    validatorProposals?: ValidatorStakeViewV1[];
+    validatorProposals?: ValidatorStakeView[];
     validatorReward?: string;
 }
 export interface JsonRpcRequestForEXPERIMENTALChangesInBlock {
@@ -134,6 +138,11 @@ export interface JsonRpcResponseForRpcStateChangesInBlockResponseAndRpcError {
     id: string;
     jsonrpc: string;
 }
+export interface LightClientBlockLiteView {
+    innerLite?: BlockHeaderInnerLiteView;
+    innerRestHash?: CryptoHash;
+    prevBlockHash?: CryptoHash;
+}
 export interface RpcBlockRequest {
 }
 export interface RpcBlockResponse {
@@ -165,8 +174,10 @@ export interface RpcLightClientNextBlockResponse {
     innerLite?: BlockHeaderInnerLiteView;
     innerRestHash?: CryptoHash;
     nextBlockInnerHash?: CryptoHash;
-    nextBps?: ValidatorStakeViewV1[];
+    nextBps?: ValidatorStakeView[];
     prevBlockHash?: CryptoHash;
+}
+export interface RpcStateChangesInBlockByTypeRequest {
 }
 export interface RpcStateChangesInBlockByTypeResponse {
     blockHash?: CryptoHash;
@@ -178,9 +189,3 @@ export interface RpcStateChangesInBlockResponse {
     blockHash?: CryptoHash;
     changes: StateChangeWithCauseView[];
 }
-export type RpcEXPERIMENTALChangesInBlockRequest = RpcStateChangesInBlockRequest;
-export type RpcEXPERIMENTALChangesInBlockResponse = RpcStateChangesInBlockResponse;
-export type RpcEXPERIMENTALLightClientBlockProofRequest = RpcLightClientBlockProofRequest;
-export type RpcEXPERIMENTALLightClientBlockProofResponse = RpcLightClientBlockProofResponse;
-export type RpcNextLightClientBlockRequest = RpcLightClientNextBlockRequest;
-export type RpcNextLightClientBlockResponse = RpcLightClientNextBlockResponse;

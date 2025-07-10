@@ -4,7 +4,8 @@
 export type AccountId = string;
 export type CryptoHash = string;
 export type PublicKey = string;
-import { RpcStateChangesInBlockByTypeResponse } from './blocks';
+export type ShardId = number;
+export type Signature = string;
 export interface BandwidthRequest {
     requestedValuesBitmap?: unknown;
     toShard?: number;
@@ -518,7 +519,6 @@ export interface RuntimeFeesConfigView {
     pessimisticGasPriceInflationRatio?: number[];
     storageUsageConfig?: unknown;
 }
-export type ShardId = number;
 export type ShardLayout = unknown;
 export interface ShardLayoutV0 {
     numShards?: number;
@@ -543,7 +543,6 @@ export interface ShardUId {
     shardId?: number;
     version: number;
 }
-export type Signature = string;
 export interface SlashedValidator {
     accountId?: AccountId;
     publicKey?: PublicKey;
@@ -645,9 +644,7 @@ export type RpcEXPERIMENTALLightClientProofResponse = RpcLightClientExecutionPro
 export type RpcLightClientProofRequest = RpcLightClientExecutionProofRequest;
 export type RpcLightClientProofResponse = RpcLightClientExecutionProofResponse;
 export type RpcChangesRequest = RpcStateChangesInBlockByTypeRequest;
-export type RpcChangesResponse = RpcStateChangesInBlockByTypeResponse;
 export type RpcEXPERIMENTALChangesRequest = RpcStateChangesInBlockByTypeRequest;
-export type RpcEXPERIMENTALChangesResponse = RpcStateChangesInBlockByTypeResponse;
 export type RpcEXPERIMENTALCongestionLevelRequest = RpcCongestionLevelRequest;
 export type RpcEXPERIMENTALCongestionLevelResponse = RpcCongestionLevelResponse;
 export type RpcEXPERIMENTALMaintenanceWindowsRequest = RpcMaintenanceWindowsRequest;

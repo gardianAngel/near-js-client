@@ -7,3 +7,7 @@
 export * from './types';
 export * from './schemas';
 export { z } from 'zod';
+
+// Export nearcore-generated types and schemas
+export * as NearcoreTypes from './types/nearcore';
+export * as NearcoreSchemas from './schemas/nearcore';

@@ -11,4 +11,5 @@ export declare class BlocksMethods {
     block(params: RpcBlockRequest): Promise<RpcBlockResponse>;
     chunk(params: RpcChunkRequest): Promise<RpcChunkResponse>;
     nextLightClientBlock(params: RpcNextLightClientBlockRequest): Promise<RpcNextLightClientBlockResponse>;
+    getLatestBlock(): Promise<RpcBlockResponse>;
 }

@@ -2,7 +2,7 @@
  * Generated types for NEAR Protocol JSON-RPC
  */
 
-import { AccountId, CryptoHash, PublicKey, Signature, ExecutionOutcomeWithIdView, GlobalContractDeployMode, GlobalContractIdentifier, ReceiptView, SignedTransactionView } from './common';
+import { AccountId, CryptoHash, PublicKey } from './common';
 
 export type Action = unknown;
 
@@ -146,7 +146,13 @@ export type ReceiptEnumView = unknown;
 
 export type ReceiptValidationError = unknown;
 
-// ReceiptView is now defined in common.ts
+export interface ReceiptView {
+  predecessorId?: AccountId;
+  priority?: number;
+  receipt: ReceiptEnumView;
+  receiptId?: CryptoHash;
+  receiverId?: AccountId;
+}
 
 export interface RpcReceiptRequest {
   receiptId?: CryptoHash;
@@ -180,7 +186,16 @@ export interface SignedDelegateAction {
 
 export type SignedTransaction = string;
 
-// SignedTransactionView is now defined in common.ts
+export interface SignedTransactionView {
+  actions: ActionView[];
+  hash: CryptoHash;
+  nonce: number;
+  priorityFee?: number;
+  publicKey?: PublicKey;
+  receiverId?: AccountId;
+  signature: Signature;
+  signerId?: AccountId;
+}
 
 export interface StakeAction {
   publicKey?: unknown;
@@ -198,15 +213,3 @@ export type TxExecutionStatus = unknown;
 export interface UseGlobalContractAction {
   contractIdentifier?: GlobalContractIdentifier;
 }
-
-// Type aliases for client compatibility
-export type RpcBroadcastTxAsyncRequest = RpcSendTransactionRequest;
-export type RpcBroadcastTxAsyncResponse = RpcTransactionResponse;
-export type RpcBroadcastTxCommitRequest = RpcSendTransactionRequest;
-export type RpcBroadcastTxCommitResponse = RpcTransactionResponse;
-export type RpcEXPERIMENTALTxStatusRequest = RpcTransactionStatusRequest;
-export type RpcEXPERIMENTALTxStatusResponse = RpcTransactionResponse;
-export type RpcSendTxRequest = RpcSendTransactionRequest;
-export type RpcSendTxResponse = RpcTransactionResponse;
-export type RpcEXPERIMENTALReceiptRequest = RpcReceiptRequest;
-export type RpcEXPERIMENTALReceiptResponse = RpcReceiptResponse;

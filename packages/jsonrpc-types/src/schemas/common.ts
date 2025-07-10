@@ -3,7 +3,6 @@
  */
 
 import { z } from 'zod';
-import { RpcStateChangesInBlockByTypeRequestSchema, RpcStateChangesInBlockByTypeResponseSchema } from './blocks';
 
 export const BandwidthRequestSchema = z.object({
   requestedValuesBitmap: z.unknown().optional(),
@@ -687,19 +686,3 @@ export const WitnessConfigViewSchema = z.object({
   mainStorageProofSizeSoftLimit: z.number().optional(),
   newTransactionsValidationStateSizeSoftLimit: z.number().optional()
 });
-
-// Schema aliases for client compatibility
-export const RpcEXPERIMENTALLightClientProofRequestSchema = RpcLightClientExecutionProofRequestSchema;
-export const RpcEXPERIMENTALLightClientProofResponseSchema = RpcLightClientExecutionProofResponseSchema;
-export const RpcLightClientProofRequestSchema = RpcLightClientExecutionProofRequestSchema;
-export const RpcLightClientProofResponseSchema = RpcLightClientExecutionProofResponseSchema;
-export const RpcChangesRequestSchema = RpcStateChangesInBlockByTypeRequestSchema;
-export const RpcChangesResponseSchema = RpcStateChangesInBlockByTypeResponseSchema;
-export const RpcEXPERIMENTALChangesRequestSchema = RpcStateChangesInBlockByTypeRequestSchema;
-export const RpcEXPERIMENTALChangesResponseSchema = RpcStateChangesInBlockByTypeResponseSchema;
-export const RpcEXPERIMENTALCongestionLevelRequestSchema = RpcCongestionLevelRequestSchema;
-export const RpcEXPERIMENTALCongestionLevelResponseSchema = RpcCongestionLevelResponseSchema;
-export const RpcEXPERIMENTALMaintenanceWindowsRequestSchema = RpcMaintenanceWindowsRequestSchema;
-export const RpcEXPERIMENTALMaintenanceWindowsResponseSchema = z.any(); // TODO: define proper schema
-export const RpcEXPERIMENTALSplitStorageInfoRequestSchema = RpcSplitStorageInfoRequestSchema;
-export const RpcEXPERIMENTALSplitStorageInfoResponseSchema = RpcSplitStorageInfoResponseSchema;

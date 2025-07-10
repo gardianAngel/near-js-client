@@ -1,7 +1,7 @@
 /**
  * Generated types for NEAR Protocol JSON-RPC
  */
-import { AccountId, CryptoHash, PublicKey, ShardId, BlockStatusView, AccountInfo, PeerInfoView, KnownProducerView, AccountDataView, RpcPeerInfo, RpcKnownProducer, ValidatorStakeViewV1 } from './common';
+import { AccountId, CryptoHash, PublicKey } from './common';
 export interface CatchupStatusView {
     blocksToCatchup?: BlockStatusView[];
     shardSyncStatus?: Record<string, unknown>;
@@ -222,17 +222,21 @@ export interface RpcStatusResponse {
 export interface RpcValidatorRequest {
 }
 export interface RpcValidatorResponse {
-    currentFishermen?: ValidatorStakeViewV1[];
-    currentProposals?: ValidatorStakeViewV1[];
+    currentFishermen?: ValidatorStakeView[];
+    currentProposals?: ValidatorStakeView[];
     currentValidators?: CurrentEpochValidatorInfo[];
     epochHeight?: number;
     epochStartHeight?: number;
-    nextFishermen?: ValidatorStakeViewV1[];
+    nextFishermen?: ValidatorStakeView[];
     nextValidators?: NextEpochValidatorInfo[];
     prevEpochKickout?: ValidatorKickoutView[];
 }
 export interface RpcValidatorsOrderedRequest {
     blockId?: unknown;
+}
+export interface SlashedValidator {
+    accountId?: AccountId;
+    isDoubleSign?: boolean;
 }
 export interface StatusSyncInfo {
     earliestBlockHash?: unknown;
@@ -254,9 +258,9 @@ export interface ValidatorKickoutView {
     accountId?: AccountId;
     reason: ValidatorKickoutReason;
 }
-export type RpcEXPERIMENTALGenesisConfigRequest = GenesisConfigRequest;
-export type RpcEXPERIMENTALGenesisConfigResponse = GenesisConfig;
-export type RpcEXPERIMENTALProtocolConfigRequest = RpcProtocolConfigRequest;
-export type RpcEXPERIMENTALProtocolConfigResponse = RpcProtocolConfigResponse;
-export type RpcEXPERIMENTALValidatorsOrderedRequest = RpcValidatorsOrderedRequest;
-export type RpcEXPERIMENTALValidatorsOrderedResponse = ValidatorStakeViewV1[];
+export type ValidatorStakeView = unknown;
+export interface ValidatorStakeViewV1 {
+    accountId?: AccountId;
+    publicKey?: PublicKey;
+    stake: string;
+}

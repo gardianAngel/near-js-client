@@ -11,4 +11,8 @@ export declare class TransactionsMethods {
     broadcastTxCommit(params: RpcBroadcastTxCommitRequest): Promise<RpcBroadcastTxCommitResponse>;
     sendTx(params: RpcSendTxRequest): Promise<RpcSendTxResponse>;
     tx(params: RpcTransactionStatusRequest): Promise<RpcTransactionResponse>;
+    transaction(params: {
+        transactionHash: string;
+        senderId: string;
+    }): Promise<RpcTransactionResponse>;
 }

@@ -1,7 +1,7 @@
 /**
  * Generated types for NEAR Protocol JSON-RPC
  */
-import { AccountId, CryptoHash, PublicKey, SyncConcurrency, SyncConfig } from './common';
+import { AccountId, CryptoHash, PublicKey } from './common';
 export interface AccessKey {
     nonce: number;
     permission: unknown;
@@ -28,7 +28,19 @@ export interface AccountCreationConfigView {
     minAllowedTopLevelAccountLength?: number;
     registrarAccountId?: unknown;
 }
+export interface AccountDataView {
+    accountKey?: PublicKey;
+    peerId?: PublicKey;
+    proxies: Tier1ProxyView[];
+    timestamp: string;
+}
+export type AccountId = string;
 export type AccountIdValidityRulesVersion = number;
+export interface AccountInfo {
+    accountId?: AccountId;
+    amount: string;
+    publicKey?: PublicKey;
+}
 export interface AccountView {
     amount: string;
     codeHash?: CryptoHash;
@@ -51,8 +63,15 @@ export interface GasKeyView {
     numNonces?: number;
     permission: AccessKeyPermissionView;
 }
+export type GlobalContractDeployMode = unknown;
+export type GlobalContractIdentifier = unknown;
 export type InvalidAccessKeyError = unknown;
+export type PublicKey = string;
 export type StateChangeCauseView = unknown;
+export type StateChangeKindView = unknown;
+export interface StateChangeWithCauseView {
+    cause: StateChangeCauseView;
+}
 export interface StateItem {
     key: string;
     value: string;

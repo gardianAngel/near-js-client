@@ -6,3 +6,5 @@
 export * from './types';
 export * from './schemas';
 export { z } from 'zod';
+export * as NearcoreTypes from './types/nearcore';
+export * as NearcoreSchemas from './schemas/nearcore';

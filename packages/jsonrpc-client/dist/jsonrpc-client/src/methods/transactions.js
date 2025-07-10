@@ -30,5 +30,8 @@ class TransactionsMethods {
         const validatedParams = jsonrpc_types_1.RpcTransactionStatusRequestSchema.parse(params);
         return this.client.makeRequest('tx', validatedParams, jsonrpc_types_1.RpcTransactionResponseSchema);
     }
+    async transaction(params) {
+        return this.client.makeRequest('tx', params, jsonrpc_types_1.RpcTransactionResponseSchema);
+    }
 }
 exports.TransactionsMethods = TransactionsMethods;

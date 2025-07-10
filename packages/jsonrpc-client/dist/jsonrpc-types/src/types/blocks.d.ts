@@ -184,3 +184,5 @@ export type RpcEXPERIMENTALLightClientBlockProofRequest = RpcLightClientBlockPro
 export type RpcEXPERIMENTALLightClientBlockProofResponse = RpcLightClientBlockProofResponse;
 export type RpcNextLightClientBlockRequest = RpcLightClientNextBlockRequest;
 export type RpcNextLightClientBlockResponse = RpcLightClientNextBlockResponse;
+export type RpcChangesResponse = RpcStateChangesInBlockByTypeResponse;
+export type RpcEXPERIMENTALChangesResponse = RpcStateChangesInBlockByTypeResponse;

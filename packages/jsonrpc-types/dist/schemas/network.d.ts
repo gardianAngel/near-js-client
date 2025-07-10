@@ -36,8 +36,8 @@ export declare const CurrentEpochValidatorInfoSchema: z.ZodObject<{
     shardsEndorsed: z.ZodOptional<z.ZodArray<z.ZodUnknown, "many">>;
     stake: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    stake: string;
     shards: unknown[];
+    stake: string;
     accountId?: unknown;
     publicKey?: unknown;
     isSlashed?: boolean | undefined;
@@ -53,8 +53,8 @@ export declare const CurrentEpochValidatorInfoSchema: z.ZodObject<{
     numProducedEndorsementsPerShard?: number[] | undefined;
     shardsEndorsed?: unknown[] | undefined;
 }, {
-    stake: string;
     shards: unknown[];
+    stake: string;
     accountId?: unknown;
     publicKey?: unknown;
     isSlashed?: boolean | undefined;
@@ -136,17 +136,17 @@ export declare const GenesisConfigSchema: z.ZodObject<{
     validators: z.ZodArray<z.ZodUnknown, "many">;
 }, "strip", z.ZodTypeAny, {
     validators: unknown[];
+    chainId?: string | undefined;
+    protocolVersion?: number | undefined;
     totalSupply?: string | undefined;
     gasLimit?: number | undefined;
-    chainId?: string | undefined;
-    epochLength?: number | undefined;
-    numBlockProducerSeats?: number | undefined;
     avgHiddenValidatorSeatsPerShard?: number[] | undefined;
     blockProducerKickoutThreshold?: number | undefined;
     chunkProducerAssignmentChangesLimit?: number | undefined;
     chunkProducerKickoutThreshold?: number | undefined;
     chunkValidatorOnlyKickoutThreshold?: number | undefined;
     dynamicResharding?: boolean | undefined;
+    epochLength?: number | undefined;
     fishermenThreshold?: string | undefined;
     gasPriceAdjustmentRate?: number[] | undefined;
     genesisHeight?: number | undefined;
@@ -158,6 +158,7 @@ export declare const GenesisConfigSchema: z.ZodObject<{
     minimumStakeDivisor?: number | undefined;
     minimumStakeRatio?: number[] | undefined;
     minimumValidatorsPerShard?: number | undefined;
+    numBlockProducerSeats?: number | undefined;
     numBlockProducerSeatsPerShard?: number[] | undefined;
     numBlocksPerYear?: number | undefined;
     numChunkOnlyProducerSeats?: number | undefined;
@@ -168,7 +169,6 @@ export declare const GenesisConfigSchema: z.ZodObject<{
     protocolRewardRate?: number[] | undefined;
     protocolTreasuryAccount?: unknown;
     protocolUpgradeStakeThreshold?: number[] | undefined;
-    protocolVersion?: number | undefined;
     shardLayout?: unknown;
     shuffleShardAssignmentForChunkProducers?: boolean | undefined;
     targetValidatorMandatesPerShard?: number | undefined;
@@ -176,17 +176,17 @@ export declare const GenesisConfigSchema: z.ZodObject<{
     useProductionConfig?: boolean | undefined;
 }, {
     validators: unknown[];
+    chainId?: string | undefined;
+    protocolVersion?: number | undefined;
     totalSupply?: string | undefined;
     gasLimit?: number | undefined;
-    chainId?: string | undefined;
-    epochLength?: number | undefined;
-    numBlockProducerSeats?: number | undefined;
     avgHiddenValidatorSeatsPerShard?: number[] | undefined;
     blockProducerKickoutThreshold?: number | undefined;
     chunkProducerAssignmentChangesLimit?: number | undefined;
     chunkProducerKickoutThreshold?: number | undefined;
     chunkValidatorOnlyKickoutThreshold?: number | undefined;
     dynamicResharding?: boolean | undefined;
+    epochLength?: number | undefined;
     fishermenThreshold?: string | undefined;
     gasPriceAdjustmentRate?: number[] | undefined;
     genesisHeight?: number | undefined;
@@ -198,6 +198,7 @@ export declare const GenesisConfigSchema: z.ZodObject<{
     minimumStakeDivisor?: number | undefined;
     minimumStakeRatio?: number[] | undefined;
     minimumValidatorsPerShard?: number | undefined;
+    numBlockProducerSeats?: number | undefined;
     numBlockProducerSeatsPerShard?: number[] | undefined;
     numBlocksPerYear?: number | undefined;
     numChunkOnlyProducerSeats?: number | undefined;
@@ -208,7 +209,6 @@ export declare const GenesisConfigSchema: z.ZodObject<{
     protocolRewardRate?: number[] | undefined;
     protocolTreasuryAccount?: unknown;
     protocolUpgradeStakeThreshold?: number[] | undefined;
-    protocolVersion?: number | undefined;
     shardLayout?: unknown;
     shuffleShardAssignmentForChunkProducers?: boolean | undefined;
     targetValidatorMandatesPerShard?: number | undefined;
@@ -222,14 +222,14 @@ export declare const JsonRpcRequestForEXPERIMENTALGenesisConfigSchema: z.ZodObje
     method: z.ZodEnum<["EXPERIMENTAL_genesis_config"]>;
     params: z.ZodUnknown;
 }, "strip", z.ZodTypeAny, {
-    id: string;
     jsonrpc: string;
     method: "EXPERIMENTAL_genesis_config";
+    id: string;
     params?: unknown;
 }, {
-    id: string;
     jsonrpc: string;
     method: "EXPERIMENTAL_genesis_config";
+    id: string;
     params?: unknown;
 }>;
 export declare const JsonRpcRequestForEXPERIMENTALProtocolConfigSchema: z.ZodObject<{
@@ -238,14 +238,14 @@ export declare const JsonRpcRequestForEXPERIMENTALProtocolConfigSchema: z.ZodObj
     method: z.ZodEnum<["EXPERIMENTAL_protocol_config"]>;
     params: z.ZodUnknown;
 }, "strip", z.ZodTypeAny, {
-    id: string;
     jsonrpc: string;
     method: "EXPERIMENTAL_protocol_config";
+    id: string;
     params?: unknown;
 }, {
-    id: string;
     jsonrpc: string;
     method: "EXPERIMENTAL_protocol_config";
+    id: string;
     params?: unknown;
 }>;
 export declare const JsonRpcRequestForEXPERIMENTALValidatorsOrderedSchema: z.ZodObject<{
@@ -254,14 +254,14 @@ export declare const JsonRpcRequestForEXPERIMENTALValidatorsOrderedSchema: z.Zod
     method: z.ZodEnum<["EXPERIMENTAL_validators_ordered"]>;
     params: z.ZodUnknown;
 }, "strip", z.ZodTypeAny, {
-    id: string;
     jsonrpc: string;
     method: "EXPERIMENTAL_validators_ordered";
+    id: string;
     params?: unknown;
 }, {
-    id: string;
     jsonrpc: string;
     method: "EXPERIMENTAL_validators_ordered";
+    id: string;
     params?: unknown;
 }>;
 export declare const JsonRpcRequestForNetworkInfoSchema: z.ZodObject<{
@@ -270,14 +270,14 @@ export declare const JsonRpcRequestForNetworkInfoSchema: z.ZodObject<{
     method: z.ZodEnum<["network_info"]>;
     params: z.ZodUnknown;
 }, "strip", z.ZodTypeAny, {
-    id: string;
     jsonrpc: string;
     method: "network_info";
+    id: string;
     params?: unknown;
 }, {
-    id: string;
     jsonrpc: string;
     method: "network_info";
+    id: string;
     params?: unknown;
 }>;
 export declare const JsonRpcRequestForStatusSchema: z.ZodObject<{
@@ -286,14 +286,14 @@ export declare const JsonRpcRequestForStatusSchema: z.ZodObject<{
     method: z.ZodEnum<["status"]>;
     params: z.ZodUnknown;
 }, "strip", z.ZodTypeAny, {
-    id: string;
     jsonrpc: string;
     method: "status";
+    id: string;
     params?: unknown;
 }, {
-    id: string;
     jsonrpc: string;
     method: "status";
+    id: string;
     params?: unknown;
 }>;
 export declare const JsonRpcRequestForValidatorsSchema: z.ZodObject<{
@@ -302,75 +302,75 @@ export declare const JsonRpcRequestForValidatorsSchema: z.ZodObject<{
     method: z.ZodEnum<["validators"]>;
     params: z.ZodUnknown;
 }, "strip", z.ZodTypeAny, {
-    id: string;
     jsonrpc: string;
     method: "validators";
+    id: string;
     params?: unknown;
 }, {
-    id: string;
     jsonrpc: string;
     method: "validators";
+    id: string;
     params?: unknown;
 }>;
 export declare const JsonRpcResponseForArrayOfValidatorStakeViewAndRpcErrorSchema: z.ZodObject<{
     id: z.ZodString;
     jsonrpc: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    id: string;
     jsonrpc: string;
+    id: string;
 }, {
-    id: string;
     jsonrpc: string;
+    id: string;
 }>;
 export declare const JsonRpcResponseForGenesisConfigAndRpcErrorSchema: z.ZodObject<{
     id: z.ZodString;
     jsonrpc: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    id: string;
     jsonrpc: string;
+    id: string;
 }, {
-    id: string;
     jsonrpc: string;
+    id: string;
 }>;
 export declare const JsonRpcResponseForRpcNetworkInfoResponseAndRpcErrorSchema: z.ZodObject<{
     id: z.ZodString;
     jsonrpc: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    id: string;
     jsonrpc: string;
+    id: string;
 }, {
-    id: string;
     jsonrpc: string;
+    id: string;
 }>;
 export declare const JsonRpcResponseForRpcProtocolConfigResponseAndRpcErrorSchema: z.ZodObject<{
     id: z.ZodString;
     jsonrpc: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    id: string;
     jsonrpc: string;
+    id: string;
 }, {
-    id: string;
     jsonrpc: string;
+    id: string;
 }>;
 export declare const JsonRpcResponseForRpcStatusResponseAndRpcErrorSchema: z.ZodObject<{
     id: z.ZodString;
     jsonrpc: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    id: string;
     jsonrpc: string;
+    id: string;
 }, {
-    id: string;
     jsonrpc: string;
+    id: string;
 }>;
 export declare const JsonRpcResponseForRpcValidatorResponseAndRpcErrorSchema: z.ZodObject<{
     id: z.ZodString;
     jsonrpc: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    id: string;
     jsonrpc: string;
+    id: string;
 }, {
-    id: string;
     jsonrpc: string;
+    id: string;
 }>;
 export declare const NetworkInfoViewSchema: z.ZodObject<{
     connectedPeers: z.ZodOptional<z.ZodArray<z.ZodUnknown, "many">>;
@@ -403,13 +403,13 @@ export declare const NextEpochValidatorInfoSchema: z.ZodObject<{
     shards: z.ZodArray<z.ZodUnknown, "many">;
     stake: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    stake: string;
     shards: unknown[];
+    stake: string;
     accountId?: unknown;
     publicKey?: unknown;
 }, {
-    stake: string;
     shards: unknown[];
+    stake: string;
     accountId?: unknown;
     publicKey?: unknown;
 }>;
@@ -472,15 +472,15 @@ export declare const RpcProtocolConfigResponseSchema: z.ZodObject<{
     targetValidatorMandatesPerShard: z.ZodOptional<z.ZodNumber>;
     transactionValidityPeriod: z.ZodOptional<z.ZodNumber>;
 }, "strip", z.ZodTypeAny, {
-    gasLimit?: number | undefined;
     chainId?: string | undefined;
-    epochLength?: number | undefined;
-    numBlockProducerSeats?: number | undefined;
+    protocolVersion?: number | undefined;
+    gasLimit?: number | undefined;
     avgHiddenValidatorSeatsPerShard?: number[] | undefined;
     blockProducerKickoutThreshold?: number | undefined;
     chunkProducerKickoutThreshold?: number | undefined;
     chunkValidatorOnlyKickoutThreshold?: number | undefined;
     dynamicResharding?: boolean | undefined;
+    epochLength?: number | undefined;
     fishermenThreshold?: string | undefined;
     gasPriceAdjustmentRate?: number[] | undefined;
     genesisHeight?: number | undefined;
@@ -492,6 +492,7 @@ export declare const RpcProtocolConfigResponseSchema: z.ZodObject<{
     minimumStakeDivisor?: number | undefined;
     minimumStakeRatio?: number[] | undefined;
     minimumValidatorsPerShard?: number | undefined;
+    numBlockProducerSeats?: number | undefined;
     numBlockProducerSeatsPerShard?: number[] | undefined;
     numBlocksPerYear?: number | undefined;
     onlineMaxThreshold?: number[] | undefined;
@@ -499,22 +500,21 @@ export declare const RpcProtocolConfigResponseSchema: z.ZodObject<{
     protocolRewardRate?: number[] | undefined;
     protocolTreasuryAccount?: unknown;
     protocolUpgradeStakeThreshold?: number[] | undefined;
-    protocolVersion?: number | undefined;
     shardLayout?: unknown;
     shuffleShardAssignmentForChunkProducers?: boolean | undefined;
     targetValidatorMandatesPerShard?: number | undefined;
     transactionValidityPeriod?: number | undefined;
     runtimeConfig?: unknown;
 }, {
-    gasLimit?: number | undefined;
     chainId?: string | undefined;
-    epochLength?: number | undefined;
-    numBlockProducerSeats?: number | undefined;
+    protocolVersion?: number | undefined;
+    gasLimit?: number | undefined;
     avgHiddenValidatorSeatsPerShard?: number[] | undefined;
     blockProducerKickoutThreshold?: number | undefined;
     chunkProducerKickoutThreshold?: number | undefined;
     chunkValidatorOnlyKickoutThreshold?: number | undefined;
     dynamicResharding?: boolean | undefined;
+    epochLength?: number | undefined;
     fishermenThreshold?: string | undefined;
     gasPriceAdjustmentRate?: number[] | undefined;
     genesisHeight?: number | undefined;
@@ -526,6 +526,7 @@ export declare const RpcProtocolConfigResponseSchema: z.ZodObject<{
     minimumStakeDivisor?: number | undefined;
     minimumStakeRatio?: number[] | undefined;
     minimumValidatorsPerShard?: number | undefined;
+    numBlockProducerSeats?: number | undefined;
     numBlockProducerSeatsPerShard?: number[] | undefined;
     numBlocksPerYear?: number | undefined;
     onlineMaxThreshold?: number[] | undefined;
@@ -533,7 +534,6 @@ export declare const RpcProtocolConfigResponseSchema: z.ZodObject<{
     protocolRewardRate?: number[] | undefined;
     protocolTreasuryAccount?: unknown;
     protocolUpgradeStakeThreshold?: number[] | undefined;
-    protocolVersion?: number | undefined;
     shardLayout?: unknown;
     shuffleShardAssignmentForChunkProducers?: boolean | undefined;
     targetValidatorMandatesPerShard?: number | undefined;
@@ -558,13 +558,13 @@ export declare const RpcStatusResponseSchema: z.ZodObject<{
     version: z.ZodUnknown;
 }, "strip", z.ZodTypeAny, {
     validators: unknown[];
+    chainId?: string | undefined;
+    genesisHash?: unknown;
+    protocolVersion?: number | undefined;
     latestProtocolVersion?: number | undefined;
     version?: unknown;
-    chainId?: string | undefined;
     rpcAddr?: string | undefined;
-    protocolVersion?: number | undefined;
     detailedDebugStatus?: unknown;
-    genesisHash?: unknown;
     nodeKey?: unknown;
     nodePublicKey?: unknown;
     syncInfo?: unknown;
@@ -573,13 +573,13 @@ export declare const RpcStatusResponseSchema: z.ZodObject<{
     validatorPublicKey?: unknown;
 }, {
     validators: unknown[];
+    chainId?: string | undefined;
+    genesisHash?: unknown;
+    protocolVersion?: number | undefined;
     latestProtocolVersion?: number | undefined;
     version?: unknown;
-    chainId?: string | undefined;
     rpcAddr?: string | undefined;
-    protocolVersion?: number | undefined;
     detailedDebugStatus?: unknown;
-    genesisHash?: unknown;
     nodeKey?: unknown;
     nodePublicKey?: unknown;
     syncInfo?: unknown;
@@ -699,249 +699,3 @@ export declare const ValidatorStakeViewV1Schema: z.ZodObject<{
     accountId?: unknown;
     publicKey?: unknown;
 }>;
-export declare const RpcEXPERIMENTALGenesisConfigRequestSchema: z.ZodRecord<z.ZodString, z.ZodUnknown>;
-export declare const RpcEXPERIMENTALGenesisConfigResponseSchema: z.ZodObject<{
-    avgHiddenValidatorSeatsPerShard: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
-    blockProducerKickoutThreshold: z.ZodOptional<z.ZodNumber>;
-    chainId: z.ZodOptional<z.ZodString>;
-    chunkProducerAssignmentChangesLimit: z.ZodOptional<z.ZodNumber>;
-    chunkProducerKickoutThreshold: z.ZodOptional<z.ZodNumber>;
-    chunkValidatorOnlyKickoutThreshold: z.ZodOptional<z.ZodNumber>;
-    dynamicResharding: z.ZodOptional<z.ZodBoolean>;
-    epochLength: z.ZodOptional<z.ZodNumber>;
-    fishermenThreshold: z.ZodOptional<z.ZodString>;
-    gasLimit: z.ZodOptional<z.ZodNumber>;
-    gasPriceAdjustmentRate: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
-    genesisHeight: z.ZodOptional<z.ZodNumber>;
-    genesisTime: z.ZodOptional<z.ZodString>;
-    maxGasPrice: z.ZodOptional<z.ZodString>;
-    maxInflationRate: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
-    maxKickoutStakePerc: z.ZodOptional<z.ZodNumber>;
-    minGasPrice: z.ZodOptional<z.ZodString>;
-    minimumStakeDivisor: z.ZodOptional<z.ZodNumber>;
-    minimumStakeRatio: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
-    minimumValidatorsPerShard: z.ZodOptional<z.ZodNumber>;
-    numBlockProducerSeats: z.ZodOptional<z.ZodNumber>;
-    numBlockProducerSeatsPerShard: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
-    numBlocksPerYear: z.ZodOptional<z.ZodNumber>;
-    numChunkOnlyProducerSeats: z.ZodOptional<z.ZodNumber>;
-    numChunkProducerSeats: z.ZodOptional<z.ZodNumber>;
-    numChunkValidatorSeats: z.ZodOptional<z.ZodNumber>;
-    onlineMaxThreshold: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
-    onlineMinThreshold: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
-    protocolRewardRate: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
-    protocolTreasuryAccount: z.ZodOptional<z.ZodUnknown>;
-    protocolUpgradeStakeThreshold: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
-    protocolVersion: z.ZodOptional<z.ZodNumber>;
-    shardLayout: z.ZodOptional<z.ZodUnknown>;
-    shuffleShardAssignmentForChunkProducers: z.ZodOptional<z.ZodBoolean>;
-    targetValidatorMandatesPerShard: z.ZodOptional<z.ZodNumber>;
-    totalSupply: z.ZodOptional<z.ZodString>;
-    transactionValidityPeriod: z.ZodOptional<z.ZodNumber>;
-    useProductionConfig: z.ZodOptional<z.ZodBoolean>;
-    validators: z.ZodArray<z.ZodUnknown, "many">;
-}, "strip", z.ZodTypeAny, {
-    validators: unknown[];
-    totalSupply?: string | undefined;
-    gasLimit?: number | undefined;
-    chainId?: string | undefined;
-    epochLength?: number | undefined;
-    numBlockProducerSeats?: number | undefined;
-    avgHiddenValidatorSeatsPerShard?: number[] | undefined;
-    blockProducerKickoutThreshold?: number | undefined;
-    chunkProducerAssignmentChangesLimit?: number | undefined;
-    chunkProducerKickoutThreshold?: number | undefined;
-    chunkValidatorOnlyKickoutThreshold?: number | undefined;
-    dynamicResharding?: boolean | undefined;
-    fishermenThreshold?: string | undefined;
-    gasPriceAdjustmentRate?: number[] | undefined;
-    genesisHeight?: number | undefined;
-    genesisTime?: string | undefined;
-    maxGasPrice?: string | undefined;
-    maxInflationRate?: number[] | undefined;
-    maxKickoutStakePerc?: number | undefined;
-    minGasPrice?: string | undefined;
-    minimumStakeDivisor?: number | undefined;
-    minimumStakeRatio?: number[] | undefined;
-    minimumValidatorsPerShard?: number | undefined;
-    numBlockProducerSeatsPerShard?: number[] | undefined;
-    numBlocksPerYear?: number | undefined;
-    numChunkOnlyProducerSeats?: number | undefined;
-    numChunkProducerSeats?: number | undefined;
-    numChunkValidatorSeats?: number | undefined;
-    onlineMaxThreshold?: number[] | undefined;
-    onlineMinThreshold?: number[] | undefined;
-    protocolRewardRate?: number[] | undefined;
-    protocolTreasuryAccount?: unknown;
-    protocolUpgradeStakeThreshold?: number[] | undefined;
-    protocolVersion?: number | undefined;
-    shardLayout?: unknown;
-    shuffleShardAssignmentForChunkProducers?: boolean | undefined;
-    targetValidatorMandatesPerShard?: number | undefined;
-    transactionValidityPeriod?: number | undefined;
-    useProductionConfig?: boolean | undefined;
-}, {
-    validators: unknown[];
-    totalSupply?: string | undefined;
-    gasLimit?: number | undefined;
-    chainId?: string | undefined;
-    epochLength?: number | undefined;
-    numBlockProducerSeats?: number | undefined;
-    avgHiddenValidatorSeatsPerShard?: number[] | undefined;
-    blockProducerKickoutThreshold?: number | undefined;
-    chunkProducerAssignmentChangesLimit?: number | undefined;
-    chunkProducerKickoutThreshold?: number | undefined;
-    chunkValidatorOnlyKickoutThreshold?: number | undefined;
-    dynamicResharding?: boolean | undefined;
-    fishermenThreshold?: string | undefined;
-    gasPriceAdjustmentRate?: number[] | undefined;
-    genesisHeight?: number | undefined;
-    genesisTime?: string | undefined;
-    maxGasPrice?: string | undefined;
-    maxInflationRate?: number[] | undefined;
-    maxKickoutStakePerc?: number | undefined;
-    minGasPrice?: string | undefined;
-    minimumStakeDivisor?: number | undefined;
-    minimumStakeRatio?: number[] | undefined;
-    minimumValidatorsPerShard?: number | undefined;
-    numBlockProducerSeatsPerShard?: number[] | undefined;
-    numBlocksPerYear?: number | undefined;
-    numChunkOnlyProducerSeats?: number | undefined;
-    numChunkProducerSeats?: number | undefined;
-    numChunkValidatorSeats?: number | undefined;
-    onlineMaxThreshold?: number[] | undefined;
-    onlineMinThreshold?: number[] | undefined;
-    protocolRewardRate?: number[] | undefined;
-    protocolTreasuryAccount?: unknown;
-    protocolUpgradeStakeThreshold?: number[] | undefined;
-    protocolVersion?: number | undefined;
-    shardLayout?: unknown;
-    shuffleShardAssignmentForChunkProducers?: boolean | undefined;
-    targetValidatorMandatesPerShard?: number | undefined;
-    transactionValidityPeriod?: number | undefined;
-    useProductionConfig?: boolean | undefined;
-}>;
-export declare const RpcEXPERIMENTALProtocolConfigRequestSchema: z.ZodRecord<z.ZodString, z.ZodUnknown>;
-export declare const RpcEXPERIMENTALProtocolConfigResponseSchema: z.ZodObject<{
-    avgHiddenValidatorSeatsPerShard: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
-    blockProducerKickoutThreshold: z.ZodOptional<z.ZodNumber>;
-    chainId: z.ZodOptional<z.ZodString>;
-    chunkProducerKickoutThreshold: z.ZodOptional<z.ZodNumber>;
-    chunkValidatorOnlyKickoutThreshold: z.ZodOptional<z.ZodNumber>;
-    dynamicResharding: z.ZodOptional<z.ZodBoolean>;
-    epochLength: z.ZodOptional<z.ZodNumber>;
-    fishermenThreshold: z.ZodOptional<z.ZodString>;
-    gasLimit: z.ZodOptional<z.ZodNumber>;
-    gasPriceAdjustmentRate: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
-    genesisHeight: z.ZodOptional<z.ZodNumber>;
-    genesisTime: z.ZodOptional<z.ZodString>;
-    maxGasPrice: z.ZodOptional<z.ZodString>;
-    maxInflationRate: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
-    maxKickoutStakePerc: z.ZodOptional<z.ZodNumber>;
-    minGasPrice: z.ZodOptional<z.ZodString>;
-    minimumStakeDivisor: z.ZodOptional<z.ZodNumber>;
-    minimumStakeRatio: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
-    minimumValidatorsPerShard: z.ZodOptional<z.ZodNumber>;
-    numBlockProducerSeats: z.ZodOptional<z.ZodNumber>;
-    numBlockProducerSeatsPerShard: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
-    numBlocksPerYear: z.ZodOptional<z.ZodNumber>;
-    onlineMaxThreshold: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
-    onlineMinThreshold: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
-    protocolRewardRate: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
-    protocolTreasuryAccount: z.ZodOptional<z.ZodUnknown>;
-    protocolUpgradeStakeThreshold: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
-    protocolVersion: z.ZodOptional<z.ZodNumber>;
-    runtimeConfig: z.ZodOptional<z.ZodUnknown>;
-    shardLayout: z.ZodOptional<z.ZodUnknown>;
-    shuffleShardAssignmentForChunkProducers: z.ZodOptional<z.ZodBoolean>;
-    targetValidatorMandatesPerShard: z.ZodOptional<z.ZodNumber>;
-    transactionValidityPeriod: z.ZodOptional<z.ZodNumber>;
-}, "strip", z.ZodTypeAny, {
-    gasLimit?: number | undefined;
-    chainId?: string | undefined;
-    epochLength?: number | undefined;
-    numBlockProducerSeats?: number | undefined;
-    avgHiddenValidatorSeatsPerShard?: number[] | undefined;
-    blockProducerKickoutThreshold?: number | undefined;
-    chunkProducerKickoutThreshold?: number | undefined;
-    chunkValidatorOnlyKickoutThreshold?: number | undefined;
-    dynamicResharding?: boolean | undefined;
-    fishermenThreshold?: string | undefined;
-    gasPriceAdjustmentRate?: number[] | undefined;
-    genesisHeight?: number | undefined;
-    genesisTime?: string | undefined;
-    maxGasPrice?: string | undefined;
-    maxInflationRate?: number[] | undefined;
-    maxKickoutStakePerc?: number | undefined;
-    minGasPrice?: string | undefined;
-    minimumStakeDivisor?: number | undefined;
-    minimumStakeRatio?: number[] | undefined;
-    minimumValidatorsPerShard?: number | undefined;
-    numBlockProducerSeatsPerShard?: number[] | undefined;
-    numBlocksPerYear?: number | undefined;
-    onlineMaxThreshold?: number[] | undefined;
-    onlineMinThreshold?: number[] | undefined;
-    protocolRewardRate?: number[] | undefined;
-    protocolTreasuryAccount?: unknown;
-    protocolUpgradeStakeThreshold?: number[] | undefined;
-    protocolVersion?: number | undefined;
-    shardLayout?: unknown;
-    shuffleShardAssignmentForChunkProducers?: boolean | undefined;
-    targetValidatorMandatesPerShard?: number | undefined;
-    transactionValidityPeriod?: number | undefined;
-    runtimeConfig?: unknown;
-}, {
-    gasLimit?: number | undefined;
-    chainId?: string | undefined;
-    epochLength?: number | undefined;
-    numBlockProducerSeats?: number | undefined;
-    avgHiddenValidatorSeatsPerShard?: number[] | undefined;
-    blockProducerKickoutThreshold?: number | undefined;
-    chunkProducerKickoutThreshold?: number | undefined;
-    chunkValidatorOnlyKickoutThreshold?: number | undefined;
-    dynamicResharding?: boolean | undefined;
-    fishermenThreshold?: string | undefined;
-    gasPriceAdjustmentRate?: number[] | undefined;
-    genesisHeight?: number | undefined;
-    genesisTime?: string | undefined;
-    maxGasPrice?: string | undefined;
-    maxInflationRate?: number[] | undefined;
-    maxKickoutStakePerc?: number | undefined;
-    minGasPrice?: string | undefined;
-    minimumStakeDivisor?: number | undefined;
-    minimumStakeRatio?: number[] | undefined;
-    minimumValidatorsPerShard?: number | undefined;
-    numBlockProducerSeatsPerShard?: number[] | undefined;
-    numBlocksPerYear?: number | undefined;
-    onlineMaxThreshold?: number[] | undefined;
-    onlineMinThreshold?: number[] | undefined;
-    protocolRewardRate?: number[] | undefined;
-    protocolTreasuryAccount?: unknown;
-    protocolUpgradeStakeThreshold?: number[] | undefined;
-    protocolVersion?: number | undefined;
-    shardLayout?: unknown;
-    shuffleShardAssignmentForChunkProducers?: boolean | undefined;
-    targetValidatorMandatesPerShard?: number | undefined;
-    transactionValidityPeriod?: number | undefined;
-    runtimeConfig?: unknown;
-}>;
-export declare const RpcEXPERIMENTALValidatorsOrderedRequestSchema: z.ZodObject<{
-    blockId: z.ZodOptional<z.ZodUnknown>;
-}, "strip", z.ZodTypeAny, {
-    blockId?: unknown;
-}, {
-    blockId?: unknown;
-}>;
-export declare const RpcEXPERIMENTALValidatorsOrderedResponseSchema: z.ZodArray<z.ZodObject<{
-    accountId: z.ZodOptional<z.ZodUnknown>;
-    publicKey: z.ZodOptional<z.ZodUnknown>;
-    stake: z.ZodString;
-}, "strip", z.ZodTypeAny, {
-    stake: string;
-    accountId?: unknown;
-    publicKey?: unknown;
-}, {
-    stake: string;
-    accountId?: unknown;
-    publicKey?: unknown;
-}>, "many">;

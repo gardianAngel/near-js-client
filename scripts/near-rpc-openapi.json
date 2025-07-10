@@ -1,0 +1,337 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "NEAR Protocol JSON-RPC API",
+    "version": "1.0.0",
+    "description": "Type-safe TypeScript client for NEAR Protocol's JSON-RPC interface",
+    "contact": {
+      "url": "https://near.org"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://rpc.mainnet.near.org",
+      "description": "NEAR Mainnet RPC"
+    },
+    {
+      "url": "https://rpc.testnet.near.org",
+      "description": "NEAR Testnet RPC"
+    }
+  ],
+  "paths": {
+    "/": {
+      "post": {
+        "summary": "JSON-RPC 2.0 endpoint",
+        "description": "All NEAR Protocol RPC methods use POST to the root path",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JsonRpcRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "JSON-RPC response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JsonRpcResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ViewAccessKeyParams": {
+        "type": "object",
+        "properties": {
+          "account_id": {
+            "type": "string",
+            "description": "Account ID"
+          },
+          "public_key": {
+            "type": "string",
+            "description": "Public key"
+          }
+        }
+      },
+      "ViewAccessKeyResult": {
+        "type": "object",
+        "properties": {
+          "nonce": {
+            "type": "number"
+          },
+          "permission": {
+            "type": "string"
+          },
+          "block_height": {
+            "type": "number"
+          },
+          "block_hash": {
+            "type": "string"
+          }
+        }
+      },
+      "ViewAccessKeyListParams": {
+        "type": "object",
+        "properties": {
+          "account_id": {
+            "type": "string",
+            "description": "Account ID"
+          }
+        }
+      },
+      "ViewAccessKeyListResult": {
+        "type": "object"
+      },
+      "ViewAccountParams": {
+        "type": "object",
+        "properties": {
+          "account_id": {
+            "type": "string",
+            "description": "Account ID to view"
+          }
+        }
+      },
+      "ViewAccountResult": {
+        "type": "object",
+        "properties": {
+          "account_id": {
+            "type": "string"
+          },
+          "balance": {
+            "type": "string"
+          },
+          "storage_usage": {
+            "type": "number"
+          },
+          "code_hash": {
+            "type": "string"
+          },
+          "block_height": {
+            "type": "number"
+          },
+          "block_hash": {
+            "type": "string"
+          }
+        }
+      },
+      "ViewCodeResult": {
+        "type": "object"
+      },
+      "ViewStateResult": {
+        "type": "object"
+      },
+      "CallFunctionResult": {
+        "type": "object"
+      },
+      "BlockParams": {
+        "type": "object",
+        "properties": {
+          "block_id": {
+            "type": "string",
+            "description": "Block ID or height"
+          }
+        }
+      },
+      "BlockResult": {
+        "type": "object",
+        "properties": {
+          "header": {
+            "type": "object"
+          },
+          "chunks": {
+            "type": "array"
+          },
+          "transactions": {
+            "type": "array"
+          }
+        }
+      },
+      "ChunkParams": {
+        "type": "object",
+        "properties": {
+          "chunk_id": {
+            "type": "string",
+            "description": "Chunk ID"
+          }
+        }
+      },
+      "ChunkResult": {
+        "type": "object"
+      },
+      "ChangesInBlockResult": {
+        "type": "object"
+      },
+      "ExperimentalChangesInBlockResult": {
+        "type": "object"
+      },
+      "GasPriceParams": {
+        "type": "object",
+        "properties": {
+          "block_id": {
+            "type": "string",
+            "description": "Block ID",
+            "required": false
+          }
+        }
+      },
+      "GasPriceResult": {
+        "type": "object",
+        "properties": {
+          "gas_price": {
+            "type": "string"
+          }
+        }
+      },
+      "ExperimentalGenesisConfigResult": {
+        "type": "object"
+      },
+      "ExperimentalProtocolConfigResult": {
+        "type": "object"
+      },
+      "NetworkInfoResult": {
+        "type": "object",
+        "properties": {
+          "chain_id": {
+            "type": "string"
+          },
+          "genesis_hash": {
+            "type": "string"
+          },
+          "protocol_version": {
+            "type": "number"
+          }
+        }
+      },
+      "StatusResult": {
+        "type": "object"
+      },
+      "ValidatorsResult": {
+        "type": "object"
+      },
+      "BroadcastTxAsyncParams": {
+        "type": "object",
+        "properties": {
+          "signed_tx_base64": {
+            "type": "string",
+            "description": "Base64 encoded signed transaction"
+          }
+        }
+      },
+      "BroadcastTxAsyncResult": {
+        "type": "object"
+      },
+      "BroadcastTxCommitParams": {
+        "type": "object",
+        "properties": {
+          "signed_tx_base64": {
+            "type": "string",
+            "description": "Base64 encoded signed transaction"
+          }
+        }
+      },
+      "BroadcastTxCommitResult": {
+        "type": "object"
+      },
+      "TxParams": {
+        "type": "object",
+        "properties": {
+          "tx_hash": {
+            "type": "string",
+            "description": "Transaction hash"
+          },
+          "sender_account_id": {
+            "type": "string",
+            "description": "Sender account ID"
+          }
+        }
+      },
+      "TxResult": {
+        "type": "object"
+      },
+      "ExperimentalTxStatusResult": {
+        "type": "object"
+      },
+      "JsonRpcRequest": {
+        "type": "object",
+        "required": [
+          "jsonrpc",
+          "method",
+          "id"
+        ],
+        "properties": {
+          "jsonrpc": {
+            "type": "string",
+            "enum": [
+              "2.0"
+            ]
+          },
+          "method": {
+            "type": "string"
+          },
+          "params": {
+            "type": "object"
+          },
+          "id": {
+            "type": "string"
+          }
+        }
+      },
+      "JsonRpcResponse": {
+        "type": "object",
+        "required": [
+          "jsonrpc",
+          "id"
+        ],
+        "properties": {
+          "jsonrpc": {
+            "type": "string",
+            "enum": [
+              "2.0"
+            ]
+          },
+          "result": {
+            "type": "object"
+          },
+          "error": {
+            "$ref": "#/components/schemas/JsonRpcError"
+          },
+          "id": {
+            "type": "string"
+          }
+        }
+      },
+      "JsonRpcError": {
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "properties": {
+          "code": {
+            "type": "integer"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "object"
+          }
+        }
+      }
+    }
+  }
+}
