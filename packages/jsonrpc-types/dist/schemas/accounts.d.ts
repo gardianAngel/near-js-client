@@ -29,11 +29,11 @@ export declare const AccessKeyInfoViewSchema: z.ZodObject<{
     accessKey: z.ZodOptional<z.ZodUnknown>;
     publicKey: z.ZodOptional<z.ZodUnknown>;
 }, "strip", z.ZodTypeAny, {
-    accessKey?: unknown;
     publicKey?: unknown;
+    accessKey?: unknown;
 }, {
-    accessKey?: unknown;
     publicKey?: unknown;
+    accessKey?: unknown;
 }>;
 export declare const AccessKeyListSchema: z.ZodObject<{
     keys: z.ZodArray<z.ZodUnknown, "many">;
@@ -72,13 +72,13 @@ export declare const AccountDataViewSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     timestamp: string;
     proxies: unknown[];
-    accountKey?: unknown;
     peerId?: unknown;
+    accountKey?: unknown;
 }, {
     timestamp: string;
     proxies: unknown[];
-    accountKey?: unknown;
     peerId?: unknown;
+    accountKey?: unknown;
 }>;
 export declare const AccountIdSchema: z.ZodString;
 export declare const AccountIdValidityRulesVersionSchema: z.ZodNumber;

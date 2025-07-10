@@ -3,6 +3,6 @@
  */
 
 // Export working validated client (recommended for production use)
-export { NearRpcClient } from './client-working';
-export type { NearRpcClientConfig } from './client-working';
-export { NearRpcError, NetworkError } from './client-working';
+export { NearRpcClient } from './client-clean';
+export type { NearRpcClientConfig } from './client-clean';
+export { NearRpcError, NetworkError } from './client-clean';

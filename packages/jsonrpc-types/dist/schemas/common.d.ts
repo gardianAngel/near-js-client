@@ -112,11 +112,11 @@ export declare const DataReceiverViewSchema: z.ZodObject<{
     dataId: z.ZodOptional<z.ZodUnknown>;
     receiverId: z.ZodOptional<z.ZodUnknown>;
 }, "strip", z.ZodTypeAny, {
-    dataId?: unknown;
     receiverId?: unknown;
+    dataId?: unknown;
 }, {
-    dataId?: unknown;
     receiverId?: unknown;
+    dataId?: unknown;
 }>;
 export declare const DirectionSchema: z.ZodEnum<["Left", "Right"]>;
 export declare const DumpConfigSchema: z.ZodObject<{
@@ -205,13 +205,13 @@ export declare const ExecutionOutcomeWithIdViewSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     proof: unknown[];
     id?: unknown;
-    outcome?: unknown;
     blockHash?: unknown;
+    outcome?: unknown;
 }, {
     proof: unknown[];
     id?: unknown;
-    outcome?: unknown;
     blockHash?: unknown;
+    outcome?: unknown;
 }>;
 export declare const ExtCostsConfigViewSchema: z.ZodObject<{
     altBn128G1MultiexpBase: z.ZodOptional<z.ZodNumber>;
@@ -531,12 +531,12 @@ export declare const FunctionCallPermissionSchema: z.ZodObject<{
     methodNames: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     receiverId: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    allowance?: string | undefined;
     receiverId?: string | undefined;
+    allowance?: string | undefined;
     methodNames?: string[] | undefined;
 }, {
-    allowance?: string | undefined;
     receiverId?: string | undefined;
+    allowance?: string | undefined;
     methodNames?: string[] | undefined;
 }>;
 export declare const GCConfigSchema: z.ZodObject<{
@@ -827,12 +827,12 @@ export declare const KnownProducerViewSchema: z.ZodObject<{
     nextHops: z.ZodOptional<z.ZodArray<z.ZodUnknown, "many">>;
     peerId: z.ZodOptional<z.ZodUnknown>;
 }, "strip", z.ZodTypeAny, {
-    peerId?: unknown;
     accountId?: unknown;
+    peerId?: unknown;
     nextHops?: unknown[] | undefined;
 }, {
-    peerId?: unknown;
     accountId?: unknown;
+    peerId?: unknown;
     nextHops?: unknown[] | undefined;
 }>;
 export declare const LimitConfigSchema: z.ZodObject<{
@@ -968,33 +968,33 @@ export declare const PeerInfoViewSchema: z.ZodObject<{
     nonce: number;
     addr: string;
     archival: boolean;
+    accountId?: unknown;
     height?: number | undefined;
     peerId?: unknown;
-    accountId?: unknown;
+    sentBytesPerSec?: number | undefined;
+    receivedBytesPerSec?: number | undefined;
     blockHash?: unknown;
     connectionEstablishedTimeMillis?: number | undefined;
     isHighestBlockInvalid?: boolean | undefined;
     isOutboundPeer?: boolean | undefined;
     lastTimePeerRequestedMillis?: number | undefined;
     lastTimeReceivedMessageMillis?: number | undefined;
-    receivedBytesPerSec?: number | undefined;
-    sentBytesPerSec?: number | undefined;
     trackedShards?: unknown[] | undefined;
 }, {
     nonce: number;
     addr: string;
     archival: boolean;
+    accountId?: unknown;
     height?: number | undefined;
     peerId?: unknown;
-    accountId?: unknown;
+    sentBytesPerSec?: number | undefined;
+    receivedBytesPerSec?: number | undefined;
     blockHash?: unknown;
     connectionEstablishedTimeMillis?: number | undefined;
     isHighestBlockInvalid?: boolean | undefined;
     isOutboundPeer?: boolean | undefined;
     lastTimePeerRequestedMillis?: number | undefined;
     lastTimeReceivedMessageMillis?: number | undefined;
-    receivedBytesPerSec?: number | undefined;
-    sentBytesPerSec?: number | undefined;
     trackedShards?: unknown[] | undefined;
 }>;
 export declare const PrepareErrorSchema: z.ZodUnknown;
@@ -1071,12 +1071,15 @@ export declare const RpcClientConfigResponseSchema: z.ZodObject<{
     viewClientThrottlePeriod: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
 }, "strip", z.ZodTypeAny, {
     archive: boolean;
+    chainId?: string | undefined;
+    rpcAddr?: string | undefined;
     version?: unknown;
+    epochLength?: number | undefined;
+    numBlockProducerSeats?: number | undefined;
     blockFetchHorizon?: number | undefined;
     blockHeaderFetchHorizon?: number | undefined;
     blockProductionTrackingDelay?: number[] | undefined;
     catchupStepPeriod?: number[] | undefined;
-    chainId?: string | undefined;
     chunkDistributionNetwork?: unknown;
     chunkRequestRetryPeriod?: number[] | undefined;
     chunkWaitMult?: number[] | undefined;
@@ -1084,7 +1087,6 @@ export declare const RpcClientConfigResponseSchema: z.ZodObject<{
     doomslugStepPeriod?: number[] | undefined;
     enableMultilineLogging?: boolean | undefined;
     enableStatisticsExport?: boolean | undefined;
-    epochLength?: number | undefined;
     epochSync?: unknown;
     expectedShutdown?: unknown;
     gc?: unknown;
@@ -1099,13 +1101,11 @@ export declare const RpcClientConfigResponseSchema: z.ZodObject<{
     maxGasBurntView?: number | undefined;
     minBlockProductionDelay?: number[] | undefined;
     minNumPeers?: number | undefined;
-    numBlockProducerSeats?: number | undefined;
     orphanStateWitnessMaxSize?: number | undefined;
     orphanStateWitnessPoolSize?: number | undefined;
     produceChunkAddTransactionsTimeLimit?: string | undefined;
     produceEmptyBlocks?: boolean | undefined;
     reshardingConfig?: unknown;
-    rpcAddr?: string | undefined;
     saveInvalidWitnesses?: boolean | undefined;
     saveLatestWitnesses?: boolean | undefined;
     saveTrieChanges?: boolean | undefined;
@@ -1131,12 +1131,15 @@ export declare const RpcClientConfigResponseSchema: z.ZodObject<{
     viewClientThrottlePeriod?: number[] | undefined;
 }, {
     archive: boolean;
+    chainId?: string | undefined;
+    rpcAddr?: string | undefined;
     version?: unknown;
+    epochLength?: number | undefined;
+    numBlockProducerSeats?: number | undefined;
     blockFetchHorizon?: number | undefined;
     blockHeaderFetchHorizon?: number | undefined;
     blockProductionTrackingDelay?: number[] | undefined;
     catchupStepPeriod?: number[] | undefined;
-    chainId?: string | undefined;
     chunkDistributionNetwork?: unknown;
     chunkRequestRetryPeriod?: number[] | undefined;
     chunkWaitMult?: number[] | undefined;
@@ -1144,7 +1147,6 @@ export declare const RpcClientConfigResponseSchema: z.ZodObject<{
     doomslugStepPeriod?: number[] | undefined;
     enableMultilineLogging?: boolean | undefined;
     enableStatisticsExport?: boolean | undefined;
-    epochLength?: number | undefined;
     epochSync?: unknown;
     expectedShutdown?: unknown;
     gc?: unknown;
@@ -1159,13 +1161,11 @@ export declare const RpcClientConfigResponseSchema: z.ZodObject<{
     maxGasBurntView?: number | undefined;
     minBlockProductionDelay?: number[] | undefined;
     minNumPeers?: number | undefined;
-    numBlockProducerSeats?: number | undefined;
     orphanStateWitnessMaxSize?: number | undefined;
     orphanStateWitnessPoolSize?: number | undefined;
     produceChunkAddTransactionsTimeLimit?: string | undefined;
     produceEmptyBlocks?: boolean | undefined;
     reshardingConfig?: unknown;
-    rpcAddr?: string | undefined;
     saveInvalidWitnesses?: boolean | undefined;
     saveLatestWitnesses?: boolean | undefined;
     saveTrieChanges?: boolean | undefined;
@@ -1238,13 +1238,13 @@ export declare const RpcKnownProducerSchema: z.ZodObject<{
     addr: z.ZodOptional<z.ZodString>;
     peerId: z.ZodOptional<z.ZodUnknown>;
 }, "strip", z.ZodTypeAny, {
+    accountId?: unknown;
     addr?: string | undefined;
     peerId?: unknown;
-    accountId?: unknown;
 }, {
+    accountId?: unknown;
     addr?: string | undefined;
     peerId?: unknown;
-    accountId?: unknown;
 }>;
 export declare const RpcLightClientExecutionProofRequestSchema: z.ZodObject<{
     lightClientHead: z.ZodOptional<z.ZodUnknown>;
@@ -1282,12 +1282,12 @@ export declare const RpcPeerInfoSchema: z.ZodObject<{
     id: z.ZodUnknown;
 }, "strip", z.ZodTypeAny, {
     id?: unknown;
-    addr?: string | undefined;
     accountId?: unknown;
+    addr?: string | undefined;
 }, {
     id?: unknown;
-    addr?: string | undefined;
     accountId?: unknown;
+    addr?: string | undefined;
 }>;
 export declare const RpcQueryRequestSchema: z.ZodRecord<z.ZodString, z.ZodUnknown>;
 export declare const RpcQueryResponseSchema: z.ZodObject<{
@@ -1326,18 +1326,18 @@ export declare const RuntimeConfigViewSchema: z.ZodObject<{
     wasmConfig: z.ZodOptional<z.ZodUnknown>;
     witnessConfig: z.ZodOptional<z.ZodUnknown>;
 }, "strip", z.ZodTypeAny, {
-    accountCreationConfig?: unknown;
-    congestionControlConfig?: unknown;
     storageAmountPerByte?: string | undefined;
     transactionCosts?: unknown;
     wasmConfig?: unknown;
+    accountCreationConfig?: unknown;
+    congestionControlConfig?: unknown;
     witnessConfig?: unknown;
 }, {
-    accountCreationConfig?: unknown;
-    congestionControlConfig?: unknown;
     storageAmountPerByte?: string | undefined;
     transactionCosts?: unknown;
     wasmConfig?: unknown;
+    accountCreationConfig?: unknown;
+    congestionControlConfig?: unknown;
     witnessConfig?: unknown;
 }>;
 export declare const RuntimeFeesConfigViewSchema: z.ZodObject<{

@@ -42,5 +42,5 @@ exports.ValidatedSchemas = exports.ValidatedTypes = exports.z = void 0;
 var zod_1 = require("zod");
 Object.defineProperty(exports, "z", { enumerable: true, get: function () { return zod_1.z; } });
 // Export working validated types and schemas (generated from real API responses)
-exports.ValidatedTypes = __importStar(require("./types/validated-real"));
-exports.ValidatedSchemas = __importStar(require("./schemas/validated"));
+exports.ValidatedTypes = __importStar(require("./types/validated-real-improved"));
+exports.ValidatedSchemas = __importStar(require("./schemas/validated-improved"));

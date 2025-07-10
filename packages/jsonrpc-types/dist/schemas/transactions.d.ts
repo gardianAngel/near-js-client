@@ -57,11 +57,11 @@ export declare const AddKeyActionSchema: z.ZodObject<{
     accessKey: z.ZodOptional<z.ZodUnknown>;
     publicKey: z.ZodOptional<z.ZodUnknown>;
 }, "strip", z.ZodTypeAny, {
-    accessKey?: unknown;
     publicKey?: unknown;
+    accessKey?: unknown;
 }, {
-    accessKey?: unknown;
     publicKey?: unknown;
+    accessKey?: unknown;
 }>;
 export declare const CreateAccountActionSchema: z.ZodRecord<z.ZodString, z.ZodUnknown>;
 export declare const DataReceiptCreationConfigViewSchema: z.ZodObject<{
@@ -374,21 +374,21 @@ export declare const SignedTransactionViewSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     nonce: number;
     actions: unknown[];
-    hash?: unknown;
-    signature?: unknown;
+    signerId?: unknown;
     publicKey?: unknown;
     receiverId?: unknown;
+    signature?: unknown;
+    hash?: unknown;
     priorityFee?: number | undefined;
-    signerId?: unknown;
 }, {
     nonce: number;
     actions: unknown[];
-    hash?: unknown;
-    signature?: unknown;
+    signerId?: unknown;
     publicKey?: unknown;
     receiverId?: unknown;
+    signature?: unknown;
+    hash?: unknown;
     priorityFee?: number | undefined;
-    signerId?: unknown;
 }>;
 export declare const StakeActionSchema: z.ZodObject<{
     publicKey: z.ZodOptional<z.ZodUnknown>;

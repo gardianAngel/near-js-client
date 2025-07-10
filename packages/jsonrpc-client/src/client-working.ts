@@ -5,7 +5,7 @@
  * This client is guaranteed to work with the actual NEAR Protocol RPC.
  */
 
-import * as Types from '../../jsonrpc-types/src/types/validated-real';
+import * as Types from '../../jsonrpc-types/src/types/validated-real-improved';
 
 export interface NearRpcClientConfig {
   endpoint: string;

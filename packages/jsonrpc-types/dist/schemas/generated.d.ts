@@ -59,16 +59,16 @@ export declare const ViewAccountResultSchema: z.ZodObject<{
     blockHeight: z.ZodOptional<z.ZodNumber>;
     blockHash: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    accountId?: string | undefined;
     codeHash?: string | undefined;
     storageUsage?: number | undefined;
+    accountId?: string | undefined;
     balance?: string | undefined;
     blockHash?: string | undefined;
     blockHeight?: number | undefined;
 }, {
-    accountId?: string | undefined;
     codeHash?: string | undefined;
     storageUsage?: number | undefined;
+    accountId?: string | undefined;
     balance?: string | undefined;
     blockHash?: string | undefined;
     blockHeight?: number | undefined;
@@ -88,12 +88,12 @@ export declare const BlockResultSchema: z.ZodObject<{
     chunks: z.ZodOptional<z.ZodArray<z.ZodAny, "many">>;
     transactions: z.ZodOptional<z.ZodArray<z.ZodAny, "many">>;
 }, "strip", z.ZodTypeAny, {
-    header?: Record<string, any> | undefined;
     chunks?: any[] | undefined;
+    header?: Record<string, any> | undefined;
     transactions?: any[] | undefined;
 }, {
-    header?: Record<string, any> | undefined;
     chunks?: any[] | undefined;
+    header?: Record<string, any> | undefined;
     transactions?: any[] | undefined;
 }>;
 export declare const ChunkParamsSchema: z.ZodObject<{
