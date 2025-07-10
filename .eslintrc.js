@@ -32,7 +32,15 @@ module.exports = {
     es2022: true,
     jest: true,
   },
-  ignorePatterns: ['dist/', 'node_modules/', '*.js'],
+  ignorePatterns: [
+    'dist/',
+    'node_modules/',
+    '*.js',
+    '*.d.ts',
+    'packages/*/dist/',
+    '.cache/',
+    '.pythonlibs/'
+  ],
   overrides: [
     {
       files: ['*.js'],

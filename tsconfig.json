@@ -26,6 +26,17 @@
       "@near-js/jsonrpc-client": ["packages/jsonrpc-client/src/index.ts"]
     }
   },
-  "include": ["src/**/*", "tools/**/*", "tests/**/*"],
-  "exclude": ["node_modules", "dist", "packages/*/dist"]
+  "include": [
+    "packages/*/src/**/*",
+    "tools/**/*",
+    "tests/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "packages/*/dist",
+    "**/*.test.ts",
+    "**/*.d.ts",
+    "**/*.js"
+  ]
 }
